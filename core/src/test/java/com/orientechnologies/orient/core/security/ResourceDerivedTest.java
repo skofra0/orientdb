@@ -17,8 +17,9 @@
  *  * For more information: http://www.orientdb.com
  */
 
-package com.orientechnologies.orient.core.db.document;
+package com.orientechnologies.orient.core.security;
 
+import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.exception.OSecurityAccessException;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;

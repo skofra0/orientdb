@@ -15,16 +15,16 @@
 
     <groupId>com.orientechnologies</groupId>
     <artifactId>orientdb-parent</artifactId>
-    <version>3.0.41</version>
+    <version>3.0.41.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>OrientDB</name>
     <description>OrientDB NoSQL document graph dbms</description>
-    <url>http://www.orientdb.com</url>
+    <url>http://www.orientdb.org</url>
     <inceptionYear>2009</inceptionYear>
     <organization>
         <name>OrientDB</name>
-        <url>https://www.orientdb.com</url>
+        <url>https://www.orientdb.org</url>
     </organization>
     <licenses>
         <license>
@@ -32,74 +32,7 @@
             <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
     </licenses>
-
-    <developers>
-        <developer>
-            <id>l.garulli</id>
-            <name>Luca Garulli</name>
-            <email>l.garulli@orientdb.com</email>
-            <organization>Orientechnologies</organization>
-            <organizationUrl>http://www.orientdb.com</organizationUrl>
-            <roles>
-                <role>architect</role>
-                <role>developer</role>
-                <role>founder</role>
-            </roles>
-            <timezone>+1</timezone>
-        </developer>
-        <developer>
-            <id>lomakin.andrey</id>
-            <name>Andrey Lomakin</name>
-            <organization>OrientDB</organization>
-            <email>a.lomakin@orientdb.com</email>
-            <organizationUrl>http://www.orientdb.com</organizationUrl>
-            <roles>
-                <role>architect</role>
-                <role>developer</role>
-            </roles>
-            <timezone>+2</timezone>
-        </developer>
-        <developer>
-            <id>e.risa</id>
-            <name>Enrico Risa</name>
-            <email>e.risa@orientdb.com</email>
-            <organizationUrl>http://www.orientdb.com</organizationUrl>
-            <roles>
-                <role>architect</role>
-                <role>developer</role>
-            </roles>
-            <timezone>+1</timezone>
-        </developer>
-        <developer>
-            <id>l.aquila</id>
-            <name>Luigi Dell'Aquila</name>
-            <email>l.dellaquila@orientdb.com</email>
-            <organizationUrl>http://www.orientdb.com</organizationUrl>
-            <roles>
-                <role>architect</role>
-                <role>developer</role>
-            </roles>
-            <timezone>+1</timezone>
-        </developer>
-        <developer>
-            <id>e.tagliaferri</id>
-            <name>Emanuale Tagliaferri</name>
-            <email>l.tagliaferri@orientdb.com</email>
-            <organizationUrl>http://www.orientdb.com</organizationUrl>
-            <roles>
-                <role>architect</role>
-                <role>developer</role>
-            </roles>
-            <timezone>+1</timezone>
-        </developer>
-    </developers>
-
-    <mailingLists>
-        <mailingList>
-            <name>google groups</name>
-            <archive>http://groups.google.com/group/orient-database/topics</archive>
-        </mailingList>
-    </mailingLists>
+ 
 
     <modules>
         <module>test-commons</module>
@@ -115,8 +48,6 @@
         <module>jdbc</module>
         <module>etl</module>
         <module>distribution</module>
-        <module>distribution-tp2</module>
-        <module>crashtests</module>
     </modules>
 
     <scm>
@@ -173,7 +104,6 @@
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ssZ</maven.build.timestamp.format>
         <implementation.build>${scmBranch}@r${buildNumber}</implementation.build>
         <blueprints.version>2.6.0</blueprints.version>
-        <!-- | Configuration properties for the OSGi maven-bundle-plugin -->
         <osgi.fragment.host/>
         <osgi.export>${project.groupId}.*;version=${project.version};-noimport:=true</osgi.export>
         <osgi.import>*</osgi.import>
@@ -185,8 +115,6 @@
         </sonatypeOssDistMgmtSnapshotsUrl>
 
         <license.location>license.txt</license.location>
-        <!--Override with the given url on external modules-->
-        <!--<license.location>https://github.com/orientechnologies/orientdb/raw/develop/ODB-ASL-LICENSE.txt</license.location>-->
         <heapSize>2048m</heapSize>
         <javaassist.version>3.23.1-GA</javaassist.version>
         <jaxb.api.version>2.3.0</jaxb.api.version>
@@ -298,10 +226,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <version>3.0.1</version>
-                    <configuration>
-                        <doclint>none</doclint>
-                        <maxmemory>2G</maxmemory>
-                    </configuration>
                 </plugin>
 
                 <plugin>
@@ -532,23 +456,6 @@
                 </executions>
             </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <configuration>
-                    <doclint>none</doclint>
-                    <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
-
-                    <docletArtifact>
-                        <groupId>org.umlgraph</groupId>
-                        <artifactId>umlgraph</artifactId>
-                        <version>5.6.6</version>
-                    </docletArtifact>
-
-                </configuration>
-            </plugin>
-
-
         </plugins>
     </build>
 
@@ -558,30 +465,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
                 <version>${surefire.version}</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <configuration>
-                    <links>
-                        <link>http://download.oracle.com/javase/5/docs/api/index.html</link>
-                    </links>
-
-                    <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
-
-                    <docletArtifact>
-                        <groupId>org.umlgraph</groupId>
-                        <artifactId>umlgraph</artifactId>
-                        <version>5.6.6</version>
-                    </docletArtifact>
-                    <doclint>none</doclint>
-                    <additionalparam>-views -all</additionalparam>
-                    <useStandardDocletOptions>true</useStandardDocletOptions>
-
-                    <aggregate>true</aggregate>
-                    <!-- | Apple's JVM sometimes requires more memory -->
-                    <additionalJOption>-J-Xmx1024m</additionalJOption>
-                </configuration>
             </plugin>
 
         </plugins>
@@ -701,58 +584,7 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>attach-javadocs</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                                <configuration>
-                                    <quiet>true</quiet>
-                                    <maxmemory>2G</maxmemory>
 
-                                    <archive>
-                                        <manifest>
-                                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                                        </manifest>
-                                        <manifestEntries>
-                                            <Implementation-Build>${implementation.build}</Implementation-Build>
-                                            <Implementation-Build-Date>${maven.build.timestamp}
-                                            </Implementation-Build-Date>
-                                            <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
-                                            <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
-                                        </manifestEntries>
-                                    </archive>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <configuration>
-                            <gpgArguments>
-                                <arg>--pinentry-mode</arg>
-                                <arg>loopback</arg>
-                            </gpgArguments>
-                        </configuration>
-
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
                 </plugins>
             </build>
         </profile>
