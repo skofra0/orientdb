@@ -159,6 +159,16 @@
             <directory>${basedir}/target/databases</directory>
             <outputDirectory>databases</outputDirectory>
         </fileSet>
+        
+        <!--
+         | Service NEXUS_MOD
+        -->
+        <fileSet>
+            <directory>${basedir}/service</directory>
+            <outputDirectory>service</outputDirectory>
+        </fileSet>
+
+
     </fileSets>
 
     <!--
@@ -190,6 +200,7 @@
             </includes>
             <excludes>
                 <exclude>com.orientechnologies:orientdb-etl:*</exclude>
+                <exclude>com.orientechnologies:nexus_orientdb:*</exclude>
             </excludes>
         </dependencySet>
         <dependencySet>
