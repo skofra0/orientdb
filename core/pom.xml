@@ -80,7 +80,6 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>${surefire.version}</version>
                         <configuration>
                             <excludes>
                                 <exclude>**/OCellBTreeMultiValueV2TestIT.java</exclude>
@@ -115,7 +114,6 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>${surefire.version}</version>
                         <configuration>
                             <excludes>
                                 <exclude>**/OCellBTreeMultiValueV2TestIT.java</exclude>
@@ -145,7 +143,6 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>${surefire.version}</version>
                         <configuration>
                             <includes>
                                 <include>**/OCellBTreeMultiValueV2TestIT.java</include>
@@ -161,7 +158,6 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>${surefire.version}</version>
                         <configuration>
                             <skipTests>true</skipTests>
                         </configuration>
@@ -203,7 +199,6 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>${surefire.version}</version>
                         <configuration>
                             <skipTests>true</skipTests>
                         </configuration>
@@ -224,7 +219,6 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>buildnumber-maven-plugin</artifactId>
-                <version>1.4</version>
                 <executions>
                     <execution>
                         <phase>validate</phase>
@@ -255,7 +249,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${surefire.version}</version>
                 <configuration>
                     <systemPropertyVariables>
                         <buildDirectory>${project.build.directory}</buildDirectory>
@@ -275,7 +268,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>${surefire.version}</version>
                 <configuration>
                     <systemPropertyVariables>
                         <buildDirectory>${project.build.directory}</buildDirectory>
@@ -307,6 +299,22 @@
     </build>
 
     <dependencies>
+
+ 		<dependency> 
+ 			<groupId>no.bdo.commons</groupId> 
+ 			<artifactId>nexus-commons-script-fakejs</artifactId>
+            <version>1.0.37-SNAPSHOT</version>
+ 		</dependency> 
+        <dependency>
+            <groupId>org.mozilla</groupId>
+            <artifactId>rhino</artifactId>
+           <version>1.7.14</version>
+        </dependency>
+		<dependency>
+		    <groupId>org.mozilla</groupId>
+		    <artifactId>rhino-engine</artifactId>
+           <version>1.7.14</version>
+		</dependency>
 
         <dependency>
             <groupId>net.java.dev.jna</groupId>
@@ -357,11 +365,9 @@
             <version>3.0.1</version>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
-            <groupId>javax.activation</groupId>
-            <artifactId>javax.activation-api</artifactId>
-            <version>1.2.0</version>
+		    <groupId>com.sun.activation</groupId>
+		    <artifactId>jakarta.activation</artifactId>
         </dependency>
     </dependencies>
 

@@ -21,7 +21,7 @@
         <relativePath>../</relativePath>
     </parent>
 
-    <artifactId>orientdb-community</artifactId>
+    <artifactId>nexus_orientdb</artifactId>
 
     <name>OrientDB Community Distribution</name>
 
@@ -81,12 +81,13 @@
             <artifactId>orientdb-etl</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
+ 
+         <dependency>
             <groupId>com.orientechnologies</groupId>
             <artifactId>orientdb-lucene</artifactId>
             <version>${project.version}</version>
         </dependency>
- -->
+-->
         <dependency>
             <groupId>com.orientechnologies</groupId>
             <artifactId>orientdb-jdbc</artifactId>
@@ -290,7 +291,6 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>${surefire.version}</version>
                         <configuration>
                             <excludes>
                                 <exclude>**/OCommunityEditionSingleNodeIT.java</exclude>
@@ -334,7 +334,6 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>${surefire.version}</version>
                         <configuration>
                             <excludes>
                                 <include>**/OCommunityEditionSingleNodeIT.java</include>

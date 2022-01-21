@@ -38,15 +38,15 @@
         <module>test-commons</module>
         <module>client</module>
         <module>core</module>
-        <module>object</module>
+  <!--  <module>object</module> -->
         <module>server</module>
         <module>tools</module>
-        <module>tests</module>
-        <module>distributed</module>
-        <module>graphdb</module>
-        <module>lucene</module>
+  <!--  <module>tests</module> -->
+  <!--  <module>distributed</module> -->
+  <!--  <module>graphdb</module> -->
+        <module>lucene</module>  
         <module>jdbc</module>
-        <module>etl</module>
+  <!--  <module>etl</module> -->
         <module>distribution</module>
     </modules>
 
@@ -99,8 +99,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ssZ</maven.build.timestamp.format>
         <implementation.build>${scmBranch}@r${buildNumber}</implementation.build>
         <blueprints.version>2.6.0</blueprints.version>
@@ -110,14 +110,13 @@
         <osgi.dynamicImport/>
         <osgi.private/>
         <!-- | shared build/report plugins version -->
-        <surefire.version>2.22.2</surefire.version>
         <sonatypeOssDistMgmtSnapshotsUrl>https://oss.sonatype.org/content/repositories/snapshots/
         </sonatypeOssDistMgmtSnapshotsUrl>
 
         <license.location>license.txt</license.location>
         <heapSize>2048m</heapSize>
         <javaassist.version>3.23.1-GA</javaassist.version>
-        <jaxb.api.version>2.3.0</jaxb.api.version>
+        <jaxb.api.version>2.3.5</jaxb.api.version>
     </properties>
 
     <build>
@@ -153,7 +152,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${surefire.version}</version>
+                    <version>2.22.2</version>
                     <configuration>
                         <systemPropertyVariables>
                             <security.userPasswordSaltIterations>1</security.userPasswordSaltIterations>
@@ -173,7 +172,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>${surefire.version}</version>
+                    <version>2.22.2</version>
 
                     <configuration>
                         <systemPropertyVariables>
@@ -181,6 +180,12 @@
                         </systemPropertyVariables>
                     </configuration>
                 </plugin>
+
+	            <plugin>
+	                <groupId>org.apache.maven.plugins</groupId>
+	                <artifactId>maven-surefire-report-plugin</artifactId>
+	                <version>2.22.2</version>
+	            </plugin>
 
                 <plugin>
                     <artifactId>maven-install-plugin</artifactId>
@@ -458,13 +463,39 @@
 
         </plugins>
     </build>
+	<dependencyManagement>
+		<dependencies>
+			<!-- Java 11 -->
+			<dependency>
+				<groupId>jakarta.xml.bind</groupId>
+				<artifactId>jakarta.xml.bind-api</artifactId>
+				<version>2.3.3</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.xml.bind</groupId>
+				<artifactId>jaxb-impl</artifactId>
+				<version>2.3.5</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+			    <groupId>com.sun.activation</groupId>
+			    <artifactId>jakarta.activation</artifactId>
+			    <version>1.2.2</version>
+			</dependency>
+			<dependency>
+				<groupId>jakarta.activation</groupId>
+				<artifactId>jakarta.activation-api</artifactId>
+				<version>1.2.2</version>
+				<scope>provided</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
     <reporting>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>${surefire.version}</version>
             </plugin>
 
         </plugins>
