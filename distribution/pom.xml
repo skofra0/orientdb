@@ -23,7 +23,7 @@
 
     <artifactId>nexus-orientdb</artifactId>
 
-    <name>OrientDB Community Distribution</name>
+    <name>OrientDB Nexus Distribution</name>
 
     <properties>
         <VERSION>${project.version}</VERSION>

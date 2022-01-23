@@ -21,9 +21,10 @@ package com.orientechnologies.orient.core.command.script;
 
 import com.orientechnologies.common.log.OLogManager;
 
-import java.lang.invoke.MethodHandle;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Script utility class
@@ -57,15 +58,15 @@ public class OCommandExecutorUtility {
     // PATCH BY MAT ABOUT NASHORN RETURNING VALUE FOR ARRAYS.
     try {
       if (java8MethodIsArray.getDeclaringClass().isInstance(result) && (Boolean) java8MethodIsArray.invoke(result)) {
-        List<?> partial = new ArrayList(((Map) result).values());
-        List<Object> finalResult = new ArrayList<Object>();
+        List<?> partial = new ArrayList<>(((Map) result).values());
+        List<Object> finalResult = new ArrayList<>();
         for (Object o : partial) {
           finalResult.add(transformResult(o));
         }
         return finalResult;
       } else {
         Map<Object, Object> mapResult = (Map) result;
-        List<Object> keys = new ArrayList<Object>(mapResult.keySet());
+        List<Object> keys = new ArrayList<>(mapResult.keySet());
         for (Object key : keys) {
           mapResult.put(key, transformResult(mapResult.get(key)));
         }
