@@ -2,10 +2,11 @@
   "enabled": true,
   "mode": "FULL_BACKUP",
   "exportOptions": "",
-  "delay": "4h",
+  "delay": "12h",
   "firstTime": "23:00:00",
   "targetDirectory": "backup",
-  "targetFileName": "${DBNAME}-${DATE:yyyyMMddHHmmss}.zip",
+  "targetFileName": "${DBNAME}-${DATE:ddHH}.zip",
+  "_targetFileName": "${DBNAME}-${DATE:yyyyMMddHHmmss}.zip",
   "compressionLevel": 9,
   "bufferSize": 1048576
 }
