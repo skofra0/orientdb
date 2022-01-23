@@ -48,7 +48,7 @@
         <!-- AUTOMATIC BACKUP, TO TURN ON SET THE 'ENABLED' PARAMETER TO 'true' -->
         <handler class="com.orientechnologies.orient.server.handler.OAutomaticBackup">
             <parameters>
-                <parameter name="enabled" value="false"/>
+                <parameter name="enabled" value="true"/>
                 <!-- LOCATION OF JSON CONFIGURATION FILE -->
                 <parameter name="config" value="${ORIENTDB_HOME}/config/automatic-backup.json"/>
             </parameters>
@@ -140,6 +140,8 @@
     <storages>
     </storages>
     <users>
+		<user resources="*" password="admin" name="root" />
+		<user resources="connect,server.listDatabases,server.dblist" password="guest" name="guest" />
     </users>
     <properties>
         <!-- PROFILER: configures the profiler as <seconds-for-snapshot>,<archive-snapshot-size>,<summary-size> -->
