@@ -168,7 +168,6 @@
             <outputDirectory>service</outputDirectory>
         </fileSet>
 
-
     </fileSets>
 
     <!--
