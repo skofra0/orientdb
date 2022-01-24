@@ -39,7 +39,7 @@ public class OCommandExecutorUtility {
     Method isArray = null;
 
     try {
-      isArray = Class.forName("jdk.nashorn.api.scripting.JSObject").getDeclaredMethod("isArray", null);
+      isArray = Class.forName("org.openjdk.nashorn.api.scripting.JSObject").getDeclaredMethod("isArray", null);
     } catch (LinkageError | ClassNotFoundException | NoSuchMethodException | SecurityException ignore) {
     }
 

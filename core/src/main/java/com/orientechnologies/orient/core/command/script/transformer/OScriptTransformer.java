@@ -15,7 +15,7 @@ public interface OScriptTransformer {
 
   boolean doesHandleResult(Object value);
 
-  void registerResultTransformer(Class clazz, OResultTransformer resultTransformer);
+  void registerResultTransformer(Class<?> clazz, OResultTransformer<?> resultTransformer);
 
-  void registerResultSetTransformer(Class clazz, OResultSetTransformer transformer) ;
+  void registerResultSetTransformer(Class<?> clazz, OResultSetTransformer<?> transformer) ;
 }

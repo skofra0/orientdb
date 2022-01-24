@@ -11,7 +11,7 @@ public class OJSScriptEngineFactory {
 
   public static ScriptEngineFactory maybeWrap(ScriptEngineFactory engineFactory) {
     if (WRAPPED_LANGUAGES.contains(engineFactory.getLanguageName().toLowerCase(Locale.ENGLISH)) && engineFactory.getClass()
-        .getName().equalsIgnoreCase("jdk.nashorn.api.scripting.NashornScriptEngineFactory")) {
+        .getName().equalsIgnoreCase("org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory")) {
       return new ONashornScriptEngineFactory(engineFactory);
     }
     return engineFactory;

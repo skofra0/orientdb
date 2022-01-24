@@ -1,18 +1,20 @@
 package com.orientechnologies.orient.core.command.script.js;
 
 import com.orientechnologies.orient.core.command.script.OSecuredScriptFactory;
-import jdk.nashorn.api.scripting.NashornScriptEngineFactory;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineFactory;
+
+import org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory;
+
 import java.util.List;
 
 public class ONashornScriptEngineFactory extends OSecuredScriptFactory {
 
-  private NashornScriptEngineFactory engineFactory;
+  private ScriptEngineFactory engineFactory;
 
   public ONashornScriptEngineFactory(ScriptEngineFactory engineFactory) {
-    this.engineFactory = (NashornScriptEngineFactory) engineFactory;
+    this.engineFactory = engineFactory;
   }
 
   @Override
@@ -72,7 +74,10 @@ public class ONashornScriptEngineFactory extends OSecuredScriptFactory {
 
   @Override
   public ScriptEngine getScriptEngine() {
-    return engineFactory.getScriptEngine(new ONashornClassFilter(this));
+    // NEXUS_MOD remove NashornScript
+    return ((NashornScriptEngineFactory) engineFactory)
+        .getScriptEngine(s -> this.getPackages().stream().map(e -> s.matches(e)).filter(f -> f).findFirst().isPresent());
+    // return engineFactory.getScriptEngine();
   }
 
 }

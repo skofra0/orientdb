@@ -3,10 +3,11 @@ package com.orientechnologies.orient.core.command.script.transformer.resultset;
 import com.orientechnologies.orient.core.command.script.OScriptResultSets;
 import com.orientechnologies.orient.core.command.script.transformer.OScriptTransformer;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
-import jdk.nashorn.api.scripting.ScriptObjectMirror;
+import org.openjdk.nashorn.api.scripting.ScriptObjectMirror;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 
 /**
  * Created by Enrico Risa on 27/01/17.
