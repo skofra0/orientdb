@@ -74,10 +74,7 @@ public class ONashornScriptEngineFactory extends OSecuredScriptFactory {
 
   @Override
   public ScriptEngine getScriptEngine() {
-    // NEXUS_MOD remove NashornScript
-    return ((NashornScriptEngineFactory) engineFactory)
-        .getScriptEngine(s -> this.getPackages().stream().map(e -> s.matches(e)).filter(f -> f).findFirst().isPresent());
-    // return engineFactory.getScriptEngine();
+    return ((NashornScriptEngineFactory) engineFactory).getScriptEngine(new ONashornClassFilter(this));
   }
 
 }
