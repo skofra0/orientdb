@@ -8,7 +8,6 @@ import org.openjdk.nashorn.api.scripting.ScriptObjectMirror;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-
 /**
  * Created by Enrico Risa on 27/01/17.
  */
