@@ -19,7 +19,7 @@
   */
 package com.orientechnologies.orient.server.config;
 
-import javax.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.*;
 
 import com.orientechnologies.orient.core.hook.ORecordHook;
 

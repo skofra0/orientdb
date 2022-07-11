@@ -15,7 +15,7 @@
 
     <groupId>com.orientechnologies</groupId>
     <artifactId>orientdb-parent</artifactId>
-    <version>3.0.41-nexus3</version>
+    <version>3.0.41-nexus4</version>
     <packaging>pom</packaging>
 
     <name>OrientDB</name>
@@ -98,8 +98,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ssZ</maven.build.timestamp.format>
         <implementation.build>${scmBranch}@r${buildNumber}</implementation.build>
         <blueprints.version>2.6.0</blueprints.version>
@@ -115,7 +115,8 @@
         <license.location>license.txt</license.location>
         <heapSize>2048m</heapSize>
         <javaassist.version>3.23.1-GA</javaassist.version>
-        <jaxb.api.version>2.3.5</jaxb.api.version>
+        <jaxb.api.version>4.0.0</jaxb.api.version>
+		<asm.version>9.3</asm.version>
     </properties>
 
     <build>
@@ -468,24 +469,38 @@
 			<dependency>
 				<groupId>jakarta.xml.bind</groupId>
 				<artifactId>jakarta.xml.bind-api</artifactId>
-				<version>2.3.3</version>
+				<version>4.0.0</version>
 			</dependency>
 			<dependency>
 				<groupId>com.sun.xml.bind</groupId>
 				<artifactId>jaxb-impl</artifactId>
-				<version>2.3.5</version>
+				<version>4.0.0</version>
 				<scope>runtime</scope>
 			</dependency>
 			<dependency>
-			    <groupId>com.sun.activation</groupId>
-			    <artifactId>jakarta.activation</artifactId>
-			    <version>1.2.2</version>
+				<groupId>org.ow2.asm</groupId>
+				<artifactId>asm</artifactId>
+				<version>${asm.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>jakarta.activation</groupId>
-				<artifactId>jakarta.activation-api</artifactId>
-				<version>1.2.2</version>
-				<scope>provided</scope>
+				<groupId>org.ow2.asm</groupId>
+				<artifactId>asm-commons</artifactId>
+				<version>${asm.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.ow2.asm</groupId>
+				<artifactId>asm-tree</artifactId>
+				<version>${asm.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.ow2.asm</groupId>
+				<artifactId>asm-analysis</artifactId>
+				<version>${asm.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.ow2.asm</groupId>
+				<artifactId>asm-util</artifactId>
+				<version>${asm.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -524,9 +539,9 @@
         </profile>
 
         <profile>
-            <id>java8</id>
+            <id>java11</id>
             <activation>
-                <jdk>1.8</jdk>
+                <jdk>11</jdk>
             </activation>
             <build>
                 <plugins>

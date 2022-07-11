@@ -19,7 +19,7 @@
     <parent>
         <groupId>com.orientechnologies</groupId>
         <artifactId>orientdb-parent</artifactId>
-        <version>3.0.41-nexus3</version>
+        <version>3.0.41-nexus4</version>
         <relativePath>../</relativePath>
     </parent>
 
@@ -303,7 +303,7 @@
  		<dependency>
 		    <groupId>org.openjdk.nashorn</groupId>
 		    <artifactId>nashorn-core</artifactId>
-		    <version>15.3</version>
+		    <version>15.4</version>
 		</dependency>
 
         <dependency>
@@ -354,10 +354,6 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>3.0.1</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-		    <groupId>com.sun.activation</groupId>
-		    <artifactId>jakarta.activation</artifactId>
         </dependency>
     </dependencies>
 

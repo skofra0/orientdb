@@ -24,7 +24,7 @@
     <parent>
         <groupId>com.orientechnologies</groupId>
         <artifactId>orientdb-parent</artifactId>
-        <version>3.0.41-nexus3</version>
+        <version>3.0.41-nexus4</version>
         <relativePath>../</relativePath>
     </parent>
 
@@ -33,8 +33,6 @@
     <name>OrientDB GraphDB</name>
 
     <properties>
-        <javac.src.version>1.8</javac.src.version>
-        <javac.target.version>1.8</javac.target.version>
         <jar.manifest.mainclass>com.orientechnologies.orient.server.OServerMain</jar.manifest.mainclass>
         <osgi.import>
             com.tinkerpop.blueprints;resolution:=optional,
