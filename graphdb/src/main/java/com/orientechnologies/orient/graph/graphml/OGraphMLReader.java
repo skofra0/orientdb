@@ -60,8 +60,8 @@ public class OGraphMLReader {
   private String                              edgeLabelKey        = GraphMLTokens.LABEL;
   private boolean                             storeVertexIds      = false;
   private int                                 batchSize           = 1000;
-  private Map<String, OGraphMLImportStrategy> vertexPropsStrategy = new HashMap<String, OGraphMLImportStrategy>();
-  private Map<String, OGraphMLImportStrategy> edgePropsStrategy   = new HashMap<String, OGraphMLImportStrategy>();
+  private Map<String, OGraphMLImportStrategy> vertexPropsStrategy = new HashMap<>();
+  private Map<String, OGraphMLImportStrategy> edgePropsStrategy   = new HashMap<>();
   private OCommandOutputListener              output;
 
   /**
