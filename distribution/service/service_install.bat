@@ -34,17 +34,7 @@ set PR_STDERROR=%ORIENTDB_HOME%\log\%SERVICE_NAME%_stderr.txt
 set PR_LOGLEVEL=Info
  
 REM Path to java installation
-
-FOR /F %%a IN ('%JAVA_HOME%\bin\java.exe -version 2^>^&1^|%windir%\system32\find /C "build 1.8"') DO (SET /a ISJAVA8=%%a)
-IF %ISJAVA8% == 1 GOTO :USEJAVA8
-:USEJAVA11
 SET PR_JVM=%JAVA_HOME%\bin\server\jvm.dll
-GOTO :CONTINUE
-:USEJAVA8
-SET PR_JVM=%JAVA_HOME%\jre\bin\server\jvm.dll
-:CONTINUE
-SET PR_OLD_JVM=auto
-SET PR_OLD_CLASSPATH=nexus-orientdb.jar
 SET PR_CLASSPATH=%ORIENTDB_HOME%\lib\*
  
 REM Startup configuration
