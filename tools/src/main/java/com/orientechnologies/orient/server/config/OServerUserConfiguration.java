@@ -19,9 +19,9 @@
       */
 package com.orientechnologies.orient.server.config;
 
-import jakarta.xml.bind.annotation.XmlAttribute;
- import jakarta.xml.bind.annotation.XmlRootElement;
- import jakarta.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlAttribute;
+ import javax.xml.bind.annotation.XmlRootElement;
+ import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "user")
  @XmlType(propOrder = { "resources", "password", "name" })

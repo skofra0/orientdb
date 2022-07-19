@@ -19,7 +19,7 @@
       */
 package com.orientechnologies.orient.server.config;
 
-import jakarta.xml.bind.annotation.*;
+import javax.xml.bind.annotation.*;
 
 @XmlRootElement(name = "listener")
  @XmlType(propOrder = { "commands", "parameters", "protocol", "socket", "portRange", "ipAddress" })
