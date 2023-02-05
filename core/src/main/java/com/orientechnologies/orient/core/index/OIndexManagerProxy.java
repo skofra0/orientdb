@@ -19,6 +19,9 @@
  */
 package com.orientechnologies.orient.core.index;
 
+import static com.orientechnologies.orient.core.index.OIndexManagerAbstract.getDatabase;
+import java.util.Collection;
+import java.util.Set;
 import com.orientechnologies.common.listener.OProgressListener;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.record.OProxedResource;
@@ -31,11 +34,6 @@ import com.orientechnologies.orient.core.sql.OCommandExecutorSQLCreateIndex;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.storage.OAutoshardedStorage;
 import com.orientechnologies.orient.core.type.ODocumentWrapper;
-
-import java.util.Collection;
-import java.util.Set;
-
-import static com.orientechnologies.orient.core.index.OIndexManagerAbstract.getDatabase;
 
 public class OIndexManagerProxy extends OProxedResource<OIndexManagerAbstract> implements OIndexManager {
 

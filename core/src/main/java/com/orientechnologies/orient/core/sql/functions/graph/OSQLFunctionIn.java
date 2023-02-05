@@ -1,5 +1,8 @@
 package com.orientechnologies.orient.core.sql.functions.graph;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 import com.orientechnologies.common.collection.OMultiCollectionIterator;
 import com.orientechnologies.common.util.OSizeable;
 import com.orientechnologies.orient.core.db.ODatabase;
@@ -11,10 +14,6 @@ import com.orientechnologies.orient.core.record.ODirection;
 import com.orientechnologies.orient.core.record.OEdge;
 import com.orientechnologies.orient.core.record.OVertex;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by luigidellaquila on 03/01/17.
@@ -75,14 +74,14 @@ public class OSQLFunctionIn extends OSQLFunctionMoveFiltered {
     }
     OIndex index = indexes.iterator().next();
 
-    OMultiCollectionIterator<OVertex> result = new OMultiCollectionIterator<OVertex>();
+    OMultiCollectionIterator<OVertex> result = new OMultiCollectionIterator<>();
     for (OIdentifiable to : iTo) {
       OCompositeKey key = new OCompositeKey(iFrom, to);
       Object indexResult = index.get(key);
       if (indexResult instanceof OIdentifiable) {
         indexResult = Collections.singleton(indexResult);
       }
-      Set<OIdentifiable> identities = new HashSet<OIdentifiable>();
+      Set<OIdentifiable> identities = new HashSet<>();
       for (OIdentifiable edge : ((Iterable<OEdge>) indexResult)) {
         identities.add((OIdentifiable) ((ODocument) edge.getRecord()).rawField("out"));
       }

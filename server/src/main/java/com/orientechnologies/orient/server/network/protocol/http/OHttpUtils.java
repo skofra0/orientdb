@@ -24,7 +24,6 @@ import java.net.URLDecoder;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.exception.OSystemException;
 
@@ -111,7 +110,7 @@ public class OHttpUtils {
   protected static Map<String, String> getParameters(final String iURL) {
     int begin = iURL.indexOf("?");
     if (begin > -1) {
-      Map<String, String> params = new HashMap<String, String>();
+      Map<String, String> params = new HashMap<>();
       String parameters = iURL.substring(begin + 1);
       final String[] paramPairs = parameters.split("&");
       for (String p : paramPairs) {

@@ -19,11 +19,10 @@
  */
 package com.orientechnologies.orient.core.sql.parser;
 
-import com.orientechnologies.orient.core.sql.executor.OResult;
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.math.BigDecimal;
+import com.orientechnologies.orient.core.sql.executor.OResult;
 
 /**
  * Created by luigidellaquila on 02/07/15.

@@ -1,13 +1,13 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import org.junit.Assert;
+import org.junit.Test;
 import com.orientechnologies.common.concur.OTimeoutException;
 import com.orientechnologies.orient.core.command.OBasicCommandContext;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import org.junit.Assert;
-import org.junit.Test;
 
 /**
  * Created by olena.kolesnyk on 31/07/2017.

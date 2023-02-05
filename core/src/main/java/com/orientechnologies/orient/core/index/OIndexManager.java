@@ -19,15 +19,14 @@
  */
 package com.orientechnologies.orient.core.index;
 
+import java.util.Collection;
+import java.util.Set;
 import com.orientechnologies.common.listener.OProgressListener;
 import com.orientechnologies.common.util.OApi;
 import com.orientechnologies.orient.core.dictionary.ODictionary;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.type.ODocumentWrapper;
-
-import java.util.Collection;
-import java.util.Set;
 
 /**
  * Manager of indexes.

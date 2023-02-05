@@ -1,11 +1,10 @@
 package com.orientechnologies.orient.core.storage.cache.chm;
 
-import com.orientechnologies.orient.core.storage.cache.OCacheEntry;
-import com.orientechnologies.orient.core.storage.cache.OCachePointer;
-
 import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
+import com.orientechnologies.orient.core.storage.cache.OCacheEntry;
+import com.orientechnologies.orient.core.storage.cache.OCachePointer;
 
 /**
  * Window TinyLFU eviction policy https://arxiv.org/pdf/1512.00727.pdf.

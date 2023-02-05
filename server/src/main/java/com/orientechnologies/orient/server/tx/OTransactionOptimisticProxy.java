@@ -19,6 +19,13 @@
  */
 package com.orientechnologies.orient.server.tx;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.client.remote.message.tx.ORecordOperationRequest;
 import com.orientechnologies.orient.core.Orient;
@@ -41,13 +48,10 @@ import com.orientechnologies.orient.core.tx.OTransactionIndexChanges;
 import com.orientechnologies.orient.core.tx.OTransactionOptimistic;
 import com.orientechnologies.orient.core.tx.OTransactionRecordIndexOperation;
 
-import java.util.*;
-import java.util.Map.Entry;
-
 public class OTransactionOptimisticProxy extends OTransactionOptimistic {
-  private final Map<ORID, ORecordOperation> tempEntries    = new LinkedHashMap<ORID, ORecordOperation>();
-  private final Map<ORecordId, ORecord>     createdRecords = new HashMap<ORecordId, ORecord>();
-  private final Map<ORecordId, ORecord>     updatedRecords = new HashMap<ORecordId, ORecord>();
+  private final Map<ORID, ORecordOperation> tempEntries    = new LinkedHashMap<>();
+  private final Map<ORecordId, ORecord>     createdRecords = new HashMap<>();
+  private final Map<ORecordId, ORecord>     updatedRecords = new HashMap<>();
   @Deprecated
   private final int                           clientTxId;
   private final short                         protocolVersion;
@@ -237,7 +241,7 @@ public class OTransactionOptimisticProxy extends OTransactionOptimistic {
           final ORID rid = value.getIdentity();
           List<OTransactionRecordIndexOperation> txIndexOperations = recordIndexOperations.get(rid);
           if (txIndexOperations == null) {
-            txIndexOperations = new ArrayList<OTransactionRecordIndexOperation>();
+            txIndexOperations = new ArrayList<>();
             recordIndexOperations.put(rid, txIndexOperations);
           }
 

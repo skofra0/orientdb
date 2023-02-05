@@ -19,8 +19,6 @@
   */
 package com.orientechnologies.orient.core.db.record;
 
-import com.orientechnologies.orient.core.record.ORecord;
-
 /**
  * Base interface that represents a record element.
  * 

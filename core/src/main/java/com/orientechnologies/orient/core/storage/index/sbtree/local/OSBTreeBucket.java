@@ -20,6 +20,10 @@
 
 package com.orientechnologies.orient.core.storage.index.sbtree.local;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import com.orientechnologies.common.comparator.ODefaultComparator;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.common.serialization.types.OByteSerializer;
@@ -29,11 +33,6 @@ import com.orientechnologies.orient.core.encryption.OEncryption;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.storage.cache.OCacheEntry;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.base.ODurablePage;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)
@@ -232,7 +231,7 @@ public class OSBTreeBucket<K, V> extends ODurablePage {
       else
         value = deserializeFromDirectMemory(valueSerializer, entryPosition + OByteSerializer.BYTE_SIZE);
 
-      return new SBTreeEntry<K, V>(-1, -1, key, new OSBTreeValue<V>(link >= 0, link, value));
+      return new SBTreeEntry<>(-1, -1, key, new OSBTreeValue<>(link >= 0, link, value));
     } else {
       long leftChild = getLongValue(entryPosition);
       entryPosition += OLongSerializer.LONG_SIZE;
@@ -255,7 +254,7 @@ public class OSBTreeBucket<K, V> extends ODurablePage {
         key = keySerializer.deserializeNativeObject(serializedKey, 0);
       }
 
-      return new SBTreeEntry<K, V>(leftChild, rightChild, key, null);
+      return new SBTreeEntry<>(leftChild, rightChild, key, null);
     }
   }
 
@@ -323,7 +322,7 @@ public class OSBTreeBucket<K, V> extends ODurablePage {
     else
       value = deserializeFromDirectMemory(valueSerializer, entryPosition + OByteSerializer.BYTE_SIZE);
 
-    return new OSBTreeValue<V>(link >= 0, link, value);
+    return new OSBTreeValue<>(link >= 0, link, value);
   }
 
   byte[] getRawValue(final int entryIndex) {

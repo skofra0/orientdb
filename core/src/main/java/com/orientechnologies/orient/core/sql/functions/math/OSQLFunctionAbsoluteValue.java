@@ -19,12 +19,11 @@
  */
 package com.orientechnologies.orient.core.sql.functions.math;
 
-import com.orientechnologies.orient.core.command.OCommandContext;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
+import com.orientechnologies.orient.core.command.OCommandContext;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
 
 /**
  * Evaluates the absolute value for numeric types.  The argument must be a

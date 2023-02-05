@@ -20,6 +20,10 @@
 
 package com.orientechnologies.orient.server.network.protocol.binary;
 
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicBoolean;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.command.OCommandResultListener;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
@@ -33,11 +37,6 @@ import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.server.OClientConnection;
 
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.concurrent.atomic.AtomicBoolean;
-
 /**
  * Asynchronous command result manager. As soon as a record is returned by the command is sent over the wire.
  *
@@ -49,7 +48,7 @@ public class OAsyncCommandResultListener extends OAbstractCommandResultListener 
   private final ONetworkProtocolBinary protocol;
   private final AtomicBoolean          empty       = new AtomicBoolean(true);
   private final int                    txId;
-  private final Set<ORID>              alreadySent = new HashSet<ORID>();
+  private final Set<ORID>              alreadySent = new HashSet<>();
   private final OClientConnection      connection;
 
   public OAsyncCommandResultListener(OClientConnection connection, final OCommandResultListener wrappedResultListener) {

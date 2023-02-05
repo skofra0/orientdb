@@ -20,7 +20,6 @@
 package com.orientechnologies.orient.core.sql.functions.math;
 
 import java.math.BigDecimal;
-
 import com.orientechnologies.orient.core.sql.functions.OSQLFunctionConfigurableAbstract;
 
 /**

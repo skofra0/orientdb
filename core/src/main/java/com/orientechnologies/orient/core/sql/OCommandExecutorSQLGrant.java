@@ -19,12 +19,11 @@
   */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.Map;
 import com.orientechnologies.orient.core.command.OCommandRequest;
 import com.orientechnologies.orient.core.command.OCommandRequestText;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 import com.orientechnologies.orient.core.metadata.security.ORole;
-
-import java.util.Map;
 
 /**
  * SQL GRANT command: Grant a privilege to a database role.

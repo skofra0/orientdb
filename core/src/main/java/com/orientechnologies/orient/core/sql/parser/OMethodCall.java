@@ -2,6 +2,14 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=true,TRACK_TOKENS=true,NODE_PREFIX=O,NODE_EXTENDS=,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package com.orientechnologies.orient.core.sql.parser;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
@@ -14,19 +22,16 @@ import com.orientechnologies.orient.core.sql.functions.OSQLFunction;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunctionFiltered;
 import com.orientechnologies.orient.core.sql.method.OSQLMethod;
 
-import java.util.*;
-import java.util.stream.Collectors;
-
 public class OMethodCall extends SimpleNode {
 
-  static Set<String> graphMethods = new HashSet<String>(
+  static Set<String> graphMethods = new HashSet<>(
       Arrays.asList(new String[] { "out", "in", "both", "outE", "inE", "bothE", "bothV", "outV", "inV" }));
 
-  static Set<String> bidirectionalMethods = new HashSet<String>(
+  static Set<String> bidirectionalMethods = new HashSet<>(
       Arrays.asList(new String[] { "out", "in", "both", "oute", "ine", "inv", "outv", "bothe", "bothv" }));
 
   protected OIdentifier methodName;
-  protected List<OExpression> params = new ArrayList<OExpression>();
+  protected List<OExpression> params = new ArrayList<>();
 
   private Boolean calculatedIsGraph = null;
 
@@ -74,7 +79,7 @@ public class OMethodCall extends SimpleNode {
 
   private Object execute(Object targetObjects, OCommandContext ctx, String name, List<OExpression> iParams,
       Iterable<OIdentifiable> iPossibleResults) {
-    List<Object> paramValues = new ArrayList<Object>();
+    List<Object> paramValues = new ArrayList<>();
     Object val = ctx.getVariable("$current");
     if (val == null && targetObjects == null) {
       return null;

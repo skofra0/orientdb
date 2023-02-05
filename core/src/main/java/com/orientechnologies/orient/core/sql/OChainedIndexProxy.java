@@ -19,20 +19,33 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import com.orientechnologies.common.listener.OProgressListener;
 import com.orientechnologies.common.profiler.OProfiler;
 import com.orientechnologies.common.profiler.OProfilerStub;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.id.ORID;
-import com.orientechnologies.orient.core.index.*;
+import com.orientechnologies.orient.core.index.OIndex;
+import com.orientechnologies.orient.core.index.OIndexAbstractCursor;
+import com.orientechnologies.orient.core.index.OIndexCursor;
+import com.orientechnologies.orient.core.index.OIndexDefinition;
+import com.orientechnologies.orient.core.index.OIndexInternal;
+import com.orientechnologies.orient.core.index.OIndexKeyCursor;
 import com.orientechnologies.orient.core.iterator.OEmptyIterator;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemField;
-
-import java.util.*;
 
 /**
  * <p>
@@ -73,7 +86,7 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
    * @return proxies needed to process query.
    */
   public static <T> Collection<OChainedIndexProxy<T>> createProxies(OClass iSchemaClass, OSQLFilterItemField.FieldChain longChain) {
-    List<OChainedIndexProxy<T>> proxies = new ArrayList<OChainedIndexProxy<T>>();
+    List<OChainedIndexProxy<T>> proxies = new ArrayList<>();
 
     for (List<OIndex<?>> indexChain : getIndexesForChain(iSchemaClass, longChain)) {
       proxies.add(new OChainedIndexProxy<T>(indexChain));
@@ -94,9 +107,9 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
 
     Collection<OIndex<?>> lastIndexes = prepareLastIndexVariants(iSchemaClass, fieldChain);
 
-    Collection<List<OIndex<?>>> result = new ArrayList<List<OIndex<?>>>();
+    Collection<List<OIndex<?>>> result = new ArrayList<>();
     for (OIndex<?> lastIndex : lastIndexes) {
-      final List<OIndex<?>> indexes = new ArrayList<OIndex<?>>(fieldChain.getItemCount());
+      final List<OIndex<?>> indexes = new ArrayList<>(fieldChain.getItemCount());
       indexes.addAll(baseIndexes);
       indexes.add(lastIndex);
 
@@ -108,7 +121,7 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
 
   private static Collection<OIndex<?>> prepareLastIndexVariants(OClass iSchemaClass, OSQLFilterItemField.FieldChain fieldChain) {
     OClass oClass = iSchemaClass;
-    final Collection<OIndex<?>> result = new ArrayList<OIndex<?>>();
+    final Collection<OIndex<?>> result = new ArrayList<>();
 
     for (int i = 0; i < fieldChain.getItemCount() - 1; i++) {
       oClass = oClass.getProperty(fieldChain.getItemName(i)).getLinkedClass();
@@ -117,14 +130,14 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
       }
     }
 
-    final Set<OIndex<?>> involvedIndexes = new TreeSet<OIndex<?>>(new Comparator<OIndex<?>>() {
+    final Set<OIndex<?>> involvedIndexes = new TreeSet<>(new Comparator<OIndex<?>>() {
       public int compare(OIndex<?> o1, OIndex<?> o2) {
         return o1.getDefinition().getParamCount() - o2.getDefinition().getParamCount();
       }
     });
 
     involvedIndexes.addAll(oClass.getInvolvedIndexes(fieldChain.getItemName(fieldChain.getItemCount() - 1)));
-    final Collection<Class<? extends OIndex>> indexTypes = new HashSet<Class<? extends OIndex>>(3);
+    final Collection<Class<? extends OIndex>> indexTypes = new HashSet<>(3);
 
     for (OIndex<?> involvedIndex : involvedIndexes) {
       if (!indexTypes.contains(involvedIndex.getInternal().getClass())) {
@@ -137,7 +150,7 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
   }
 
   private static List<OIndex<?>> prepareBaseIndexes(OClass iSchemaClass, OSQLFilterItemField.FieldChain fieldChain) {
-    List<OIndex<?>> result = new ArrayList<OIndex<?>>(fieldChain.getItemCount() - 1);
+    List<OIndex<?>> result = new ArrayList<>(fieldChain.getItemCount() - 1);
 
     OClass oClass = iSchemaClass;
     for (int i = 0; i < fieldChain.getItemCount() - 1; i++) {
@@ -260,7 +273,7 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
   }
 
   public List<String> getIndexNames() {
-    final ArrayList<String> names = new ArrayList<String>(indexChain.size());
+    final ArrayList<String> names = new ArrayList<>(indexChain.size());
     for (OIndex<?> oIndex : indexChain) {
       names.add(oIndex.getName());
     }
@@ -292,7 +305,7 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
   public T get(Object iKey) {
     final Object lastIndexResult = lastIndex.get(iKey);
 
-    final Set<OIdentifiable> result = new HashSet<OIdentifiable>();
+    final Set<OIdentifiable> result = new HashSet<>();
 
     if (lastIndexResult != null)
       result.addAll(applyTailIndexes(lastIndexResult));
@@ -324,7 +337,7 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
 
       final Set<Comparable> newKeys;
       if (isComposite(currentIndex)) {
-        newKeys = new TreeSet<Comparable>();
+        newKeys = new TreeSet<>();
         for (Comparable currentKey : currentKeys) {
           final List<OIdentifiable> currentResult = getFromCompositeIndex(currentKey, currentIndex);
           newKeys.addAll(prepareKeys(nextIndex, currentResult));
@@ -346,7 +359,7 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
   private List<OIdentifiable> applyFirstIndex(Collection<Comparable> currentKeys) {
     final List<OIdentifiable> result;
     if (isComposite(firstIndex)) {
-      result = new ArrayList<OIdentifiable>();
+      result = new ArrayList<>();
       for (Comparable key : currentKeys) {
         result.addAll(getFromCompositeIndex(key, firstIndex));
       }
@@ -368,7 +381,7 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
   }
 
   private List<OIdentifiable> cursorToList(OIndexCursor cursor) {
-    final List<OIdentifiable> currentResult = new ArrayList<OIdentifiable>();
+    final List<OIdentifiable> currentResult = new ArrayList<>();
     Map.Entry<Object, OIdentifiable> entry = cursor.nextEntry();
     while (entry != null) {
       currentResult.add(entry.getValue());
@@ -388,7 +401,7 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
   private Set<Comparable> prepareKeys(OIndex<?> index, Object keys) {
     final OIndexDefinition indexDefinition = index.getDefinition();
     if (keys instanceof Collection) {
-      final Set<Comparable> newKeys = new TreeSet<Comparable>();
+      final Set<Comparable> newKeys = new TreeSet<>();
       for (Object o : ((Collection) keys)) {
         newKeys.add((Comparable) indexDefinition.createValue(o));
       }
@@ -599,7 +612,7 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
   private final class ExternalIndexCursor extends OIndexAbstractCursor {
     private final OIndexCursor internalCursor;
 
-    private final List<OIdentifiable> queryResult     = new ArrayList<OIdentifiable>();
+    private final List<OIdentifiable> queryResult     = new ArrayList<>();
     private       Iterator<ORID>      currentIterator = OEmptyIterator.IDENTIFIABLE_INSTANCE;
 
     private ExternalIndexCursor(OIndexCursor internalCursor) {
@@ -622,7 +635,7 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
         queryResult.clear();
         queryResult.addAll(applyTailIndexes(entry.getValue()));
 
-        currentIterator = new Iterator<ORID>() {
+        currentIterator = new Iterator<>() {
           final Iterator<OIdentifiable> identifiableIterator = queryResult.iterator();
 
           @Override
@@ -645,7 +658,7 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
 
       final OIdentifiable result = currentIterator.next();
 
-      return new Map.Entry<Object, OIdentifiable>() {
+      return new Map.Entry<>() {
         @Override
         public Object getKey() {
           throw new UnsupportedOperationException("getKey");

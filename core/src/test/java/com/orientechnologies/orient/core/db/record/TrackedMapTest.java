@@ -1,29 +1,33 @@
 package com.orientechnologies.orient.core.db.record;
 
+import org.junit.Assert;
+import org.junit.Test;
+import java.io.IOException;
+import java.io.NotSerializableException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.types.ORef;
 import com.orientechnologies.orient.core.record.ORecordInternal;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.serialization.OMemoryInputStream;
 import com.orientechnologies.orient.core.serialization.OMemoryStream;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.io.IOException;
-import java.io.NotSerializableException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.*;
 
 public class TrackedMapTest {
   @Test
   public void testPutOne() {
     final ODocument doc = new ODocument();
 
-    final OTrackedMap<String> map = new OTrackedMap<String>(doc);
+    final OTrackedMap<String> map = new OTrackedMap<>(doc);
     ORecordInternal.unsetDirty(doc);
     Assert.assertFalse(doc.isDirty());
 
-    final ORef<Boolean> changed = new ORef<Boolean>(false);
+    final ORef<Boolean> changed = new ORef<>(false);
 
     map.addChangeListener(new OMultiValueChangeListener<Object, String>() {
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Object, String> event) {
@@ -46,7 +50,7 @@ public class TrackedMapTest {
   public void testPutTwo() {
     final ODocument doc = new ODocument();
 
-    final OTrackedMap<String> map = new OTrackedMap<String>(doc);
+    final OTrackedMap<String> map = new OTrackedMap<>(doc);
     ORecordInternal.unsetDirty(doc);
     Assert.assertFalse(doc.isDirty());
 
@@ -55,7 +59,7 @@ public class TrackedMapTest {
     ORecordInternal.unsetDirty(doc);
     Assert.assertFalse(doc.isDirty());
 
-    final ORef<Boolean> changed = new ORef<Boolean>(false);
+    final ORef<Boolean> changed = new ORef<>(false);
 
     map.addChangeListener(new OMultiValueChangeListener<Object, String>() {
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Object, String> event) {
@@ -78,7 +82,7 @@ public class TrackedMapTest {
   public void testPutThree() {
     final ODocument doc = new ODocument();
 
-    final OTrackedMap<String> map = new OTrackedMap<String>(doc);
+    final OTrackedMap<String> map = new OTrackedMap<>(doc);
     ORecordInternal.unsetDirty(doc);
     Assert.assertFalse(doc.isDirty());
 
@@ -87,7 +91,7 @@ public class TrackedMapTest {
     ORecordInternal.unsetDirty(doc);
     Assert.assertFalse(doc.isDirty());
 
-    final ORef<Boolean> changed = new ORef<Boolean>(false);
+    final ORef<Boolean> changed = new ORef<>(false);
 
     map.addChangeListener(new OMultiValueChangeListener<Object, String>() {
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Object, String> event) {
@@ -105,7 +109,7 @@ public class TrackedMapTest {
   public void testPutFour() {
     final ODocument doc = new ODocument();
 
-    final OTrackedMap<String> map = new OTrackedMap<String>(doc);
+    final OTrackedMap<String> map = new OTrackedMap<>(doc);
     ORecordInternal.unsetDirty(doc);
     Assert.assertFalse(doc.isDirty());
 
@@ -114,7 +118,7 @@ public class TrackedMapTest {
     ORecordInternal.unsetDirty(doc);
     Assert.assertFalse(doc.isDirty());
 
-    final ORef<Boolean> changed = new ORef<Boolean>(false);
+    final ORef<Boolean> changed = new ORef<>(false);
 
     map.addChangeListener(new OMultiValueChangeListener<Object, String>() {
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Object, String> event) {
@@ -132,13 +136,13 @@ public class TrackedMapTest {
   public void testPutFive() {
     final ODocument doc = new ODocument();
 
-    final OTrackedMap<String> map = new OTrackedMap<String>(doc);
+    final OTrackedMap<String> map = new OTrackedMap<>(doc);
 
     ORecordInternal.unsetDirty(doc);
     Assert.assertFalse(doc.isDirty());
 
     map.setInternalStatus(ORecordElement.STATUS.UNMARSHALLING);
-    final ORef<Boolean> changed = new ORef<Boolean>(false);
+    final ORef<Boolean> changed = new ORef<>(false);
 
     map.addChangeListener(new OMultiValueChangeListener<Object, String>() {
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Object, String> event) {
@@ -156,14 +160,14 @@ public class TrackedMapTest {
   public void testRemoveOne() {
     final ODocument doc = new ODocument();
 
-    final OTrackedMap<String> map = new OTrackedMap<String>(doc);
+    final OTrackedMap<String> map = new OTrackedMap<>(doc);
 
     map.put("key1", "value1");
 
     ORecordInternal.unsetDirty(doc);
     Assert.assertFalse(doc.isDirty());
 
-    final ORef<Boolean> changed = new ORef<Boolean>(false);
+    final ORef<Boolean> changed = new ORef<>(false);
 
     map.addChangeListener(new OMultiValueChangeListener<Object, String>() {
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Object, String> event) {
@@ -186,14 +190,14 @@ public class TrackedMapTest {
   public void testRemoveTwo() {
     final ODocument doc = new ODocument();
 
-    final OTrackedMap<String> map = new OTrackedMap<String>(doc);
+    final OTrackedMap<String> map = new OTrackedMap<>(doc);
 
     map.put("key1", "value1");
 
     ORecordInternal.unsetDirty(doc);
     Assert.assertFalse(doc.isDirty());
 
-    final ORef<Boolean> changed = new ORef<Boolean>(false);
+    final ORef<Boolean> changed = new ORef<>(false);
 
     map.addChangeListener(new OMultiValueChangeListener<Object, String>() {
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Object, String> event) {
@@ -211,7 +215,7 @@ public class TrackedMapTest {
   public void testRemoveThree() {
     final ODocument doc = new ODocument();
 
-    final OTrackedMap<String> map = new OTrackedMap<String>(doc);
+    final OTrackedMap<String> map = new OTrackedMap<>(doc);
 
     map.put("key1", "value1");
 
@@ -219,7 +223,7 @@ public class TrackedMapTest {
     Assert.assertFalse(doc.isDirty());
 
     map.setInternalStatus(ORecordElement.STATUS.UNMARSHALLING);
-    final ORef<Boolean> changed = new ORef<Boolean>(false);
+    final ORef<Boolean> changed = new ORef<>(false);
 
     map.addChangeListener(new OMultiValueChangeListener<Object, String>() {
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Object, String> event) {
@@ -237,7 +241,7 @@ public class TrackedMapTest {
   public void testClearOne() {
     final ODocument doc = new ODocument();
 
-    final OTrackedMap<String> trackedMap = new OTrackedMap<String>(doc);
+    final OTrackedMap<String> trackedMap = new OTrackedMap<>(doc);
 
     trackedMap.put("key1", "value1");
     trackedMap.put("key2", "value2");
@@ -246,12 +250,12 @@ public class TrackedMapTest {
     ORecordInternal.unsetDirty(doc);
     Assert.assertFalse(doc.isDirty());
 
-    final Set<OMultiValueChangeEvent<Object, String>> firedEvents = new HashSet<OMultiValueChangeEvent<Object, String>>();
+    final Set<OMultiValueChangeEvent<Object, String>> firedEvents = new HashSet<>();
     firedEvents.add(new OMultiValueChangeEvent<Object, String>(OMultiValueChangeEvent.OChangeType.REMOVE, "key1", null, "value1"));
     firedEvents.add(new OMultiValueChangeEvent<Object, String>(OMultiValueChangeEvent.OChangeType.REMOVE, "key2", null, "value2"));
     firedEvents.add(new OMultiValueChangeEvent<Object, String>(OMultiValueChangeEvent.OChangeType.REMOVE, "key3", null, "value3"));
 
-    final ORef<Boolean> changed = new ORef<Boolean>(false);
+    final ORef<Boolean> changed = new ORef<>(false);
 
     trackedMap.addChangeListener(new OMultiValueChangeListener<Object, String>() {
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Object, String> event) {
@@ -273,7 +277,7 @@ public class TrackedMapTest {
   public void testClearTwo() {
     final ODocument doc = new ODocument();
 
-    final OTrackedMap<String> trackedMap = new OTrackedMap<String>(doc);
+    final OTrackedMap<String> trackedMap = new OTrackedMap<>(doc);
 
     trackedMap.put("key1", "value1");
     trackedMap.put("key2", "value2");
@@ -282,7 +286,7 @@ public class TrackedMapTest {
     ORecordInternal.unsetDirty(doc);
     Assert.assertFalse(doc.isDirty());
 
-    final ORef<Boolean> changed = new ORef<Boolean>(false);
+    final ORef<Boolean> changed = new ORef<>(false);
     trackedMap.setInternalStatus(ORecordElement.STATUS.UNMARSHALLING);
 
     trackedMap.addChangeListener(new OMultiValueChangeListener<Object, String>() {
@@ -301,7 +305,7 @@ public class TrackedMapTest {
   public void testClearThree() {
     final ODocument doc = new ODocument();
 
-    final OTrackedMap<String> trackedMap = new OTrackedMap<String>(doc);
+    final OTrackedMap<String> trackedMap = new OTrackedMap<>(doc);
 
     trackedMap.put("key1", "value1");
     trackedMap.put("key2", "value2");
@@ -319,7 +323,7 @@ public class TrackedMapTest {
   public void testReturnOriginalStateOne() {
     final ODocument doc = new ODocument();
 
-    final OTrackedMap<String> trackedMap = new OTrackedMap<String>(doc);
+    final OTrackedMap<String> trackedMap = new OTrackedMap<>(doc);
     trackedMap.put("key1", "value1");
     trackedMap.put("key2", "value2");
     trackedMap.put("key3", "value3");
@@ -328,9 +332,9 @@ public class TrackedMapTest {
     trackedMap.put("key6", "value6");
     trackedMap.put("key7", "value7");
 
-    final Map<Object, String> original = new HashMap<Object, String>(trackedMap);
+    final Map<Object, String> original = new HashMap<>(trackedMap);
 
-    final List<OMultiValueChangeEvent<Object, String>> firedEvents = new ArrayList<OMultiValueChangeEvent<Object, String>>();
+    final List<OMultiValueChangeEvent<Object, String>> firedEvents = new ArrayList<>();
 
     trackedMap.addChangeListener(new OMultiValueChangeListener<Object, String>() {
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Object, String> event) {
@@ -356,7 +360,7 @@ public class TrackedMapTest {
   public void testReturnOriginalStateTwo() {
     final ODocument doc = new ODocument();
 
-    final OTrackedMap<String> trackedMap = new OTrackedMap<String>(doc);
+    final OTrackedMap<String> trackedMap = new OTrackedMap<>(doc);
     trackedMap.put("key1", "value1");
     trackedMap.put("key2", "value2");
     trackedMap.put("key3", "value3");
@@ -365,9 +369,9 @@ public class TrackedMapTest {
     trackedMap.put("key6", "value6");
     trackedMap.put("key7", "value7");
 
-    final Map<Object, String> original = new HashMap<Object, String>(trackedMap);
+    final Map<Object, String> original = new HashMap<>(trackedMap);
 
-    final List<OMultiValueChangeEvent<Object, String>> firedEvents = new ArrayList<OMultiValueChangeEvent<Object, String>>();
+    final List<OMultiValueChangeEvent<Object, String>> firedEvents = new ArrayList<>();
 
     trackedMap.addChangeListener(new OMultiValueChangeListener<Object, String>() {
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Object, String> event) {
@@ -404,7 +408,7 @@ public class TrackedMapTest {
       }
     }
 
-    final OTrackedMap<String> beforeSerialization = new OTrackedMap<String>(new NotSerializableDocument());
+    final OTrackedMap<String> beforeSerialization = new OTrackedMap<>(new NotSerializableDocument());
     beforeSerialization.put(0, "firstVal");
     beforeSerialization.put(1, "secondVal");
 

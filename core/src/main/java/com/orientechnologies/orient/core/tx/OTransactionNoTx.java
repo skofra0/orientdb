@@ -19,6 +19,10 @@
  */
 package com.orientechnologies.orient.core.tx;
 
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 import com.orientechnologies.common.concur.ONeedRetryException;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.core.db.ODatabase.OPERATION_MODE;
@@ -41,11 +45,6 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.storage.ORecordCallback;
 import com.orientechnologies.orient.core.storage.OStorage;
 import com.orientechnologies.orient.core.tx.OTransactionIndexChanges.OPERATION;
-
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
 
 /**
  * No operation transaction.
@@ -212,7 +211,7 @@ public class OTransactionNoTx extends OTransactionAbstract {
       final OPERATION_MODE iMode, boolean iForceCreate, final ORecordCallback<? extends Number> iRecordCreatedCallback,
       ORecordCallback<Integer> iRecordUpdatedCallback) {
     ORecord toRet = null;
-    LinkedList<ODocument> path = new LinkedList<ODocument>();
+    LinkedList<ODocument> path = new LinkedList<>();
     ORecord next = document;
     do {
       if (next instanceof ODocument) {

@@ -19,6 +19,17 @@
  */
 package com.orientechnologies.orient.server.network;
 
+import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.net.BindException;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.exception.OSystemException;
 import com.orientechnologies.common.log.OLogManager;
@@ -34,25 +45,19 @@ import com.orientechnologies.orient.server.network.protocol.OBeforeDatabaseOpenN
 import com.orientechnologies.orient.server.network.protocol.ONetworkProtocol;
 import com.orientechnologies.orient.server.network.protocol.http.command.OServerCommand;
 
-import java.io.IOException;
-import java.lang.reflect.Constructor;
-import java.net.*;
-import java.util.ArrayList;
-import java.util.List;
-
 public class OServerNetworkListener extends Thread {
   private OServerSocketFactory                          socketFactory;
   private ServerSocket                                  serverSocket;
   private InetSocketAddress                             inboundAddr;
   private Class<? extends ONetworkProtocol>             protocolType;
   private volatile boolean                              active            = true;
-  private List<OServerCommandConfiguration>             statefulCommands  = new ArrayList<OServerCommandConfiguration>();
-  private List<OServerCommand>                          statelessCommands = new ArrayList<OServerCommand>();
+  private List<OServerCommandConfiguration>             statefulCommands  = new ArrayList<>();
+  private List<OServerCommand>                          statelessCommands = new ArrayList<>();
   private int                                           socketBufferSize;
   private OContextConfiguration                         configuration;
   private OServer                                       server;
   private int                                           protocolVersion = -1;
-  private List<OBeforeDatabaseOpenNetworkEventListener> beforeDatabaseOpenNetworkEventListener = new ArrayList<OBeforeDatabaseOpenNetworkEventListener>();
+  private List<OBeforeDatabaseOpenNetworkEventListener> beforeDatabaseOpenNetworkEventListener = new ArrayList<>();
 
   public OServerNetworkListener(final OServer iServer, final OServerSocketFactory iSocketFactory, final String iHostName,
       final String iHostPortRange, final String iProtocolName, final Class<? extends ONetworkProtocol> iProtocol,

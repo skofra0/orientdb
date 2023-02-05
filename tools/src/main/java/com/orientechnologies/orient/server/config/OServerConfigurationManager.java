@@ -19,9 +19,6 @@
  */
 package com.orientechnologies.orient.server.config;
 
-import com.orientechnologies.common.exception.OException;
-import com.orientechnologies.orient.core.exception.OConfigurationException;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,6 +27,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import com.orientechnologies.common.exception.OException;
+import com.orientechnologies.orient.core.exception.OConfigurationException;
 
 /**
  * Server configuration manager. It manages the orientdb-server-config.xml file.
@@ -39,7 +38,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class OServerConfigurationManager {
   private final OServerConfigurationLoaderXml configurationLoader;
   private OServerConfiguration                configuration;
-  private Map<String, OServerUserConfiguration> ephemeralUsers = new ConcurrentHashMap<String, OServerUserConfiguration>();
+  private Map<String, OServerUserConfiguration> ephemeralUsers = new ConcurrentHashMap<>();
 
   public OServerConfigurationManager(final InputStream iInputStream) throws IOException {
     configurationLoader = new OServerConfigurationLoaderXml(OServerConfiguration.class, iInputStream);
@@ -176,7 +175,7 @@ public class OServerConfigurationManager {
   public Set<OServerUserConfiguration> getUsers() {
     checkForAutoReloading();
 
-    final HashSet<OServerUserConfiguration> result = new HashSet<OServerUserConfiguration>();
+    final HashSet<OServerUserConfiguration> result = new HashSet<>();
 
     for (int i = 0; i < configuration.users.length; ++i) {
       if (configuration.users[i] != null)

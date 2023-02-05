@@ -19,6 +19,8 @@
  */
 package com.orientechnologies.orient.core.sql.filter;
 
+import java.util.ArrayList;
+import java.util.List;
 import com.orientechnologies.orient.core.collate.OCollate;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
@@ -26,9 +28,6 @@ import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.query.OQueryRuntimeValueMulti;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.record.impl.ODocumentHelper;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Represents one or more object fields as value in the query condition.
@@ -39,7 +38,7 @@ import java.util.List;
 public abstract class OSQLFilterItemFieldMultiAbstract extends OSQLFilterItemAbstract {
   private List<String>         names;
   private final OClass         clazz;
-  private final List<OCollate> collates = new ArrayList<OCollate>();
+  private final List<OCollate> collates = new ArrayList<>();
 
   public OSQLFilterItemFieldMultiAbstract(final OSQLPredicate iQueryCompiled, final String iName, final OClass iClass,
       final List<String> iNames) {

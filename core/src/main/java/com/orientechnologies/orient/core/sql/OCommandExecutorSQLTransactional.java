@@ -20,7 +20,6 @@
 package com.orientechnologies.orient.core.sql;
 
 import java.util.Map;
-
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.core.command.OCommandRequest;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;

@@ -1,11 +1,10 @@
 package com.orientechnologies.orient.core.db;
 
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
 
 public class ODatabasePoolTest {
   @Test

@@ -1,11 +1,10 @@
 package com.orientechnologies.orient.core.sql.executor;
 
-import com.orientechnologies.common.concur.OTimeoutException;
-import com.orientechnologies.orient.core.command.OCommandContext;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import com.orientechnologies.common.concur.OTimeoutException;
+import com.orientechnologies.orient.core.command.OCommandContext;
 
 /**
  * <p>Execution Steps are the building blocks of a query execution plan</p> <p>Typically an execution plan is made of a chain of

@@ -20,6 +20,9 @@
 
 package com.orientechnologies.orient.core.index;
 
+import java.util.List;
+import java.util.Locale;
+import java.util.regex.Pattern;
 import com.orientechnologies.orient.core.collate.OCollate;
 import com.orientechnologies.orient.core.config.OStorageConfiguration;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
@@ -29,10 +32,6 @@ import com.orientechnologies.orient.core.metadata.schema.OClassImpl;
 import com.orientechnologies.orient.core.metadata.schema.OProperty;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.storage.OStorage;
-
-import java.util.List;
-import java.util.Locale;
-import java.util.regex.Pattern;
 
 /**
  * Contains helper methods for {@link OIndexDefinition} creation.

@@ -1,11 +1,10 @@
 package com.orientechnologies.orient.core.util;
 
+import java.io.File;
+import java.util.Optional;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.db.ODatabaseType;
 import com.orientechnologies.orient.core.exception.OConfigurationException;
-
-import java.io.File;
-import java.util.Optional;
 
 /**
  * Created by Enrico Risa on 17/11/16.

@@ -19,17 +19,28 @@
  */
 package com.orientechnologies.orient.core.sql.functions.graph;
 
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Locale;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Set;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.common.io.OIOUtils;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.ODatabase;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.record.*;
+import com.orientechnologies.orient.core.record.ODirection;
+import com.orientechnologies.orient.core.record.OEdge;
+import com.orientechnologies.orient.core.record.OElement;
+import com.orientechnologies.orient.core.record.ORecord;
+import com.orientechnologies.orient.core.record.OVertex;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OSQLHelper;
 import com.orientechnologies.orient.core.sql.executor.OResult;
-
-import java.util.*;
 
 /**
  * A*'s algorithm describes how to find the cheapest path from one node to another node in a directed weighted graph with husrestic
@@ -47,12 +58,12 @@ public class OSQLFunctionAstar extends OSQLFunctionHeuristicPathFinderAbstract {
 
   private   String                paramWeightFieldName = "weight";
   private   long                  currentDepth         = 0;
-  protected Set<OVertex>          closedSet            = new HashSet<OVertex>();
-  protected Map<OVertex, OVertex> cameFrom             = new HashMap<OVertex, OVertex>();
+  protected Set<OVertex>          closedSet            = new HashSet<>();
+  protected Map<OVertex, OVertex> cameFrom             = new HashMap<>();
 
-  protected Map<OVertex, Double>   gScore = new HashMap<OVertex, Double>();
-  protected Map<OVertex, Double>   fScore = new HashMap<OVertex, Double>();
-  protected PriorityQueue<OVertex> open   = new PriorityQueue<OVertex>(1, new Comparator<OVertex>() {
+  protected Map<OVertex, Double>   gScore = new HashMap<>();
+  protected Map<OVertex, Double>   fScore = new HashMap<>();
+  protected PriorityQueue<OVertex> open   = new PriorityQueue<>(1, new Comparator<OVertex>() {
 
     public int compare(OVertex nodeA, OVertex nodeB) {
       return Double.compare(fScore.get(nodeA), fScore.get(nodeB));
@@ -205,7 +216,7 @@ public class OSQLFunctionAstar extends OSQLFunctionHeuristicPathFinderAbstract {
   protected Set<OEdge> getNeighborEdges(final OVertex node) {
     context.incrementVariable("getNeighbors");
 
-    final Set<OEdge> neighbors = new HashSet<OEdge>();
+    final Set<OEdge> neighbors = new HashSet<>();
     if (node != null) {
       for (OEdge v : node.getEdges(paramDirection, paramEdgeTypeNames)) {
         final OEdge ov = v;
@@ -355,10 +366,10 @@ public class OSQLFunctionAstar extends OSQLFunctionHeuristicPathFinderAbstract {
       }
 
     } else {
-      Map<String, Double> sList = new HashMap<String, Double>();
-      Map<String, Double> cList = new HashMap<String, Double>();
-      Map<String, Double> pList = new HashMap<String, Double>();
-      Map<String, Double> gList = new HashMap<String, Double>();
+      Map<String, Double> sList = new HashMap<>();
+      Map<String, Double> cList = new HashMap<>();
+      Map<String, Double> pList = new HashMap<>();
+      Map<String, Double> gList = new HashMap<>();
       parent = parent == null ? node : parent;
       for (int i = 0; i < paramVertexAxisNames.length; i++) {
         Double s = doubleOrDefault(paramSourceVertex.getProperty(paramVertexAxisNames[i]), 0);

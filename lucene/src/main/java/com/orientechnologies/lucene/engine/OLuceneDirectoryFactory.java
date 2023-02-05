@@ -1,16 +1,15 @@
 package com.orientechnologies.lucene.engine;
 
-import com.orientechnologies.common.log.OLogManager;
-import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
-import com.orientechnologies.orient.core.record.impl.ODocument;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.MMapDirectory;
 import org.apache.lucene.store.NIOFSDirectory;
 import org.apache.lucene.store.RAMDirectory;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import com.orientechnologies.common.log.OLogManager;
+import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
  * Created by frank on 03/03/2016.

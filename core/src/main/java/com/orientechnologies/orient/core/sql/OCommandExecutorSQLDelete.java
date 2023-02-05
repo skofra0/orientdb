@@ -19,6 +19,9 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.common.parser.OStringParser;
 import com.orientechnologies.orient.core.command.OCommandDistributedReplicateRequest;
 import com.orientechnologies.orient.core.command.OCommandRequest;
@@ -28,12 +31,15 @@ import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
-import com.orientechnologies.orient.core.index.*;
+import com.orientechnologies.orient.core.index.OCompositeIndexDefinition;
+import com.orientechnologies.orient.core.index.OCompositeKey;
+import com.orientechnologies.orient.core.index.OIndex;
+import com.orientechnologies.orient.core.index.OIndexCursor;
+import com.orientechnologies.orient.core.index.OIndexDefinition;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.security.ORole;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.ORecordAbstract;
-import com.orientechnologies.orient.core.record.ORecordInternal;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.filter.OSQLFilter;
 import com.orientechnologies.orient.core.sql.filter.OSQLFilterCondition;
@@ -42,10 +48,6 @@ import com.orientechnologies.orient.core.sql.query.OSQLAsynchQuery;
 import com.orientechnologies.orient.core.sql.query.OSQLQuery;
 import com.orientechnologies.orient.core.storage.OStorage;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * SQL UPDATE command.
@@ -186,7 +188,7 @@ public class OCommandExecutorSQLDelete extends OCommandExecutorSQLAbstract
       throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");
 
     if (!returning.equalsIgnoreCase("COUNT"))
-      allDeletedRecords = new ArrayList<ORecord>();
+      allDeletedRecords = new ArrayList<>();
 
     if (query != null) {
       // AGAINST CLUSTERS AND CLASSES
@@ -360,7 +362,7 @@ public class OCommandExecutorSQLDelete extends OCommandExecutorSQLAbstract
     if (indexDefinition instanceof OCompositeIndexDefinition) {
       if (value instanceof List) {
         final List<?> values = (List<?>) value;
-        List<Object> keyParams = new ArrayList<Object>(values.size());
+        List<Object> keyParams = new ArrayList<>(values.size());
 
         for (Object o : values) {
           keyParams.add(OSQLHelper.getValue(o));

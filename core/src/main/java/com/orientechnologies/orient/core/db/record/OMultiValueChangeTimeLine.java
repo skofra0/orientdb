@@ -31,7 +31,7 @@ import java.util.List;
  * @param <V> Value that is hold by collection.
  */
 public class OMultiValueChangeTimeLine<K, V> {
-	private final List<OMultiValueChangeEvent<K, V>> multiValueChangeEvents = new ArrayList<OMultiValueChangeEvent<K, V>>();
+	private final List<OMultiValueChangeEvent<K, V>> multiValueChangeEvents = new ArrayList<>();
 
 	/**
 	 * @return <code>List</code> of all operations that were performed on collection starting from

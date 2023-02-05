@@ -16,8 +16,6 @@
  */
 package com.orientechnologies.orient.core.exception;
 
-import com.orientechnologies.common.exception.OException;
-
 /**
  * @author Luca Molino (molino.luca--at--gmail.com)
  * 

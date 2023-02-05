@@ -19,9 +19,8 @@
   */
 package com.orientechnologies.orient.core.iterator;
 
-import com.orientechnologies.orient.core.id.ORID;
-
 import java.util.Iterator;
+import com.orientechnologies.orient.core.id.ORID;
 
 /**
  * Empty iterator against Object.

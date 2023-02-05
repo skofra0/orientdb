@@ -19,13 +19,12 @@
  */
 package com.orientechnologies.orient.core.index;
 
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.orient.core.exception.OConfigurationException;
 import com.orientechnologies.orient.core.index.engine.OBaseIndexEngine;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.storage.OStorage;
-
-import java.util.Map;
-import java.util.Set;
 
 public interface OIndexFactory {
 

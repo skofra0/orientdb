@@ -19,6 +19,10 @@
  */
 package com.orientechnologies.orient.core.serialization.serializer.stream;
 
+import static com.orientechnologies.orient.core.serialization.serializer.binary.impl.OLinkSerializer.RID_SIZE;
+import java.nio.ByteBuffer;
+import java.util.HashSet;
+import java.util.Set;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.common.serialization.types.OBooleanSerializer;
 import com.orientechnologies.common.serialization.types.OIntegerSerializer;
@@ -32,12 +36,6 @@ import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALCh
 import com.orientechnologies.orient.core.storage.index.sbtreebonsai.local.OBonsaiBucketPointer;
 import com.orientechnologies.orient.core.storage.ridbag.sbtree.OIndexRIDContainer;
 import com.orientechnologies.orient.core.storage.ridbag.sbtree.OIndexRIDContainerSBTree;
-
-import java.nio.ByteBuffer;
-import java.util.HashSet;
-import java.util.Set;
-
-import static com.orientechnologies.orient.core.serialization.serializer.binary.impl.OLinkSerializer.RID_SIZE;
 
 public class OStreamSerializerSBTreeIndexRIDContainer implements OBinarySerializer<OIndexRIDContainer> {
   public static final OStreamSerializerSBTreeIndexRIDContainer INSTANCE = new OStreamSerializerSBTreeIndexRIDContainer();
@@ -131,7 +129,7 @@ public class OStreamSerializerSBTreeIndexRIDContainer implements OBinarySerializ
 
     if (BOOLEAN_SERIALIZER.deserializeNative(stream, offset + EMBEDDED_OFFSET)) {
       final int size = INT_SERIALIZER.deserializeNative(stream, offset + EMBEDDED_SIZE_OFFSET);
-      final Set<OIdentifiable> underlying = new HashSet<OIdentifiable>(Math.max((int) (size / .75f) + 1, 16));
+      final Set<OIdentifiable> underlying = new HashSet<>(Math.max((int) (size / .75f) + 1, 16));
 
       int p = offset + EMBEDDED_VALUES_OFFSET;
       for (int i = 0; i < size; i++) {
@@ -204,7 +202,7 @@ public class OStreamSerializerSBTreeIndexRIDContainer implements OBinarySerializ
 
     if (embedded) {
       final int size = buffer.getInt();
-      final Set<OIdentifiable> underlying = new HashSet<OIdentifiable>(Math.max((int) (size / .75f) + 1, 16));
+      final Set<OIdentifiable> underlying = new HashSet<>(Math.max((int) (size / .75f) + 1, 16));
 
       for (int i = 0; i < size; i++) {
         underlying.add(LINK_SERIALIZER.deserializeFromByteBufferObject(buffer));
@@ -247,7 +245,7 @@ public class OStreamSerializerSBTreeIndexRIDContainer implements OBinarySerializ
 
     if (walChanges.getByteValue(buffer, offset + EMBEDDED_OFFSET) > 0) {
       final int size = walChanges.getIntValue(buffer, offset + EMBEDDED_SIZE_OFFSET);
-      final Set<OIdentifiable> underlying = new HashSet<OIdentifiable>(Math.max((int) (size / .75f) + 1, 16));
+      final Set<OIdentifiable> underlying = new HashSet<>(Math.max((int) (size / .75f) + 1, 16));
 
       int p = offset + EMBEDDED_VALUES_OFFSET;
       for (int i = 0; i < size; i++) {

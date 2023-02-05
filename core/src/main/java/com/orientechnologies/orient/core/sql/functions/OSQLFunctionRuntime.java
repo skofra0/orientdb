@@ -19,6 +19,7 @@
  */
 package com.orientechnologies.orient.core.sql.functions;
 
+import java.util.List;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.common.io.OIOUtils;
 import com.orientechnologies.common.parser.OBaseParser;
@@ -38,8 +39,6 @@ import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemAbstract;
 import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemField;
 import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemVariable;
 import com.orientechnologies.orient.core.sql.filter.OSQLPredicate;
-
-import java.util.List;
 
 /**
  * Wraps function managing the binding of parameters.

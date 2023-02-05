@@ -19,6 +19,9 @@
  */
 package com.orientechnologies.orient.server.security.authenticator;
 
+import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.ConcurrentHashMap;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.security.OSecurityManager;
@@ -26,10 +29,6 @@ import com.orientechnologies.orient.server.OServer;
 import com.orientechnologies.orient.server.config.OServerConfigurationManager;
 import com.orientechnologies.orient.server.config.OServerUserConfiguration;
 import com.orientechnologies.orient.server.security.OSecurityAuthenticatorAbstract;
-
-import java.util.List;
-import java.util.Locale;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Provides a default password authenticator.
@@ -39,7 +38,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ODefaultPasswordAuthenticator extends OSecurityAuthenticatorAbstract {
   // Holds a map of the users specified in the security.json file.
-  private ConcurrentHashMap<String, OServerUserConfiguration> usersMap = new ConcurrentHashMap<String, OServerUserConfiguration>();
+  private ConcurrentHashMap<String, OServerUserConfiguration> usersMap = new ConcurrentHashMap<>();
 
   // OSecurityComponent
   // Called once the Server is running.

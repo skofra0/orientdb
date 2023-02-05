@@ -19,11 +19,10 @@
   */
 package com.orientechnologies.orient.core.index;
 
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
 
 /**
  * Presentation of OrientDB index cursor for point and range queries. Cursor may iterate by several elements even if you do point

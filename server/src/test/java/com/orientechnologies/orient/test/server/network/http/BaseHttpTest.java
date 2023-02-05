@@ -1,8 +1,5 @@
 package com.orientechnologies.orient.test.server.network.http;
 
-import com.orientechnologies.common.io.OFileUtils;
-import com.orientechnologies.orient.core.Orient;
-import com.orientechnologies.orient.server.OServer;
 import org.apache.http.Consts;
 import org.apache.http.Header;
 import org.apache.http.HttpHost;
@@ -11,7 +8,13 @@ import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.AuthCache;
 import org.apache.http.client.CredentialsProvider;
-import org.apache.http.client.methods.*;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPatch;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.entity.AbstractHttpEntity;
 import org.apache.http.entity.ContentType;
@@ -21,9 +24,11 @@ import org.apache.http.impl.client.BasicAuthCache;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-
 import java.io.File;
 import java.io.IOException;
+import com.orientechnologies.common.io.OFileUtils;
+import com.orientechnologies.orient.core.Orient;
+import com.orientechnologies.orient.server.OServer;
 
 /**
  * Base test class for HTTP protocol.

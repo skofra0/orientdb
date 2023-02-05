@@ -17,8 +17,6 @@
  */
 package com.orientechnologies.orient.jdbc;
 
-import com.orientechnologies.orient.core.record.impl.OBlob;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -29,8 +27,7 @@ import java.sql.SQLFeatureNotSupportedException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import static java.util.Arrays.asList;
+import com.orientechnologies.orient.core.record.impl.OBlob;
 
 /**
  * @author Roberto Franchini (CELI Srl - franchini@celi.it)

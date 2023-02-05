@@ -1,16 +1,17 @@
 package com.orientechnologies.orient.client.remote.message;
 
-import com.orientechnologies.orient.core.serialization.serializer.record.binary.ORecordSerializerNetworkFactory;
-import com.orientechnologies.orient.core.sql.executor.OInternalResultSet;
-import com.orientechnologies.orient.core.sql.executor.OResult;
-import com.orientechnologies.orient.core.sql.executor.OResultInternal;
-import com.orientechnologies.orient.core.sql.parser.OLocalResultSetLifecycleDecorator;
-import com.orientechnologies.orient.enterprise.channel.binary.OChannelBinaryProtocol;
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
+import com.orientechnologies.orient.core.serialization.serializer.record.binary.ORecordSerializerNetworkFactory;
+import com.orientechnologies.orient.core.sql.executor.OResult;
+import com.orientechnologies.orient.core.sql.executor.OResultInternal;
+import com.orientechnologies.orient.enterprise.channel.binary.OChannelBinaryProtocol;
 
 /**
  * Created by luigidellaquila on 14/12/16.

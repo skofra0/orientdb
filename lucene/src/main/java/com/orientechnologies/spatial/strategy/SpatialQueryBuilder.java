@@ -17,20 +17,19 @@
  */
 package com.orientechnologies.spatial.strategy;
 
+import java.util.HashMap;
+import java.util.Map;
 import com.orientechnologies.orient.core.index.OIndexEngineException;
 import com.orientechnologies.spatial.engine.OLuceneSpatialIndexContainer;
 import com.orientechnologies.spatial.query.OSpatialQueryContext;
 import com.orientechnologies.spatial.shape.OShapeBuilder;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Enrico Risa on 10/08/15.
  */
 public class SpatialQueryBuilder extends SpatialQueryBuilderAbstract {
 
-  private Map<String, SpatialQueryBuilderAbstract> operators = new HashMap<String, SpatialQueryBuilderAbstract>();
+  private Map<String, SpatialQueryBuilderAbstract> operators = new HashMap<>();
 
   public SpatialQueryBuilder(OLuceneSpatialIndexContainer manager, OShapeBuilder factory) {
     super(manager, factory);

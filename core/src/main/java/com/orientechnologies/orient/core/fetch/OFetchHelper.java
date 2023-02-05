@@ -19,6 +19,15 @@
  */
 package com.orientechnologies.orient.core.fetch;
 
+import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.collection.OMultiCollectionIterator;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.common.log.OLogManager;
@@ -34,10 +43,6 @@ import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.record.impl.ODocumentInternal;
 import com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper;
-
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.*;
 
 /**
  * Helper class for fetching.
@@ -66,7 +71,7 @@ public class OFetchHelper {
       if (iRootRecord instanceof ODocument) {
         // SCHEMA AWARE
         final ODocument record = (ODocument) iRootRecord;
-        final Map<ORID, Integer> parsedRecords = new HashMap<ORID, Integer>();
+        final Map<ORID, Integer> parsedRecords = new HashMap<>();
 
         final boolean isEmbedded = record.isEmbedded() || !record.getIdentity().isPersistent();
         if (!isEmbedded)
@@ -285,7 +290,7 @@ public class OFetchHelper {
     Object fieldValue;
 
     iContext.onBeforeFetch(record);
-    Set<String> toRemove = new HashSet<String>();
+    Set<String> toRemove = new HashSet<>();
 
     for (String fieldName : record.getPropertyNames()) {
       String fieldPath = !iFieldPathFromRoot.isEmpty() ? iFieldPathFromRoot + "." + fieldName : fieldName;

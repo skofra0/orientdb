@@ -1,5 +1,21 @@
 package com.orientechnologies.orient.server;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.TimerTask;
+import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
@@ -74,18 +90,16 @@ import com.orientechnologies.orient.server.config.OServerUserConfiguration;
 import com.orientechnologies.orient.server.distributed.ODistributedConfiguration;
 import com.orientechnologies.orient.server.distributed.ODistributedServerManager;
 import com.orientechnologies.orient.server.distributed.ORemoteServerController;
-import com.orientechnologies.orient.server.network.protocol.binary.*;
+import com.orientechnologies.orient.server.network.protocol.binary.HandshakeInfo;
+import com.orientechnologies.orient.server.network.protocol.binary.OAbstractCommandResultListener;
+import com.orientechnologies.orient.server.network.protocol.binary.OAsyncCommandResultListener;
+import com.orientechnologies.orient.server.network.protocol.binary.OCommandCacheRemoteResultListener;
+import com.orientechnologies.orient.server.network.protocol.binary.OLiveCommandResultListener;
+import com.orientechnologies.orient.server.network.protocol.binary.ONetworkProtocolBinary;
+import com.orientechnologies.orient.server.network.protocol.binary.OSyncCommandResultListener;
 import com.orientechnologies.orient.server.plugin.OServerPlugin;
 import com.orientechnologies.orient.server.tx.OTransactionOptimisticProxy;
 import com.orientechnologies.orient.server.tx.OTransactionOptimisticServer;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.*;
-import java.util.Map.Entry;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public final class OConnectionBinaryExecutor implements OBinaryRequestExecutor {
 

@@ -20,6 +20,8 @@
 
 package com.orientechnologies.orient.core.db;
 
+import java.util.Map;
+import java.util.UUID;
 import com.orientechnologies.orient.core.db.document.RecordReader;
 import com.orientechnologies.orient.core.db.record.OCurrentStorageComponentsFactory;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
@@ -41,9 +43,6 @@ import com.orientechnologies.orient.core.storage.ridbag.sbtree.OBonsaiCollection
 import com.orientechnologies.orient.core.storage.ridbag.sbtree.OSBTreeCollectionManager;
 import com.orientechnologies.orient.core.tx.OTransaction;
 import com.orientechnologies.orient.core.tx.OTransactionInternal;
-
-import java.util.Map;
-import java.util.UUID;
 
 public interface ODatabaseDocumentInternal extends ODatabaseSession, ODatabaseInternal<ORecord> {
 

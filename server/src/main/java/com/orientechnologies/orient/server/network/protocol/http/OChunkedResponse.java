@@ -20,7 +20,7 @@
 package com.orientechnologies.orient.server.network.protocol.http;
 
 import java.io.IOException;
- import java.io.OutputStream;
+import java.io.OutputStream;
 
 public class OChunkedResponse extends OutputStream {
 

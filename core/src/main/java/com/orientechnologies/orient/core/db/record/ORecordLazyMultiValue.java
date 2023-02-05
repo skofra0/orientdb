@@ -19,9 +19,8 @@
  */
 package com.orientechnologies.orient.core.db.record;
 
-import com.orientechnologies.common.util.OSizeable;
-
 import java.util.Iterator;
+import com.orientechnologies.common.util.OSizeable;
 
 public interface ORecordLazyMultiValue extends OAutoConvertToRecord, ODetachable, OSizeable {
   Iterator<OIdentifiable> rawIterator();

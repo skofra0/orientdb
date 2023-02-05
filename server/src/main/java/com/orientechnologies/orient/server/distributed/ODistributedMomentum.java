@@ -19,15 +19,18 @@
  */
 package com.orientechnologies.orient.server.distributed;
 
+import java.io.DataInput;
+import java.io.DataOutput;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.serialization.OStreamable;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OLogSequenceNumber;
-
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 /**
  * Represents a specific momentum in distributed environment.
@@ -144,7 +147,7 @@ public class ODistributedMomentum implements OStreamable {
   }
 
   public Collection<String> getServers() {
-    final List<String> result = new ArrayList<String>();
+    final List<String> result = new ArrayList<>();
     synchronized (configuration) {
       for (String s : configuration.fieldNames()) {
         if (!LAST_OPERATION_TIME_STAMP.equals(s) && !VERSION.equals(s))

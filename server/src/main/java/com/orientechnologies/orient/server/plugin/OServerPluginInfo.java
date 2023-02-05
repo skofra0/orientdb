@@ -23,7 +23,6 @@ import java.lang.reflect.Method;
 import java.net.URLClassLoader;
 import java.util.HashMap;
 import java.util.Map;
-
 import com.orientechnologies.common.log.OLogManager;
 
 /**
@@ -50,7 +49,7 @@ public class OServerPluginInfo {
     this.description = description;
     this.web = web;
     this.instance = instance;
-    this.parameters = parameters != null ? parameters : new HashMap<String, Object>();
+    this.parameters = parameters != null ? parameters : new HashMap<>();
     this.loadedOn = loadedOn;
     this.pluginClassLoader = pluginClassLoader;
   }

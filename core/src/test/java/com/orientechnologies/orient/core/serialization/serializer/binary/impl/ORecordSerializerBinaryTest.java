@@ -15,6 +15,18 @@
  */
 package com.orientechnologies.orient.core.serialization.serializer.binary.impl;
 
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.serialization.types.OIntegerSerializer;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
@@ -26,13 +38,6 @@ import com.orientechnologies.orient.core.serialization.serializer.record.binary.
 import com.orientechnologies.orient.core.serialization.serializer.record.binary.OResultBinary;
 import com.orientechnologies.orient.core.serialization.serializer.record.binary.OVarIntSerializer;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
-import java.io.UnsupportedEncodingException;
-import java.util.*;
 
 /**
  * @author mdjurovi
@@ -46,7 +51,7 @@ public class ORecordSerializerBinaryTest {
 
   @Parameterized.Parameters
   public static Collection<Object[]> generateParams() {
-    List<Object[]> params = new ArrayList<Object[]>();
+    List<Object[]> params = new ArrayList<>();
     //first we want to run tests for all registreted serializers, and then for two network serializers
     //testig for each serializer type has its own index
     for (byte i = 0; i < ORecordSerializerBinary.INSTANCE.getNumberOfSupportedVersions(); i++) {

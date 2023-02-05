@@ -19,14 +19,13 @@
  */
 package com.orientechnologies.orient.server.distributed;
 
-import com.orientechnologies.orient.core.metadata.schema.OType;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.orient.core.record.impl.ODocumentInternal;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import com.orientechnologies.orient.core.metadata.schema.OType;
+import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.orientechnologies.orient.core.record.impl.ODocumentInternal;
 
 /**
  * Modifiable Distributed configuration. It's created starting from a ODistributedConfiguration object. Every changes increment the
@@ -69,7 +68,7 @@ public class OModifiableDistributedConfiguration extends ODistributedConfigurati
    */
   public List<String> addNewNodeInServerList(final String iNode) {
     synchronized (configuration) {
-      final List<String> changedPartitions = new ArrayList<String>();
+      final List<String> changedPartitions = new ArrayList<>();
       // ADD THE NODE IN CONFIGURATION. LOOK FOR $newNode TAG
       for (String clusterName : getClusterNames()) {
         final List<String> partitions = getClusterConfiguration(clusterName).field(SERVERS);
@@ -164,7 +163,7 @@ public class OModifiableDistributedConfiguration extends ODistributedConfigurati
    */
   public List<String> removeServer(final String iNode) {
     synchronized (configuration) {
-      final List<String> changedPartitions = new ArrayList<String>();
+      final List<String> changedPartitions = new ArrayList<>();
 
       for (String clusterName : getClusterNames()) {
         final Collection<String> nodes = getClusterConfiguration(clusterName).field(SERVERS);
@@ -199,7 +198,7 @@ public class OModifiableDistributedConfiguration extends ODistributedConfigurati
    * @return
    */
   public List<String> setServerOffline(final String iNode, final String newLockManagerServer) {
-    final List<String> changedPartitions = new ArrayList<String>();
+    final List<String> changedPartitions = new ArrayList<>();
 
     final String[] clusters = getClusterNames();
     synchronized (configuration) {
@@ -253,7 +252,7 @@ public class OModifiableDistributedConfiguration extends ODistributedConfigurati
 
     // COPY THE SERVER LIST FROM ALL_WILDCARD
     final List<String> anyServers = any.field(SERVERS);
-    final List<String> servers = new ArrayList<String>(anyServers);
+    final List<String> servers = new ArrayList<>(anyServers);
     cluster.field(SERVERS, servers);
 
     return servers;

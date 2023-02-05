@@ -2,6 +2,11 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=true,TRACK_TOKENS=true,NODE_PREFIX=O,NODE_EXTENDS=,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package com.orientechnologies.orient.core.sql.parser;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
@@ -9,14 +14,8 @@ import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.sql.executor.OResultInternal;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 public class OCollection extends SimpleNode {
-  protected List<OExpression> expressions = new ArrayList<OExpression>();
+  protected List<OExpression> expressions = new ArrayList<>();
 
   public OCollection(int id) {
     super(id);
@@ -51,7 +50,7 @@ public class OCollection extends SimpleNode {
   }
 
   public Object execute(OIdentifiable iCurrentRecord, OCommandContext ctx) {
-    List<Object> result = new ArrayList<Object>();
+    List<Object> result = new ArrayList<>();
     for (OExpression exp : expressions) {
       result.add(exp.execute(iCurrentRecord, ctx));
     }
@@ -59,7 +58,7 @@ public class OCollection extends SimpleNode {
   }
 
   public Object execute(OResult iCurrentRecord, OCommandContext ctx) {
-    List<Object> result = new ArrayList<Object>();
+    List<Object> result = new ArrayList<>();
     for (OExpression exp : expressions) {
       result.add(convert(exp.execute(iCurrentRecord, ctx)));
     }

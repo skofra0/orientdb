@@ -2,7 +2,6 @@ package com.orientechnologies.orient.core.db.document;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;

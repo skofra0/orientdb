@@ -20,17 +20,16 @@
 
 package com.orientechnologies.orient.core.index;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import com.orientechnologies.orient.core.collate.OCollate;
 import com.orientechnologies.orient.core.collate.ODefaultCollate;
 import com.orientechnologies.orient.core.db.record.ORecordElement;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OSQLEngine;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class OSimpleKeyIndexDefinition extends OAbstractIndexDefinition {
   private static final long    serialVersionUID = -1264300379465791244L;
@@ -127,14 +126,14 @@ public class OSimpleKeyIndexDefinition extends OAbstractIndexDefinition {
   protected void serializeToStream() {
     super.serializeToStream();
 
-    final List<String> keyTypeNames = new ArrayList<String>(keyTypes.length);
+    final List<String> keyTypeNames = new ArrayList<>(keyTypes.length);
 
     for (final OType keyType : keyTypes)
       keyTypeNames.add(keyType.toString());
 
     document.field("keyTypes", keyTypeNames, OType.EMBEDDEDLIST);
     if (collate instanceof OCompositeCollate) {
-      List<String> collatesNames = new ArrayList<String>();
+      List<String> collatesNames = new ArrayList<>();
       for (OCollate curCollate : ((OCompositeCollate) this.collate).getCollates())
         collatesNames.add(curCollate.getName());
       document.field("collates", collatesNames, OType.EMBEDDEDLIST);

@@ -1,13 +1,17 @@
 package com.orientechnologies.orient.core.storage.index.hashindex.local;
 
+import org.assertj.core.api.Assertions;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import java.io.IOException;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperation;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperationsManager;
-import org.assertj.core.api.Assertions;
-import org.junit.*;
-
-import java.io.IOException;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)

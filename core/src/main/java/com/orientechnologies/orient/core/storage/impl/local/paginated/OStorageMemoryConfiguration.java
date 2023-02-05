@@ -21,7 +21,6 @@
 package com.orientechnologies.orient.core.storage.impl.local.paginated;
 
 import java.nio.charset.Charset;
-
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.core.config.OContextConfiguration;
 import com.orientechnologies.orient.core.config.OStorageConfigurationImpl;

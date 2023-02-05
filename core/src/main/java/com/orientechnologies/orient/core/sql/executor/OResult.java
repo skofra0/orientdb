@@ -1,5 +1,12 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.lang.reflect.Array;
+import java.util.Base64;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.record.OEdge;
 import com.orientechnologies.orient.core.record.OElement;
@@ -7,9 +14,6 @@ import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.OVertex;
 import com.orientechnologies.orient.core.record.impl.OBlob;
 import com.orientechnologies.orient.core.util.ODateHelper;
-
-import java.lang.reflect.Array;
-import java.util.*;
 
 /**
  * Created by luigidellaquila on 21/07/16.

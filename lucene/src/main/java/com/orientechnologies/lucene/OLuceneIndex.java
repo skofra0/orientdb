@@ -17,7 +17,6 @@
 package com.orientechnologies.lucene;
 
 import org.apache.lucene.search.IndexSearcher;
-
 import java.io.IOException;
 
 /**

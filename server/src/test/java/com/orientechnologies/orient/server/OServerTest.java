@@ -1,5 +1,12 @@
 package com.orientechnologies.orient.server;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.logging.Level;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.io.OFileUtils;
 import com.orientechnologies.common.log.OLogManager;
@@ -8,15 +15,6 @@ import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.server.config.OServerConfiguration;
 import com.orientechnologies.orient.server.config.OServerHandlerConfiguration;
 import com.orientechnologies.orient.server.config.OServerParameterConfiguration;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.logging.Level;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Created by frank on 21/01/2016.
@@ -40,7 +38,7 @@ public class OServerTest {
 
     conf = new OServerConfiguration();
 
-    conf.handlers = new ArrayList<OServerHandlerConfiguration>();
+    conf.handlers = new ArrayList<>();
     OServerHandlerConfiguration handlerConfiguration = new OServerHandlerConfiguration();
     handlerConfiguration.clazz = OServerFailingOnStarupPluginStub.class.getName();
     handlerConfiguration.parameters = new OServerParameterConfiguration[0];

@@ -19,7 +19,6 @@ package com.orientechnologies.spatial.engine;
 
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.spatial.SpatialStrategy;
-
 import java.io.IOException;
 
 /**

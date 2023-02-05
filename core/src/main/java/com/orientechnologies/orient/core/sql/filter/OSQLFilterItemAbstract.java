@@ -19,6 +19,9 @@
  */
 package com.orientechnologies.orient.core.sql.filter;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 import com.orientechnologies.common.parser.OBaseParser;
 import com.orientechnologies.common.util.OCommonConst;
 import com.orientechnologies.common.util.OPair;
@@ -33,13 +36,9 @@ import com.orientechnologies.orient.core.sql.OSQLEngine;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunction;
 import com.orientechnologies.orient.core.sql.functions.coll.OSQLMethodMultiValue;
 import com.orientechnologies.orient.core.sql.method.OSQLMethod;
+import com.orientechnologies.orient.core.sql.method.OSQLMethodRuntime;
 import com.orientechnologies.orient.core.sql.method.misc.OSQLMethodField;
 import com.orientechnologies.orient.core.sql.method.misc.OSQLMethodFunctionDelegate;
-import com.orientechnologies.orient.core.sql.method.OSQLMethodRuntime;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 /**
  * Represents an object field as value in the query condition.
@@ -61,7 +60,7 @@ public abstract class OSQLFilterItemAbstract implements OSQLFilterItem {
     setRoot(iQueryToParse, parts.get(0));
 
     if (parts.size() > 1) {
-      operationsChain = new ArrayList<OPair<OSQLMethodRuntime, Object[]>>();
+      operationsChain = new ArrayList<>();
 
       // GET ALL SPECIAL OPERATIONS
       for (int i = 1; i < parts.size(); ++i) {
@@ -69,7 +68,7 @@ public abstract class OSQLFilterItemAbstract implements OSQLFilterItem {
 
         final int pindex = part.indexOf('(');
         if (part.charAt(0) == '[')
-          operationsChain.add(new OPair<OSQLMethodRuntime, Object[]>(new OSQLMethodRuntime(OSQLEngine
+          operationsChain.add(new OPair<>(new OSQLMethodRuntime(OSQLEngine
               .getMethod(OSQLMethodMultiValue.NAME)), new Object[] { part }));
         else if (pindex > -1) {
           final String methodName = part.substring(0, pindex).trim().toLowerCase(Locale.ENGLISH);
@@ -114,10 +113,10 @@ public abstract class OSQLFilterItemAbstract implements OSQLFilterItem {
           final OSQLMethodRuntime runtimeMethod = new OSQLMethodRuntime(method);
 
           // SPECIAL OPERATION FOUND: ADD IT IN TO THE CHAIN
-          operationsChain.add(new OPair<OSQLMethodRuntime, Object[]>(runtimeMethod, arguments));
+          operationsChain.add(new OPair<>(runtimeMethod, arguments));
 
         } else {
-          operationsChain.add(new OPair<OSQLMethodRuntime, Object[]>(new OSQLMethodRuntime(OSQLEngine
+          operationsChain.add(new OPair<>(new OSQLMethodRuntime(OSQLEngine
               .getMethod(OSQLMethodField.NAME)), new Object[] { part }));
         }
       }

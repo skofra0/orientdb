@@ -19,6 +19,10 @@
  */
 package com.orientechnologies.orient.core.metadata.security;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
@@ -27,11 +31,6 @@ import com.orientechnologies.orient.core.exception.OSecurityAccessException;
 import com.orientechnologies.orient.core.exception.OSecurityException;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.security.OSecurityManager;
-
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 
 /**
  * Contains the user settings about security and permissions. Each user has one or more roles associated. Roles contains the
@@ -48,7 +47,7 @@ public class OUser extends OIdentity implements OSecurityUser {
   private static final long serialVersionUID = 1L;
 
   // AVOID THE INVOCATION OF SETTER
-  protected Set<ORole> roles = new HashSet<ORole>();
+  protected Set<ORole> roles = new HashSet<>();
 
   /**
    * Constructor used in unmarshalling.
@@ -109,7 +108,7 @@ public class OUser extends OIdentity implements OSecurityUser {
 
     document = iSource;
 
-    roles = new HashSet<ORole>();
+    roles = new HashSet<>();
     final Collection<ODocument> loadedRoles = iSource.field("roles");
     if (loadedRoles != null)
       for (final ODocument d : loadedRoles) {
@@ -279,7 +278,7 @@ public class OUser extends OIdentity implements OSecurityUser {
     if (iRole != null)
       roles.add((ORole) iRole);
 
-    final HashSet<ODocument> persistentRoles = new HashSet<ODocument>();
+    final HashSet<ODocument> persistentRoles = new HashSet<>();
     for (ORole r : roles) {
       persistentRoles.add(r.toStream());
     }
@@ -297,7 +296,7 @@ public class OUser extends OIdentity implements OSecurityUser {
     }
 
     if (removed) {
-      final HashSet<ODocument> persistentRoles = new HashSet<ODocument>();
+      final HashSet<ODocument> persistentRoles = new HashSet<>();
       for (ORole r : roles) {
         persistentRoles.add(r.toStream());
       }

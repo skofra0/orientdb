@@ -1,12 +1,11 @@
 package com.orientechnologies.orient.core.storage.impl.local.statistic;
 
-import com.orientechnologies.common.types.OModifiableInteger;
-import com.orientechnologies.orient.core.record.impl.ODocument;
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.util.HashMap;
 import java.util.Map;
+import com.orientechnologies.common.types.OModifiableInteger;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 public class OSessionStoragePerformanceStatisticTest {
 
@@ -341,7 +340,7 @@ public class OSessionStoragePerformanceStatisticTest {
         }, -1);
 
     OSessionStoragePerformanceStatistic.PerformanceCountersHolder performanceCountersHolder = new OSessionStoragePerformanceStatistic.PerformanceCountersHolder();
-    final Map<String, OSessionStoragePerformanceStatistic.PerformanceCountersHolder> counters = new HashMap<String, OSessionStoragePerformanceStatistic.PerformanceCountersHolder>();
+    final Map<String, OSessionStoragePerformanceStatistic.PerformanceCountersHolder> counters = new HashMap<>();
 
     sessionStoragePerformanceStatisticOne.pushComponentCounters(counters);
     sessionStoragePerformanceStatisticOne.pushComponentCounters("c3po", performanceCountersHolder);

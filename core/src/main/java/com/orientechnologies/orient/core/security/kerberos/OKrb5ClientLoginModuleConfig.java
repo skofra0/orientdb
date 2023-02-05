@@ -21,7 +21,6 @@ package com.orientechnologies.orient.core.security.kerberos;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.security.auth.login.AppConfigurationEntry;
 import javax.security.auth.login.Configuration;
 
@@ -64,7 +63,7 @@ public class OKrb5ClientLoginModuleConfig extends Configuration
 
 	public OKrb5ClientLoginModuleConfig(String principal, boolean useTicketCache, String ccPath, String ktPath)
 	{
-		final Map<String, Object> options = new HashMap<String, Object>();
+		final Map<String, Object> options = new HashMap<>();
 
 		options.put("principal", principal);
 

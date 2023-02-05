@@ -17,6 +17,12 @@
  */
 package com.orientechnologies.spatial;
 
+import org.apache.lucene.spatial.query.SpatialOperation;
+import org.junit.Assert;
+import org.junit.Test;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.index.OIndex;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
@@ -25,13 +31,6 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import com.orientechnologies.spatial.collections.OSpatialCompositeKey;
-import org.apache.lucene.spatial.query.SpatialOperation;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 /**
  * Created by Enrico Risa on 07/10/15.

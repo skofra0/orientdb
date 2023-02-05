@@ -20,7 +20,7 @@
 package com.orientechnologies.orient.server.network.protocol.http;
 
 import java.util.HashMap;
- import java.util.Map;
+import java.util.Map;
 
 /**
   * Handles session information.
@@ -75,7 +75,7 @@ import java.util.HashMap;
 
    public OHttpSession setParameter(final Object iKey, final Object iValue) {
      if (this.parameters == null)
-       this.parameters = new HashMap<Object, Object>();
+       this.parameters = new HashMap<>();
 
      if (iValue == null)
        this.parameters.remove(iKey);

@@ -1,10 +1,9 @@
 package com.orientechnologies.orient.core;
 
-import com.orientechnologies.common.log.OLogManager;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import com.orientechnologies.common.log.OLogManager;
 
 public class OConstants {
   public static final String ORIENT_URL = "https://www.orientdb.com";

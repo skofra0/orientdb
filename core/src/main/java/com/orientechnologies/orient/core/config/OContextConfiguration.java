@@ -30,7 +30,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author Luca Garulli (l.garulli--(at)--orientdb.com)
  */
 public class OContextConfiguration implements Serializable {
-  private final Map<String, Object> config = new ConcurrentHashMap<String, Object>();
+  private final Map<String, Object> config = new ConcurrentHashMap<>();
 
   /**
    * Empty constructor to create just a proxy for the OGlobalConfiguration. No values are setted.

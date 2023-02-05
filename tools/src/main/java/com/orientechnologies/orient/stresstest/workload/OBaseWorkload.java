@@ -19,6 +19,10 @@
  */
 package com.orientechnologies.orient.stresstest.workload;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import com.orientechnologies.common.concur.ONeedRetryException;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.util.OCallable;
@@ -28,11 +32,6 @@ import com.orientechnologies.orient.core.db.document.ODatabaseDocumentAbstract;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.stresstest.ODatabaseIdentifier;
 import com.orientechnologies.orient.stresstest.OStressTesterSettings;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * CRUD implementation of the workload.
@@ -101,7 +100,7 @@ public abstract class OBaseWorkload implements OWorkload {
   }
 
   protected static final long         MAX_ERRORS = 100;
-  protected              List<String> errors     = new ArrayList<String>();
+  protected              List<String> errors     = new ArrayList<>();
 
   protected List<OBaseWorkLoadContext> executeOperation(final ODatabaseIdentifier dbIdentifier, final OWorkLoadResult result,
       final OStressTesterSettings settings, final OCallable<Void, OBaseWorkLoadContext> callback) {
@@ -117,7 +116,7 @@ public abstract class OBaseWorkload implements OWorkload {
 
     final Long[] operationTiming = new Long[result.total];
 
-    final List<OBaseWorkLoadContext> contexts = new ArrayList<OBaseWorkLoadContext>(concurrencyLevel);
+    final List<OBaseWorkLoadContext> contexts = new ArrayList<>(concurrencyLevel);
 
     final Thread[] thread = new Thread[concurrencyLevel];
     for (int t = 0; t < concurrencyLevel; ++t) {

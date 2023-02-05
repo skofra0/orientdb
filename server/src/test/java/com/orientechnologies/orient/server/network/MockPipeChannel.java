@@ -1,11 +1,13 @@
 package com.orientechnologies.orient.server.network;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
 import com.orientechnologies.orient.core.config.OContextConfiguration;
 import com.orientechnologies.orient.enterprise.channel.binary.OChannelBinary;
-
-import java.io.*;
-import java.net.Socket;
-import java.nio.channels.Pipe;
 
 /**
  * Created by tglman on 10/05/17.

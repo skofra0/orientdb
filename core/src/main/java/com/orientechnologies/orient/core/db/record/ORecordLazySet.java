@@ -19,6 +19,10 @@
  */
 package com.orientechnologies.orient.core.db.record;
 
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.Set;
 import com.orientechnologies.common.collection.OLazyIterator;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
@@ -28,11 +32,6 @@ import com.orientechnologies.orient.core.record.OIdentityChangeListener;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.ORecordInternal;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Map.Entry;
-import java.util.Set;
 
 /**
  * Lazy implementation of Set. Can be bound to a source ORecord object to keep track of changes. This avoid to call the makeDirty()
@@ -140,7 +139,7 @@ public class ORecordLazySet extends ORecordTrackedSet
     setDirty();
 
     fireCollectionChangedEvent(
-        new OMultiValueChangeEvent<OIdentifiable, OIdentifiable>(OMultiValueChangeEvent.OChangeType.ADD, e, e));
+        new OMultiValueChangeEvent<>(OMultiValueChangeEvent.OChangeType.ADD, e, e));
 
     return true;
   }
@@ -211,7 +210,7 @@ public class ORecordLazySet extends ORecordTrackedSet
 
       setDirty();
       fireCollectionChangedEvent(
-          new OMultiValueChangeEvent<OIdentifiable, OIdentifiable>(OMultiValueChangeEvent.OChangeType.REMOVE, (OIdentifiable) o,
+          new OMultiValueChangeEvent<>(OMultiValueChangeEvent.OChangeType.REMOVE, (OIdentifiable) o,
               null, (OIdentifiable) o));
       return true;
     }

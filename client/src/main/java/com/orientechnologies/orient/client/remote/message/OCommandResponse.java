@@ -19,17 +19,24 @@
  */
 package com.orientechnologies.orient.client.remote.message;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.collection.OMultiValue;
-import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.log.OLogManager;
-import com.orientechnologies.orient.client.binary.OChannelBinaryAsynchClient;
-import com.orientechnologies.orient.client.remote.*;
+import com.orientechnologies.orient.client.remote.OBinaryResponse;
+import com.orientechnologies.orient.client.remote.OFetchPlanResults;
+import com.orientechnologies.orient.client.remote.OStorageRemoteSession;
+import com.orientechnologies.orient.client.remote.SimpleValueFetchPlanCommandListener;
 import com.orientechnologies.orient.core.command.OCommandRequestText;
 import com.orientechnologies.orient.core.command.OCommandResultListener;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.db.record.ORecordOperation;
 import com.orientechnologies.orient.core.exception.OStorageException;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.metadata.schema.OType;
@@ -39,14 +46,10 @@ import com.orientechnologies.orient.core.serialization.serializer.record.ORecord
 import com.orientechnologies.orient.core.serialization.serializer.record.binary.ORecordSerializerNetworkV37;
 import com.orientechnologies.orient.core.serialization.serializer.record.string.ORecordSerializerStringAbstract;
 import com.orientechnologies.orient.core.sql.query.OBasicLegacyResultSet;
-import com.orientechnologies.orient.core.sql.query.OLiveResultListener;
 import com.orientechnologies.orient.core.type.ODocumentWrapper;
 import com.orientechnologies.orient.enterprise.channel.binary.OChannelBinaryProtocol;
 import com.orientechnologies.orient.enterprise.channel.binary.OChannelDataInput;
 import com.orientechnologies.orient.enterprise.channel.binary.OChannelDataOutput;
-
-import java.io.IOException;
-import java.util.*;
 
 public final class OCommandResponse implements OBinaryResponse {
   private boolean                   asynch;
@@ -214,7 +217,7 @@ public final class OCommandResponse implements OBinaryResponse {
     ORecordSerializer serializer = ORecordSerializerNetworkV37.INSTANCE;
     try {
       // Collection of prefetched temporary record (nested projection record), to refer for avoid garbage collection.
-      List<ORecord> temporaryResults = new ArrayList<ORecord>();
+      List<ORecord> temporaryResults = new ArrayList<>();
 
       boolean addNextRecord = true;
       if (asynch) {
@@ -319,7 +322,7 @@ public final class OCommandResponse implements OBinaryResponse {
       final int tot = network.readInt();
       final Collection<OIdentifiable> coll;
 
-      coll = type == 's' ? new HashSet<OIdentifiable>(tot) : new OBasicLegacyResultSet<OIdentifiable>(tot);
+      coll = type == 's' ? new HashSet<>(tot) : new OBasicLegacyResultSet<>(tot);
       for (int i = 0; i < tot; ++i) {
         final OIdentifiable resultItem = OMessageHelper.readIdentifiable(network, serializer);
         if (resultItem instanceof ORecord)
@@ -330,7 +333,7 @@ public final class OCommandResponse implements OBinaryResponse {
       result = coll;
       break;
     case 'i':
-      coll = new OBasicLegacyResultSet<OIdentifiable>();
+      coll = new OBasicLegacyResultSet<>();
       byte status;
       while ((status = network.readByte()) > 0) {
         final OIdentifiable record = OMessageHelper.readIdentifiable(network, serializer);

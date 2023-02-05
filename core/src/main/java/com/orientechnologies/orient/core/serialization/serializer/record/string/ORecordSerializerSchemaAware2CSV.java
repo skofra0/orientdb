@@ -19,6 +19,15 @@
  */
 package com.orientechnologies.orient.core.serialization.serializer.record.string;
 
+import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.collection.OMultiCollectionIterator;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.common.exception.OException;
@@ -40,11 +49,6 @@ import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.record.impl.ODocumentInternal;
 import com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper;
-
-import java.io.UnsupportedEncodingException;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.*;
 
 public class ORecordSerializerSchemaAware2CSV extends ORecordSerializerCSVAbstract {
   public static final String                           NAME             = "ORecordDocument2csv";
@@ -118,7 +122,7 @@ public class ORecordSerializerSchemaAware2CSV extends ORecordSerializerCSVAbstra
     final Set<String> fieldSet;
 
     if (iFields != null && iFields.length > 0) {
-      fieldSet = new HashSet<String>(iFields.length);
+      fieldSet = new HashSet<>(iFields.length);
       for (String f : iFields)
         fieldSet.add(f);
     } else

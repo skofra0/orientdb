@@ -19,6 +19,12 @@
  */
 package com.orientechnologies.orient.core.index;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import com.orientechnologies.common.listener.OProgressListener;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
@@ -30,9 +36,6 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.executor.OInternalResultSet;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Proxied abstract index.
@@ -84,7 +87,7 @@ public abstract class OIndexRemote<T> implements OIndex<T> {
     this.rid = iRid;
     this.indexDefinition = iIndexDefinition;
     this.configuration = iConfiguration;
-    this.clustersToIndex = new HashSet<String>(clustersToIndex);
+    this.clustersToIndex = new HashSet<>(clustersToIndex);
     this.databaseName = database;
   }
 
@@ -394,7 +397,7 @@ public abstract class OIndexRemote<T> implements OIndex<T> {
         if (!copy.hasNext())
           return null;
         final OResult next = copy.next();
-        return new Map.Entry<Object, OIdentifiable>() {
+        return new Map.Entry<>() {
           @Override
           public Object getKey() {
             return next.getProperty("key");
@@ -436,7 +439,7 @@ public abstract class OIndexRemote<T> implements OIndex<T> {
 
         final OResult value = copy.next();
 
-        return new Map.Entry<Object, OIdentifiable>() {
+        return new Map.Entry<>() {
           @Override
           public Object getKey() {
             return value.getProperty("key");
@@ -473,7 +476,7 @@ public abstract class OIndexRemote<T> implements OIndex<T> {
 
         final OResult value = copy.next();
 
-        return new Map.Entry<Object, OIdentifiable>() {
+        return new Map.Entry<>() {
           @Override
           public Object getKey() {
             return value.getProperty("key");

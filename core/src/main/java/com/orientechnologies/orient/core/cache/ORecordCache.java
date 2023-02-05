@@ -19,10 +19,9 @@
  */
 package com.orientechnologies.orient.core.cache;
 
+import java.util.Collection;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.record.ORecord;
-
-import java.util.Collection;
 
 /**
  * Generic cache interface that should be implemented in order to plug-in custom cache. Also implementing class has to have public

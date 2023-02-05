@@ -1,5 +1,19 @@
 package com.orientechnologies.orient.core.record.impl;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.id.ORecordId;
@@ -7,14 +21,6 @@ import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.serialization.serializer.record.ORecordSerializer;
 import com.orientechnologies.orient.core.serialization.serializer.record.string.ORecordSerializerSchemaAware2CSV;
 import com.orientechnologies.orient.core.serialization.serializer.record.string.ORecordSerializerStringAbstract;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-
-import java.util.*;
-
-import static org.junit.Assert.*;
 
 public class ODocumentSchemalessSerializationTest {
 
@@ -74,62 +80,62 @@ public class ODocumentSchemalessSerializationTest {
   public void testSimpleLiteralList() {
 
     ODocument document = new ODocument();
-    List<String> strings = new ArrayList<String>();
+    List<String> strings = new ArrayList<>();
     strings.add("a");
     strings.add("b");
     strings.add("c");
     document.field("listStrings", strings);
 
-    List<Short> shorts = new ArrayList<Short>();
+    List<Short> shorts = new ArrayList<>();
     shorts.add((short) 1);
     shorts.add((short) 2);
     shorts.add((short) 3);
     document.field("shorts", shorts);
 
-    List<Long> longs = new ArrayList<Long>();
+    List<Long> longs = new ArrayList<>();
     longs.add((long) 1);
     longs.add((long) 2);
     longs.add((long) 3);
     document.field("longs", longs);
 
-    List<Integer> ints = new ArrayList<Integer>();
+    List<Integer> ints = new ArrayList<>();
     ints.add(1);
     ints.add(2);
     ints.add(3);
     document.field("integers", ints);
 
-    List<Float> floats = new ArrayList<Float>();
+    List<Float> floats = new ArrayList<>();
     floats.add(1.1f);
     floats.add(2.2f);
     floats.add(3.3f);
     document.field("floats", floats);
 
-    List<Double> doubles = new ArrayList<Double>();
+    List<Double> doubles = new ArrayList<>();
     doubles.add(1.1);
     doubles.add(2.2);
     doubles.add(3.3);
     document.field("doubles", doubles);
 
-    List<Date> dates = new ArrayList<Date>();
+    List<Date> dates = new ArrayList<>();
     dates.add(new Date());
     dates.add(new Date());
     dates.add(new Date());
     document.field("dates", dates);
 
-    List<Byte> bytes = new ArrayList<Byte>();
+    List<Byte> bytes = new ArrayList<>();
     bytes.add((byte) 0);
     bytes.add((byte) 1);
     bytes.add((byte) 3);
     document.field("bytes", bytes);
 
     // TODO: char not currently supported in orient.
-    List<Character> chars = new ArrayList<Character>();
+    List<Character> chars = new ArrayList<>();
     chars.add('A');
     chars.add('B');
     chars.add('C');
     // document.field("chars", chars);
 
-    List<Boolean> booleans = new ArrayList<Boolean>();
+    List<Boolean> booleans = new ArrayList<>();
     booleans.add(true);
     booleans.add(false);
     booleans.add(false);
@@ -164,42 +170,42 @@ public class ODocumentSchemalessSerializationTest {
   public void testSimpleMapStringLiteral() {
     ODocument document = new ODocument();
 
-    Map<String, String> mapString = new HashMap<String, String>();
+    Map<String, String> mapString = new HashMap<>();
     mapString.put("key", "value");
     mapString.put("key1", "value1");
     document.field("mapString", mapString);
 
-    Map<String, Integer> mapInt = new HashMap<String, Integer>();
+    Map<String, Integer> mapInt = new HashMap<>();
     mapInt.put("key", 2);
     mapInt.put("key1", 3);
     document.field("mapInt", mapInt);
 
-    Map<String, Long> mapLong = new HashMap<String, Long>();
+    Map<String, Long> mapLong = new HashMap<>();
     mapLong.put("key", 2L);
     mapLong.put("key1", 3L);
     document.field("mapLong", mapLong);
 
-    Map<String, Short> shortMap = new HashMap<String, Short>();
+    Map<String, Short> shortMap = new HashMap<>();
     shortMap.put("key", (short) 2);
     shortMap.put("key1", (short) 3);
     document.field("shortMap", shortMap);
 
-    Map<String, Date> dateMap = new HashMap<String, Date>();
+    Map<String, Date> dateMap = new HashMap<>();
     dateMap.put("key", new Date());
     dateMap.put("key1", new Date());
     document.field("dateMap", dateMap);
 
-    Map<String, Float> floatMap = new HashMap<String, Float>();
+    Map<String, Float> floatMap = new HashMap<>();
     floatMap.put("key", 10f);
     floatMap.put("key1", 11f);
     document.field("floatMap", floatMap);
 
-    Map<String, Double> doubleMap = new HashMap<String, Double>();
+    Map<String, Double> doubleMap = new HashMap<>();
     doubleMap.put("key", 10d);
     doubleMap.put("key1", 11d);
     document.field("doubleMap", doubleMap);
 
-    Map<String, Byte> bytesMap = new HashMap<String, Byte>();
+    Map<String, Byte> bytesMap = new HashMap<>();
     bytesMap.put("key", (byte) 10);
     bytesMap.put("key1", (byte) 11);
     document.field("bytesMap", bytesMap);
@@ -241,7 +247,7 @@ public class ODocumentSchemalessSerializationTest {
     ODocument embeddedInMap = new ODocument();
     embeddedInMap.field("name", "test");
     embeddedInMap.field("surname", "something");
-    Map<String, ODocument> map = new HashMap<String, ODocument>();
+    Map<String, ODocument> map = new HashMap<>();
     map.put("embedded", embeddedInMap);
     document.field("map", map, OType.EMBEDDEDMAP);
 
@@ -265,7 +271,7 @@ public class ODocumentSchemalessSerializationTest {
     embeddedInList.field("name", "test");
     embeddedInList.field("surname", "something");
 
-    List<ODocument> embeddedList = new ArrayList<ODocument>();
+    List<ODocument> embeddedList = new ArrayList<>();
     embeddedList.add(embeddedInList);
     document.field("embeddedList", embeddedList, OType.EMBEDDEDLIST);
 
@@ -273,7 +279,7 @@ public class ODocumentSchemalessSerializationTest {
     embeddedInSet.field("name", "test1");
     embeddedInSet.field("surname", "something2");
 
-    Set<ODocument> embeddedSet = new HashSet<ODocument>();
+    Set<ODocument> embeddedSet = new HashSet<>();
     embeddedSet.add(embeddedInSet);
     document.field("embeddedSet", embeddedSet, OType.EMBEDDEDSET);
 

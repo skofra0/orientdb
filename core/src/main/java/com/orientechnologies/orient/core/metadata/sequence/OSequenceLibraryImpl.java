@@ -20,6 +20,11 @@
 
 package com.orientechnologies.orient.core.metadata.sequence;
 
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicBoolean;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.OMetadataUpdateListener;
 import com.orientechnologies.orient.core.exception.OSequenceException;
@@ -28,21 +33,13 @@ import com.orientechnologies.orient.core.metadata.sequence.OSequence.SEQUENCE_TY
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
-import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * @author Matan Shukry (matanshukry@gmail.com)
  * @since 3/2/2015
  */
 public class OSequenceLibraryImpl {
-  private final Map<String, OSequence> sequences    = new ConcurrentHashMap<String, OSequence>();
+  private final Map<String, OSequence> sequences    = new ConcurrentHashMap<>();
   private final AtomicBoolean          reloadNeeded = new AtomicBoolean(false);
 
   public void create(ODatabaseDocumentInternal database) {

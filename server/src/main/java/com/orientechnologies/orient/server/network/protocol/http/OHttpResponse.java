@@ -19,18 +19,6 @@
  */
 package com.orientechnologies.orient.server.network.protocol.http;
 
-import com.orientechnologies.common.collection.OMultiValue;
-import com.orientechnologies.common.log.OLogManager;
-import com.orientechnologies.common.util.OCallable;
-import com.orientechnologies.orient.core.config.OGlobalConfiguration;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.record.OElement;
-import com.orientechnologies.orient.core.record.ORecord;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.orient.core.serialization.serializer.OJSONWriter;
-import com.orientechnologies.orient.core.sql.executor.OResult;
-import com.orientechnologies.orient.server.OClientConnection;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -51,6 +39,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 import java.util.zip.GZIPOutputStream;
+import com.orientechnologies.common.collection.OMultiValue;
+import com.orientechnologies.common.log.OLogManager;
+import com.orientechnologies.common.util.OCallable;
+import com.orientechnologies.orient.core.config.OGlobalConfiguration;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.record.OElement;
+import com.orientechnologies.orient.core.record.ORecord;
+import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.orientechnologies.orient.core.serialization.serializer.OJSONWriter;
+import com.orientechnologies.orient.core.sql.executor.OResult;
+import com.orientechnologies.orient.server.OClientConnection;
 
 /**
  * Maintains information about current HTTP response.
@@ -286,8 +285,8 @@ public class OHttpResponse {
 
             @Override
             public Void call(final OChunkedResponse iArgument) {
-              final LinkedHashSet<String> colNames = new LinkedHashSet<String>();
-              final List<OElement> records = new ArrayList<OElement>();
+              final LinkedHashSet<String> colNames = new LinkedHashSet<>();
+              final List<OElement> records = new ArrayList<>();
 
               // BROWSE ALL THE RECORD TO HAVE THE COMPLETE COLUMN
               // NAMES LIST
@@ -319,7 +318,7 @@ public class OHttpResponse {
                 }
               }
 
-              final List<String> orderedColumns = new ArrayList<String>(colNames);
+              final List<String> orderedColumns = new ArrayList<>(colNames);
 
               try {
                 // WRITE THE HEADER

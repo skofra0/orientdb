@@ -19,9 +19,12 @@
   */
 package com.orientechnologies.orient.core.collate;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 import com.orientechnologies.common.comparator.ODefaultComparator;
-
-import java.util.*;
 
 /**
  * Case insensitive collate.

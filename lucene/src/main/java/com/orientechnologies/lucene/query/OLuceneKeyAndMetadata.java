@@ -1,7 +1,6 @@
 package com.orientechnologies.lucene.query;
 
 import com.orientechnologies.lucene.collections.OLuceneCompositeKey;
-import com.orientechnologies.orient.core.index.OCompositeKey;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**

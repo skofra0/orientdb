@@ -19,8 +19,12 @@
       */
 package com.orientechnologies.orient.server.distributed;
 
-import java.io.*;
-
+import java.io.DataInput;
+import java.io.DataOutput;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import com.orientechnologies.orient.core.serialization.OStreamable;
 
 /**

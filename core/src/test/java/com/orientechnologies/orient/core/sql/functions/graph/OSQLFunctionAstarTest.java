@@ -19,6 +19,14 @@
   */
 package com.orientechnologies.orient.core.sql.functions.graph;
 
+import static org.junit.Assert.assertEquals;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.orient.core.command.OBasicCommandContext;
 import com.orientechnologies.orient.core.db.ODatabaseType;
 import com.orientechnologies.orient.core.db.OrientDB;
@@ -30,16 +38,6 @@ import com.orientechnologies.orient.core.record.OEdge;
 import com.orientechnologies.orient.core.record.OVertex;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static org.junit.Assert.assertEquals;
 
 /*
 * @author Saeed Tabrizi (saeed a_t  nowcando.com)
@@ -201,7 +199,7 @@ public class OSQLFunctionAstarTest {
   }
 
   @Test public void test1Execute() throws Exception {
-    Map<String, Object> options = new HashMap<String, Object>();
+    Map<String, Object> options = new HashMap<>();
     options.put(OSQLFunctionAstar.PARAM_DIRECTION, "out");
     options.put(OSQLFunctionAstar.PARAM_PARALLEL, true);
     options.put(OSQLFunctionAstar.PARAM_EDGE_TYPE_NAMES, new String[] { "has_path" });
@@ -221,7 +219,7 @@ public class OSQLFunctionAstarTest {
   }
 
   @Test public void test2Execute() throws Exception {
-    Map<String, Object> options = new HashMap<String, Object>();
+    Map<String, Object> options = new HashMap<>();
     options.put(OSQLFunctionAstar.PARAM_DIRECTION, "out");
     options.put(OSQLFunctionAstar.PARAM_PARALLEL, true);
     options.put(OSQLFunctionAstar.PARAM_EDGE_TYPE_NAMES, new String[] { "has_path" });
@@ -240,7 +238,7 @@ public class OSQLFunctionAstarTest {
   }
 
   @Test public void test3Execute() throws Exception {
-    Map<String, Object> options = new HashMap<String, Object>();
+    Map<String, Object> options = new HashMap<>();
     options.put(OSQLFunctionAstar.PARAM_DIRECTION, "out");
     options.put(OSQLFunctionAstar.PARAM_PARALLEL, true);
     options.put(OSQLFunctionAstar.PARAM_EDGE_TYPE_NAMES, new String[] { "has_path" });
@@ -261,7 +259,7 @@ public class OSQLFunctionAstarTest {
   }
 
   @Test public void test4Execute() throws Exception {
-    Map<String, Object> options = new HashMap<String, Object>();
+    Map<String, Object> options = new HashMap<>();
     options.put(OSQLFunctionAstar.PARAM_DIRECTION, "out");
     options.put(OSQLFunctionAstar.PARAM_PARALLEL, true);
     options.put(OSQLFunctionAstar.PARAM_EDGE_TYPE_NAMES, new String[] { "has_path" });
@@ -282,7 +280,7 @@ public class OSQLFunctionAstarTest {
   }
 
   @Test public void test5Execute() throws Exception {
-    Map<String, Object> options = new HashMap<String, Object>();
+    Map<String, Object> options = new HashMap<>();
     options.put(OSQLFunctionAstar.PARAM_DIRECTION, "out");
     options.put(OSQLFunctionAstar.PARAM_PARALLEL, true);
     options.put(OSQLFunctionAstar.PARAM_EDGE_TYPE_NAMES, new String[] { "has_path" });
@@ -303,7 +301,7 @@ public class OSQLFunctionAstarTest {
   }
 
   @Test public void test6Execute() throws Exception {
-    Map<String, Object> options = new HashMap<String, Object>();
+    Map<String, Object> options = new HashMap<>();
     options.put(OSQLFunctionAstar.PARAM_DIRECTION, "out");
     options.put(OSQLFunctionAstar.PARAM_PARALLEL, true);
     options.put(OSQLFunctionAstar.PARAM_EDGE_TYPE_NAMES, new String[] { "has_path" });
@@ -326,7 +324,7 @@ public class OSQLFunctionAstarTest {
   }
 
   @Test public void test7Execute() throws Exception {
-    Map<String, Object> options = new HashMap<String, Object>();
+    Map<String, Object> options = new HashMap<>();
     options.put(OSQLFunctionAstar.PARAM_DIRECTION, "out");
     options.put(OSQLFunctionAstar.PARAM_PARALLEL, true);
     options.put(OSQLFunctionAstar.PARAM_EDGE_TYPE_NAMES, new String[] { "has_path" });
@@ -350,7 +348,7 @@ public class OSQLFunctionAstarTest {
   }
 
   @Test public void test8Execute() throws Exception {
-    Map<String, Object> options = new HashMap<String, Object>();
+    Map<String, Object> options = new HashMap<>();
     options.put(OSQLFunctionAstar.PARAM_DIRECTION, ODirection.OUT);
     options.put(OSQLFunctionAstar.PARAM_PARALLEL, true);
     options.put(OSQLFunctionAstar.PARAM_TIE_BREAKER, false);
@@ -374,7 +372,7 @@ public class OSQLFunctionAstarTest {
   }
 
   @Test public void test9Execute() throws Exception {
-    Map<String, Object> options = new HashMap<String, Object>();
+    Map<String, Object> options = new HashMap<>();
     options.put(OSQLFunctionAstar.PARAM_DIRECTION, ODirection.BOTH);
     options.put(OSQLFunctionAstar.PARAM_PARALLEL, true);
     options.put(OSQLFunctionAstar.PARAM_TIE_BREAKER, false);
@@ -396,7 +394,7 @@ public class OSQLFunctionAstarTest {
   }
 
   @Test public void test10Execute() throws Exception {
-    Map<String, Object> options = new HashMap<String, Object>();
+    Map<String, Object> options = new HashMap<>();
     options.put(OSQLFunctionAstar.PARAM_DIRECTION, ODirection.OUT);
     options.put(OSQLFunctionAstar.PARAM_PARALLEL, true);
     options.put(OSQLFunctionAstar.PARAM_TIE_BREAKER, false);
@@ -422,7 +420,7 @@ public class OSQLFunctionAstarTest {
   }
 
   @Test public void test11Execute() throws Exception {
-    Map<String, Object> options = new HashMap<String, Object>();
+    Map<String, Object> options = new HashMap<>();
     options.put(OSQLFunctionAstar.PARAM_DIRECTION, ODirection.OUT);
     options.put(OSQLFunctionAstar.PARAM_PARALLEL, true);
     options.put(OSQLFunctionAstar.PARAM_TIE_BREAKER, false);
@@ -445,7 +443,7 @@ public class OSQLFunctionAstarTest {
   }
 
   @Test public void test12Execute() throws Exception {
-    Map<String, Object> options = new HashMap<String, Object>();
+    Map<String, Object> options = new HashMap<>();
     options.put(OSQLFunctionAstar.PARAM_DIRECTION, ODirection.OUT);
     options.put(OSQLFunctionAstar.PARAM_PARALLEL, true);
     options.put(OSQLFunctionAstar.PARAM_TIE_BREAKER, false);

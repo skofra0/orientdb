@@ -1,5 +1,7 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.util.Map;
+import java.util.Optional;
 import com.orientechnologies.common.concur.OTimeoutException;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
@@ -12,9 +14,6 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.record.impl.ODocumentInternal;
 import com.orientechnologies.orient.core.sql.parser.OInputParameter;
 import com.orientechnologies.orient.core.sql.parser.OJson;
-
-import java.util.Map;
-import java.util.Optional;
 
 /**
  * Created by luigidellaquila on 09/08/16.

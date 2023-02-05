@@ -1,10 +1,9 @@
 package com.orientechnologies.orient.core.command.script;
 
+import java.util.Iterator;
 import com.orientechnologies.orient.core.command.script.transformer.OScriptTransformer;
 import com.orientechnologies.orient.core.sql.executor.OIteratorResultSet;
 import com.orientechnologies.orient.core.sql.executor.OResult;
-
-import java.util.Iterator;
 
 /**
  * Wrapper of OIteratorResultSet

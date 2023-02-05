@@ -19,9 +19,20 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.types.OModifiableBoolean;
-import com.orientechnologies.orient.core.command.*;
+import com.orientechnologies.orient.core.command.OCommandDistributedReplicateRequest;
+import com.orientechnologies.orient.core.command.OCommandExecutor;
+import com.orientechnologies.orient.core.command.OCommandManager;
+import com.orientechnologies.orient.core.command.OCommandRequest;
+import com.orientechnologies.orient.core.command.OCommandRequestInternal;
+import com.orientechnologies.orient.core.command.OCommandRequestText;
+import com.orientechnologies.orient.core.command.OCommandResultListener;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
@@ -38,8 +49,6 @@ import com.orientechnologies.orient.core.record.OVertex;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper;
 import com.orientechnologies.orient.core.sql.query.OSQLAsynchQuery;
-
-import java.util.*;
 
 /**
  * SQL DELETE VERTEX command.
@@ -166,7 +175,7 @@ public class OCommandExecutorSQLDeleteVertex extends OCommandExecutorSQLAbstract
       throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");
 
     if (!returning.equalsIgnoreCase("COUNT"))
-      allDeletedRecords = new ArrayList<ORecord>();
+      allDeletedRecords = new ArrayList<>();
 
     txAlreadyBegun = getDatabase().getTransaction().isActive();
 
@@ -280,7 +289,7 @@ public class OCommandExecutorSQLDeleteVertex extends OCommandExecutorSQLAbstract
 
   @Override
   public Set<String> getInvolvedClusters() {
-    final HashSet<String> result = new HashSet<String>();
+    final HashSet<String> result = new HashSet<>();
     if (rid != null)
       result.add(database.getClusterNameById(rid.getClusterId()));
     else if (query != null) {

@@ -19,14 +19,18 @@
   */
 package com.orientechnologies.orient.core.sql.functions.graph;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.command.OCommandExecutorAbstract;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.record.ODirection;
 import com.orientechnologies.orient.core.record.OVertex;
 import com.orientechnologies.orient.core.sql.functions.math.OSQLFunctionMathAbstract;
-
-import java.util.*;
 
 /**
  * Abstract class to find paths between nodes.
@@ -51,9 +55,9 @@ public abstract class OSQLFunctionPathFinder extends OSQLFunctionMathAbstract {
 
   protected LinkedList<OVertex> execute(final OCommandContext iContext) {
     context = iContext;
-    unSettledNodes = new HashSet<OVertex>();
-    distance = new HashMap<ORID, Float>();
-    predecessors = new HashMap<ORID, OVertex>();
+    unSettledNodes = new HashSet<>();
+    distance = new HashMap<>();
+    predecessors = new HashMap<>();
     distance.put(paramSourceVertex.getIdentity(), MIN);
     unSettledNodes.add(paramSourceVertex);
 
@@ -100,7 +104,7 @@ public abstract class OSQLFunctionPathFinder extends OSQLFunctionMathAbstract {
    * This method returns the path from the source to the selected target and NULL if no path exists
    */
   public LinkedList<OVertex> getPath() {
-    final LinkedList<OVertex> path = new LinkedList<OVertex>();
+    final LinkedList<OVertex> path = new LinkedList<>();
     OVertex step = paramDestinationVertex;
     // Check if a path exists
     if (predecessors.get(step.getIdentity()) == null)
@@ -141,7 +145,7 @@ public abstract class OSQLFunctionPathFinder extends OSQLFunctionMathAbstract {
   protected Set<OVertex> getNeighbors(final OVertex node) {
     context.incrementVariable("getNeighbors");
 
-    final Set<OVertex> neighbors = new HashSet<OVertex>();
+    final Set<OVertex> neighbors = new HashSet<>();
     if (node != null) {
       for (OVertex v : node.getVertices(paramDirection)) {
         final OVertex ov = (OVertex) v;

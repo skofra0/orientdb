@@ -20,7 +20,6 @@
 package com.orientechnologies.orient.client.remote;
 
 import java.io.IOException;
-
 import com.orientechnologies.orient.client.binary.OChannelBinaryAsynchClient;
 
 /**

@@ -19,11 +19,10 @@
   */
 package com.orientechnologies.orient.core.metadata.function;
 
+import java.util.List;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunction;
-
-import java.util.List;
 
 /**
  * Dynamic function factory bound to the database's functions

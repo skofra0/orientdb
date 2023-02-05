@@ -15,6 +15,7 @@
  */
 package com.orientechnologies.orient.core.sharding.auto;
 
+import java.util.List;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.exception.OConfigurationException;
@@ -26,8 +27,6 @@ import com.orientechnologies.orient.core.metadata.schema.clusterselection.OClust
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.storage.OStorage;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
-
-import java.util.List;
 
 /**
  * Returns the cluster selecting through the hash function.

@@ -19,6 +19,7 @@
  */
 package com.orientechnologies.orient.core.command.script;
 
+import java.util.Map;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.record.OEdge;
 import com.orientechnologies.orient.core.record.OElement;
@@ -26,8 +27,6 @@ import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.OVertex;
 import com.orientechnologies.orient.core.record.impl.OBlob;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
-
-import java.util.Map;
 
 /**
  * Database wrapper class to use from scripts.

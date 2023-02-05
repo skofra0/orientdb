@@ -20,17 +20,20 @@
 
 package com.orientechnologies.orient.core.storage.index.sbtree.multivalue.v2;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import com.orientechnologies.common.comparator.ODefaultComparator;
-import com.orientechnologies.common.serialization.types.*;
+import com.orientechnologies.common.serialization.types.OBinarySerializer;
+import com.orientechnologies.common.serialization.types.OByteSerializer;
+import com.orientechnologies.common.serialization.types.OIntegerSerializer;
+import com.orientechnologies.common.serialization.types.OLongSerializer;
+import com.orientechnologies.common.serialization.types.OShortSerializer;
 import com.orientechnologies.orient.core.encryption.OEncryption;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.storage.cache.OCacheEntry;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.base.ODurablePage;
-
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)

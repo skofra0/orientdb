@@ -19,6 +19,16 @@
  */
 package com.orientechnologies.orient.core.query.live;
 
+import static com.orientechnologies.orient.core.config.OGlobalConfiguration.QUERY_LIVE_SUPPORT;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.LinkedBlockingQueue;
 import com.orientechnologies.common.concur.resource.OCloseable;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.db.ODatabaseInternal;
@@ -31,18 +41,9 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.executor.LiveQueryListenerImpl;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.sql.executor.OResultInternal;
-import com.orientechnologies.orient.core.sql.parser.OExpression;
 import com.orientechnologies.orient.core.sql.parser.OProjection;
 import com.orientechnologies.orient.core.sql.parser.OProjectionItem;
 import com.orientechnologies.orient.core.sql.parser.OSelectStatement;
-
-import java.util.*;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.LinkedBlockingQueue;
-
-import static com.orientechnologies.orient.core.config.OGlobalConfiguration.QUERY_LIVE_SUPPORT;
 
 public class OLiveQueryHookV2 {
 
@@ -62,12 +63,12 @@ public class OLiveQueryHookV2 {
 
   public static class OLiveQueryOps implements OCloseable {
 
-    protected Map<ODatabaseDocument, List<OLiveQueryOp>> pendingOps = new ConcurrentHashMap<ODatabaseDocument, List<OLiveQueryOp>>();
+    protected Map<ODatabaseDocument, List<OLiveQueryOp>> pendingOps = new ConcurrentHashMap<>();
     private OLiveQueryQueueThreadV2 queueThread = new OLiveQueryQueueThreadV2(this);
     private Object threadLock = new Object();
 
-    private BlockingQueue<OLiveQueryOp> queue = new LinkedBlockingQueue<OLiveQueryOp>();
-    private ConcurrentMap<Integer, OLiveQueryListenerV2> subscribers = new ConcurrentHashMap<Integer, OLiveQueryListenerV2>();
+    private BlockingQueue<OLiveQueryOp> queue = new LinkedBlockingQueue<>();
+    private ConcurrentMap<Integer, OLiveQueryListenerV2> subscribers = new ConcurrentHashMap<>();
 
     @Override
     public void close() {

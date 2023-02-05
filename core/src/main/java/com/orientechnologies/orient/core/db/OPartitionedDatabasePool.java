@@ -19,6 +19,14 @@
  */
 package com.orientechnologies.orient.core.db;
 
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import com.orientechnologies.common.concur.lock.OInterruptedException;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.log.OLogManager;
@@ -29,15 +37,6 @@ import com.orientechnologies.orient.core.exception.ODatabaseException;
 import com.orientechnologies.orient.core.exception.OStorageExistsException;
 import com.orientechnologies.orient.core.metadata.security.OToken;
 import com.orientechnologies.orient.core.storage.OStorage;
-
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * <p>
@@ -78,7 +77,7 @@ public class OPartitionedDatabasePool extends OOrientListenerAbstract {
   private static final int                 HASH_INCREMENT = 0x61c88647;
   private static final int                 MIN_POOL_SIZE  = 2;
   private static final AtomicInteger       nextHashCode   = new AtomicInteger();
-  protected final      Map<String, Object> properties     = new HashMap<String, Object>();
+  protected final      Map<String, Object> properties     = new HashMap<>();
   private final String url;
   private final String userName;
   private final String password;
@@ -400,7 +399,7 @@ public class OPartitionedDatabasePool extends OOrientListenerAbstract {
   private static final class PoolPartition {
     private final AtomicInteger                                   currentSize         = new AtomicInteger();
     private final AtomicInteger                                   acquiredConnections = new AtomicInteger();
-    private final ConcurrentLinkedQueue<DatabaseDocumentTxPooled> queue               = new ConcurrentLinkedQueue<DatabaseDocumentTxPooled>();
+    private final ConcurrentLinkedQueue<DatabaseDocumentTxPooled> queue               = new ConcurrentLinkedQueue<>();
   }
 
   private static class ThreadPoolData extends ThreadLocal<PoolData> {

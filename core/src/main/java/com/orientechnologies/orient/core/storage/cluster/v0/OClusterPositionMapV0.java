@@ -20,6 +20,8 @@
 
 package com.orientechnologies.orient.core.storage.cluster.v0;
 
+import java.io.IOException;
+import java.util.Arrays;
 import com.orientechnologies.common.util.OCommonConst;
 import com.orientechnologies.orient.core.exception.OClusterPositionMapException;
 import com.orientechnologies.orient.core.id.ORID;
@@ -28,9 +30,6 @@ import com.orientechnologies.orient.core.storage.cluster.OClusterPositionMap;
 import com.orientechnologies.orient.core.storage.cluster.OClusterPositionMapBucket;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperation;
-
-import java.io.IOException;
-import java.util.Arrays;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)

@@ -20,15 +20,14 @@
 
 package com.orientechnologies.orient.core.storage.impl.local.paginated.wal;
 
-import com.orientechnologies.orient.core.storage.impl.local.OCheckpointRequestListener;
-import com.orientechnologies.orient.core.storage.impl.local.OLowDiskSpaceListener;
-import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperationMetadata;
-import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.cas.OWriteableWALRecord;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import com.orientechnologies.orient.core.storage.impl.local.OCheckpointRequestListener;
+import com.orientechnologies.orient.core.storage.impl.local.OLowDiskSpaceListener;
+import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperationMetadata;
+import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.cas.OWriteableWALRecord;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)

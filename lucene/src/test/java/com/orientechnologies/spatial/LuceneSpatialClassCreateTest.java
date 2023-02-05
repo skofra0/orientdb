@@ -17,10 +17,10 @@
  */
 package com.orientechnologies.spatial;
 
-import com.orientechnologies.lucene.test.BaseLuceneTest;
-import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import org.junit.Assert;
 import org.junit.Test;
+import com.orientechnologies.lucene.test.BaseLuceneTest;
+import com.orientechnologies.orient.core.metadata.schema.OSchema;
 
 /**
  * Created by Enrico Risa on 06/08/15.

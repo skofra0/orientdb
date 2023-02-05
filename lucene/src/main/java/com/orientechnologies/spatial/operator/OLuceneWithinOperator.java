@@ -14,6 +14,12 @@
  */
 package com.orientechnologies.spatial.operator;
 
+import org.apache.lucene.spatial.query.SpatialOperation;
+import org.locationtech.spatial4j.context.SpatialContext;
+import org.locationtech.spatial4j.shape.Shape;
+import org.locationtech.spatial4j.shape.SpatialRelation;
+import java.util.Collection;
+import java.util.List;
 import com.orientechnologies.lucene.operator.OLuceneOperatorUtil;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
@@ -32,13 +38,6 @@ import com.orientechnologies.orient.core.sql.operator.OQueryTargetOperator;
 import com.orientechnologies.spatial.collections.OSpatialCompositeKey;
 import com.orientechnologies.spatial.shape.legacy.OShapeBuilderLegacy;
 import com.orientechnologies.spatial.shape.legacy.OShapeBuilderLegacyImpl;
-import org.apache.lucene.spatial.query.SpatialOperation;
-import org.locationtech.spatial4j.context.SpatialContext;
-import org.locationtech.spatial4j.shape.Shape;
-import org.locationtech.spatial4j.shape.SpatialRelation;
-
-import java.util.Collection;
-import java.util.List;
 
 public class OLuceneWithinOperator extends OQueryTargetOperator {
 

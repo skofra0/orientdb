@@ -19,6 +19,8 @@
  */
 package com.orientechnologies.orient.core.tx;
 
+import java.util.HashMap;
+import java.util.List;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.db.record.ORecordOperation;
@@ -29,9 +31,6 @@ import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.storage.OBasicTransaction;
 import com.orientechnologies.orient.core.storage.OStorage;
-
-import java.util.HashMap;
-import java.util.List;
 
 public interface OTransaction extends OBasicTransaction {
   enum TXTYPE {

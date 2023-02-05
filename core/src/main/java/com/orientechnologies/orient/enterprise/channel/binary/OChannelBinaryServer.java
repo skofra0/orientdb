@@ -26,7 +26,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-
 import com.orientechnologies.orient.core.config.OContextConfiguration;
 
 public class OChannelBinaryServer extends OChannelBinary {

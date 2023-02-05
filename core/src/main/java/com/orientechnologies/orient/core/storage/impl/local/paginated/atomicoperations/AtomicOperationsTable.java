@@ -1,10 +1,9 @@
 package com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations;
 
-import com.orientechnologies.common.concur.collection.CASObjectArray;
-import com.orientechnologies.common.concur.lock.ScalableRWLock;
-
 import java.util.ArrayDeque;
 import java.util.concurrent.atomic.AtomicLong;
+import com.orientechnologies.common.concur.collection.CASObjectArray;
+import com.orientechnologies.common.concur.lock.ScalableRWLock;
 
 public class AtomicOperationsTable {
   private static final OperationInformation ATOMIC_OPERATION_STATUS_PLACE_HOLDER = new OperationInformation(

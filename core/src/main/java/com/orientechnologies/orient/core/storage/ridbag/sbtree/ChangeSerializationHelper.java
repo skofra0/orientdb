@@ -1,14 +1,13 @@
 package com.orientechnologies.orient.core.storage.ridbag.sbtree;
 
+import java.util.HashMap;
+import java.util.Map;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.common.serialization.types.OByteSerializer;
 import com.orientechnologies.common.serialization.types.OIntegerSerializer;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.serialization.serializer.binary.impl.OLinkSerializer;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by tglman on 15/06/17.

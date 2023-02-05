@@ -19,21 +19,24 @@
   */
 package com.orientechnologies.orient.core.sql.operator;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.id.ORID;
-import com.orientechnologies.orient.core.index.*;
+import com.orientechnologies.orient.core.index.OCompositeIndexDefinition;
+import com.orientechnologies.orient.core.index.OIndex;
+import com.orientechnologies.orient.core.index.OIndexCursor;
+import com.orientechnologies.orient.core.index.OIndexDefinition;
+import com.orientechnologies.orient.core.index.OIndexInternal;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocumentHelper;
 import com.orientechnologies.orient.core.sql.OSQLHelper;
 import com.orientechnologies.orient.core.sql.filter.OSQLFilterCondition;
 import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemField;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * BETWEEN operator.
@@ -156,11 +159,11 @@ public class OQueryOperatorBetween extends OQueryOperatorEqualityNotNulls {
       if (betweenKeyTwo == null)
         return null;
 
-      final List<Object> betweenKeyOneParams = new ArrayList<Object>(keyParams.size());
+      final List<Object> betweenKeyOneParams = new ArrayList<>(keyParams.size());
       betweenKeyOneParams.addAll(keyParams.subList(0, keyParams.size() - 1));
       betweenKeyOneParams.add(betweenKeyOne);
 
-      final List<Object> betweenKeyTwoParams = new ArrayList<Object>(keyParams.size());
+      final List<Object> betweenKeyTwoParams = new ArrayList<>(keyParams.size());
       betweenKeyTwoParams.addAll(keyParams.subList(0, keyParams.size() - 1));
       betweenKeyTwoParams.add(betweenKeyTwo);
 

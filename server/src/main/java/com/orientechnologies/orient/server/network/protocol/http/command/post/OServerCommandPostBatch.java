@@ -19,6 +19,9 @@
  */
 package com.orientechnologies.orient.server.network.protocol.http.command.post;
 
+import java.util.Collection;
+import java.util.Map;
+import java.util.stream.Collectors;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
@@ -27,10 +30,6 @@ import com.orientechnologies.orient.core.sql.executor.OResultSet;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpResponse;
 import com.orientechnologies.orient.server.network.protocol.http.command.OServerCommandDocumentAbstract;
-
-import java.util.Collection;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Executes a batch of operations in a single call. This is useful to reduce network latency issuing multiple commands as multiple

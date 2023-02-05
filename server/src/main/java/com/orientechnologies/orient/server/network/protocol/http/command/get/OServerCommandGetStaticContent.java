@@ -19,6 +19,21 @@
  */
 package com.orientechnologies.orient.server.network.protocol.http.command.get;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.zip.GZIPOutputStream;
 import com.orientechnologies.common.io.OIOUtils;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.util.OCallable;
@@ -29,14 +44,6 @@ import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpResponse;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpUtils;
 
-import java.io.*;
-import java.net.URLDecoder;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.zip.GZIPOutputStream;
-
 public class OServerCommandGetStaticContent extends OServerCommandConfigurableAbstract {
   private static final String[] DEF_PATTERN = { "GET|www", "GET|studio/", "GET|", "GET|*.htm", "GET|*.html", "GET|*.xml",
       "GET|*.jpeg", "GET|*.jpg", "GET|*.png", "GET|*.gif", "GET|*.js", "GET|*.otf", "GET|*.css", "GET|*.swf", "GET|favicon.ico",
@@ -46,12 +53,12 @@ public class OServerCommandGetStaticContent extends OServerCommandConfigurableAb
   private static final String CONFIG_ROOT_PATH  = "root.path";
   private static final String CONFIG_FILE_PATH  = "file.path";
 
-  private ConcurrentHashMap<String, OStaticContentCachedEntry> cacheContents    = new ConcurrentHashMap<String, OStaticContentCachedEntry>();
-  private Map<String, String>                                  cacheHttp        = new HashMap<String, String>();
+  private ConcurrentHashMap<String, OStaticContentCachedEntry> cacheContents    = new ConcurrentHashMap<>();
+  private Map<String, String>                                  cacheHttp        = new HashMap<>();
   private String                                               cacheHttpDefault = "Cache-Control: max-age=3000";
   private String rootPath;
   private String filePath;
-  private ConcurrentHashMap<String, OCallable<Object, String>> virtualFolders = new ConcurrentHashMap<String, OCallable<Object, String>>();
+  private ConcurrentHashMap<String, OCallable<Object, String>> virtualFolders = new ConcurrentHashMap<>();
 
   public static class OStaticContent {
     public InputStream is          = null;

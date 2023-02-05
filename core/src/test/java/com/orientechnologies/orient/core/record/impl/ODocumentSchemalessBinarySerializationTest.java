@@ -1,5 +1,27 @@
 package com.orientechnologies.orient.core.record.impl;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import org.assertj.core.api.Assertions;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
@@ -17,24 +39,13 @@ import com.orientechnologies.orient.core.serialization.serializer.record.binary.
 import com.orientechnologies.orient.core.serialization.serializer.record.binary.ORecordSerializerNetwork;
 import com.orientechnologies.orient.core.serialization.serializer.record.binary.ORecordSerializerNetworkDistributed;
 import com.orientechnologies.orient.core.serialization.serializer.record.binary.ORecordSerializerNetworkV37;
-import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
-
-import java.math.BigDecimal;
-import java.util.*;
-
-import static org.junit.Assert.*;
 
 @RunWith(Parameterized.class)
 public class ODocumentSchemalessBinarySerializationTest {  
     
   @Parameters  
   public static Collection<Object[]> generateParams() {
-    List<Object[]> params = new ArrayList<Object[]>();
+    List<Object[]> params = new ArrayList<>();
     //first we want to run tests for all registreted serializers, and then for two network serializers
     //testig for each serializer type has its own index
     for (byte i = 0; i < ORecordSerializerBinary.INSTANCE.getNumberOfSupportedVersions() + 3; i++) {
@@ -242,62 +253,62 @@ public class ODocumentSchemalessBinarySerializationTest {
   public void testSimpleLiteralList() {
     ODatabaseRecordThreadLocal.instance().remove();
     ODocument document = new ODocument();
-    List<String> strings = new ArrayList<String>();
+    List<String> strings = new ArrayList<>();
     strings.add("a");
     strings.add("b");
     strings.add("c");
     document.field("listStrings", strings);
 
-    List<Short> shorts = new ArrayList<Short>();
+    List<Short> shorts = new ArrayList<>();
     shorts.add((short) 1);
     shorts.add((short) 2);
     shorts.add((short) 3);
     document.field("shorts", shorts);
 
-    List<Long> longs = new ArrayList<Long>();
+    List<Long> longs = new ArrayList<>();
     longs.add((long) 1);
     longs.add((long) 2);
     longs.add((long) 3);
     document.field("longs", longs);
 
-    List<Integer> ints = new ArrayList<Integer>();
+    List<Integer> ints = new ArrayList<>();
     ints.add(1);
     ints.add(2);
     ints.add(3);
     document.field("integers", ints);
 
-    List<Float> floats = new ArrayList<Float>();
+    List<Float> floats = new ArrayList<>();
     floats.add(1.1f);
     floats.add(2.2f);
     floats.add(3.3f);
     document.field("floats", floats);
 
-    List<Double> doubles = new ArrayList<Double>();
+    List<Double> doubles = new ArrayList<>();
     doubles.add(1.1);
     doubles.add(2.2);
     doubles.add(3.3);
     document.field("doubles", doubles);
 
-    List<Date> dates = new ArrayList<Date>();
+    List<Date> dates = new ArrayList<>();
     dates.add(new Date());
     dates.add(new Date());
     dates.add(new Date());
     document.field("dates", dates);
 
-    List<Byte> bytes = new ArrayList<Byte>();
+    List<Byte> bytes = new ArrayList<>();
     bytes.add((byte) 0);
     bytes.add((byte) 1);
     bytes.add((byte) 3);
     document.field("bytes", bytes);
 
     // TODO: char not currently supported in orient.
-    List<Character> chars = new ArrayList<Character>();
+    List<Character> chars = new ArrayList<>();
     chars.add('A');
     chars.add('B');
     chars.add('C');
     // document.field("chars", chars);
 
-    List<Boolean> booleans = new ArrayList<Boolean>();
+    List<Boolean> booleans = new ArrayList<>();
     booleans.add(true);
     booleans.add(false);
     booleans.add(false);
@@ -333,43 +344,43 @@ public class ODocumentSchemalessBinarySerializationTest {
   public void testSimpleLiteralSet() throws InterruptedException {
     ODatabaseRecordThreadLocal.instance().remove();
     ODocument document = new ODocument();
-    Set<String> strings = new HashSet<String>();
+    Set<String> strings = new HashSet<>();
     strings.add("a");
     strings.add("b");
     strings.add("c");
     document.field("listStrings", strings);
 
-    Set<Short> shorts = new HashSet<Short>();
+    Set<Short> shorts = new HashSet<>();
     shorts.add((short) 1);
     shorts.add((short) 2);
     shorts.add((short) 3);
     document.field("shorts", shorts);
 
-    Set<Long> longs = new HashSet<Long>();
+    Set<Long> longs = new HashSet<>();
     longs.add((long) 1);
     longs.add((long) 2);
     longs.add((long) 3);
     document.field("longs", longs);
 
-    Set<Integer> ints = new HashSet<Integer>();
+    Set<Integer> ints = new HashSet<>();
     ints.add(1);
     ints.add(2);
     ints.add(3);
     document.field("integers", ints);
 
-    Set<Float> floats = new HashSet<Float>();
+    Set<Float> floats = new HashSet<>();
     floats.add(1.1f);
     floats.add(2.2f);
     floats.add(3.3f);
     document.field("floats", floats);
 
-    Set<Double> doubles = new HashSet<Double>();
+    Set<Double> doubles = new HashSet<>();
     doubles.add(1.1);
     doubles.add(2.2);
     doubles.add(3.3);
     document.field("doubles", doubles);
 
-    Set<Date> dates = new HashSet<Date>();
+    Set<Date> dates = new HashSet<>();
     dates.add(new Date());
     Thread.sleep(1);
     dates.add(new Date());
@@ -377,20 +388,20 @@ public class ODocumentSchemalessBinarySerializationTest {
     dates.add(new Date());
     document.field("dates", dates);
 
-    Set<Byte> bytes = new HashSet<Byte>();
+    Set<Byte> bytes = new HashSet<>();
     bytes.add((byte) 0);
     bytes.add((byte) 1);
     bytes.add((byte) 3);
     document.field("bytes", bytes);
 
     // TODO: char not currently supported in orient.
-    Set<Character> chars = new HashSet<Character>();
+    Set<Character> chars = new HashSet<>();
     chars.add('A');
     chars.add('B');
     chars.add('C');
     // document.field("chars", chars);
 
-    Set<Boolean> booleans = new HashSet<Boolean>();
+    Set<Boolean> booleans = new HashSet<>();
     booleans.add(true);
     booleans.add(false);
     booleans.add(false);
@@ -427,14 +438,14 @@ public class ODocumentSchemalessBinarySerializationTest {
     ODatabaseDocument db = new ODatabaseDocumentTx("memory:ODocumentSchemalessBinarySerializationTest").create();
     try {
       ODocument document = new ODocument();
-      Set<ORecordId> linkSet = new HashSet<ORecordId>();
+      Set<ORecordId> linkSet = new HashSet<>();
       linkSet.add(new ORecordId(10, 20));
       linkSet.add(new ORecordId(10, 21));
       linkSet.add(new ORecordId(10, 22));
       linkSet.add(new ORecordId(11, 22));
       document.field("linkSet", linkSet, OType.LINKSET);
 
-      List<ORecordId> linkList = new ArrayList<ORecordId>();
+      List<ORecordId> linkList = new ArrayList<>();
       linkList.add(new ORecordId(10, 20));
       linkList.add(new ORecordId(10, 21));
       linkList.add(new ORecordId(10, 22));
@@ -476,47 +487,47 @@ public class ODocumentSchemalessBinarySerializationTest {
     ODatabaseRecordThreadLocal.instance().remove();
     ODocument document = new ODocument();
 
-    Map<String, String> mapString = new HashMap<String, String>();
+    Map<String, String> mapString = new HashMap<>();
     mapString.put("key", "value");
     mapString.put("key1", "value1");
     document.field("mapString", mapString);
 
-    Map<String, Integer> mapInt = new HashMap<String, Integer>();
+    Map<String, Integer> mapInt = new HashMap<>();
     mapInt.put("key", 2);
     mapInt.put("key1", 3);
     document.field("mapInt", mapInt);
 
-    Map<String, Long> mapLong = new HashMap<String, Long>();
+    Map<String, Long> mapLong = new HashMap<>();
     mapLong.put("key", 2L);
     mapLong.put("key1", 3L);
     document.field("mapLong", mapLong);
 
-    Map<String, Short> shortMap = new HashMap<String, Short>();
+    Map<String, Short> shortMap = new HashMap<>();
     shortMap.put("key", (short) 2);
     shortMap.put("key1", (short) 3);
     document.field("shortMap", shortMap);
 
-    Map<String, Date> dateMap = new HashMap<String, Date>();
+    Map<String, Date> dateMap = new HashMap<>();
     dateMap.put("key", new Date());
     dateMap.put("key1", new Date());
     document.field("dateMap", dateMap);
 
-    Map<String, Float> floatMap = new HashMap<String, Float>();
+    Map<String, Float> floatMap = new HashMap<>();
     floatMap.put("key", 10f);
     floatMap.put("key1", 11f);
     document.field("floatMap", floatMap);
 
-    Map<String, Double> doubleMap = new HashMap<String, Double>();
+    Map<String, Double> doubleMap = new HashMap<>();
     doubleMap.put("key", 10d);
     doubleMap.put("key1", 11d);
     document.field("doubleMap", doubleMap);
 
-    Map<String, Byte> bytesMap = new HashMap<String, Byte>();
+    Map<String, Byte> bytesMap = new HashMap<>();
     bytesMap.put("key", (byte) 10);
     bytesMap.put("key1", (byte) 11);
     document.field("bytesMap", bytesMap);
 
-    Map<String, String> mapWithNulls = new HashMap<String, String>();
+    Map<String, String> mapWithNulls = new HashMap<>();
     mapWithNulls.put("key", "dddd");
     mapWithNulls.put("key1", null);
     document.field("bytesMap", mapWithNulls);
@@ -536,8 +547,8 @@ public class ODocumentSchemalessBinarySerializationTest {
   public void testlistOfList() {
     ODatabaseRecordThreadLocal.instance().remove();
     ODocument document = new ODocument();
-    List<List<String>> list = new ArrayList<List<String>>();
-    List<String> ls = new ArrayList<String>();
+    List<List<String>> list = new ArrayList<>();
+    List<String> ls = new ArrayList<>();
     ls.add("test1");
     ls.add("test2");
     list.add(ls);
@@ -577,11 +588,11 @@ public class ODocumentSchemalessBinarySerializationTest {
     ODatabaseRecordThreadLocal.instance().remove();
 
     ODocument document = new ODocument();
-    List<Map<String, String>> coll = new ArrayList<Map<String, String>>();
-    Map<String, String> map = new HashMap<String, String>();
+    List<Map<String, String>> coll = new ArrayList<>();
+    Map<String, String> map = new HashMap<>();
     map.put("first", "something");
     map.put("second", "somethingElse");
-    Map<String, String> map2 = new HashMap<String, String>();
+    Map<String, String> map2 = new HashMap<>();
     map2.put("first", "something");
     map2.put("second", "somethingElse");
     coll.add(map);
@@ -602,7 +613,7 @@ public class ODocumentSchemalessBinarySerializationTest {
     ODocument embeddedInMap = new ODocument();
     embeddedInMap.field("name", "test");
     embeddedInMap.field("surname", "something");
-    Map<String, ODocument> map = new HashMap<String, ODocument>();
+    Map<String, ODocument> map = new HashMap<>();
     map.put("embedded", embeddedInMap);
     document.field("map", map, OType.EMBEDDEDMAP);
 
@@ -623,7 +634,7 @@ public class ODocumentSchemalessBinarySerializationTest {
     try {
       ODocument document = new ODocument();
 
-      Map<String, OIdentifiable> map = new HashMap<String, OIdentifiable>();
+      Map<String, OIdentifiable> map = new HashMap<>();
       map.put("link", new ORecordId(0, 0));
       document.field("map", map, OType.LINKMAP);
 
@@ -689,7 +700,7 @@ public class ODocumentSchemalessBinarySerializationTest {
 
     ODocument document = new ODocument();
 
-    Set<Object> embeddedSet = new HashSet<Object>();
+    Set<Object> embeddedSet = new HashSet<>();
     embeddedSet.add(new WrongData());
     document.field("embeddedSet", embeddedSet, OType.EMBEDDEDSET);
 
@@ -702,7 +713,7 @@ public class ODocumentSchemalessBinarySerializationTest {
 
     ODocument document = new ODocument();
 
-    List<Object> embeddedList = new ArrayList<Object>();
+    List<Object> embeddedList = new ArrayList<>();
     embeddedList.add(new WrongData());
     document.field("embeddedList", embeddedList, OType.EMBEDDEDLIST);
 
@@ -715,7 +726,7 @@ public class ODocumentSchemalessBinarySerializationTest {
 
     ODocument document = new ODocument();
 
-    Map<String, Object> embeddedMap = new HashMap<String, Object>();
+    Map<String, Object> embeddedMap = new HashMap<>();
     embeddedMap.put("name", new WrongData());
     document.field("embeddedMap", embeddedMap, OType.EMBEDDEDMAP);
 
@@ -728,7 +739,7 @@ public class ODocumentSchemalessBinarySerializationTest {
 
     ODocument document = new ODocument();
 
-    Set<Object> linkSet = new HashSet<Object>();
+    Set<Object> linkSet = new HashSet<>();
     linkSet.add(new WrongData());
     document.field("linkSet", linkSet, OType.LINKSET);
 
@@ -741,7 +752,7 @@ public class ODocumentSchemalessBinarySerializationTest {
 
     ODocument document = new ODocument();
 
-    List<Object> linkList = new ArrayList<Object>();
+    List<Object> linkList = new ArrayList<>();
     linkList.add(new WrongData());
     document.field("linkList", linkList, OType.LINKLIST);
 
@@ -754,7 +765,7 @@ public class ODocumentSchemalessBinarySerializationTest {
 
     ODocument document = new ODocument();
 
-    Map<String, Object> linkMap = new HashMap<String, Object>();
+    Map<String, Object> linkMap = new HashMap<>();
     linkMap.put("name", new WrongData());
     document.field("linkMap", linkMap, OType.LINKMAP);
 
@@ -787,7 +798,7 @@ public class ODocumentSchemalessBinarySerializationTest {
     embeddedInList2.field("name", "test1");
     embeddedInList2.field("surname", "something2");
 
-    List<ODocument> embeddedList = new ArrayList<ODocument>();
+    List<ODocument> embeddedList = new ArrayList<>();
     embeddedList.add(embeddedInList);
     embeddedList.add(embeddedInList2);
     embeddedList.add(null);
@@ -802,7 +813,7 @@ public class ODocumentSchemalessBinarySerializationTest {
     embeddedInSet2.field("name", "test5");
     embeddedInSet2.field("surname", "something6");
 
-    Set<ODocument> embeddedSet = new HashSet<ODocument>();
+    Set<ODocument> embeddedSet = new HashSet<>();
     embeddedSet.add(embeddedInSet);
     embeddedSet.add(embeddedInSet2);
     embeddedSet.add(new ODocument());

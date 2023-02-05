@@ -19,14 +19,13 @@
  */
 package com.orientechnologies.orient.core.sql.functions.stat;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunctionAbstract;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Compute the variance estimation for a given field.
@@ -90,7 +89,7 @@ public class OSQLFunctionVariance extends OSQLFunctionAbstract {
   @Override
   public Object getResult() {
     if (returnDistributedResult()) {
-      final Map<String, Object> doc = new HashMap<String, Object>();
+      final Map<String, Object> doc = new HashMap<>();
       doc.put("n", n);
       doc.put("mean", mean);
       doc.put("var", this.evaluate());

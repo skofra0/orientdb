@@ -1,11 +1,10 @@
 package com.orientechnologies.orient.core.db.document;
 
-import com.orientechnologies.orient.core.record.impl.ODocument;
+import static org.junit.Assert.assertEquals;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
  * Created by tglman on 26/10/15.

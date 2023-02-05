@@ -20,6 +20,19 @@
 
 package com.orientechnologies.orient.core.serialization.serializer.record.binary;
 
+import static com.orientechnologies.orient.core.serialization.serializer.record.binary.HelperClasses.MILLISEC_PER_DAY;
+import static com.orientechnologies.orient.core.serialization.serializer.record.binary.HelperClasses.convertDayToTimezone;
+import static com.orientechnologies.orient.core.serialization.serializer.record.binary.HelperClasses.readByte;
+import static com.orientechnologies.orient.core.serialization.serializer.record.binary.HelperClasses.readInteger;
+import static com.orientechnologies.orient.core.serialization.serializer.record.binary.HelperClasses.readLong;
+import static com.orientechnologies.orient.core.serialization.serializer.record.binary.HelperClasses.readOptimizedLink;
+import static com.orientechnologies.orient.core.serialization.serializer.record.binary.HelperClasses.readString;
+import static com.orientechnologies.orient.core.serialization.serializer.record.binary.HelperClasses.stringFromBytes;
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 import com.orientechnologies.common.io.OIOUtils;
 import com.orientechnologies.common.serialization.types.ODecimalSerializer;
 import com.orientechnologies.orient.core.collate.OCollate;
@@ -30,14 +43,6 @@ import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.util.ODateHelper;
-
-import java.math.BigDecimal;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
-
-import static com.orientechnologies.orient.core.serialization.serializer.record.binary.HelperClasses.*;
 
 /**
  * Implementation v0 of comparator based on protocol v0.

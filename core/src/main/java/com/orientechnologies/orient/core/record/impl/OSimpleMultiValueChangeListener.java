@@ -20,12 +20,11 @@
 
 package com.orientechnologies.orient.core.record.impl;
 
+import java.lang.ref.WeakReference;
 import com.orientechnologies.orient.core.db.record.OMultiValueChangeEvent;
 import com.orientechnologies.orient.core.db.record.OMultiValueChangeListener;
 import com.orientechnologies.orient.core.db.record.OMultiValueChangeTimeLine;
 import com.orientechnologies.orient.core.db.record.ORecordElement.STATUS;
-
-import java.lang.ref.WeakReference;
 
 /**
  * Perform gathering of all operations performed on tracked collection and create mapping between list of collection operations and
@@ -42,7 +41,7 @@ final class OSimpleMultiValueChangeListener<K, V> implements OMultiValueChangeLi
   private final ODocumentEntry           entry;
 
   OSimpleMultiValueChangeListener(ODocument oDocument, final ODocumentEntry entry) {
-    this.oDocument = new WeakReference<ODocument>(oDocument);
+    this.oDocument = new WeakReference<>(oDocument);
     this.entry = entry;
   }
 
@@ -65,7 +64,7 @@ final class OSimpleMultiValueChangeListener<K, V> implements OMultiValueChangeLi
       return;
 
     if (entry.timeLine == null) {
-      entry.timeLine = new OMultiValueChangeTimeLine<Object, Object>();
+      entry.timeLine = new OMultiValueChangeTimeLine<>();
     }
 
     entry.timeLine.addCollectionChangeEvent((OMultiValueChangeEvent<Object, Object>) event);

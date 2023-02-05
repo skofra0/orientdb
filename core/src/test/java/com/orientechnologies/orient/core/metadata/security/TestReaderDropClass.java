@@ -1,10 +1,10 @@
 package com.orientechnologies.orient.core.metadata.security;
 
+import org.junit.Assert;
+import org.junit.Test;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.exception.OSecurityAccessException;
-import org.junit.Assert;
-import org.junit.Test;
 
 public class TestReaderDropClass {
 

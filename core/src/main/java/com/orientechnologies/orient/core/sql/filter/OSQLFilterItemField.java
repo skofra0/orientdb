@@ -19,6 +19,7 @@
  */
 package com.orientechnologies.orient.core.sql.filter;
 
+import java.util.Set;
 import com.orientechnologies.common.io.OIOUtils;
 import com.orientechnologies.common.parser.OBaseParser;
 import com.orientechnologies.common.util.OPair;
@@ -36,8 +37,6 @@ import com.orientechnologies.orient.core.serialization.serializer.record.binary.
 import com.orientechnologies.orient.core.serialization.serializer.record.binary.ORecordSerializerBinary;
 import com.orientechnologies.orient.core.sql.method.OSQLMethodRuntime;
 import com.orientechnologies.orient.core.sql.method.misc.OSQLMethodField;
-
-import java.util.Set;
 
 /**
  * Represent an object field as value in the query condition.

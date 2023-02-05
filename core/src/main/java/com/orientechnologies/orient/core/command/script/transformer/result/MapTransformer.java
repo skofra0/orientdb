@@ -1,13 +1,12 @@
 package com.orientechnologies.orient.core.command.script.transformer.result;
 
-import com.orientechnologies.orient.core.command.script.transformer.OScriptTransformer;
-import com.orientechnologies.orient.core.sql.executor.OResult;
-import com.orientechnologies.orient.core.sql.executor.OResultInternal;
-
 import java.util.Map;
 import java.util.Spliterator;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
+import com.orientechnologies.orient.core.command.script.transformer.OScriptTransformer;
+import com.orientechnologies.orient.core.sql.executor.OResult;
+import com.orientechnologies.orient.core.sql.executor.OResultInternal;
 
 /**
  * Created by Enrico Risa on 24/01/17.

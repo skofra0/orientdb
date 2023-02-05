@@ -19,18 +19,17 @@
  */
 package com.orientechnologies.orient.core.command;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicLong;
 import com.orientechnologies.common.concur.OTimeoutException;
 import com.orientechnologies.orient.core.db.ODatabase;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.record.impl.ODocumentHelper;
 import com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Basic implementation of OCommandContext interface that stores variables in a map. Supports parent/child context to build a tree
@@ -61,7 +60,7 @@ public class OBasicCommandContext implements OCommandContext {
   private long                                                                       timeoutMs;
   private com.orientechnologies.orient.core.command.OCommandContext.TIMEOUT_STRATEGY timeoutStrategy;
   protected AtomicLong  resultsProcessed = new AtomicLong(0);
-  protected Set<Object> uniqueResult     = new HashSet<Object>();
+  protected Set<Object> uniqueResult     = new HashSet<>();
 
   public OBasicCommandContext() {
   }
@@ -234,7 +233,7 @@ public class OBasicCommandContext implements OCommandContext {
    * Returns a read-only map with all the variables.
    */
   public Map<String, Object> getVariables() {
-    final HashMap<String, Object> map = new HashMap<String, Object>();
+    final HashMap<String, Object> map = new HashMap<>();
     if (child != null)
       map.putAll(child.getVariables());
 
@@ -347,7 +346,7 @@ public class OBasicCommandContext implements OCommandContext {
 
   private void init() {
     if (variables == null)
-      variables = new HashMap<String, Object>();
+      variables = new HashMap<>();
   }
 
   public Map<Object, Object> getInputParameters() {

@@ -1,8 +1,5 @@
 package com.orientechnologies.lucene.sandbox;
 
-import com.orientechnologies.lucene.tests.OLuceneBaseTest;
-import com.orientechnologies.orient.core.metadata.schema.OClass;
-import com.orientechnologies.orient.core.sql.executor.OResultSet;
 import org.apache.lucene.codecs.simpletext.SimpleTextCodec;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
@@ -10,6 +7,9 @@ import org.apache.lucene.document.StringField;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
+import com.orientechnologies.lucene.tests.OLuceneBaseTest;
+import com.orientechnologies.orient.core.metadata.schema.OClass;
+import com.orientechnologies.orient.core.sql.executor.OResultSet;
 
 /**
  * Created by frank on 02/01/2017.

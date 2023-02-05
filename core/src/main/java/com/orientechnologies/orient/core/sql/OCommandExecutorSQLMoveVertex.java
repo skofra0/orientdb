@@ -19,6 +19,10 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.types.OModifiableBoolean;
 import com.orientechnologies.common.util.OPair;
 import com.orientechnologies.orient.core.command.OCommandDistributedReplicateRequest;
@@ -35,11 +39,6 @@ import com.orientechnologies.orient.core.record.OElement;
 import com.orientechnologies.orient.core.record.OVertex;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunctionRuntime;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * SQL MOVE VERTEX command.
@@ -96,7 +95,7 @@ public class OCommandExecutorSQLMoveVertex extends OCommandExecutorSQLSetAware i
           throw new OCommandSQLParsingException("Class '" + className + "' was not found");
 
       } else if (temp.equals(KEYWORD_SET)) {
-        fields = new ArrayList<OPair<String, Object>>();
+        fields = new ArrayList<>();
         parseSetFields(clazz, fields);
 
       } else if (temp.equals(KEYWORD_MERGE)) {
@@ -135,7 +134,7 @@ public class OCommandExecutorSQLMoveVertex extends OCommandExecutorSQLSetAware i
       final Set<OIdentifiable> sourceRIDs = OSQLEngine.getInstance().parseRIDTarget(db, source, context, iArgs);
 
       // CREATE EDGES
-      final List<ODocument> result = new ArrayList<ODocument>(sourceRIDs.size());
+      final List<ODocument> result = new ArrayList<>(sourceRIDs.size());
 
       for (OIdentifiable from : sourceRIDs) {
         final OVertex fromVertex = toVertex(from);

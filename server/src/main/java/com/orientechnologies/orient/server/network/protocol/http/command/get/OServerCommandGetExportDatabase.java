@@ -23,7 +23,6 @@ import java.io.IOException;
 import java.net.SocketException;
 import java.util.Date;
 import java.util.zip.GZIPOutputStream;
-
 import com.orientechnologies.orient.core.command.OCommandOutputListener;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.tool.ODatabaseExport;

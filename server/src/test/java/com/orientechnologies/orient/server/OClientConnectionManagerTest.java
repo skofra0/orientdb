@@ -1,19 +1,20 @@
 package com.orientechnologies.orient.server;
 
-import com.orientechnologies.orient.core.metadata.security.OToken;
-import com.orientechnologies.orient.server.network.protocol.binary.ONetworkProtocolBinary;
-
-import java.io.IOException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-
-import static org.junit.Assert.*;
+import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import com.orientechnologies.orient.core.metadata.security.OToken;
+import com.orientechnologies.orient.server.network.protocol.binary.ONetworkProtocolBinary;
 
 public class OClientConnectionManagerTest {
 

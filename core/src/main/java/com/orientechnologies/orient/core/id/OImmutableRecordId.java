@@ -21,7 +21,6 @@ package com.orientechnologies.orient.core.id;
 
 import java.io.IOException;
 import java.io.InputStream;
-
 import com.orientechnologies.orient.core.serialization.OMemoryStream;
 
 /**

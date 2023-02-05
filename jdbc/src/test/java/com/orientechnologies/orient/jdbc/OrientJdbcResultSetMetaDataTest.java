@@ -17,18 +17,20 @@
  */
 package com.orientechnologies.orient.jdbc;
 
-import com.orientechnologies.orient.core.id.ORecordId;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.assertj.db.api.Assertions;
 import org.assertj.db.type.Request;
 import org.assertj.db.type.ValueType;
 import org.junit.Test;
-
 import java.math.BigDecimal;
-import java.sql.*;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
+import java.sql.Types;
 import java.util.Calendar;
 import java.util.TimeZone;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import com.orientechnologies.orient.core.id.ORecordId;
 
 public class OrientJdbcResultSetMetaDataTest extends OrientJdbcDbPerClassTemplateTest {
 

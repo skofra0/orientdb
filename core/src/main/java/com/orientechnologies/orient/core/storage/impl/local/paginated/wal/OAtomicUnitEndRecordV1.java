@@ -1,8 +1,7 @@
 package com.orientechnologies.orient.core.storage.impl.local.paginated.wal;
 
-import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperationMetadata;
-
 import java.util.Map;
+import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperationMetadata;
 
 public final class OAtomicUnitEndRecordV1 extends OAtomicUnitEndRecord<OOperationUnitId> implements OperationUnitOperationId {
   public OAtomicUnitEndRecordV1() {

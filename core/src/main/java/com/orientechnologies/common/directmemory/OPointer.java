@@ -1,9 +1,9 @@
 package com.orientechnologies.common.directmemory;
 
-import com.sun.jna.Pointer;
 import java.lang.ref.WeakReference;
 import java.nio.ByteBuffer;
 import java.util.Objects;
+import com.sun.jna.Pointer;
 
 public final class OPointer {
 

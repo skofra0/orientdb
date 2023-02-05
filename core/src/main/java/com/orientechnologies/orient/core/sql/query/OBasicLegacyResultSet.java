@@ -29,7 +29,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
-
 import com.orientechnologies.orient.core.record.ORecord;
 
 /**
@@ -88,7 +87,7 @@ public class OBasicLegacyResultSet<T> implements OLegacyResultSet<T> {
 
   @Override
   public Iterator<T> iterator() {
-    return new Iterator<T>() {
+    return new Iterator<>() {
       private int index = 0;
 
       @Override
@@ -233,7 +232,7 @@ public class OBasicLegacyResultSet<T> implements OLegacyResultSet<T> {
   }
 
   public OBasicLegacyResultSet<T> copy() {
-    final OBasicLegacyResultSet<T> newValue = new OBasicLegacyResultSet<T>();
+    final OBasicLegacyResultSet<T> newValue = new OBasicLegacyResultSet<>();
     newValue.underlying.addAll(underlying);
     return newValue;
   }

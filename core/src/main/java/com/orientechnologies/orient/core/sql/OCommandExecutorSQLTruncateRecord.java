@@ -19,6 +19,9 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.core.command.OCommandDistributedReplicateRequest;
 import com.orientechnologies.orient.core.command.OCommandRequest;
@@ -30,10 +33,6 @@ import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper;
 import com.orientechnologies.orient.core.storage.OStorageOperationResult;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
 /**
  * SQL TRUNCATE RECORD command: Truncates a record without loading it. Useful when the record is dirty in any way and cannot be
  * loaded correctly.
@@ -44,7 +43,7 @@ import java.util.Set;
 public class OCommandExecutorSQLTruncateRecord extends OCommandExecutorSQLAbstract implements OCommandDistributedReplicateRequest {
   public static final String KEYWORD_TRUNCATE = "TRUNCATE";
   public static final String KEYWORD_RECORD   = "RECORD";
-  private Set<String>        records          = new HashSet<String>();
+  private Set<String>        records          = new HashSet<>();
 
   @SuppressWarnings("unchecked")
   public OCommandExecutorSQLTruncateRecord parse(final OCommandRequest iRequest) {

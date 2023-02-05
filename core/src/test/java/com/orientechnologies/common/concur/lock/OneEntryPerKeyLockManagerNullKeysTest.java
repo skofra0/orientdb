@@ -19,14 +19,12 @@
 
 package com.orientechnologies.common.concur.lock;
 
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * @author Sergey Sitnikov
@@ -37,12 +35,12 @@ public class OneEntryPerKeyLockManagerNullKeysTest {
 
   @Before
   public void before() {
-    manager = new OOneEntryPerKeyLockManager<String>(true, -1, 100);
+    manager = new OOneEntryPerKeyLockManager<>(true, -1, 100);
   }
 
   @Test
   public void testNullKeysInCollectionBatch() {
-    final List<String> keys = new ArrayList<String>();
+    final List<String> keys = new ArrayList<>();
     keys.add(null);
     keys.add("key");
     keys.add(null);

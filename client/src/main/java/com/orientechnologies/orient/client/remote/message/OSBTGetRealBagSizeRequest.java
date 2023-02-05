@@ -19,6 +19,8 @@
  */
 package com.orientechnologies.orient.client.remote.message;
 
+import java.io.IOException;
+import java.util.Map;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.common.serialization.types.OIntegerSerializer;
 import com.orientechnologies.orient.client.binary.OBinaryRequestExecutor;
@@ -34,9 +36,6 @@ import com.orientechnologies.orient.core.storage.ridbag.sbtree.OBonsaiCollection
 import com.orientechnologies.orient.enterprise.channel.binary.OChannelBinaryProtocol;
 import com.orientechnologies.orient.enterprise.channel.binary.OChannelDataInput;
 import com.orientechnologies.orient.enterprise.channel.binary.OChannelDataOutput;
-
-import java.io.IOException;
-import java.util.Map;
 
 public class OSBTGetRealBagSizeRequest implements OBinaryRequest<OSBTGetRealBagSizeResponse> {
 

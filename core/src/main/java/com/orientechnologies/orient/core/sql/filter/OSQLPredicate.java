@@ -19,6 +19,12 @@
  */
 package com.orientechnologies.orient.core.sql.filter;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.parser.OBaseParser;
 import com.orientechnologies.orient.core.command.OCommandContext;
@@ -38,8 +44,6 @@ import com.orientechnologies.orient.core.sql.operator.OQueryOperatorNot;
 import com.orientechnologies.orient.core.sql.operator.OQueryOperatorOr;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 
-import java.util.*;
-
 /**
  * Parses text in SQL format and build a tree of conditions.
  *
@@ -47,7 +51,7 @@ import java.util.*;
  *
  */
 public class OSQLPredicate extends OBaseParser implements OCommandPredicate {
-  protected Set<OProperty>                properties = new HashSet<OProperty>();
+  protected Set<OProperty>                properties = new HashSet<>();
   protected OSQLFilterCondition           rootCondition;
   protected List<String>                  recordTransformed;
   protected List<OSQLFilterItemParameter> parameterItems;
@@ -137,7 +141,7 @@ public class OSQLPredicate extends OBaseParser implements OCommandPredicate {
       final StringBuilder embedded = new StringBuilder(256);
       OStringSerializerHelper.getEmbedded(parserText, oldPosition - 1, -1, embedded);
       parserSetCurrentPosition(oldPosition + embedded.length() + 1);
-      return new OSQLSynchQuery<Object>(embedded.toString());
+      return new OSQLSynchQuery<>(embedded.toString());
     }
 
     parserSetCurrentPosition(oldPosition);
@@ -247,7 +251,7 @@ public class OSQLPredicate extends OBaseParser implements OCommandPredicate {
       parserNextWord(true, " 0123456789'\"");
       final String word = parserGetLastWord();
 
-      final List<String> params = new ArrayList<String>();
+      final List<String> params = new ArrayList<>();
       // CHECK FOR PARAMETERS
       if (word.length() > op.keyword.length() && word.charAt(op.keyword.length()) == OStringSerializerHelper.EMBEDDED_BEGIN) {
         int paramBeginPos = parserGetCurrentPosition() - (word.length() - op.keyword.length());
@@ -305,7 +309,7 @@ public class OSQLPredicate extends OBaseParser implements OCommandPredicate {
         // COLLECTION OF ELEMENTS
         parserSetCurrentPosition(lastPosition - getLastWordLength());
 
-        final List<String> stringItems = new ArrayList<String>();
+        final List<String> stringItems = new ArrayList<>();
         parserSetCurrentPosition(OStringSerializerHelper.getCollection(parserText, parserGetCurrentPosition(), stringItems));
         result[i] = convertCollectionItems(stringItems);
 
@@ -359,7 +363,7 @@ public class OSQLPredicate extends OBaseParser implements OCommandPredicate {
   }
 
   private List<Object> convertCollectionItems(List<String> stringItems) {
-    List<Object> coll = new ArrayList<Object>();
+    List<Object> coll = new ArrayList<>();
     for (String s : stringItems) {
       coll.add(OSQLHelper.parseValue(this, this, s, context));
     }
@@ -409,7 +413,7 @@ public class OSQLPredicate extends OBaseParser implements OCommandPredicate {
     final OSQLFilterItemParameter param = new OSQLFilterItemParameter(name);
 
     if (parameterItems == null)
-      parameterItems = new ArrayList<OSQLFilterItemParameter>();
+      parameterItems = new ArrayList<>();
 
     parameterItems.add(param);
     return param;

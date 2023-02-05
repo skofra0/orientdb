@@ -2,10 +2,6 @@ package com.orientechnologies.orient.test.server.network.http;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -14,6 +10,8 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.junit.Test;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 public class HttpDisabledTokenTest extends BaseHttpDatabaseTest {
 

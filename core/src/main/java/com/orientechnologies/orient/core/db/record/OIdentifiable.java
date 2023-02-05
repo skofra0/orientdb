@@ -20,7 +20,6 @@
 package com.orientechnologies.orient.core.db.record;
 
 import java.util.Comparator;
-
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.storage.OStorage;

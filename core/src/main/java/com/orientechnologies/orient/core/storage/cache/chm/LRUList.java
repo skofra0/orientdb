@@ -1,9 +1,8 @@
 package com.orientechnologies.orient.core.storage.cache.chm;
 
-import com.orientechnologies.orient.core.storage.cache.OCacheEntry;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import com.orientechnologies.orient.core.storage.cache.OCacheEntry;
 
 public final class LRUList implements Iterable<OCacheEntry> {
   private int size;
@@ -137,7 +136,7 @@ public final class LRUList implements Iterable<OCacheEntry> {
   }
 
   public Iterator<OCacheEntry> iterator() {
-    return new Iterator<OCacheEntry>() {
+    return new Iterator<>() {
       private OCacheEntry next = tail;
 
       @Override

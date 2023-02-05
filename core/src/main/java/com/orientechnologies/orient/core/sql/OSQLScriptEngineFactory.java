@@ -22,10 +22,8 @@ package com.orientechnologies.orient.core.sql;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineFactory;
-
 import com.orientechnologies.orient.core.OConstants;
 
 /**
@@ -36,8 +34,8 @@ import com.orientechnologies.orient.core.OConstants;
  */
 public class OSQLScriptEngineFactory implements ScriptEngineFactory {
 
-  private static final List<String> NAMES      = new ArrayList<String>();
-  private static final List<String> EXTENSIONS = new ArrayList<String>();
+  private static final List<String> NAMES      = new ArrayList<>();
+  private static final List<String> EXTENSIONS = new ArrayList<>();
 
   static {
     NAMES.add(OSQLScriptEngine.NAME);

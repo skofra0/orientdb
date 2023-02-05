@@ -2,13 +2,6 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=true,TRACK_TOKENS=true,NODE_PREFIX=O,NODE_EXTENDS=,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package com.orientechnologies.orient.core.sql.parser;
 
-import com.orientechnologies.orient.core.command.OCommandContext;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.orient.core.record.impl.ODocumentHelper;
-import com.orientechnologies.orient.core.sql.executor.OResult;
-import com.orientechnologies.orient.core.sql.executor.OResultInternal;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,10 +9,16 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import com.orientechnologies.orient.core.command.OCommandContext;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.orientechnologies.orient.core.record.impl.ODocumentHelper;
+import com.orientechnologies.orient.core.sql.executor.OResult;
+import com.orientechnologies.orient.core.sql.executor.OResultInternal;
 
 public class OJson extends SimpleNode {
 
-  protected List<OJsonItem> items = new ArrayList<OJsonItem>();
+  protected List<OJsonItem> items = new ArrayList<>();
 
   public OJson(int id) {
     super(id);
@@ -106,7 +105,7 @@ public class OJson extends SimpleNode {
   }
 
   public Map<String, Object> toMap(OIdentifiable source, OCommandContext ctx) {
-    Map<String, Object> doc = new HashMap<String, Object>();
+    Map<String, Object> doc = new HashMap<>();
     for (OJsonItem item : items) {
       String name = item.getLeftValue();
       if (name == null) {
@@ -120,7 +119,7 @@ public class OJson extends SimpleNode {
   }
 
   public Map<String, Object> toMap(OResult source, OCommandContext ctx) {
-    Map<String, Object> doc = new HashMap<String, Object>();
+    Map<String, Object> doc = new HashMap<>();
     for (OJsonItem item : items) {
       String name = item.getLeftValue();
       if (name == null) {

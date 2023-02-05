@@ -17,15 +17,15 @@
  */
 package com.orientechnologies.orient.jdbc;
 
+import static java.sql.ResultSet.CONCUR_READ_ONLY;
+import static java.sql.ResultSet.HOLD_CURSORS_OVER_COMMIT;
+import static java.sql.ResultSet.TYPE_FORWARD_ONLY;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.Properties;
-
-import static java.sql.ResultSet.*;
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class OrientJdbcConnectionTest extends OrientJdbcDbPerClassTemplateTest {
 

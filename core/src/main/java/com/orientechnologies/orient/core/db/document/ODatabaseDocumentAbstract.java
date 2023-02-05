@@ -20,6 +20,24 @@
 
 package com.orientechnologies.orient.core.db.document;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.UUID;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentHashMap;
 import com.orientechnologies.common.concur.ONeedRetryException;
 import com.orientechnologies.common.concur.OTimeoutException;
 import com.orientechnologies.common.concur.lock.OInterruptedException;
@@ -37,7 +55,15 @@ import com.orientechnologies.orient.core.config.OContextConfiguration;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.config.OStorageEntryConfiguration;
 import com.orientechnologies.orient.core.conflict.ORecordConflictStrategy;
-import com.orientechnologies.orient.core.db.*;
+import com.orientechnologies.orient.core.db.ODatabase;
+import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
+import com.orientechnologies.orient.core.db.ODatabaseInternal;
+import com.orientechnologies.orient.core.db.ODatabaseLifecycleListener;
+import com.orientechnologies.orient.core.db.ODatabaseListener;
+import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
+import com.orientechnologies.orient.core.db.ODatabaseStats;
+import com.orientechnologies.orient.core.db.OScenarioThreadLocal;
+import com.orientechnologies.orient.core.db.OSharedContext;
 import com.orientechnologies.orient.core.db.record.OCurrentStorageComponentsFactory;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.db.record.ORecordElement;
@@ -111,25 +137,6 @@ import com.orientechnologies.orient.core.tx.OTransactionInternal;
 import com.orientechnologies.orient.core.tx.OTransactionNoTx;
 import com.orientechnologies.orient.core.tx.OTransactionOptimistic;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.UUID;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ConcurrentHashMap;
-
 /**
  * Document API entrypoint.
  *
@@ -138,9 +145,9 @@ import java.util.concurrent.ConcurrentHashMap;
 @SuppressWarnings("unchecked")
 public abstract class ODatabaseDocumentAbstract extends OListenerManger<ODatabaseListener> implements ODatabaseDocumentInternal {
 
-  protected final Map<String, Object> properties = new HashMap<String, Object>();
+  protected final Map<String, Object> properties = new HashMap<>();
   protected Map<ORecordHook, ORecordHook.HOOK_POSITION> unmodifiableHooks;
-  protected final Set<OIdentifiable> inHook = new HashSet<OIdentifiable>();
+  protected final Set<OIdentifiable> inHook = new HashSet<>();
   protected ORecordSerializer serializer;
   protected String url;
   protected STATUS status;
@@ -149,7 +156,7 @@ public abstract class ODatabaseDocumentAbstract extends OListenerManger<ODatabas
   protected OMetadataDefault metadata;
   protected OImmutableUser user;
   protected final byte recordType = ODocument.RECORD_TYPE;
-  protected final Map<ORecordHook, ORecordHook.HOOK_POSITION> hooks = new LinkedHashMap<ORecordHook, ORecordHook.HOOK_POSITION>();
+  protected final Map<ORecordHook, ORecordHook.HOOK_POSITION> hooks = new LinkedHashMap<>();
   protected boolean retainRecords = true;
   protected OLocalRecordCache localCache;
   protected OCurrentStorageComponentsFactory componentsFactory;
@@ -336,7 +343,7 @@ public abstract class ODatabaseDocumentAbstract extends OListenerManger<ODatabas
 
     final int clusterId = getClusterIdByName(iClusterName);
 
-    return new ORecordIteratorCluster<REC>(this, clusterId, startClusterPosition, endClusterPosition,
+    return new ORecordIteratorCluster<>(this, clusterId, startClusterPosition, endClusterPosition,
             OStorage.LOCKING_STRATEGY.DEFAULT);
   }
 
@@ -348,7 +355,7 @@ public abstract class ODatabaseDocumentAbstract extends OListenerManger<ODatabas
 
     final int clusterId = getClusterIdByName(iClusterName);
 
-    return new ORecordIteratorCluster<REC>(this, clusterId, startClusterPosition, endClusterPosition);
+    return new ORecordIteratorCluster<>(this, clusterId, startClusterPosition, endClusterPosition);
   }
 
   /**
@@ -686,7 +693,7 @@ public abstract class ODatabaseDocumentAbstract extends OListenerManger<ODatabas
     checkOpenness();
     checkIfActive();
 
-    final Map<ORecordHook, ORecordHook.HOOK_POSITION> tmp = new LinkedHashMap<ORecordHook, ORecordHook.HOOK_POSITION>(hooks);
+    final Map<ORecordHook, ORecordHook.HOOK_POSITION> tmp = new LinkedHashMap<>(hooks);
     tmp.put(iHookImpl, iPosition);
     hooks.clear();
     for (ORecordHook.HOOK_POSITION p : ORecordHook.HOOK_POSITION.values()) {
@@ -1955,7 +1962,7 @@ public abstract class ODatabaseDocumentAbstract extends OListenerManger<ODatabas
       throw new IllegalArgumentException("Class '" + iClassName + "' not found in current database");
 
     checkSecurity(ORule.ResourceGeneric.CLASS, ORole.PERMISSION_READ, iClassName);
-    return new ORecordIteratorClass<ODocument>(this, iClassName, iPolymorphic, false);
+    return new ORecordIteratorClass<>(this, iClassName, iPolymorphic, false);
   }
 
   /**
@@ -1965,7 +1972,7 @@ public abstract class ODatabaseDocumentAbstract extends OListenerManger<ODatabas
   public ORecordIteratorCluster<ODocument> browseCluster(final String iClusterName) {
     checkSecurity(ORule.ResourceGeneric.CLUSTER, ORole.PERMISSION_READ, iClusterName);
 
-    return new ORecordIteratorCluster<ODocument>(this, getClusterIdByName(iClusterName));
+    return new ORecordIteratorCluster<>(this, getClusterIdByName(iClusterName));
   }
 
   /**
@@ -1985,7 +1992,7 @@ public abstract class ODatabaseDocumentAbstract extends OListenerManger<ODatabas
                                                          boolean loadTombstones) {
     checkSecurity(ORule.ResourceGeneric.CLUSTER, ORole.PERMISSION_READ, iClusterName);
 
-    return new ORecordIteratorCluster<ODocument>(this, getClusterIdByName(iClusterName), startClusterPosition, endClusterPosition,
+    return new ORecordIteratorCluster<>(this, getClusterIdByName(iClusterName), startClusterPosition, endClusterPosition,
             OStorage.LOCKING_STRATEGY.DEFAULT);
   }
 

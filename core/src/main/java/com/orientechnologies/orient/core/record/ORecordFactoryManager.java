@@ -21,7 +21,12 @@ package com.orientechnologies.orient.core.record;
 
 import com.orientechnologies.common.exception.OSystemException;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
-import com.orientechnologies.orient.core.record.impl.*;
+import com.orientechnologies.orient.core.record.impl.OBlob;
+import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.orientechnologies.orient.core.record.impl.OEdgeDocument;
+import com.orientechnologies.orient.core.record.impl.ORecordBytes;
+import com.orientechnologies.orient.core.record.impl.ORecordFlat;
+import com.orientechnologies.orient.core.record.impl.OVertexDocument;
 
 /**
  * Record factory. To use your own record implementation use the declareRecordType() method. Example of registration of the record

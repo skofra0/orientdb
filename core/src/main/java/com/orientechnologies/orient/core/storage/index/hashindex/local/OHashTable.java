@@ -19,15 +19,14 @@
  */
 package com.orientechnologies.orient.core.storage.index.hashindex.local;
 
+import java.io.IOException;
+import java.util.Comparator;
 import com.orientechnologies.common.comparator.ODefaultComparator;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.orient.core.encryption.OEncryption;
 import com.orientechnologies.orient.core.index.engine.OBaseIndexEngine;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperation;
-
-import java.io.IOException;
-import java.util.Comparator;
 
 /**
  * Created by lomak_000 on 15.04.2015.

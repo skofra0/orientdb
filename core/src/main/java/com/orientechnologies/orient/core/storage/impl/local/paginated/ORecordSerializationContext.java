@@ -20,13 +20,12 @@
 
 package com.orientechnologies.orient.core.storage.impl.local.paginated;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import com.orientechnologies.orient.core.OOrientListenerAbstract;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperation;
-
-import java.util.ArrayDeque;
-import java.util.Deque;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)

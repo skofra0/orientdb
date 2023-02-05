@@ -1,14 +1,13 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.sql.parser.OMatchPathItem;
 import com.orientechnologies.orient.core.sql.parser.ORid;
 import com.orientechnologies.orient.core.sql.parser.OWhereClause;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Created by luigidellaquila on 15/10/16.

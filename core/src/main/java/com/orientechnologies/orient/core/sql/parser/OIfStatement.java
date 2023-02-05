@@ -2,21 +2,26 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=true,TRACK_TOKENS=true,NODE_PREFIX=O,NODE_EXTENDS=,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package com.orientechnologies.orient.core.sql.parser;
 
-import com.orientechnologies.orient.core.command.OBasicCommandContext;
-import com.orientechnologies.orient.core.command.OCommandContext;
-import com.orientechnologies.orient.core.db.ODatabase;
-import com.orientechnologies.orient.core.sql.executor.*;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import com.orientechnologies.orient.core.command.OBasicCommandContext;
+import com.orientechnologies.orient.core.command.OCommandContext;
+import com.orientechnologies.orient.core.db.ODatabase;
+import com.orientechnologies.orient.core.sql.executor.EmptyStep;
+import com.orientechnologies.orient.core.sql.executor.IfStep;
+import com.orientechnologies.orient.core.sql.executor.OExecutionStepInternal;
+import com.orientechnologies.orient.core.sql.executor.OIfExecutionPlan;
+import com.orientechnologies.orient.core.sql.executor.OResultSet;
+import com.orientechnologies.orient.core.sql.executor.OSelectExecutionPlan;
+import com.orientechnologies.orient.core.sql.executor.OUpdateExecutionPlan;
 
 public class OIfStatement extends OStatement {
   protected OBooleanExpression expression;
-  protected List<OStatement> statements     = new ArrayList<OStatement>();
-  protected List<OStatement> elseStatements = new ArrayList<OStatement>();//TODO support ELSE in the SQL syntax
+  protected List<OStatement> statements     = new ArrayList<>();
+  protected List<OStatement> elseStatements = new ArrayList<>();//TODO support ELSE in the SQL syntax
 
   public OIfStatement(int id) {
     super(id);

@@ -1,15 +1,14 @@
 package com.orientechnologies.orient.client.remote.message;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentRemote;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.sql.executor.OExecutionPlan;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.sql.executor.OResultInternal;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
-
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 /**
  * Created by luigidellaquila on 05/12/16.

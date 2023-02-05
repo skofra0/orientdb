@@ -18,17 +18,15 @@
 
 package com.orientechnologies.lucene.tests;
 
-import com.orientechnologies.orient.core.command.script.OCommandScript;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.orient.core.sql.executor.OResultSet;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.io.InputStream;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import com.orientechnologies.orient.core.command.script.OCommandScript;
+import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.orientechnologies.orient.core.sql.executor.OResultSet;
 
 /**
  * Created by enricorisa on 19/09/14.

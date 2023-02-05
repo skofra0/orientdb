@@ -19,6 +19,18 @@
  */
 package com.orientechnologies.common.collection;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.NoSuchElementException;
+import java.util.Set;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.util.OCallable;
 import com.orientechnologies.common.util.OResettable;
@@ -28,10 +40,6 @@ import com.orientechnologies.orient.core.db.record.ORecordLazyMultiValue;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.executor.OInternalResultSet;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
-
-import java.lang.reflect.Array;
-import java.util.*;
-import java.util.Map.Entry;
 
 /**
  * Handles Multi-value types such as Arrays, Collections and Maps. It recognizes special Orient collections.
@@ -269,15 +277,15 @@ public class OMultiValue {
     else if (iObject instanceof Map<?, ?>)
       return ((Map<?, Object>) iObject).values();
     else if (iObject.getClass().isArray())
-      return new OIterableObjectArray<Object>(iObject);
+      return new OIterableObjectArray<>(iObject);
     else if (iObject instanceof Iterator<?>) {
-      final List<Object> temp = new ArrayList<Object>();
+      final List<Object> temp = new ArrayList<>();
       for (Iterator<Object> it = (Iterator<Object>) iObject; it.hasNext(); )
         temp.add(it.next());
       return temp;
     }
 
-    return new OIterableObject<Object>(iObject);
+    return new OIterableObject<>(iObject);
   }
 
   /**
@@ -308,15 +316,15 @@ public class OMultiValue {
     else if (iObject instanceof Map<?, ?>)
       return ((Map<?, Object>) iObject).values();
     else if (iObject.getClass().isArray())
-      return new OIterableObjectArray<Object>(iObject);
+      return new OIterableObjectArray<>(iObject);
     else if (iObject instanceof Iterator<?>) {
-      final List<Object> temp = new ArrayList<Object>();
+      final List<Object> temp = new ArrayList<>();
       for (Iterator<Object> it = (Iterator<Object>) iObject; it.hasNext(); )
         temp.add(it.next());
       return temp;
     }
 
-    return new OIterableObject<Object>(iObject);
+    return new OIterableObject<>(iObject);
   }
 
   /**
@@ -343,9 +351,9 @@ public class OMultiValue {
     if (iObject instanceof Map<?, ?>)
       return ((Map<?, Object>) iObject).values().iterator();
     if (iObject.getClass().isArray())
-      return new OIterableObjectArray<Object>(iObject).iterator();
+      return new OIterableObjectArray<>(iObject).iterator();
 
-    return new OIterableObject<Object>(iObject);
+    return new OIterableObject<>(iObject);
   }
 
   /**
@@ -366,9 +374,9 @@ public class OMultiValue {
     if (iObject instanceof Map<?, ?>)
       return ((Map<?, Object>) iObject).values().iterator();
     if (iObject.getClass().isArray())
-      return new OIterableObjectArray<Object>(iObject).iterator();
+      return new OIterableObjectArray<>(iObject).iterator();
 
-    return new OIterableObject<Object>(iObject);
+    return new OIterableObject<>(iObject);
   }
 
   /**
@@ -436,7 +444,7 @@ public class OMultiValue {
         final OCollection<Object> coll;
         if (iObject instanceof Collection<?>) {
           final Collection<Object> collection = (Collection<Object>) iObject;
-          coll = new OCollection<Object>() {
+          coll = new OCollection<>() {
             @Override
             public void add(Object value) {
               collection.add(value);
@@ -530,7 +538,7 @@ public class OMultiValue {
   public static Object remove(Object iObject, Object iToRemove, final boolean iAllOccurrences) {
     if (iObject != null) {
       if (iObject instanceof OMultiCollectionIterator<?>) {
-        final Collection<Object> list = new LinkedList<Object>();
+        final Collection<Object> list = new LinkedList<>();
         for (Object o : ((OMultiCollectionIterator<?>) iObject))
           list.add(o);
         iObject = list;
@@ -538,7 +546,7 @@ public class OMultiValue {
 
       if (iToRemove instanceof OMultiCollectionIterator<?>) {
         // TRANSFORM IN SET ONCE TO OPTIMIZE LOOPS DURING REMOVE
-        final Set<Object> set = new HashSet<Object>();
+        final Set<Object> set = new HashSet<>();
         for (Object o : ((OMultiCollectionIterator<?>) iToRemove))
           set.add(o);
         iToRemove = set;
@@ -550,7 +558,7 @@ public class OMultiValue {
         final OCollection<Object> coll;
         if (iObject instanceof Collection<?>) {
           final Collection<Object> collection = (Collection<Object>) iObject;
-          coll = new OCollection<Object>() {
+          coll = new OCollection<>() {
             @Override
             public void add(Object value) {
               collection.add(value);
@@ -697,11 +705,11 @@ public class OMultiValue {
     final HashSet<Object> batch;
     if (approximateRemainingSize > -1) {
       if (approximateRemainingSize > 10000)
-        batch = new HashSet<Object>(13400);
+        batch = new HashSet<>(13400);
       else
-        batch = new HashSet<Object>((int) (approximateRemainingSize / 0.75));
+        batch = new HashSet<>((int) (approximateRemainingSize / 0.75));
     } else {
-      batch = new HashSet<Object>();
+      batch = new HashSet<>();
     }
 
     int count = 0;
@@ -735,7 +743,7 @@ public class OMultiValue {
         result[i] = (T) convert(it.next(), iCallback);
     } else if (isIterable(iValue)) {
       // SIZE UNKNOWN: USE A LIST AS TEMPORARY OBJECT
-      final List<T> temp = new ArrayList<T>();
+      final List<T> temp = new ArrayList<>();
       for (Iterator<T> it = (Iterator<T>) getMultiValueIterator(iValue, false); it.hasNext(); )
         temp.add((T) convert(it.next(), iCallback));
 
@@ -842,7 +850,7 @@ public class OMultiValue {
   }
 
   public static <T> List<T> getSingletonList(final T item) {
-    final List<T> list = new ArrayList<T>(1);
+    final List<T> list = new ArrayList<>(1);
     list.add(item);
     return list;
   }

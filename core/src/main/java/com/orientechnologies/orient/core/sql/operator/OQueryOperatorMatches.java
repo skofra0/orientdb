@@ -19,12 +19,11 @@
  */
 package com.orientechnologies.orient.core.sql.operator;
 
+import java.util.regex.Pattern;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.sql.filter.OSQLFilterCondition;
-
-import java.util.regex.Pattern;
 
 /**
  * MATCHES operator. Matches the left value against the regular expression contained in the second one.

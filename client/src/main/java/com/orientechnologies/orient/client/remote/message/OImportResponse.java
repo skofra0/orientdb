@@ -3,7 +3,6 @@ package com.orientechnologies.orient.client.remote.message;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.orientechnologies.orient.client.remote.OBinaryResponse;
 import com.orientechnologies.orient.client.remote.OStorageRemoteSession;
 import com.orientechnologies.orient.core.serialization.serializer.record.ORecordSerializer;

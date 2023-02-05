@@ -20,12 +20,21 @@
 
 package com.orientechnologies.orient.core.storage.index.engine;
 
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.encryption.OEncryption;
 import com.orientechnologies.orient.core.id.ORID;
-import com.orientechnologies.orient.core.index.*;
+import com.orientechnologies.orient.core.index.OIndexAbstractCursor;
+import com.orientechnologies.orient.core.index.OIndexCursor;
+import com.orientechnologies.orient.core.index.OIndexDefinition;
+import com.orientechnologies.orient.core.index.OIndexException;
+import com.orientechnologies.orient.core.index.OIndexKeyCursor;
+import com.orientechnologies.orient.core.index.OIndexKeyUpdater;
 import com.orientechnologies.orient.core.index.engine.OIndexEngine;
 import com.orientechnologies.orient.core.iterator.OEmptyIterator;
 import com.orientechnologies.orient.core.metadata.schema.OType;
@@ -33,11 +42,6 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperation;
 import com.orientechnologies.orient.core.storage.index.sbtree.local.OSBTree;
-
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)
@@ -300,7 +304,7 @@ public class OSBTreeIndexEngine implements OIndexEngine {
 
       final OIdentifiable value = currentIterator.next();
 
-      return new Map.Entry<Object, OIdentifiable>() {
+      return new Map.Entry<>() {
         @Override
         public Object getKey() {
           return currentKey;

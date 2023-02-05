@@ -1,5 +1,21 @@
 package com.orientechnologies.orient.core.storage.cluster;
 
+import org.assertj.core.api.Assertions;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.NavigableMap;
+import java.util.Random;
+import java.util.Set;
+import java.util.TreeMap;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.types.OModifiableInteger;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
@@ -8,14 +24,6 @@ import com.orientechnologies.orient.core.storage.ORawBuffer;
 import com.orientechnologies.orient.core.storage.cluster.v0.OPaginatedClusterV0;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperationsManager;
-import org.assertj.core.api.Assertions;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.io.IOException;
-import java.util.*;
 
 public abstract class LocalPaginatedClusterAbstract {
   protected static String                    buildDirectory;

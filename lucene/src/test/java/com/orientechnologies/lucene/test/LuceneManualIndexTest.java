@@ -18,6 +18,11 @@
 
 package com.orientechnologies.lucene.test;
 
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import java.util.List;
 import com.orientechnologies.lucene.OLuceneIndexFactory;
 import com.orientechnologies.orient.core.index.OIndex;
 import com.orientechnologies.orient.core.index.OSimpleKeyIndexDefinition;
@@ -26,12 +31,6 @@ import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.List;
 
 /**
  * Created by Enrico Risa on 09/07/15.

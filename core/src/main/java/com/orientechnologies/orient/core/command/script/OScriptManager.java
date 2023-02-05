@@ -19,6 +19,24 @@
  */
 package com.orientechnologies.orient.core.command.script;
 
+import static com.orientechnologies.common.util.OClassLoaderHelper.lookupProviderWithOrientClassLoader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import javax.script.Bindings;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineFactory;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import com.orientechnologies.common.concur.resource.OPartitionedObjectPool;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.parser.OStringParser;
@@ -26,7 +44,11 @@ import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.command.OCommandManager;
 import com.orientechnologies.orient.core.command.OScriptExecutor;
 import com.orientechnologies.orient.core.command.OScriptExecutorRegister;
-import com.orientechnologies.orient.core.command.script.formatter.*;
+import com.orientechnologies.orient.core.command.script.formatter.OGroovyScriptFormatter;
+import com.orientechnologies.orient.core.command.script.formatter.OJSScriptFormatter;
+import com.orientechnologies.orient.core.command.script.formatter.ORubyScriptFormatter;
+import com.orientechnologies.orient.core.command.script.formatter.OSQLScriptFormatter;
+import com.orientechnologies.orient.core.command.script.formatter.OScriptFormatter;
 import com.orientechnologies.orient.core.command.script.js.OJSScriptEngineFactory;
 import com.orientechnologies.orient.core.command.script.transformer.OScriptTransformerImpl;
 import com.orientechnologies.orient.core.db.ODatabase;
@@ -37,14 +59,6 @@ import com.orientechnologies.orient.core.metadata.function.OFunction;
 import com.orientechnologies.orient.core.metadata.function.OFunctionUtilWrapper;
 import com.orientechnologies.orient.core.sql.OSQLScriptEngine;
 import com.orientechnologies.orient.core.sql.OSQLScriptEngineFactory;
-
-import javax.script.*;
-import java.util.*;
-import java.util.Map.Entry;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Function;
-
-import static com.orientechnologies.common.util.OClassLoaderHelper.lookupProviderWithOrientClassLoader;
 
 /**
  * Executes Script Commands.
@@ -58,11 +72,11 @@ public class OScriptManager {
   protected final        String                                            DEF_LANGUAGE       = "javascript";
   protected              String                                            defaultLanguage    = DEF_LANGUAGE;
   protected              ScriptEngineManager                               scriptEngineManager;
-  protected              Map<String, ScriptEngineFactory>                  engines            = new HashMap<String, ScriptEngineFactory>();
-  protected              Map<String, OScriptFormatter>                     formatters         = new HashMap<String, OScriptFormatter>();
-  protected              List<OScriptInjection>                            injections         = new ArrayList<OScriptInjection>();
-  protected              ConcurrentHashMap<String, ODatabaseScriptManager> dbManagers         = new ConcurrentHashMap<String, ODatabaseScriptManager>();
-  protected              Map<String, OScriptResultHandler>                 handlers           = new HashMap<String, OScriptResultHandler>();
+  protected              Map<String, ScriptEngineFactory>                  engines            = new HashMap<>();
+  protected              Map<String, OScriptFormatter>                     formatters         = new HashMap<>();
+  protected              List<OScriptInjection>                            injections         = new ArrayList<>();
+  protected              ConcurrentHashMap<String, ODatabaseScriptManager> dbManagers         = new ConcurrentHashMap<>();
+  protected              Map<String, OScriptResultHandler>                 handlers           = new HashMap<>();
   protected              Map<String, Function<String, OScriptExecutor>>    executorsFactories = new HashMap<>();
 
   public OScriptManager() {
@@ -233,7 +247,7 @@ public class OScriptManager {
   }
 
   public Iterable<String> getSupportedLanguages() {
-    final HashSet<String> result = new HashSet<String>();
+    final HashSet<String> result = new HashSet<>();
     result.addAll(engines.keySet());
     return result;
   }

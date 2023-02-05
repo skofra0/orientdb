@@ -1,5 +1,18 @@
 package com.orientechnologies.orient.core.storage.impl.local.paginated;
 
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Test;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.RandomAccessFile;
+import java.nio.channels.Channels;
+import java.nio.channels.FileChannel;
+import java.util.Random;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
@@ -16,14 +29,6 @@ import com.orientechnologies.orient.core.storage.ORawBuffer;
 import com.orientechnologies.orient.core.storage.OStorage;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OLogSequenceNumber;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.io.*;
-import java.nio.channels.Channels;
-import java.nio.channels.FileChannel;
-import java.util.Random;
 
 public class LocalPaginatedStorageIncrementalSync {
   private ODatabaseDocumentTx originalDB;

@@ -20,7 +20,6 @@ import java.io.StringWriter;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
-
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.record.impl.ODocument;

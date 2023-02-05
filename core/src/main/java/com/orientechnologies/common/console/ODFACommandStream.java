@@ -20,7 +20,13 @@
 
 package com.orientechnologies.common.console;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -30,7 +36,7 @@ import java.util.Set;
  */
 public class ODFACommandStream implements OCommandStream {
   public static final int            BUFFER_SIZE = 1024;
-  private final       Set<Character> separators  = new HashSet<Character>(Arrays.asList(';', '\n'));
+  private final       Set<Character> separators  = new HashSet<>(Arrays.asList(';', '\n'));
   private Reader reader;
 
   private Character nextCharacter;

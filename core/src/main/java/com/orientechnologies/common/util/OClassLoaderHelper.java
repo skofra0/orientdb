@@ -22,7 +22,6 @@ package com.orientechnologies.common.util;
 
 import java.util.Iterator;
 import java.util.ServiceLoader;
-
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.exception.OConfigurationException;

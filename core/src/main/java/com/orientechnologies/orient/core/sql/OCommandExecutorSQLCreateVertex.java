@@ -19,6 +19,11 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.util.OPair;
 import com.orientechnologies.orient.core.command.OCommandDistributedReplicateRequest;
 import com.orientechnologies.orient.core.command.OCommandRequest;
@@ -30,8 +35,6 @@ import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.record.OVertex;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunctionRuntime;
-
-import java.util.*;
 
 /**
  * SQL CREATE VERTEX command.
@@ -71,7 +74,7 @@ public class OCommandExecutorSQLCreateVertex extends OCommandExecutorSQLSetAware
           clusterName = parserRequiredWord(false);
 
         } else if (temp.equals(KEYWORD_SET)) {
-          fields = new ArrayList<OPair<String, Object>>();
+          fields = new ArrayList<>();
           parseSetFields(clazz, fields);
 
         } else if (temp.equals(KEYWORD_CONTENT)) {

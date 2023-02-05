@@ -1,5 +1,7 @@
 package com.orientechnologies.orient.core.sql.parser;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.config.OStorageConfiguration;
@@ -10,9 +12,6 @@ import com.orientechnologies.orient.core.index.OIndexManager;
 import com.orientechnologies.orient.core.metadata.schema.OSchemaShared;
 import com.orientechnologies.orient.core.sql.executor.OExecutionPlan;
 import com.orientechnologies.orient.core.sql.executor.OInternalExecutionPlan;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 /**
  * This class is an LRU cache for already prepared SQL execution plans. It stores itself in the storage as a resource. It also acts
@@ -33,7 +32,7 @@ public class OExecutionPlanCache implements OMetadataUpdateListener {
    */
   public OExecutionPlanCache(int size) {
     this.mapSize = size;
-    map = new LinkedHashMap<String, OInternalExecutionPlan>(size) {
+    map = new LinkedHashMap<>(size) {
       protected boolean removeEldestEntry(final Map.Entry<String, OInternalExecutionPlan> eldest) {
         return super.size() > mapSize;
       }

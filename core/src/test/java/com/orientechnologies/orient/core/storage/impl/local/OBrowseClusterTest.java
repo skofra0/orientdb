@@ -1,5 +1,11 @@
 package com.orientechnologies.orient.core.storage.impl.local;
 
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNotNull;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import java.util.Iterator;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.ODatabaseSession;
@@ -7,14 +13,6 @@ import com.orientechnologies.orient.core.db.ODatabaseType;
 import com.orientechnologies.orient.core.db.OrientDB;
 import com.orientechnologies.orient.core.db.OrientDBConfig;
 import com.orientechnologies.orient.core.record.OVertex;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.Iterator;
-
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertNotNull;
 
 public class OBrowseClusterTest {
 

@@ -19,14 +19,17 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+import java.util.List;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OSchema;
-import org.junit.*;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
-
-import java.util.List;
 
 /**
  * @author Enrico Risa

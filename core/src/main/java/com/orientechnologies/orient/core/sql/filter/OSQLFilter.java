@@ -19,14 +19,13 @@
  */
 package com.orientechnologies.orient.core.sql.filter;
 
+import java.util.Locale;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.command.OCommandPredicate;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.exception.OQueryParsingException;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-
-import java.util.Locale;
 
 /**
  * Parsed query. It's built once a query is parsed.

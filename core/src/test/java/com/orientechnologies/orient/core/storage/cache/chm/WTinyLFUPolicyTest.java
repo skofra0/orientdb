@@ -2,21 +2,19 @@ package com.orientechnologies.orient.core.storage.cache.chm;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
-
-import com.orientechnologies.common.directmemory.OByteBufferPool;
-import com.orientechnologies.common.directmemory.ODirectMemoryAllocator;
-import com.orientechnologies.orient.core.storage.cache.OCacheEntry;
-import com.orientechnologies.orient.core.storage.cache.OCacheEntryImpl;
-import com.orientechnologies.orient.core.storage.cache.OCachePointer;
+import org.junit.Assert;
+import org.junit.Test;
+import org.mockito.Mockito;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
-import org.junit.Assert;
-import org.junit.Test;
-import org.mockito.Mockito;
+import com.orientechnologies.common.directmemory.OByteBufferPool;
+import com.orientechnologies.common.directmemory.ODirectMemoryAllocator;
+import com.orientechnologies.orient.core.storage.cache.OCacheEntry;
+import com.orientechnologies.orient.core.storage.cache.OCacheEntryImpl;
+import com.orientechnologies.orient.core.storage.cache.OCachePointer;
 
 public class WTinyLFUPolicyTest {
   @Test

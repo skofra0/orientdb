@@ -1,5 +1,9 @@
 package com.orientechnologies.orient.core.encryption.impl;
 
+import org.junit.Assert;
+import org.junit.Test;
+import java.io.File;
+import java.util.List;
 import com.orientechnologies.common.io.OFileUtils;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.ODatabaseInternal;
@@ -8,12 +12,6 @@ import com.orientechnologies.orient.core.exception.OSecurityException;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.io.File;
-import java.util.List;
 
 /**
  * @author giastfader@github

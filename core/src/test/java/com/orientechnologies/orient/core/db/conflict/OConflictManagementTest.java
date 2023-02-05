@@ -20,15 +20,14 @@
 
 package com.orientechnologies.orient.core.db.conflict;
 
+import org.junit.Assert;
+import org.junit.Test;
+import java.util.Collection;
 import com.orientechnologies.DatabaseAbstractTest;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.exception.OConcurrentModificationException;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.util.Collection;
 
 public class OConflictManagementTest extends DatabaseAbstractTest {
 

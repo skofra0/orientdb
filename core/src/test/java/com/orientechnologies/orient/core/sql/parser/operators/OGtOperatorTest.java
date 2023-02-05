@@ -19,10 +19,10 @@
  */
 package com.orientechnologies.orient.core.sql.parser.operators;
 
-import com.orientechnologies.orient.core.sql.parser.OGtOperator;
-import org.junit.Assert; import org.junit.Test;
-
+import org.junit.Assert;
+import org.junit.Test;
 import java.math.BigDecimal;
+import com.orientechnologies.orient.core.sql.parser.OGtOperator;
 
 /**
  * @author Luigi Dell'Aquila (l.dellaquila-(at)-orientdb.com)

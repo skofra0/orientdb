@@ -1,9 +1,5 @@
 package com.orientechnologies.common.collection.closabledictionary;
 
-import com.orientechnologies.common.log.OLogManager;
-import com.orientechnologies.orient.core.Orient;
-import com.orientechnologies.orient.core.config.OGlobalConfiguration;
-
 import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -13,6 +9,9 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import com.orientechnologies.common.log.OLogManager;
+import com.orientechnologies.orient.core.Orient;
+import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 
 /**
  * Container for the elements which may be in open/closed state. But only limited amount of elements are hold by given container may
@@ -160,19 +159,19 @@ public class OClosableLinkedContainer<K, V extends OClosableItem> {
   /**
    * LRU list to updated statistic of recency of contained items.
    */
-  private final OClosableLRUList<K, V> lruList = new OClosableLRUList<K, V>();
+  private final OClosableLRUList<K, V> lruList = new OClosableLRUList<>();
 
   /**
    * Main source of truth of container if value is absent in this field it is absent in container.
    */
-  private final ConcurrentHashMap<K, OClosableEntry<K, V>> data = new ConcurrentHashMap<K, OClosableEntry<K, V>>();
+  private final ConcurrentHashMap<K, OClosableEntry<K, V>> data = new ConcurrentHashMap<>();
 
   /**
    * Buffer which contains operation which includes changes of states from closed to open, and from any state to retired.
    * In other words this buffer contains information about operations which affect amount of items inside of {@link #lruList} and
    * those operations can not be lost.
    */
-  private final ConcurrentLinkedQueue<Runnable> stateBuffer = new ConcurrentLinkedQueue<Runnable>();
+  private final ConcurrentLinkedQueue<Runnable> stateBuffer = new ConcurrentLinkedQueue<>();
 
   /**
    * Maximum amount of open items inside of container.
@@ -182,12 +181,12 @@ public class OClosableLinkedContainer<K, V extends OClosableItem> {
   /**
    * Status which indicates whether flush of buffers should be performed or may be delayed.
    */
-  private final AtomicReference<DrainStatus> drainStatus = new AtomicReference<DrainStatus>(DrainStatus.IDLE);
+  private final AtomicReference<DrainStatus> drainStatus = new AtomicReference<>(DrainStatus.IDLE);
 
   /**
    * Latch which prevents addition or open of new files if limit of open files is reached
    */
-  private final AtomicReference<CountDownLatch> openLatch = new AtomicReference<CountDownLatch>();
+  private final AtomicReference<CountDownLatch> openLatch = new AtomicReference<>();
 
   /**
    * Amount of simultaneously open files in container
@@ -212,7 +211,7 @@ public class OClosableLinkedContainer<K, V extends OClosableItem> {
 
       rbs[i] = new AtomicReference[READ_BUFFER_SIZE];
       for (int n = 0; n < READ_BUFFER_SIZE; n++) {
-        rbs[i][n] = new AtomicReference<OClosableEntry<K, V>>();
+        rbs[i][n] = new AtomicReference<>();
       }
     }
 
@@ -234,7 +233,7 @@ public class OClosableLinkedContainer<K, V extends OClosableItem> {
 
     checkOpenFilesLimit();
 
-    final OClosableEntry<K, V> closableEntry = new OClosableEntry<K, V>(item);
+    final OClosableEntry<K, V> closableEntry = new OClosableEntry<>(item);
     final OClosableEntry<K, V> oldEntry = data.putIfAbsent(key, closableEntry);
 
     if (oldEntry != null) {

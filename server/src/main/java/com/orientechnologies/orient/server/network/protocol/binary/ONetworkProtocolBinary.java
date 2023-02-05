@@ -19,6 +19,19 @@
  */
 package com.orientechnologies.orient.server.network.protocol.binary;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.PrintStream;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.SynchronousQueue;
+import java.util.function.Function;
+import java.util.logging.Level;
 import com.orientechnologies.common.concur.OOfflineNodeException;
 import com.orientechnologies.common.concur.lock.OInterruptedException;
 import com.orientechnologies.common.concur.lock.OLockException;
@@ -40,7 +53,6 @@ import com.orientechnologies.orient.core.config.OContextConfiguration;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.exception.OCoreException;
 import com.orientechnologies.orient.core.exception.ODatabaseException;
@@ -75,20 +87,6 @@ import com.orientechnologies.orient.server.network.OServerNetworkListener;
 import com.orientechnologies.orient.server.network.protocol.ONetworkProtocol;
 import com.orientechnologies.orient.server.plugin.OServerPluginHelper;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.PrintStream;
-import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.net.SocketException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.SynchronousQueue;
-import java.util.function.Function;
-import java.util.logging.Level;
-
 public class ONetworkProtocolBinary extends ONetworkProtocol {
   protected final    Level                              logClientExceptions;
   protected final    boolean                            logClientFullStackTrace;
@@ -100,7 +98,7 @@ public class ONetworkProtocolBinary extends ONetworkProtocol {
   private            long                               requests        = 0;
   private            HandshakeInfo                      handshakeInfo;
   private volatile   OBinaryPushResponse                expectedPushResponse;
-  private            BlockingQueue<OBinaryPushResponse> pushResponse    = new SynchronousQueue<OBinaryPushResponse>();
+  private            BlockingQueue<OBinaryPushResponse> pushResponse    = new SynchronousQueue<>();
 
   private Function<Integer, OBinaryRequest<? extends OBinaryResponse>> factory = ONetworkBinaryProtocolFactory.defaultProtocol();
 

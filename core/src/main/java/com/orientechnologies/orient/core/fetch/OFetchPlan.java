@@ -20,17 +20,16 @@
 
 package com.orientechnologies.orient.core.fetch;
 
-import com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper;
 
 public class OFetchPlan {
   static final String                ANY_WILDCARD        = "*";
 
-  final Map<String, OFetchPlanLevel> fetchPlan           = new HashMap<String, OFetchPlanLevel>();
-  final Map<String, OFetchPlanLevel> fetchPlanStartsWith = new HashMap<String, OFetchPlanLevel>();
+  final Map<String, OFetchPlanLevel> fetchPlan           = new HashMap<>();
+  final Map<String, OFetchPlanLevel> fetchPlanStartsWith = new HashMap<>();
 
   private static class OFetchPlanLevel {
     public int depthLevelFrom;

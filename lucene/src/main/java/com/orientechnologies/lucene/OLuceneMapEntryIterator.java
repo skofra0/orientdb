@@ -16,16 +16,15 @@
 
 package com.orientechnologies.lucene;
 
+import org.apache.lucene.document.Document;
+import org.apache.lucene.index.IndexReader;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.Map;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.lucene.engine.OLuceneIndexEngineAbstract;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.index.OIndexDefinition;
-import org.apache.lucene.document.Document;
-import org.apache.lucene.index.IndexReader;
-
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.Map;
 
 public class OLuceneMapEntryIterator<K, V> implements Iterator<Map.Entry<K, V>> {
 
@@ -61,7 +60,7 @@ public class OLuceneMapEntryIterator<K, V> implements Iterator<Map.Entry<K, V>> 
       final String finalVal = val;
       final ORecordId id = new ORecordId(doc.get(OLuceneIndexEngineAbstract.RID));
       currentIdx++;
-      return new Map.Entry<K, V>() {
+      return new Map.Entry<>() {
         @Override
         public K getKey() {
           return (K) finalVal;

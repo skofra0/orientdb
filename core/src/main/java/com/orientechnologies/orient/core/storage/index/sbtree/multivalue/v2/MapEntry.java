@@ -1,8 +1,7 @@
 package com.orientechnologies.orient.core.storage.index.sbtree.multivalue.v2;
 
-import com.orientechnologies.orient.core.id.ORID;
-
 import java.util.Map;
+import com.orientechnologies.orient.core.id.ORID;
 
 final class MapEntry<K> implements Map.Entry<K, ORID> {
   private final K    key;

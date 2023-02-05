@@ -21,13 +21,10 @@ package com.orientechnologies.orient.core.db.record;
 
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
 import java.util.ListIterator;
-
 import com.orientechnologies.common.collection.OLazyIterator;
 import com.orientechnologies.common.collection.OLazyIteratorListWrapper;
 import com.orientechnologies.common.collection.OMultiValue;
-import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.record.ORecordMultiValueHelper.MULTIVALUE_CONTENT_TYPE;
 import com.orientechnologies.orient.core.exception.ORecordNotFoundException;
 import com.orientechnologies.orient.core.id.ORID;
@@ -35,7 +32,6 @@ import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.ORecordInternal;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper;
 
 /**
  * Lazy implementation of ArrayList. It's bound to a source ORecord object to keep track of changes. This avoid to call the
@@ -103,7 +99,7 @@ public class ORecordLazyList extends ORecordTrackedList implements ORecordLazyMu
    */
   public Iterator<OIdentifiable> rawIterator() {
     lazyLoad(false);
-    final Iterator<OIdentifiable> subIterator = new OLazyIterator<OIdentifiable>() {
+    final Iterator<OIdentifiable> subIterator = new OLazyIterator<>() {
       private int pos = -1;
 
       public boolean hasNext() {
@@ -133,7 +129,7 @@ public class ORecordLazyList extends ORecordTrackedList implements ORecordLazyMu
   @Override
   public OLazyIterator<OIdentifiable> iterator() {
     lazyLoad(false);
-    return new OLazyRecordIterator(sourceRecord, new OLazyIteratorListWrapper<OIdentifiable>(super.listIterator()),
+    return new OLazyRecordIterator(sourceRecord, new OLazyIteratorListWrapper<>(super.listIterator()),
         autoConvertToRecord && getOwner().getInternalStatus() != STATUS.MARSHALLING);
   }
 

@@ -18,17 +18,15 @@
 
 package com.orientechnologies.lucene.test;
 
-import com.orientechnologies.orient.core.command.script.OCommandScript;
-import com.orientechnologies.orient.core.index.OIndexEngineException;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.orient.core.sql.OCommandSQL;
-import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.io.InputStream;
 import java.util.List;
+import com.orientechnologies.orient.core.command.script.OCommandScript;
+import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.orientechnologies.orient.core.sql.OCommandSQL;
+import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 
 /**
  * Created by enricorisa on 02/10/14.

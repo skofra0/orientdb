@@ -20,13 +20,12 @@
 
 package com.orientechnologies.orient.core.sql.filter;
 
+import java.util.Map;
 import com.orientechnologies.orient.core.sql.OIndexSearchResult;
 import com.orientechnologies.orient.core.sql.OSQLHelper;
 import com.orientechnologies.orient.core.sql.operator.OIndexReuseType;
 import com.orientechnologies.orient.core.sql.operator.OQueryOperator;
 import com.orientechnologies.orient.core.sql.operator.OQueryOperatorEquals;
-
-import java.util.Map;
 
 /**
  * @author Artem Orobets (enisher-at-gmail.com)

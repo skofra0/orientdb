@@ -18,15 +18,14 @@
 
 package com.orientechnologies.orient.server.network.protocol.http.command.post;
 
+import java.io.IOException;
+import java.util.List;
 import com.orientechnologies.orient.server.OClientConnection;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpResponse;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpUtils;
 import com.orientechnologies.orient.server.network.protocol.http.ONetworkProtocolHttpAbstract;
 import com.orientechnologies.orient.server.network.protocol.http.command.OServerCommandAuthenticatedDbAbstract;
-
-import java.io.IOException;
-import java.util.List;
 
 public class OServerCommandPostKillDbConnection extends OServerCommandAuthenticatedDbAbstract {
   private static final String[] NAMES = { "POST|dbconnection/*" };

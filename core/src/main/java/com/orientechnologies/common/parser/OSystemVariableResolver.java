@@ -19,12 +19,11 @@
   */
 package com.orientechnologies.common.parser;
 
-import com.orientechnologies.common.log.OLogManager;
-
 import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import com.orientechnologies.common.log.OLogManager;
 
 /**
  * Resolve system variables embedded in a String.
@@ -67,7 +66,7 @@ public class OSystemVariableResolver implements OVariableParserListener {
   }
 
   public static void setEnv(final String name, String value) {
-    final Map<String, String> map = new HashMap<String, String>(System.getenv());
+    final Map<String, String> map = new HashMap<>(System.getenv());
     map.put(name, value);
     setEnv(map);
   }

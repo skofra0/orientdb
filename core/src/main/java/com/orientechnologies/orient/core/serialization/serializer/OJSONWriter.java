@@ -19,6 +19,19 @@
  */
 package com.orientechnologies.orient.core.serialization.serializer;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.lang.reflect.Array;
+import java.math.BigDecimal;
+import java.util.Base64;
+import java.util.Collection;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 import com.orientechnologies.common.collection.OMultiCollectionIterator;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.io.OIOUtils;
@@ -29,12 +42,6 @@ import com.orientechnologies.orient.core.exception.OSerializationException;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.util.ODateHelper;
-
-import java.io.*;
-import java.lang.reflect.Array;
-import java.math.BigDecimal;
-import java.util.*;
-import java.util.Map.Entry;
 
 @SuppressWarnings("unchecked")
 public class OJSONWriter {

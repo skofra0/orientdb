@@ -19,6 +19,8 @@
  */
 package com.orientechnologies.orient.core.tx;
 
+import java.util.HashMap;
+import java.util.Map;
 import com.orientechnologies.common.concur.lock.OLockException;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.cache.OLocalRecordCache;
@@ -37,14 +39,11 @@ import com.orientechnologies.orient.core.storage.OStorage;
 import com.orientechnologies.orient.core.storage.OStorageProxy;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public abstract class OTransactionAbstract implements OTransaction {
   protected ODatabaseDocumentInternal           database;
   protected TXSTATUS                            status         = TXSTATUS.INVALID;
   protected ISOLATION_LEVEL                     isolationLevel = ISOLATION_LEVEL.READ_COMMITTED;
-  protected HashMap<ORID, LockedRecordMetadata> locks          = new HashMap<ORID, LockedRecordMetadata>();
+  protected HashMap<ORID, LockedRecordMetadata> locks          = new HashMap<>();
 
   private static final class LockedRecordMetadata {
     private final OStorage.LOCKING_STRATEGY strategy;
@@ -214,7 +213,7 @@ public abstract class OTransactionAbstract implements OTransaction {
 
   @Override
   public HashMap<ORID, OStorage.LOCKING_STRATEGY> getLockedRecords() {
-    final HashMap<ORID, OStorage.LOCKING_STRATEGY> lockedRecords = new HashMap<ORID, OStorage.LOCKING_STRATEGY>();
+    final HashMap<ORID, OStorage.LOCKING_STRATEGY> lockedRecords = new HashMap<>();
 
     for (Map.Entry<ORID, LockedRecordMetadata> entry : locks.entrySet()) {
       if (entry.getValue().locksCount > 0)

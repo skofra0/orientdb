@@ -19,6 +19,28 @@
  */
 package com.orientechnologies.orient.core.command.script;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringReader;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
+import javax.script.Bindings;
+import javax.script.Compilable;
+import javax.script.CompiledScript;
+import javax.script.ScriptContext;
+import javax.script.ScriptEngine;
+import javax.script.ScriptException;
+import javax.script.SimpleBindings;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.common.concur.ONeedRetryException;
 import com.orientechnologies.common.concur.resource.OPartitionedObjectPool;
@@ -27,7 +49,11 @@ import com.orientechnologies.common.io.OIOUtils;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.parser.OContextVariableResolver;
 import com.orientechnologies.orient.core.Orient;
-import com.orientechnologies.orient.core.command.*;
+import com.orientechnologies.orient.core.command.OBasicCommandContext;
+import com.orientechnologies.orient.core.command.OCommandContext;
+import com.orientechnologies.orient.core.command.OCommandDistributedReplicateRequest;
+import com.orientechnologies.orient.core.command.OCommandExecutorAbstract;
+import com.orientechnologies.orient.core.command.OCommandRequest;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
@@ -49,11 +75,6 @@ import com.orientechnologies.orient.core.sql.parser.ParseException;
 import com.orientechnologies.orient.core.sql.query.OLegacyResultSet;
 import com.orientechnologies.orient.core.storage.ORecordDuplicatedException;
 import com.orientechnologies.orient.core.tx.OTransaction;
-
-import javax.script.*;
-import java.io.*;
-import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Executes Script Commands.
@@ -436,7 +457,7 @@ public class OCommandExecutorScript extends OCommandExecutorAbstract
     if (lastLine == null) {
       return Collections.EMPTY_LIST;
     }
-    List<String> result = new ArrayList<String>();
+    List<String> result = new ArrayList<>();
     Character prev = null;
     Character lastQuote = null;
     StringBuilder buffer = new StringBuilder();
@@ -521,7 +542,7 @@ public class OCommandExecutorScript extends OCommandExecutorAbstract
 
   private Object toMap(Object parameters) {
     if (parameters instanceof SimpleBindings) {
-      HashMap<Object, Object> result = new LinkedHashMap<Object, Object>();
+      HashMap<Object, Object> result = new LinkedHashMap<>();
       result.putAll((SimpleBindings) parameters);
       return result;
     }
@@ -535,10 +556,10 @@ public class OCommandExecutorScript extends OCommandExecutorAbstract
       lastResult = null;
     else if (iValue.startsWith("[") && iValue.endsWith("]")) {
       // ARRAY - COLLECTION
-      final List<String> items = new ArrayList<String>();
+      final List<String> items = new ArrayList<>();
 
       OStringSerializerHelper.getCollection(iValue, 0, items);
-      final List<Object> result = new ArrayList<Object>(items.size());
+      final List<Object> result = new ArrayList<>(items.size());
 
       for (int i = 0; i < items.size(); ++i) {
         String item = items.get(i);
@@ -550,7 +571,7 @@ public class OCommandExecutorScript extends OCommandExecutorAbstract
     } else if (iValue.startsWith("{") && iValue.endsWith("}")) {
       // MAP
       final Map<String, String> map = OStringSerializerHelper.getMap(iValue);
-      final Map<Object, Object> result = new HashMap<Object, Object>(map.size());
+      final Map<Object, Object> result = new HashMap<>(map.size());
 
       for (Map.Entry<String, String> entry : map.entrySet()) {
         // KEY

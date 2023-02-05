@@ -19,9 +19,8 @@
  */
 package com.orientechnologies.orient.server.distributed;
 
-import com.orientechnologies.orient.core.record.impl.ODocument;
-
 import java.util.Set;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
  * @author Luca Garulli (l.garulli--at--orientdb.com)

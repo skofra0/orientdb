@@ -19,6 +19,17 @@
  */
 package com.orientechnologies.orient.core.index;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.core.collate.OCollate;
 import com.orientechnologies.orient.core.db.record.OMultiValueChangeEvent;
@@ -26,9 +37,6 @@ import com.orientechnologies.orient.core.db.record.ORecordElement;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandExecutorSQLCreateIndex;
-
-import java.lang.reflect.InvocationTargetException;
-import java.util.*;
 
 /**
  * Index that consist of several indexDefinitions like {@link OPropertyIndexDefinition}.
@@ -42,7 +50,7 @@ public class OCompositeIndexDefinition extends OAbstractIndexDefinition {
   private OCompositeCollate collate = new OCompositeCollate(this);
 
   public OCompositeIndexDefinition() {
-    indexDefinitions = new ArrayList<OIndexDefinition>(5);
+    indexDefinitions = new ArrayList<>(5);
   }
 
   /**
@@ -53,7 +61,7 @@ public class OCompositeIndexDefinition extends OAbstractIndexDefinition {
   public OCompositeIndexDefinition(final String iClassName) {
     super();
 
-    indexDefinitions = new ArrayList<OIndexDefinition>(5);
+    indexDefinitions = new ArrayList<>(5);
     className = iClassName;
   }
 
@@ -66,7 +74,7 @@ public class OCompositeIndexDefinition extends OAbstractIndexDefinition {
   public OCompositeIndexDefinition(final String iClassName, final List<? extends OIndexDefinition> iIndexes, int version) {
     super();
 
-    indexDefinitions = new ArrayList<OIndexDefinition>(5);
+    indexDefinitions = new ArrayList<>(5);
     for (OIndexDefinition indexDefinition : iIndexes) {
       indexDefinitions.add(indexDefinition);
       collate.addCollate(indexDefinition.getCollate());
@@ -109,7 +117,7 @@ public class OCompositeIndexDefinition extends OAbstractIndexDefinition {
    * {@inheritDoc}
    */
   public List<String> getFields() {
-    final List<String> fields = new LinkedList<String>();
+    final List<String> fields = new LinkedList<>();
     for (final OIndexDefinition indexDefinition : indexDefinitions) {
       fields.addAll(indexDefinition.getFields());
     }
@@ -120,7 +128,7 @@ public class OCompositeIndexDefinition extends OAbstractIndexDefinition {
    * {@inheritDoc}
    */
   public List<String> getFieldsToIndex() {
-    final List<String> fields = new LinkedList<String>();
+    final List<String> fields = new LinkedList<>();
     for (final OIndexDefinition indexDefinition : indexDefinitions) {
       fields.addAll(indexDefinition.getFieldsToIndex());
     }
@@ -131,7 +139,7 @@ public class OCompositeIndexDefinition extends OAbstractIndexDefinition {
    * {@inheritDoc}
    */
   public Object getDocumentValueToIndex(final ODocument iDocument) {
-    final List<OCompositeKey> compositeKeys = new ArrayList<OCompositeKey>(10);
+    final List<OCompositeKey> compositeKeys = new ArrayList<>(10);
     final OCompositeKey firstKey = new OCompositeKey();
     boolean containsCollection = false;
 
@@ -174,7 +182,7 @@ public class OCompositeIndexDefinition extends OAbstractIndexDefinition {
     int currentParamIndex = 0;
     final OCompositeKey firstKey = new OCompositeKey();
 
-    final List<OCompositeKey> compositeKeys = new ArrayList<OCompositeKey>(10);
+    final List<OCompositeKey> compositeKeys = new ArrayList<>(10);
     compositeKeys.add(firstKey);
 
     boolean containsCollection = false;
@@ -338,7 +346,7 @@ public class OCompositeIndexDefinition extends OAbstractIndexDefinition {
    * {@inheritDoc}
    */
   public OType[] getTypes() {
-    final List<OType> types = new LinkedList<OType>();
+    final List<OType> types = new LinkedList<>();
     for (final OIndexDefinition indexDefinition : indexDefinitions)
       Collections.addAll(types, indexDefinition.getTypes());
 
@@ -393,8 +401,8 @@ public class OCompositeIndexDefinition extends OAbstractIndexDefinition {
   protected void serializeToStream() {
     super.serializeToStream();
 
-    final List<ODocument> inds = new ArrayList<ODocument>(indexDefinitions.size());
-    final List<String> indClasses = new ArrayList<String>(indexDefinitions.size());
+    final List<ODocument> inds = new ArrayList<>(indexDefinitions.size());
+    final List<String> indClasses = new ArrayList<>(indexDefinitions.size());
 
     document.field("className", className);
     for (final OIndexDefinition indexDefinition : indexDefinitions) {

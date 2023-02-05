@@ -1,12 +1,12 @@
 package com.orientechnologies.orient.core.storage.impl.local;
 
-import com.orientechnologies.orient.core.config.OGlobalConfiguration;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
-import com.orientechnologies.orient.core.storage.OStorage;
-import org.junit.Assert;import org.junit.Before; import org.junit.After;import org.junit.Test;
+import org.junit.Assert;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import com.orientechnologies.orient.core.config.OGlobalConfiguration;
+import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
+import com.orientechnologies.orient.core.storage.OStorage;
 
 public class OStorageLocalTest {
 
@@ -70,7 +70,7 @@ public class OStorageLocalTest {
 
   public void contextConfigurationOnCreation() {
     ODatabaseDocumentTx db = new ODatabaseDocumentTx("memory:testCtxCfgOnCreate");
-    Map<OGlobalConfiguration, Object> settings = new HashMap<OGlobalConfiguration, Object>();
+    Map<OGlobalConfiguration, Object> settings = new HashMap<>();
     settings.put(OGlobalConfiguration.STORAGE_COMPRESSION_METHOD, "gzip");
     db.create(settings);
     db.close();

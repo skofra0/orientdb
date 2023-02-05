@@ -1,13 +1,12 @@
 package com.orientechnologies.orient.core.storage.impl.local.paginated.wal;
 
+import org.junit.Assert;
+import org.junit.Test;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.ORecordOperationMetadata;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperationMetadata;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class OAtomicUnitEndRecordV2Test {
   @Test

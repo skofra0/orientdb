@@ -17,12 +17,11 @@
  */
 package com.orientechnologies.spatial.shape.legacy;
 
-import com.orientechnologies.orient.core.index.OCompositeKey;
 import org.locationtech.spatial4j.context.SpatialContext;
 import org.locationtech.spatial4j.shape.Shape;
-
 import java.util.ArrayList;
 import java.util.List;
+import com.orientechnologies.orient.core.index.OCompositeKey;
 
 /**
  * Created by Enrico Risa on 23/10/15.
@@ -30,7 +29,7 @@ import java.util.List;
 public class OShapeBuilderLegacyImpl implements OShapeBuilderLegacy<Shape> {
 
   public static final OShapeBuilderLegacyImpl INSTANCE = new OShapeBuilderLegacyImpl();
-  List<OShapeBuilderLegacy> builders = new ArrayList<OShapeBuilderLegacy>();
+  List<OShapeBuilderLegacy> builders = new ArrayList<>();
 
   protected OShapeBuilderLegacyImpl() {
     builders.add(new OPointLegecyBuilder());

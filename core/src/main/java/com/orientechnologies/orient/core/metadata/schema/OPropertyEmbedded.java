@@ -1,5 +1,9 @@
 package com.orientechnologies.orient.core.metadata.schema;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.collate.OCollate;
 import com.orientechnologies.orient.core.collate.ODefaultCollate;
@@ -16,12 +20,6 @@ import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.OSQLEngine;
 import com.orientechnologies.orient.core.storage.OAutoshardedStorage;
 import com.orientechnologies.orient.core.storage.OStorage;
-import com.orientechnologies.orient.core.storage.OStorageProxy;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Created by tglman on 14/06/17.
@@ -210,7 +208,7 @@ public class OPropertyEmbedded extends OPropertyImpl {
 
       if ((this.collate != null && !this.collate.equals(oldCollate)) || (this.collate == null && oldCollate != null)) {
         final Set<OIndex<?>> indexes = owner.getClassIndexes();
-        final List<OIndex<?>> indexesToRecreate = new ArrayList<OIndex<?>>();
+        final List<OIndex<?>> indexesToRecreate = new ArrayList<>();
 
         for (OIndex<?> index : indexes) {
           OIndexDefinition definition = index.getDefinition();
@@ -312,7 +310,7 @@ public class OPropertyEmbedded extends OPropertyImpl {
       checkEmbedded();
 
       if (customFields == null)
-        customFields = new HashMap<String, String>();
+        customFields = new HashMap<>();
       if (iValue == null || "null".equalsIgnoreCase(iValue))
         customFields.remove(iName);
       else

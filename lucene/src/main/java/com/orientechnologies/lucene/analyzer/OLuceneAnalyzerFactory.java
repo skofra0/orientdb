@@ -1,18 +1,17 @@
 package com.orientechnologies.lucene.analyzer;
 
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.CharArraySet;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import java.lang.reflect.Constructor;
+import java.util.Collection;
+import java.util.Locale;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.index.OIndexDefinition;
 import com.orientechnologies.orient.core.index.OIndexException;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.CharArraySet;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
-
-import java.lang.reflect.Constructor;
-import java.util.Collection;
-import java.util.Locale;
 
 /**
  * Created by frank on 30/10/2015.

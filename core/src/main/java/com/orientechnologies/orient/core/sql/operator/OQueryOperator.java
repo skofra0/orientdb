@@ -19,6 +19,7 @@
  */
 package com.orientechnologies.orient.core.sql.operator;
 
+import java.util.List;
 import com.orientechnologies.common.profiler.OProfiler;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.command.OCommandContext;
@@ -37,8 +38,6 @@ import com.orientechnologies.orient.core.sql.operator.math.OQueryOperatorMinus;
 import com.orientechnologies.orient.core.sql.operator.math.OQueryOperatorMod;
 import com.orientechnologies.orient.core.sql.operator.math.OQueryOperatorMultiply;
 import com.orientechnologies.orient.core.sql.operator.math.OQueryOperatorPlus;
-
-import java.util.List;
 
 /**
  * Query Operators. Remember to handle the operator in OQueryItemCondition.

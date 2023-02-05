@@ -18,17 +18,15 @@
 
 package com.orientechnologies.lucene.test;
 
-import com.orientechnologies.common.log.OLogManager;
-import com.orientechnologies.orient.core.command.script.OCommandScript;
-import com.orientechnologies.orient.core.metadata.OMetadata;
-import com.orientechnologies.orient.core.metadata.OMetadataInternal;
-import com.orientechnologies.orient.core.sql.OCommandSQL;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
-
 import java.io.InputStream;
 import java.util.logging.Level;
+import com.orientechnologies.common.log.OLogManager;
+import com.orientechnologies.orient.core.command.script.OCommandScript;
+import com.orientechnologies.orient.core.metadata.OMetadata;
+import com.orientechnologies.orient.core.sql.OCommandSQL;
 
 /**
  * Created by enricorisa on 26/09/14.

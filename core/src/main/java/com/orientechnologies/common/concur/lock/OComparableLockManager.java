@@ -19,14 +19,12 @@
  */
 package com.orientechnologies.common.concur.lock;
 
-import com.orientechnologies.common.exception.OException;
-
-import java.util.Collection;
 import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+import com.orientechnologies.common.exception.OException;
 
 public class OComparableLockManager<T extends  Comparable> {
   public enum LOCK {
@@ -50,7 +48,7 @@ public class OComparableLockManager<T extends  Comparable> {
   }
 
   public OComparableLockManager(final boolean iEnabled, final int iAcquireTimeout, final int concurrencyLevel) {
-    map = new ConcurrentSkipListMap<T, CountableLock>();
+    map = new ConcurrentSkipListMap<>();
 
     acquireTimeout = iAcquireTimeout;
     enabled = iEnabled;

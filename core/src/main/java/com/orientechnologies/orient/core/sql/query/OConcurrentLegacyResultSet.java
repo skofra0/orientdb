@@ -19,12 +19,15 @@
  */
 package com.orientechnologies.orient.core.sql.query;
 
-import com.orientechnologies.common.log.OLogManager;
-
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
-import java.util.*;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
+import com.orientechnologies.common.log.OLogManager;
 
 /**
  * ResultSet implementation that allows concurrent population.
@@ -41,7 +44,7 @@ public class OConcurrentLegacyResultSet<T> implements OLegacyResultSet<T> {
   protected transient volatile boolean         completed         = false;
 
   public OConcurrentLegacyResultSet() {
-    this.wrapped = new OBasicLegacyResultSet<T>();
+    this.wrapped = new OBasicLegacyResultSet<>();
   }
 
   public OConcurrentLegacyResultSet(final OBasicLegacyResultSet<T> wrapped) {
@@ -72,7 +75,7 @@ public class OConcurrentLegacyResultSet<T> implements OLegacyResultSet<T> {
   @Override
   public OLegacyResultSet<T> copy() {
     synchronized (wrapped) {
-      final OConcurrentLegacyResultSet<T> copy = new OConcurrentLegacyResultSet<T>(wrapped.copy());
+      final OConcurrentLegacyResultSet<T> copy = new OConcurrentLegacyResultSet<>(wrapped.copy());
       copy.completed = true;
       return copy;
     }
@@ -176,7 +179,7 @@ public class OConcurrentLegacyResultSet<T> implements OLegacyResultSet<T> {
 
   @Override
   public Iterator<T> iterator() {
-    return new Iterator<T>() {
+    return new Iterator<>() {
       private int index = 0;
 
       @Override

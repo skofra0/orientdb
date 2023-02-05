@@ -15,6 +15,9 @@
  */
 package com.orientechnologies.orient.core.serialization.serializer.record.binary;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Calendar;
+import java.util.TimeZone;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.serialization.types.OIntegerSerializer;
 import com.orientechnologies.common.serialization.types.OLongSerializer;
@@ -22,10 +25,6 @@ import com.orientechnologies.orient.core.exception.OSerializationException;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.metadata.schema.OType;
-
-import java.io.UnsupportedEncodingException;
-import java.util.Calendar;
-import java.util.TimeZone;
 
 /**
  * @author mdjurovi

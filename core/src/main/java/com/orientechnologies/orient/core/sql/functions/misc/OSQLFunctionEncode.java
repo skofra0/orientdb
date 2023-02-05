@@ -15,6 +15,7 @@
  */
 package com.orientechnologies.orient.core.sql.functions.misc;
 
+import java.util.Base64;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.exception.ODatabaseException;
@@ -23,8 +24,6 @@ import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.impl.OBlob;
 import com.orientechnologies.orient.core.serialization.OSerializableStream;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunctionAbstract;
-
-import java.util.Base64;
 
 /**
  * Encode a string in various format (only base64 for now)

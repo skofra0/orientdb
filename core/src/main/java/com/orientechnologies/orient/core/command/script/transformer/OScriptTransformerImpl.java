@@ -1,5 +1,10 @@
 package com.orientechnologies.orient.core.command.script.transformer;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import com.orientechnologies.orient.core.command.script.OScriptResultSet;
 import com.orientechnologies.orient.core.command.script.OScriptResultSets;
 import com.orientechnologies.orient.core.command.script.transformer.result.MapTransformer;
@@ -8,8 +13,6 @@ import com.orientechnologies.orient.core.command.script.transformer.resultset.OR
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.sql.executor.OResultInternal;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
-
-import java.util.*;
 
 /**
  * Created by Enrico Risa on 27/01/17.

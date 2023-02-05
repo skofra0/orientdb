@@ -19,11 +19,11 @@
   */
 package com.orientechnologies.orient.core.sql.operator;
 
+import org.junit.Assert;
+import org.junit.Test;
+import java.math.BigDecimal;
 import com.orientechnologies.orient.core.serialization.serializer.record.binary.ORecordSerializerBinary;
 import com.orientechnologies.orient.core.sql.operator.math.OQueryOperatorMinus;
-import org.junit.Assert; import org.junit.Test;
-
-import java.math.BigDecimal;
 
 /**
  * @author Luigi Dell'Aquila (l.dellaquila-(at)-orientdb.com)

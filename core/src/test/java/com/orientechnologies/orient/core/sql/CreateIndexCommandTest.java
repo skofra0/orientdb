@@ -1,11 +1,11 @@
 package com.orientechnologies.orient.core.sql;
 
-import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
-import com.orientechnologies.orient.core.index.OIndexException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
+import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
+import com.orientechnologies.orient.core.index.OIndexException;
 
 /**
  * Created by tglman on 02/02/16.

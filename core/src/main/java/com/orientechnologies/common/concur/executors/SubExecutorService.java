@@ -24,7 +24,14 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
+import java.util.concurrent.RejectedExecutionException;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -51,7 +58,7 @@ public class SubExecutorService implements ExecutorService {
   private final Lock      aliveLock  = new ReentrantLock();
   private final Condition terminated = aliveLock.newCondition();
 
-  private final Set<Task> tasks = new HashSet<Task>();
+  private final Set<Task> tasks = new HashSet<>();
 
   /**
    * Constructs a new SubExecutorService for the given executor service.

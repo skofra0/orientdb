@@ -19,10 +19,9 @@
  */
 package com.orientechnologies.orient.core.sql;
 
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-
 import java.util.Iterator;
 import java.util.Map;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
 
 /**
  * SQL UPDATE command.

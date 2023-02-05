@@ -1,5 +1,15 @@
 package com.orientechnologies.orient.core.db.record.impl;
 
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
+import org.junit.Ignore;
+import org.junit.Test;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.db.record.ORecordLazySet;
 import com.orientechnologies.orient.core.db.record.ridbag.ORidBag;
@@ -8,13 +18,6 @@ import com.orientechnologies.orient.core.record.ORecordInternal;
 import com.orientechnologies.orient.core.record.impl.ODirtyManager;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.record.impl.ODocumentInternal;
-import org.junit.Ignore;
-import org.junit.Test;
-
-import java.util.*;
-
-import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertEquals;
 
 public class ODirtyManagerTest {
 
@@ -94,12 +97,12 @@ public class ODirtyManagerTest {
   public void testLinkCollection() {
     ODocument doc = new ODocument();
     doc.field("test", "ddd");
-    List<ODocument> lst = new ArrayList<ODocument>();
+    List<ODocument> lst = new ArrayList<>();
     ODocument doc1 = new ODocument();
     lst.add(doc1);
     doc.field("list", lst);
 
-    Set<ODocument> set = new HashSet<ODocument>();
+    Set<ODocument> set = new HashSet<>();
     ODocument doc2 = new ODocument();
     set.add(doc2);
     doc.field("set", set);
@@ -116,13 +119,13 @@ public class ODirtyManagerTest {
   public void testLinkCollectionRemove() {
     ODocument doc = new ODocument();
     doc.field("test", "ddd");
-    List<ODocument> lst = new ArrayList<ODocument>();
+    List<ODocument> lst = new ArrayList<>();
     ODocument doc1 = new ODocument();
     lst.add(doc1);
     doc.field("list", lst);
     doc.removeField("list");
 
-    Set<ODocument> set = new HashSet<ODocument>();
+    Set<ODocument> set = new HashSet<>();
     ODocument doc2 = new ODocument();
     set.add(doc2);
     doc.field("set", set);
@@ -138,11 +141,11 @@ public class ODirtyManagerTest {
   public void testLinkCollectionOther() {
     ODocument doc = new ODocument();
     doc.field("test", "ddd");
-    List<ODocument> lst = new ArrayList<ODocument>();
+    List<ODocument> lst = new ArrayList<>();
     ODocument doc1 = new ODocument();
     lst.add(doc1);
     doc.field("list", lst);
-    Set<ODocument> set = new HashSet<ODocument>();
+    Set<ODocument> set = new HashSet<>();
     ODocument doc2 = new ODocument();
     set.add(doc2);
     doc.field("set", set);
@@ -157,7 +160,7 @@ public class ODirtyManagerTest {
   public void testLinkMapOther() {
     ODocument doc = new ODocument();
     doc.field("test", "ddd");
-    Map<String, ODocument> map = new HashMap<String, ODocument>();
+    Map<String, ODocument> map = new HashMap<>();
     ODocument doc1 = new ODocument();
     map.put("some", doc1);
     doc.field("list", map);
@@ -172,7 +175,7 @@ public class ODirtyManagerTest {
   public void testEmbeddedMap() {
     ODocument doc = new ODocument();
     doc.field("test", "ddd");
-    Map<String, Object> map = new HashMap<String, Object>();
+    Map<String, Object> map = new HashMap<>();
 
     ODocument doc1 = new ODocument();
     map.put("bla", "bla");
@@ -190,12 +193,12 @@ public class ODirtyManagerTest {
     ODocument doc = new ODocument();
     doc.field("test", "ddd");
 
-    List<ODocument> lst = new ArrayList<ODocument>();
+    List<ODocument> lst = new ArrayList<>();
     ODocument doc1 = new ODocument();
     lst.add(doc1);
     doc.field("list", lst, OType.EMBEDDEDLIST);
 
-    Set<ODocument> set = new HashSet<ODocument>();
+    Set<ODocument> set = new HashSet<>();
     ODocument doc2 = new ODocument();
     set.add(doc2);
     doc.field("set", set, OType.EMBEDDEDSET);
@@ -227,7 +230,7 @@ public class ODirtyManagerTest {
     doc.field("emb", emb, OType.EMBEDDED);
 
     ODocument embedInList = new ODocument();
-    List<ODocument> lst = new ArrayList<ODocument>();
+    List<ODocument> lst = new ArrayList<>();
     lst.add(embedInList);
     emb.field("lst", lst, OType.EMBEDDEDLIST);
     ODocument link = new ODocument();
@@ -244,12 +247,12 @@ public class ODirtyManagerTest {
   public void testDoubleLevelEmbeddedCollection() {
     ODocument doc = new ODocument();
     doc.field("test", "ddd");
-    List<ODocument> lst = new ArrayList<ODocument>();
+    List<ODocument> lst = new ArrayList<>();
     ODocument embeddedInList = new ODocument();
     ODocument link = new ODocument();
     embeddedInList.field("link", link);
     lst.add(embeddedInList);
-    Set<ODocument> set = new HashSet<ODocument>();
+    Set<ODocument> set = new HashSet<>();
     ODocument embeddedInSet = new ODocument();
     embeddedInSet.field("list", lst, OType.EMBEDDEDLIST);
     set.add(embeddedInSet);
@@ -267,12 +270,12 @@ public class ODirtyManagerTest {
   public void testDoubleCollectionEmbedded() {
     ODocument doc = new ODocument();
     doc.field("test", "ddd");
-    List<ODocument> lst = new ArrayList<ODocument>();
+    List<ODocument> lst = new ArrayList<>();
     ODocument embeddedInList = new ODocument();
     ODocument link = new ODocument();
     embeddedInList.field("link", link);
     lst.add(embeddedInList);
-    Set<Object> set = new HashSet<Object>();
+    Set<Object> set = new HashSet<>();
     set.add(lst);
     doc.field("set", set, OType.EMBEDDEDSET);
     ODocumentInternal.convertAllMultiValuesToTrackedVersions(doc);
@@ -286,14 +289,14 @@ public class ODirtyManagerTest {
   public void testDoubleCollectionDocumentEmbedded() {
     ODocument doc = new ODocument();
     doc.field("test", "ddd");
-    List<ODocument> lst = new ArrayList<ODocument>();
+    List<ODocument> lst = new ArrayList<>();
     ODocument embeddedInList = new ODocument();
     ODocument link = new ODocument();
     ODocument embInDoc = new ODocument();
     embInDoc.field("link", link);
     embeddedInList.field("some", embInDoc, OType.EMBEDDED);
     lst.add(embeddedInList);
-    Set<Object> set = new HashSet<Object>();
+    Set<Object> set = new HashSet<>();
     set.add(lst);
     doc.field("set", set, OType.EMBEDDEDSET);
     ODocumentInternal.convertAllMultiValuesToTrackedVersions(doc);
@@ -307,12 +310,12 @@ public class ODirtyManagerTest {
   public void testDoubleMapEmbedded() {
     ODocument doc = new ODocument();
     doc.field("test", "ddd");
-    List<ODocument> lst = new ArrayList<ODocument>();
+    List<ODocument> lst = new ArrayList<>();
     ODocument embeddedInList = new ODocument();
     ODocument link = new ODocument();
     embeddedInList.field("link", link);
     lst.add(embeddedInList);
-    Map<String, Object> map = new HashMap<String, Object>();
+    Map<String, Object> map = new HashMap<>();
     map.put("some", lst);
     doc.field("set", map, OType.EMBEDDEDMAP);
     ODocumentInternal.convertAllMultiValuesToTrackedVersions(doc);
@@ -326,7 +329,7 @@ public class ODirtyManagerTest {
   public void testLinkSet() {
     ODocument doc = new ODocument();
     doc.field("test", "ddd");
-    Set<ODocument> set = new HashSet<ODocument>();
+    Set<ODocument> set = new HashSet<>();
     ODocument link = new ODocument();
     set.add(link);
     doc.field("set", set);
@@ -372,7 +375,7 @@ public class ODirtyManagerTest {
   public void testLinkList() {
     ODocument doc = new ODocument();
     doc.field("test", "ddd");
-    List<ODocument> list = new ArrayList<ODocument>();
+    List<ODocument> list = new ArrayList<>();
     ODocument link = new ODocument();
     list.add(link);
     doc.field("list", list, OType.LINKLIST);
@@ -390,7 +393,7 @@ public class ODirtyManagerTest {
   public void testLinkMap() {
     ODocument doc = new ODocument();
     doc.field("test", "ddd");
-    Map<String, ODocument> map = new HashMap<String, ODocument>();
+    Map<String, ODocument> map = new HashMap<>();
     ODocument link = new ODocument();
     map.put("bla", link);
     doc.field("map", map, OType.LINKMAP);
@@ -406,7 +409,7 @@ public class ODirtyManagerTest {
 
     ODocument doc = new ODocument();
 
-    Map<String, ODocument> embeddedMap = new HashMap<String, ODocument>();
+    Map<String, ODocument> embeddedMap = new HashMap<>();
     ODocument embeddedMapDoc = new ODocument();
     ORidBag embeddedMapDocRidBag = new ORidBag();
     ODocument link = new ODocument();

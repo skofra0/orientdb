@@ -19,6 +19,18 @@
  */
 package com.orientechnologies.orient.core.serialization.serializer;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.io.OIOUtils;
 import com.orientechnologies.common.parser.OStringParser;
@@ -36,18 +48,6 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.serialization.serializer.record.string.ORecordSerializerSchemaAware2CSV;
 import com.orientechnologies.orient.core.serialization.serializer.string.OStringSerializerAnyStreamable;
 import com.orientechnologies.orient.core.sql.OCommandSQLParsingException;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public abstract class OStringSerializerHelper {
   public static final char RECORD_SEPARATOR = ',';
@@ -305,7 +305,7 @@ public abstract class OStringSerializerHelper {
                                         final boolean iConsiderBags, boolean iUnicode, boolean iPreserveQuotes, final int maxRidbagSizeBeforeSkip, Set<Integer> skippedPartsIndexes, final char... iJumpChars) {
 
     final StringBuilder buffer = new StringBuilder(128);
-    final ArrayList<String> parts = new ArrayList<String>();
+    final ArrayList<String> parts = new ArrayList<>();
 
     int previousBegin_1 = beginIndex;
     int previousBegin_2 = beginIndex;
@@ -335,7 +335,7 @@ public abstract class OStringSerializerHelper {
                                         final int endIndex, final boolean iStringSeparatorExtended, boolean iConsiderBraces, boolean iConsiderSets,
                                         boolean considerBags, final char... iJumpChars) {
     final StringBuilder buffer = new StringBuilder(128);
-    final ArrayList<String> parts = new ArrayList<String>();
+    final ArrayList<String> parts = new ArrayList<>();
 
     int startSeparatorAt = -1;
     if (iSource != null && !iSource.isEmpty()) {
@@ -812,7 +812,7 @@ public abstract class OStringSerializerHelper {
   }
 
   public static List<String> getParameters(final String iText) {
-    final List<String> params = new ArrayList<String>();
+    final List<String> params = new ArrayList<>();
     try {
       getParameters(iText, 0, -1, params);
     } catch (Exception e) {
@@ -834,7 +834,7 @@ public abstract class OStringSerializerHelper {
     if (entries.size() == 0)
       return Collections.emptyMap();
 
-    Map<String, String> map = new HashMap<String, String>();
+    Map<String, String> map = new HashMap<>();
 
     List<String> entry;
     for (String item : entries) {
@@ -1140,7 +1140,7 @@ public abstract class OStringSerializerHelper {
 
   public static int getLowerIndexOfKeywords(final String iText, final int iBeginOffset, final String... iToSearch) {
     Character lastQuote = null;
-    List<Character> nestedStack = new LinkedList<Character>();
+    List<Character> nestedStack = new LinkedList<>();
 
     for (int i = iBeginOffset; i < iText.length(); i++) {
 

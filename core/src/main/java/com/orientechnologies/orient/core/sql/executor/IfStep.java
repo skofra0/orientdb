@@ -1,12 +1,11 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.util.List;
 import com.orientechnologies.common.concur.OTimeoutException;
 import com.orientechnologies.orient.core.command.OBasicCommandContext;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.sql.parser.OBooleanExpression;
 import com.orientechnologies.orient.core.sql.parser.OStatement;
-
-import java.util.List;
 
 /**
  * Created by luigidellaquila on 19/09/16.

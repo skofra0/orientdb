@@ -16,12 +16,11 @@
  */
 package com.orientechnologies.orient.core.sql.method.misc;
 
+import java.text.Normalizer;
 import com.orientechnologies.common.io.OIOUtils;
 import com.orientechnologies.common.util.OPatternConst;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
-
-import java.text.Normalizer;
 
 /**
  *

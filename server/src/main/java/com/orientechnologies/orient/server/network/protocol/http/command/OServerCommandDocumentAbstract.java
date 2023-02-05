@@ -20,7 +20,6 @@
 package com.orientechnologies.orient.server.network.protocol.http.command;
 
 import java.util.Map;
-
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;

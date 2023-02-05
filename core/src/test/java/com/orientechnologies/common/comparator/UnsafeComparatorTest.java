@@ -1,7 +1,6 @@
 package com.orientechnologies.common.comparator;
 
 import org.junit.Assert;
-import org.junit.Test;
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)
  * @since 11.07.12

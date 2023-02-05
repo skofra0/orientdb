@@ -17,18 +17,17 @@
  */
 package com.orientechnologies.spatial.shape;
 
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.spatial4j.shape.Shape;
+import org.locationtech.spatial4j.shape.ShapeCollection;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.orient.core.db.ODatabaseInternal;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import org.locationtech.jts.geom.Geometry;
-import org.locationtech.spatial4j.shape.Shape;
-import org.locationtech.spatial4j.shape.ShapeCollection;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Enrico Risa on 17/08/15.
@@ -63,7 +62,7 @@ public class OGeometryCollectionShapeBuilder extends OComplexShapeBuilder<ShapeC
 
     List<ODocument> geometries = doc.field("geometries");
 
-    List<Shape> shapes = new ArrayList<Shape>();
+    List<Shape> shapes = new ArrayList<>();
 
     Geometry[] geoms = new Geometry[geometries.size()];
     for (ODocument geometry : geometries) {
@@ -99,7 +98,7 @@ public class OGeometryCollectionShapeBuilder extends OComplexShapeBuilder<ShapeC
   public ODocument toDoc(ShapeCollection<Shape> shapes) {
 
     ODocument doc = new ODocument(getName());
-    List<ODocument> geometries = new ArrayList<ODocument>(shapes.size());
+    List<ODocument> geometries = new ArrayList<>(shapes.size());
     for (Shape s : shapes) {
       geometries.add(shapeFactory.toDoc(s));
     }

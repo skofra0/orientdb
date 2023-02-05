@@ -18,16 +18,15 @@
 
 package com.orientechnologies.lucene.test;
 
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.junit.Assert;
+import org.junit.Test;
+import java.io.InputStream;
+import java.util.List;
 import com.orientechnologies.orient.core.command.script.OCommandScript;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.io.InputStream;
-import java.util.List;
 
 /**
  * Created by enricorisa on 26/09/14.

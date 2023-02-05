@@ -1,16 +1,14 @@
 package com.orientechnologies.lucene.tests;
 
-import com.orientechnologies.orient.core.sql.executor.OResultSet;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.apache.lucene.analysis.core.KeywordAnalyzer;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.io.InputStream;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import com.orientechnologies.orient.core.sql.executor.OResultSet;
 
 /**
  * Created by frank on 19/05/2016.

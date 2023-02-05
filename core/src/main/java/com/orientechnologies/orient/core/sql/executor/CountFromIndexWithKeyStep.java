@@ -1,13 +1,12 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.util.Map;
+import java.util.Optional;
 import com.orientechnologies.common.concur.OTimeoutException;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.index.OIndex;
 import com.orientechnologies.orient.core.sql.parser.OExpression;
 import com.orientechnologies.orient.core.sql.parser.OIndexIdentifier;
-
-import java.util.Map;
-import java.util.Optional;
 
 /**
  * Returns the number of records contained in an index

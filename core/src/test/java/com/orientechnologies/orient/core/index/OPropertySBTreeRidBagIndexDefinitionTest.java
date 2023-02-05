@@ -1,9 +1,9 @@
 package com.orientechnologies.orient.core.index;
 
-import com.orientechnologies.orient.core.config.OGlobalConfiguration;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import org.junit.After;
 import org.junit.Before;
+import com.orientechnologies.orient.core.config.OGlobalConfiguration;
+import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)

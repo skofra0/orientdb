@@ -1,7 +1,5 @@
 package com.orientechnologies.orient.core.config;
 
-import com.orientechnologies.orient.core.metadata.schema.OType;
-
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collections;
@@ -11,6 +9,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TimeZone;
+import com.orientechnologies.orient.core.metadata.schema.OType;
 
 public interface OStorageConfiguration {
   String DEFAULT_CHARSET               = "UTF-8";

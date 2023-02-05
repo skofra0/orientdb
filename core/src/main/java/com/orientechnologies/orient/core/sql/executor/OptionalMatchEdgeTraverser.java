@@ -1,9 +1,8 @@
 package com.orientechnologies.orient.core.sql.executor;
 
-import com.orientechnologies.orient.core.command.OCommandContext;
-
 import java.util.ArrayList;
 import java.util.List;
+import com.orientechnologies.orient.core.command.OCommandContext;
 
 /**
  * Created by luigidellaquila on 17/10/16.

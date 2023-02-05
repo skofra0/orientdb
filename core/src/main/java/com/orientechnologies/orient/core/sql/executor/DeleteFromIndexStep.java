@@ -1,5 +1,10 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import com.orientechnologies.common.concur.OTimeoutException;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
@@ -7,9 +12,18 @@ import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 import com.orientechnologies.orient.core.index.OIndex;
 import com.orientechnologies.orient.core.index.OIndexCursor;
 import com.orientechnologies.orient.core.index.OIndexDefinition;
-import com.orientechnologies.orient.core.sql.parser.*;
-
-import java.util.*;
+import com.orientechnologies.orient.core.sql.parser.OAndBlock;
+import com.orientechnologies.orient.core.sql.parser.OBetweenCondition;
+import com.orientechnologies.orient.core.sql.parser.OBinaryCompareOperator;
+import com.orientechnologies.orient.core.sql.parser.OBinaryCondition;
+import com.orientechnologies.orient.core.sql.parser.OBooleanExpression;
+import com.orientechnologies.orient.core.sql.parser.OCollection;
+import com.orientechnologies.orient.core.sql.parser.OEqualsCompareOperator;
+import com.orientechnologies.orient.core.sql.parser.OExpression;
+import com.orientechnologies.orient.core.sql.parser.OGeOperator;
+import com.orientechnologies.orient.core.sql.parser.OGtOperator;
+import com.orientechnologies.orient.core.sql.parser.OLeOperator;
+import com.orientechnologies.orient.core.sql.parser.OLtOperator;
 
 /**
  * Created by luigidellaquila on 11/08/16.

@@ -20,6 +20,14 @@
 
 package com.orientechnologies.orient.core.storage.index.sbtree.singlevalue;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.common.comparator.ODefaultComparator;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
@@ -43,9 +51,6 @@ import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedSt
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperation;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperationsManager;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.base.ODurableComponent;
-
-import java.io.IOException;
-import java.util.*;
 
 /**
  * This is implementation which is based on B+-tree implementation threaded tree. The main differences are:
@@ -1327,7 +1332,7 @@ public final class OCellBTreeSingleValue<K> extends ODurableComponent {
     final K key = treeEntry.key;
     final ORID value = treeEntry.value;
 
-    return new Map.Entry<K, ORID>() {
+    return new Map.Entry<>() {
       @Override
       public K getKey() {
         return key;

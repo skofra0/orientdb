@@ -19,17 +19,20 @@
  */
 package com.orientechnologies.common.concur.lock;
 
-import com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap;
-import com.orientechnologies.common.exception.OException;
-import com.orientechnologies.orient.core.config.OGlobalConfiguration;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+import com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap;
+import com.orientechnologies.common.exception.OException;
+import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 
 /**
  * Original Lock Manager implementation that uses a concurrent linked hash map to store one entry per key. This could be very
@@ -232,7 +235,7 @@ public class OOneEntryPerKeyLockManager<T> implements OLockManager<T> {
     if (values == null || values.isEmpty())
       return new Lock[0];
 
-    final List<Comparable> comparables = new ArrayList<Comparable>();
+    final List<Comparable> comparables = new ArrayList<>();
 
     int seenNulls = 0;
     for (T value : values) {
@@ -326,7 +329,7 @@ public class OOneEntryPerKeyLockManager<T> implements OLockManager<T> {
     if (values == null || values.length == 0)
       return null;
 
-    final List<Comparable> comparables = new ArrayList<Comparable>();
+    final List<Comparable> comparables = new ArrayList<>();
 
     int seenNulls = 0;
     for (T value : values) {

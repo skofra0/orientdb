@@ -1,14 +1,13 @@
 package com.orientechnologies.orient.core.storage.index.sbtree.multivalue;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.orient.core.encryption.OEncryption;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperation;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 public interface OCellBTreeMultiValue<K> {
   void create(OAtomicOperation atomicOperation, OBinarySerializer<K> keySerializer, OType[] keyTypes, int keySize, OEncryption encryption) throws IOException;

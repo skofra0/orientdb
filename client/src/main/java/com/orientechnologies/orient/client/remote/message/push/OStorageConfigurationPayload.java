@@ -1,5 +1,9 @@
 package com.orientechnologies.orient.client.remote.message.push;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TimeZone;
 import com.orientechnologies.orient.client.remote.OStorageClusterConfigurationRemote;
 import com.orientechnologies.orient.core.config.OStorageClusterConfiguration;
 import com.orientechnologies.orient.core.config.OStorageConfiguration;
@@ -7,11 +11,6 @@ import com.orientechnologies.orient.core.config.OStorageEntryConfiguration;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.enterprise.channel.binary.OChannelDataInput;
 import com.orientechnologies.orient.enterprise.channel.binary.OChannelDataOutput;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.TimeZone;
 
 public class OStorageConfigurationPayload {
   private String                             dateFormat;

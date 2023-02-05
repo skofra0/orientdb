@@ -1,14 +1,13 @@
 package com.orientechnologies.lucene.test;
 
+import org.assertj.core.api.Assertions;
+import org.junit.Test;
+import java.io.InputStream;
+import java.util.List;
 import com.orientechnologies.orient.core.command.script.OCommandScript;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.assertj.core.api.Assertions;
-import org.junit.Test;
-
-import java.io.InputStream;
-import java.util.List;
 
 /**
  * Created by frank on 27/04/2017.
@@ -39,7 +38,7 @@ public class LuceneIssuesTest extends BaseLuceneTest {
     db.command(new OCommandSQL("create index Song.title_ft on Song (title,author) FULLTEXT ENGINE LUCENE")).execute();
     db.command(new OCommandSQL("CREATE INDEX Song.author on Song (author)  NOTUNIQUE")).execute();
 
-    db.query(new OSQLSynchQuery<Object>("SELECT from Song where title = 'BELIEVE IT OR NOT' "));
+    db.query(new OSQLSynchQuery<>("SELECT from Song where title = 'BELIEVE IT OR NOT' "));
 
     ODocument query = db.command(
         new OCommandSQL("EXPLAIN SELECT from Song where author = 'Traditional'  OR ['title','author'] LUCENE 'title:believe'"))
@@ -55,14 +54,14 @@ public class LuceneIssuesTest extends BaseLuceneTest {
     db.command(new OCommandScript("sql", getScriptFromStream(stream))).execute();
 
     List<ODocument> documents = db
-        .query(new OSQLSynchQuery<Object>("select rid from index:Item.content where key lucene 'Харько~0.2' limit 3 "));
+        .query(new OSQLSynchQuery<>("select rid from index:Item.content where key lucene 'Харько~0.2' limit 3 "));
 
     Assertions.assertThat(documents).hasSize(3);
     documents = db
-        .query(new OSQLSynchQuery<Object>("select expand(rid) from index:Item.content where key lucene 'Харько~0.2' limit 3 "));
+        .query(new OSQLSynchQuery<>("select expand(rid) from index:Item.content where key lucene 'Харько~0.2' limit 3 "));
 
     Assertions.assertThat(documents).hasSize(3);
-    documents = db.query(new OSQLSynchQuery<Object>("select * from index:Item.content where key lucene 'Харько~0.2' limit 3 "));
+    documents = db.query(new OSQLSynchQuery<>("select * from index:Item.content where key lucene 'Харько~0.2' limit 3 "));
 
     Assertions.assertThat(documents).hasSize(3);
 
@@ -77,15 +76,15 @@ public class LuceneIssuesTest extends BaseLuceneTest {
 
     List<ODocument> documents;
 
-    documents = db.query(new OSQLSynchQuery<Object>("select from Test where [a] lucene 'lion'"));
+    documents = db.query(new OSQLSynchQuery<>("select from Test where [a] lucene 'lion'"));
 
     Assertions.assertThat(documents).hasSize(1);
 
-    documents = db.query(new OSQLSynchQuery<Object>("select from Test where [b] lucene 'mouse'"));
+    documents = db.query(new OSQLSynchQuery<>("select from Test where [b] lucene 'mouse'"));
 
     Assertions.assertThat(documents).hasSize(1);
 
-    documents = db.query(new OSQLSynchQuery<Object>("select from Test where [a] lucene 'lion' OR [b] LUCENE 'mouse' "));
+    documents = db.query(new OSQLSynchQuery<>("select from Test where [a] lucene 'lion' OR [b] LUCENE 'mouse' "));
 
     //FIXME
     Assertions.assertThat(documents).hasSize(2);
@@ -101,15 +100,15 @@ public class LuceneIssuesTest extends BaseLuceneTest {
 
     List<ODocument> documents;
 
-    documents = db.query(new OSQLSynchQuery<Object>("select from Test where a lucene 'lion'"));
+    documents = db.query(new OSQLSynchQuery<>("select from Test where a lucene 'lion'"));
 
     Assertions.assertThat(documents).hasSize(1);
 
-    documents = db.query(new OSQLSynchQuery<Object>("select from Test where b lucene 'mouse'"));
+    documents = db.query(new OSQLSynchQuery<>("select from Test where b lucene 'mouse'"));
 
     Assertions.assertThat(documents).hasSize(1);
 
-    documents = db.query(new OSQLSynchQuery<Object>("select from Test where a lucene 'lion' OR b LUCENE 'mouse' "));
+    documents = db.query(new OSQLSynchQuery<>("select from Test where a lucene 'lion' OR b LUCENE 'mouse' "));
 
     //FIXME
     Assertions.assertThat(documents).hasSize(2);

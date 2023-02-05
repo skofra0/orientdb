@@ -20,10 +20,16 @@
 
 package com.orientechnologies.orient.core.sql;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemField;
-import com.orientechnologies.orient.core.sql.operator.*;
-
-import java.util.*;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperator;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperatorContains;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperatorContainsKey;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperatorContainsValue;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperatorEquals;
 
 /**
  * Presents query subset in form of field1 = "field1 value" AND field2 = "field2 value" ... AND fieldN anyOpetator "fieldN value"
@@ -37,7 +43,7 @@ import java.util.*;
  * index search and filed - value pair that uses this index should always be placed at last position.
  */
 public class OIndexSearchResult {
-  public final Map<String, Object>            fieldValuePairs = new HashMap<String, Object>(8);
+  public final Map<String, Object>            fieldValuePairs = new HashMap<>(8);
   public final OQueryOperator                 lastOperator;
   public final OSQLFilterItemField.FieldChain lastField;
   public final Object                         lastValue;
@@ -104,7 +110,7 @@ public class OIndexSearchResult {
   }
 
   public List<String> fields() {
-    final List<String> result = new ArrayList<String>(fieldValuePairs.size() + 1);
+    final List<String> result = new ArrayList<>(fieldValuePairs.size() + 1);
     result.addAll(fieldValuePairs.keySet());
     result.add(lastField.getItemName(0));
     return result;

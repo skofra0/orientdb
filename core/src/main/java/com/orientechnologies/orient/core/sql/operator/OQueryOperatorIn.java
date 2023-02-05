@@ -19,11 +19,24 @@
  */
 package com.orientechnologies.orient.core.sql.operator;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.id.ORID;
-import com.orientechnologies.orient.core.index.*;
+import com.orientechnologies.orient.core.index.OCompositeIndexDefinition;
+import com.orientechnologies.orient.core.index.OIndex;
+import com.orientechnologies.orient.core.index.OIndexCursor;
+import com.orientechnologies.orient.core.index.OIndexCursorCollectionValue;
+import com.orientechnologies.orient.core.index.OIndexCursorSingleValue;
+import com.orientechnologies.orient.core.index.OIndexDefinition;
+import com.orientechnologies.orient.core.index.OIndexDefinitionMultiValue;
+import com.orientechnologies.orient.core.index.OIndexInternal;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.record.impl.ODocumentHelper;
 import com.orientechnologies.orient.core.sql.OSQLHelper;
@@ -32,8 +45,6 @@ import com.orientechnologies.orient.core.sql.filter.OSQLFilterItem;
 import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemField;
 import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemParameter;
 import com.orientechnologies.orient.core.sql.query.OLegacyResultSet;
-
-import java.util.*;
 
 /**
  * IN operator.
@@ -86,7 +97,7 @@ public class OQueryOperatorIn extends OQueryOperatorEqualityNotNulls {
         }
         inParams = newInParams;
       }
-      final List<Object> inKeys = new ArrayList<Object>();
+      final List<Object> inKeys = new ArrayList<>();
 
       boolean containsNotCompatibleKey = false;
       for (final Object keyValue : inParams) {
@@ -109,7 +120,7 @@ public class OQueryOperatorIn extends OQueryOperatorEqualityNotNulls {
 
       cursor = index.iterateEntries(inKeys, ascSortOrder);
     } else {
-      final List<Object> partialKey = new ArrayList<Object>();
+      final List<Object> partialKey = new ArrayList<>();
       partialKey.addAll(keyParams);
       partialKey.remove(keyParams.size() - 1);
 
@@ -123,13 +134,13 @@ public class OQueryOperatorIn extends OQueryOperatorEqualityNotNulls {
       else
         throw new IllegalArgumentException("Key '" + inKeyValue + "' is not valid");
 
-      final List<Object> inKeys = new ArrayList<Object>();
+      final List<Object> inKeys = new ArrayList<>();
 
       final OCompositeIndexDefinition compositeIndexDefinition = (OCompositeIndexDefinition) indexDefinition;
 
       boolean containsNotCompatibleKey = false;
       for (final Object keyValue : inParams) {
-        List<Object> fullKey = new ArrayList<Object>();
+        List<Object> fullKey = new ArrayList<>();
         fullKey.addAll(partialKey);
         fullKey.add(keyValue);
         final Object key = compositeIndexDefinition.createSingleValue(fullKey);
@@ -281,7 +292,7 @@ public class OQueryOperatorIn extends OQueryOperatorEqualityNotNulls {
         if (r.isPersistent()) {
           if (rids == null)
             // LAZY CREATE IT
-            rids = new ArrayList<ORID>(ridSize);
+            rids = new ArrayList<>(ridSize);
           rids.add(r);
         }
       }

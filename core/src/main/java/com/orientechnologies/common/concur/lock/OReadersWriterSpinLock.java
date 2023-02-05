@@ -20,8 +20,6 @@
 
 package com.orientechnologies.common.concur.lock;
 
-import com.orientechnologies.common.types.OModifiableInteger;
-
 import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -29,6 +27,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.atomic.LongAdder;
 import java.util.concurrent.locks.AbstractOwnableSynchronizer;
 import java.util.concurrent.locks.LockSupport;
+import com.orientechnologies.common.types.OModifiableInteger;
 
 
 /**
@@ -39,7 +38,7 @@ public class OReadersWriterSpinLock extends AbstractOwnableSynchronizer {
   private static final long serialVersionUID = 7975120282194559960L;
 
   private final transient LongAdder distributedCounter;
-  private final transient AtomicReference<WNode>          tail      = new AtomicReference<WNode>();
+  private final transient AtomicReference<WNode>          tail      = new AtomicReference<>();
   private final transient ThreadLocal<OModifiableInteger> lockHolds = new InitOModifiableInteger();
 
   private final transient ThreadLocal<WNode> myNode = new InitWNode();
@@ -252,7 +251,7 @@ public class OReadersWriterSpinLock extends AbstractOwnableSynchronizer {
   }
 
   private final static class WNode {
-    private final ConcurrentHashMap<Thread, Boolean> waitingReaders = new ConcurrentHashMap<Thread, Boolean>();
+    private final ConcurrentHashMap<Thread, Boolean> waitingReaders = new ConcurrentHashMap<>();
 
     private volatile boolean locked = true;
     private volatile Thread waitingWriter;

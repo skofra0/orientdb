@@ -1,11 +1,10 @@
 package com.orientechnologies.orient.core.storage.index.sbtree.multivalue.v2;
 
+import java.nio.ByteBuffer;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.common.serialization.types.OLongSerializer;
 import com.orientechnologies.common.serialization.types.OShortSerializer;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALChanges;
-
-import java.nio.ByteBuffer;
 
 public final class MultiValueEntrySerializer implements OBinarySerializer<MultiValueEntry> {
   public static final int                       ID       = 27;

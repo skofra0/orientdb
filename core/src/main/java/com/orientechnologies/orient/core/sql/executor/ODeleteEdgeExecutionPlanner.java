@@ -1,5 +1,8 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
@@ -15,9 +18,6 @@ import com.orientechnologies.orient.core.sql.parser.OLimit;
 import com.orientechnologies.orient.core.sql.parser.ORid;
 import com.orientechnologies.orient.core.sql.parser.OSelectStatement;
 import com.orientechnologies.orient.core.sql.parser.OWhereClause;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by luigidellaquila on 08/08/16.

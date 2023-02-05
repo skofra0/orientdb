@@ -1,12 +1,11 @@
 package com.orientechnologies.common.concur.resource;
 
-import com.orientechnologies.orient.core.OOrientListenerAbstract;
-import com.orientechnologies.orient.core.Orient;
-
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+import com.orientechnologies.orient.core.OOrientListenerAbstract;
+import com.orientechnologies.orient.core.Orient;
 
 /**
  * This is internal API, do not use it.
@@ -64,7 +63,7 @@ public class OPartitionedObjectPool<T> extends OOrientListenerAbstract {
             partition = pts[index];
 
             if (partition == null) {
-              partition = new PoolPartition<T>();
+              partition = new PoolPartition<>();
               initQueue(partition);
               pts[index] = partition;
             }
@@ -99,7 +98,7 @@ public class OPartitionedObjectPool<T> extends OOrientListenerAbstract {
             partition.acquiredObjects.incrementAndGet();
             partition.currentSize.incrementAndGet();
 
-            return new PoolEntry<T>(partition, object);
+            return new PoolEntry<>(partition, object);
           }
         } else {
           if (!factory.isValid(object)) {
@@ -111,7 +110,7 @@ public class OPartitionedObjectPool<T> extends OOrientListenerAbstract {
           factory.init(object);
           partition.acquiredObjects.incrementAndGet();
 
-          return new PoolEntry<T>(partition, object);
+          return new PoolEntry<>(partition, object);
         }
       }
     }
@@ -215,7 +214,7 @@ public class OPartitionedObjectPool<T> extends OOrientListenerAbstract {
   private static final class PoolPartition<T> {
     private final AtomicInteger currentSize = new AtomicInteger();
     private final AtomicInteger acquiredObjects = new AtomicInteger();
-    private final ConcurrentLinkedQueue<T> queue = new ConcurrentLinkedQueue<T>();
+    private final ConcurrentLinkedQueue<T> queue = new ConcurrentLinkedQueue<>();
   }
 
   public interface ObjectFactory<T> {

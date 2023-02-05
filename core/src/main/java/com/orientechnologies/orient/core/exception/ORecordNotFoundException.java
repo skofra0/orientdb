@@ -19,10 +19,9 @@
  */
 package com.orientechnologies.orient.core.exception;
 
+import java.util.Objects;
 import com.orientechnologies.common.exception.OHighLevelException;
 import com.orientechnologies.orient.core.id.ORID;
-
-import java.util.Objects;
 
 public class ORecordNotFoundException extends OCoreException implements OHighLevelException {
 

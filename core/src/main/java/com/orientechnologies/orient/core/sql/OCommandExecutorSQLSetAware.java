@@ -16,6 +16,13 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.common.util.OPair;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
@@ -26,8 +33,6 @@ import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OProperty;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-
-import java.util.*;
 
 /**
  * @author Luca Molino (molino.luca--at--gmail.com)
@@ -179,7 +184,7 @@ public abstract class OCommandExecutorSQLSetAware extends OCommandExecutorSQLAbs
         case EMBEDDEDMAP:
           // CONVERT MAPS IN DOCUMENTS ASSIGNING THE CLASS TAKEN FROM SCHEMA
           if (v instanceof Map) {
-            final Map<String, Object> map = new HashMap<String, Object>();
+            final Map<String, Object> map = new HashMap<>();
 
             for (Map.Entry<String, Object> entry : ((Map<String, Object>) v).entrySet()) {
               if (entry.getValue() instanceof Map) {

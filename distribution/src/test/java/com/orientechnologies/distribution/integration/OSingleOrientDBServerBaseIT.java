@@ -1,7 +1,5 @@
 package com.orientechnologies.distribution.integration;
 
-import com.orientechnologies.orient.core.db.ODatabasePool;
-import com.orientechnologies.orient.core.db.OrientDB;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -11,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.output.Slf4jLogConsumer;
 import org.testcontainers.containers.wait.Wait;
+import com.orientechnologies.orient.core.db.ODatabasePool;
+import com.orientechnologies.orient.core.db.OrientDB;
 
 public abstract class OSingleOrientDBServerBaseIT {
     private static final Logger LOGGER = LoggerFactory.getLogger(OSingleOrientDBServerBaseIT.class);

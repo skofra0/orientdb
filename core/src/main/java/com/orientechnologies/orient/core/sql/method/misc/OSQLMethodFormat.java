@@ -16,13 +16,16 @@
  */
 package com.orientechnologies.orient.core.sql.method.misc;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.TimeZone;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.util.ODateHelper;
-
-import java.text.SimpleDateFormat;
-import java.util.*;
 
 /**
  * @author Johann Sorel (Geomatys)
@@ -48,7 +51,7 @@ public class OSQLMethodFormat extends OAbstractSQLMethod {
 
     if (v != null) {
       if (isCollectionOfDates(ioResult)) {
-        List<String> result = new ArrayList<String>();
+        List<String> result = new ArrayList<>();
         Iterator<Object> iterator = OMultiValue.getMultiValueIterator(ioResult);
         final SimpleDateFormat format = new SimpleDateFormat(v.toString());
         if (iParams.length > 1) {

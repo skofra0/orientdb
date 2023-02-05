@@ -20,6 +20,9 @@
 
 package com.orientechnologies.orient.core.engine.local;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.common.collection.closabledictionary.OClosableLinkedContainer;
 import com.orientechnologies.common.directmemory.OByteBufferPool;
 import com.orientechnologies.common.directmemory.OPointer;
@@ -37,10 +40,6 @@ import com.orientechnologies.orient.core.storage.cache.chm.AsyncReadCache;
 import com.orientechnologies.orient.core.storage.cache.local.twoq.O2QCache;
 import com.orientechnologies.orient.core.storage.disk.OLocalPaginatedStorage;
 import com.orientechnologies.orient.core.storage.fs.OFileClassic;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)

@@ -19,6 +19,24 @@
  */
 package com.orientechnologies.orient.core.record.impl;
 
+import java.lang.reflect.Array;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.io.OIOUtils;
@@ -28,8 +46,17 @@ import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.config.OStorageConfiguration;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
-import com.orientechnologies.orient.core.db.record.*;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.db.record.ORecordElement.STATUS;
+import com.orientechnologies.orient.core.db.record.ORecordLazyList;
+import com.orientechnologies.orient.core.db.record.ORecordLazyMap;
+import com.orientechnologies.orient.core.db.record.ORecordLazyMultiValue;
+import com.orientechnologies.orient.core.db.record.ORecordLazySet;
+import com.orientechnologies.orient.core.db.record.ORecordTrackedList;
+import com.orientechnologies.orient.core.db.record.ORecordTrackedSet;
+import com.orientechnologies.orient.core.db.record.OTrackedList;
+import com.orientechnologies.orient.core.db.record.OTrackedMap;
+import com.orientechnologies.orient.core.db.record.OTrackedSet;
 import com.orientechnologies.orient.core.db.record.ridbag.ORidBag;
 import com.orientechnologies.orient.core.exception.OQueryParsingException;
 import com.orientechnologies.orient.core.id.ORID;
@@ -46,13 +73,6 @@ import com.orientechnologies.orient.core.sql.filter.OSQLPredicate;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunctionRuntime;
 import com.orientechnologies.orient.core.sql.method.OSQLMethod;
 import com.orientechnologies.orient.core.util.ODateHelper;
-
-import java.lang.reflect.Array;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.Map.Entry;
 
 /**
  * Helper class to manage documents.
@@ -139,7 +159,7 @@ public class ODocumentHelper {
         if (type.isLink())
           newValue = new ORecordLazySet(iDocument);
         else
-          newValue = new OTrackedSet<Object>(iDocument);
+          newValue = new OTrackedSet<>(iDocument);
 
         if (iValue instanceof Collection<?>) {
           ((Collection<Object>) newValue).addAll((Collection<Object>) iValue);
@@ -175,7 +195,7 @@ public class ODocumentHelper {
         if (type.isLink())
           newValue = new ORecordLazyList(iDocument);
         else
-          newValue = new OTrackedList<Object>(iDocument);
+          newValue = new OTrackedList<>(iDocument);
 
         if (iValue instanceof Collection) {
           ((Collection<Object>) newValue).addAll((Collection<Object>) iValue);
@@ -286,7 +306,7 @@ public class ODocumentHelper {
           else if (value instanceof Map<?, ?>)
             value = getMapEntry((Map<String, ?>) value, fieldName);
           else if (OMultiValue.isMultiValue(value)) {
-            final HashSet<Object> temp = new LinkedHashSet<Object>();
+            final HashSet<Object> temp = new LinkedHashSet<>();
             for (Object o : OMultiValue.getMultiValueIterable(value, false)) {
               if (o instanceof OIdentifiable) {
                 Object r = getFieldValue(o, iFieldName);
@@ -402,7 +422,7 @@ public class ODocumentHelper {
             String from = indexRanges.get(0);
             String to = indexRanges.get(1);
 
-            final List<String> fieldNames = new ArrayList<String>(map.keySet());
+            final List<String> fieldNames = new ArrayList<>(map.keySet());
             final int rangeFrom = from != null && !from.isEmpty() ? Integer.parseInt(from) : 0;
             final int rangeTo =
                 to != null && !to.isEmpty() ? Math.min(Integer.parseInt(to), fieldNames.size() - 1) : fieldNames.size() - 1;
@@ -486,7 +506,7 @@ public class ODocumentHelper {
           } else {
             // CONDITION
             OSQLPredicate pred = new OSQLPredicate(indexAsString);
-            final HashSet<Object> values = new LinkedHashSet<Object>();
+            final HashSet<Object> values = new LinkedHashSet<>();
 
             for (Object v : OMultiValue.getMultiValueIterable(value)) {
               if (v instanceof OIdentifiable) {
@@ -556,7 +576,7 @@ public class ODocumentHelper {
           } else if (value instanceof Map<?, ?>)
             value = getMapEntry((Map<String, ?>) value, fieldName);
           else if (OMultiValue.isMultiValue(value)) {
-            final Set<Object> values = new LinkedHashSet<Object>();
+            final Set<Object> values = new LinkedHashSet<>();
             for (Object v : OMultiValue.getMultiValueIterable(value, false)) {
               final Object item;
 
@@ -929,12 +949,12 @@ public class ODocumentHelper {
         return newList;
 
       } else if (fieldValue instanceof OTrackedList<?>) {
-        final OTrackedList<Object> newList = new OTrackedList<Object>(iCloned);
+        final OTrackedList<Object> newList = new OTrackedList<>(iCloned);
         newList.addAll((OTrackedList<Object>) fieldValue);
         return newList;
 
       } else if (fieldValue instanceof List<?>) {
-        return new ArrayList<Object>((List<Object>) fieldValue);
+        return new ArrayList<>((List<Object>) fieldValue);
 
         // SETS
       } else if (fieldValue instanceof ORecordLazySet) {
@@ -948,12 +968,12 @@ public class ODocumentHelper {
         return newList;
 
       } else if (fieldValue instanceof OTrackedSet<?>) {
-        final OTrackedSet<Object> newList = new OTrackedSet<Object>(iCloned);
+        final OTrackedSet<Object> newList = new OTrackedSet<>(iCloned);
         newList.addAll((OTrackedSet<Object>) fieldValue);
         return newList;
 
       } else if (fieldValue instanceof Set<?>) {
-        return new HashSet<Object>((Set<Object>) fieldValue);
+        return new HashSet<>((Set<Object>) fieldValue);
         // MAPS
       } else if (fieldValue instanceof ORecordLazyMap) {
         final ORecordLazyMap newMap = new ORecordLazyMap(iCloned, ((ORecordLazyMap) fieldValue).getRecordType());
@@ -961,12 +981,12 @@ public class ODocumentHelper {
         return newMap;
 
       } else if (fieldValue instanceof OTrackedMap) {
-        final OTrackedMap<Object> newMap = new OTrackedMap<Object>(iCloned);
+        final OTrackedMap<Object> newMap = new OTrackedMap<>(iCloned);
         newMap.putAll((OTrackedMap<Object>) fieldValue);
         return newMap;
 
       } else if (fieldValue instanceof Map<?, ?>) {
-        return new LinkedHashMap<String, Object>((Map<String, Object>) fieldValue);
+        return new LinkedHashMap<>((Map<String, Object>) fieldValue);
       } else
         return fieldValue;
     }
@@ -1400,7 +1420,7 @@ public class ODocumentHelper {
       final List<ORID> otherBagCopy = makeDbCall(iOtherDb, new ODbRelatedCall<List<ORID>>() {
         @Override
         public List<ORID> call(final ODatabaseDocumentInternal database) {
-          final List<ORID> otherRidBag = new LinkedList<ORID>();
+          final List<ORID> otherRidBag = new LinkedList<>();
           for (OIdentifiable identifiable : otherBag)
             otherRidBag.add(identifiable.getIdentity());
 

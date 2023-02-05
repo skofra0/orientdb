@@ -19,22 +19,20 @@
   */
 package com.orientechnologies.orient.core.command;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.OExecutionThreadLocal;
 import com.orientechnologies.orient.core.exception.OSerializationException;
 import com.orientechnologies.orient.core.index.OCompositeKey;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.serialization.OMemoryStream;
-import com.orientechnologies.orient.core.serialization.OSerializableStream;
 import com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper;
 import com.orientechnologies.orient.core.serialization.serializer.binary.impl.index.OCompositeKeySerializer;
 import com.orientechnologies.orient.core.serialization.serializer.record.ORecordSerializer;
 import com.orientechnologies.orient.core.serialization.serializer.record.string.ORecordSerializerStringAbstract;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 /**
  * Text based Command Request abstract class.
@@ -102,8 +100,8 @@ public abstract class OCommandRequestTextAbstract extends OCommandRequestAbstrac
       // composite keys are absent
       buffer.set(false);
     } else {
-      final Map<Object, Object> params = new HashMap<Object, Object>();
-      final Map<Object, List<Object>> compositeKeyParams = new HashMap<Object, List<Object>>();
+      final Map<Object, Object> params = new HashMap<>();
+      final Map<Object, List<Object>> compositeKeyParams = new HashMap<>();
 
       for (final Entry<Object, Object> paramEntry : parameters.entrySet())
         if (paramEntry.getValue() instanceof OCompositeKey) {
@@ -146,7 +144,7 @@ public abstract class OCommandRequestTextAbstract extends OCommandRequestAbstrac
         param.fromStream(paramBuffer);
 
       Map<Object, Object> params = param.field("params");
-      parameters = new HashMap<Object, Object>();
+      parameters = new HashMap<>();
       if (params != null) {
         for (Entry<Object, Object> p : params.entrySet()) {
           final Object value;
@@ -183,7 +181,7 @@ public abstract class OCommandRequestTextAbstract extends OCommandRequestAbstrac
       final Map<Object, Object> compositeKeyParams = param.field("compositeKeyParams");
 
       if (parameters == null)
-        parameters = new HashMap<Object, Object>();
+        parameters = new HashMap<>();
 
       for (final Entry<Object, Object> p : compositeKeyParams.entrySet()) {
         if (p.getValue() instanceof List) {

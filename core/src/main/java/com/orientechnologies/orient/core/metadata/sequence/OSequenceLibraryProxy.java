@@ -19,11 +19,10 @@
  */
 package com.orientechnologies.orient.core.metadata.sequence;
 
+import java.util.Set;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.record.OProxedResource;
 import com.orientechnologies.orient.core.metadata.sequence.OSequence.SEQUENCE_TYPE;
-
-import java.util.Set;
 
 /**
  * @author Matan Shukry (matanshukry@gmail.com)

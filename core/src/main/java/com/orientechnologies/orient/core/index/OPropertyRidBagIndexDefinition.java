@@ -20,15 +20,14 @@
 
 package com.orientechnologies.orient.core.index;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.db.record.OMultiValueChangeEvent;
 import com.orientechnologies.orient.core.db.record.ridbag.ORidBag;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Index definition for index which is bound to field with type {@link OType#LINKBAG} .
@@ -78,7 +77,7 @@ public class OPropertyRidBagIndexDefinition extends OAbstractIndexDefinitionMult
       return null;
 
     final ORidBag ridBag = (ORidBag) params.get(0);
-    final List<Object> values = new ArrayList<Object>();
+    final List<Object> values = new ArrayList<>();
     for (final OIdentifiable item : ridBag) {
       values.add(createSingleValue(item));
     }
@@ -92,7 +91,7 @@ public class OPropertyRidBagIndexDefinition extends OAbstractIndexDefinitionMult
       return null;
 
     final ORidBag ridBag = (ORidBag) params[0];
-    final List<Object> values = new ArrayList<Object>();
+    final List<Object> values = new ArrayList<>();
     for (final OIdentifiable item : ridBag) {
       values.add(createSingleValue(item));
     }

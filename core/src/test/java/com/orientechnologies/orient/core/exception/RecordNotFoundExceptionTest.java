@@ -1,10 +1,9 @@
 package com.orientechnologies.orient.core.exception;
 
-import com.orientechnologies.orient.core.id.ORecordId;
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import org.junit.Test;
+import com.orientechnologies.orient.core.id.ORecordId;
 
 /**
  * Created by tglman on 22/02/17.

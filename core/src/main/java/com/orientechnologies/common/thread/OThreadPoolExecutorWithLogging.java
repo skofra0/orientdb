@@ -1,7 +1,5 @@
 package com.orientechnologies.common.thread;
 
-import com.orientechnologies.common.log.OLogManager;
-
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
@@ -10,6 +8,7 @@ import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import com.orientechnologies.common.log.OLogManager;
 
 /**
  * The same as thread {@link ThreadPoolExecutor} but also logs all exceptions happened inside of the tasks which caused tasks to

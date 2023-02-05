@@ -19,19 +19,18 @@
 
 package com.orientechnologies.orient.core.tx;
 
-import com.orientechnologies.orient.core.id.ORecordId;
-import com.orientechnologies.orient.core.tx.OTransactionIndexChanges.OPERATION;
-import com.orientechnologies.orient.core.tx.OTransactionIndexChangesPerKey.Interpretation;
-import com.orientechnologies.orient.core.tx.OTransactionIndexChangesPerKey.OTransactionIndexEntry;
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import com.orientechnologies.orient.core.id.ORecordId;
+import com.orientechnologies.orient.core.tx.OTransactionIndexChanges.OPERATION;
+import com.orientechnologies.orient.core.tx.OTransactionIndexChangesPerKey.Interpretation;
+import com.orientechnologies.orient.core.tx.OTransactionIndexChangesPerKey.OTransactionIndexEntry;
 
 /**
  * @author Sergey Sitnikov
@@ -161,9 +160,9 @@ public class IndexChangesInterpretationTest {
   @Test
   public void test() {
     final OTransactionIndexChangesPerKey changes = new OTransactionIndexChangesPerKey("key");
-    final List<OutputCollection> expectedUnique = new ArrayList<OutputCollection>();
-    final List<OutputCollection> expectedDictionary = new ArrayList<OutputCollection>();
-    final List<OutputCollection> expectedNonUnique = new ArrayList<OutputCollection>();
+    final List<OutputCollection> expectedUnique = new ArrayList<>();
+    final List<OutputCollection> expectedDictionary = new ArrayList<>();
+    final List<OutputCollection> expectedNonUnique = new ArrayList<>();
 
     for (String[] vector : TEST_VECTORS) {
       parseInput(vector[0], changes.entries);
@@ -317,7 +316,7 @@ public class IndexChangesInterpretationTest {
     @Override
     public boolean matches(Iterator<OTransactionIndexEntry> actualIterator) {
       final int requiredMatches = this.requiredMatches == -1 ? this.size() : this.requiredMatches;
-      final ArrayList<OTransactionIndexEntry> unmatched = new ArrayList<OTransactionIndexEntry>(this);
+      final ArrayList<OTransactionIndexEntry> unmatched = new ArrayList<>(this);
       for (int i = 0; i < requiredMatches; ++i) {
         if (!actualIterator.hasNext())
           return false;

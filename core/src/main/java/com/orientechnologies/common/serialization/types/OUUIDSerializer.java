@@ -22,7 +22,6 @@ package com.orientechnologies.common.serialization.types;
 
 import java.nio.ByteBuffer;
 import java.util.UUID;
-
 import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALChanges;
 
 /**

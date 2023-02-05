@@ -1,17 +1,16 @@
 package com.orientechnologies.orient.core.storage.ridbag.sbtree;
 
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import java.util.ArrayList;
+import java.util.List;
 import com.orientechnologies.DatabaseAbstractTest;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperationsManager;
 import com.orientechnologies.orient.core.storage.index.sbtreebonsai.local.OSBTreeBonsai;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class OSBTreeCollectionManagerSharedTest extends DatabaseAbstractTest {
   private OSBTreeCollectionManagerShared sbTreeCollectionManager;

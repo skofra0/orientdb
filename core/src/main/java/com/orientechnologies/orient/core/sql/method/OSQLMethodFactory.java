@@ -16,7 +16,6 @@
 package com.orientechnologies.orient.core.sql.method;
 
 import java.util.Set;
-
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 
 /**

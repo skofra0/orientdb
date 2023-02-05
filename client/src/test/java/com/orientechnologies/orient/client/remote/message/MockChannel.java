@@ -1,10 +1,13 @@
 package com.orientechnologies.orient.client.remote.message;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
 import com.orientechnologies.orient.core.config.OContextConfiguration;
 import com.orientechnologies.orient.enterprise.channel.binary.OChannelBinary;
-
-import java.io.*;
-import java.net.Socket;
 
 /**
  * Created by luigidellaquila on 14/12/16.

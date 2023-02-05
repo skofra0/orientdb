@@ -17,15 +17,18 @@
  */
 package com.orientechnologies.spatial.functions;
 
-import com.orientechnologies.orient.core.command.OCommandContext;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.sql.parser.*;
-import com.orientechnologies.spatial.shape.OShapeFactory;
-import com.orientechnologies.spatial.strategy.SpatialQueryBuilderDistanceSphere;
 import org.locationtech.spatial4j.distance.DistanceUtils;
 import org.locationtech.spatial4j.shape.Shape;
-
 import java.util.Map;
+import com.orientechnologies.orient.core.command.OCommandContext;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.sql.parser.OBinaryCompareOperator;
+import com.orientechnologies.orient.core.sql.parser.OExpression;
+import com.orientechnologies.orient.core.sql.parser.OFromClause;
+import com.orientechnologies.orient.core.sql.parser.OLeOperator;
+import com.orientechnologies.orient.core.sql.parser.OLtOperator;
+import com.orientechnologies.spatial.shape.OShapeFactory;
+import com.orientechnologies.spatial.strategy.SpatialQueryBuilderDistanceSphere;
 
 /**
  * Created by Enrico Risa on 25/09/15.

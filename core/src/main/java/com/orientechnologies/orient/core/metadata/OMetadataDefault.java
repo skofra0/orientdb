@@ -19,14 +19,12 @@
  */
 package com.orientechnologies.orient.core.metadata;
 
-import com.orientechnologies.common.exception.OException;
+import java.io.IOException;
 import com.orientechnologies.common.profiler.OProfiler;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.cache.OCommandCache;
-import com.orientechnologies.orient.core.db.ODatabase;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.OSharedContext;
-import com.orientechnologies.orient.core.exception.OSecurityException;
 import com.orientechnologies.orient.core.index.OIndexManagerProxy;
 import com.orientechnologies.orient.core.metadata.function.OFunctionLibrary;
 import com.orientechnologies.orient.core.metadata.function.OFunctionLibraryProxy;
@@ -38,8 +36,6 @@ import com.orientechnologies.orient.core.metadata.sequence.OSequenceLibrary;
 import com.orientechnologies.orient.core.metadata.sequence.OSequenceLibraryProxy;
 import com.orientechnologies.orient.core.schedule.OScheduler;
 import com.orientechnologies.orient.core.schedule.OSchedulerProxy;
-
-import java.io.IOException;
 
 public class OMetadataDefault implements OMetadataInternal {
   public static final String CLUSTER_INTERNAL_NAME     = "internal";

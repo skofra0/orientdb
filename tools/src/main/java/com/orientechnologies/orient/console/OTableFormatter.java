@@ -19,6 +19,22 @@
  */
 package com.orientechnologies.orient.console;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import com.orientechnologies.common.collection.OMultiCollectionIterator;
 import com.orientechnologies.common.util.OCallable;
 import com.orientechnologies.common.util.OPair;
@@ -32,10 +48,6 @@ import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.impl.OBlob;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.Map.Entry;
-
 public class OTableFormatter {
   public enum ALIGNMENT {
     LEFT, CENTER, RIGHT
@@ -45,10 +57,10 @@ public class OTableFormatter {
   protected final static SimpleDateFormat DEF_DATEFORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 
   protected       OPair<String, Boolean>           columnSorting   = null;
-  protected final Map<String, ALIGNMENT>           columnAlignment = new HashMap<String, ALIGNMENT>();
-  protected final Map<String, Map<String, String>> columnMetadata  = new HashMap<String, Map<String, String>>();
-  protected final Set<String>                      columnHidden    = new HashSet<String>();
-  protected final Set<String>                      prefixedColumns = new LinkedHashSet<String>(
+  protected final Map<String, ALIGNMENT>           columnAlignment = new HashMap<>();
+  protected final Map<String, Map<String, String>> columnMetadata  = new HashMap<>();
+  protected final Set<String>                      columnHidden    = new HashSet<>();
+  protected final Set<String>                      prefixedColumns = new LinkedHashSet<>(
       Arrays.asList(new String[] { "#", "@RID", "@CLASS" }));
   protected final OTableOutput out;
   protected int     maxMultiValueEntries = 10;
@@ -68,7 +80,7 @@ public class OTableFormatter {
   }
 
   public void setColumnSorting(final String column, final boolean ascending) {
-    columnSorting = new OPair<String, Boolean>(column, ascending);
+    columnSorting = new OPair<>(column, ascending);
   }
 
   public void setColumnHidden(final String column) {
@@ -137,7 +149,7 @@ public class OTableFormatter {
   public void setColumnMetadata(final String columnName, final String metadataName, final String metadataValue) {
     Map<String, String> metadata = columnMetadata.get(columnName);
     if (metadata == null) {
-      metadata = new LinkedHashMap<String, String>();
+      metadata = new LinkedHashMap<>();
       columnMetadata.put(columnName, metadata);
     }
     metadata.put(metadataName, metadataValue);
@@ -166,7 +178,7 @@ public class OTableFormatter {
       printHeader(iColumns);
 
     // FORMAT THE LINE DYNAMICALLY
-    List<String> vargs = new ArrayList<String>();
+    List<String> vargs = new ArrayList<>();
     try {
       if (iRecord instanceof ODocument)
         ((ODocument) iRecord).setLazyLoad(false);
@@ -337,11 +349,11 @@ public class OTableFormatter {
 
   private void printHeader(final Map<String, Integer> iColumns) {
     final StringBuilder columnRow = new StringBuilder("\n");
-    final Map<String, StringBuilder> metadataRows = new HashMap<String, StringBuilder>();
+    final Map<String, StringBuilder> metadataRows = new HashMap<>();
 
     // INIT METADATA
-    final LinkedHashSet<String> allMetadataNames = new LinkedHashSet<String>();
-    final Set<String> metadataColumns = new HashSet<String>();
+    final LinkedHashSet<String> allMetadataNames = new LinkedHashSet<>();
+    final Set<String> metadataColumns = new HashSet<>();
 
     for (Entry<String, Map<String, String>> entry : columnMetadata.entrySet()) {
       metadataColumns.add(entry.getKey());
@@ -460,7 +472,7 @@ public class OTableFormatter {
    * @return
    */
   private Map<String, Integer> parseColumns(final Collection<? extends OIdentifiable> resultSet, final int limit) {
-    final Map<String, Integer> columns = new LinkedHashMap<String, Integer>();
+    final Map<String, Integer> columns = new LinkedHashMap<>();
 
     for (String c : prefixedColumns)
       columns.put(c, minColumnSize);
@@ -520,7 +532,7 @@ public class OTableFormatter {
 
     if (width > maxWidthSize) {
       // SCALE COLUMNS AUTOMATICALLY
-      final List<Map.Entry<String, Integer>> orderedColumns = new ArrayList<Map.Entry<String, Integer>>();
+      final List<Map.Entry<String, Integer>> orderedColumns = new ArrayList<>();
       orderedColumns.addAll(columns.entrySet());
       Collections.sort(orderedColumns, new Comparator<Map.Entry<String, Integer>>() {
 

@@ -19,14 +19,13 @@
   */
 package com.orientechnologies.orient.core.sql.functions;
 
+import java.util.List;
+import java.util.Set;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.OScenarioThreadLocal;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.storage.OAutoshardedStorage;
-
-import java.util.List;
-import java.util.Set;
 
 /**
  * Abstract class to extend to build Custom SQL Functions. Extend it and register it with:

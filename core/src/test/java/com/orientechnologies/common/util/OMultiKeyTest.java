@@ -1,13 +1,14 @@
 package com.orientechnologies.common.util;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.junit.Assert.*;
 
 public class OMultiKeyTest {
   @Test
@@ -46,7 +47,7 @@ public class OMultiKeyTest {
 
   @Test
   public void testEmptyKeyEquals() {
-    final Map<OMultiKey, Object> multiKeyMap = new HashMap<OMultiKey, Object>();
+    final Map<OMultiKey, Object> multiKeyMap = new HashMap<>();
 
     final OMultiKey multiKey = new OMultiKey(Collections.emptyList());
     multiKeyMap.put(multiKey, new Object());
@@ -59,7 +60,7 @@ public class OMultiKeyTest {
 
   @Test
   public void testOneKeyMap() {
-    final Map<OMultiKey, Object> multiKeyMap = new HashMap<OMultiKey, Object>();
+    final Map<OMultiKey, Object> multiKeyMap = new HashMap<>();
 
     final OMultiKey multiKey = new OMultiKey(Collections.singletonList("a"));
     multiKeyMap.put(multiKey, new Object());
@@ -72,7 +73,7 @@ public class OMultiKeyTest {
 
   @Test
   public void testOneKeyNotInMap() {
-    final Map<OMultiKey, Object> multiKeyMap = new HashMap<OMultiKey, Object>();
+    final Map<OMultiKey, Object> multiKeyMap = new HashMap<>();
 
     final OMultiKey multiKey = new OMultiKey(Collections.singletonList("a"));
     multiKeyMap.put(multiKey, new Object());
@@ -85,7 +86,7 @@ public class OMultiKeyTest {
 
   @Test
   public void testTwoKeyMap() {
-    final Map<OMultiKey, Object> multiKeyMap = new HashMap<OMultiKey, Object>();
+    final Map<OMultiKey, Object> multiKeyMap = new HashMap<>();
 
     final OMultiKey multiKey = new OMultiKey(Arrays.asList(new String[] { "a", "b" }));
     multiKeyMap.put(multiKey, new Object());
@@ -98,7 +99,7 @@ public class OMultiKeyTest {
 
   @Test
   public void testTwoKeyMapReordered() {
-    final Map<OMultiKey, Object> multiKeyMap = new HashMap<OMultiKey, Object>();
+    final Map<OMultiKey, Object> multiKeyMap = new HashMap<>();
 
     final OMultiKey multiKey = new OMultiKey(Arrays.asList(new String[] { "a", "b" }));
     multiKeyMap.put(multiKey, new Object());

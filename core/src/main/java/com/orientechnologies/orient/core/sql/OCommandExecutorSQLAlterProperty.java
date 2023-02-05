@@ -19,6 +19,10 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Map;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.core.command.OCommandDistributedReplicateRequest;
 import com.orientechnologies.orient.core.command.OCommandRequest;
@@ -30,15 +34,9 @@ import com.orientechnologies.orient.core.metadata.schema.OClassImpl;
 import com.orientechnologies.orient.core.metadata.schema.OProperty;
 import com.orientechnologies.orient.core.metadata.schema.OProperty.ATTRIBUTES;
 import com.orientechnologies.orient.core.metadata.schema.OPropertyImpl;
-import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.sql.parser.OAlterPropertyStatement;
 import com.orientechnologies.orient.core.sql.parser.OExpression;
 import com.orientechnologies.orient.core.util.ODateHelper;
-
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Map;
 
 /**
  * SQL ALTER PROPERTY command: Changes an attribute of an existent property in the target class.

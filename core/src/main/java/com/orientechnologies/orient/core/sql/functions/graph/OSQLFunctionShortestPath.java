@@ -1,20 +1,30 @@
 package com.orientechnologies.orient.core.sql.functions.graph;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.collection.OMultiCollectionIterator;
 import com.orientechnologies.common.concur.lock.OInterruptedException;
 import com.orientechnologies.common.util.ORawPair;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.command.OCommandExecutorAbstract;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 import com.orientechnologies.orient.core.id.ORID;
-import com.orientechnologies.orient.core.record.*;
+import com.orientechnologies.orient.core.record.ODirection;
+import com.orientechnologies.orient.core.record.OEdge;
+import com.orientechnologies.orient.core.record.OElement;
+import com.orientechnologies.orient.core.record.ORecord;
+import com.orientechnologies.orient.core.record.OVertex;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.record.impl.OEdgeToVertexIterable;
 import com.orientechnologies.orient.core.sql.OSQLHelper;
 import com.orientechnologies.orient.core.sql.functions.math.OSQLFunctionMathAbstract;
-
-import java.util.*;
 
 /**
  * Shortest path algorithm to find the shortest path from one node to another node in a directed graph.
@@ -43,11 +53,11 @@ public class OSQLFunctionShortestPath extends OSQLFunctionMathAbstract {
     ArrayDeque<OVertex> queueLeft  = new ArrayDeque<>();
     ArrayDeque<OVertex> queueRight = new ArrayDeque<>();
 
-    final Set<ORID> leftVisited  = new HashSet<ORID>();
-    final Set<ORID> rightVisited = new HashSet<ORID>();
+    final Set<ORID> leftVisited  = new HashSet<>();
+    final Set<ORID> rightVisited = new HashSet<>();
 
-    final Map<ORID, ORID> previouses = new HashMap<ORID, ORID>();
-    final Map<ORID, ORID> nexts      = new HashMap<ORID, ORID>();
+    final Map<ORID, ORID> previouses = new HashMap<>();
+    final Map<ORID, ORID> nexts      = new HashMap<>();
 
     OVertex current;
     OVertex currentRight;
@@ -98,7 +108,7 @@ public class OSQLFunctionShortestPath extends OSQLFunctionMathAbstract {
     }
 
     if (ctx.sourceVertex.equals(ctx.destinationVertex)) {
-      final List<ORID> result = new ArrayList<ORID>(1);
+      final List<ORID> result = new ArrayList<>(1);
       result.add(ctx.destinationVertex.getIdentity());
       return result;
     }
@@ -184,7 +194,7 @@ public class OSQLFunctionShortestPath extends OSQLFunctionMathAbstract {
 
       depth++;
     }
-    return new ArrayList<ORID>();
+    return new ArrayList<>();
 
   }
 
@@ -423,7 +433,7 @@ public class OSQLFunctionShortestPath extends OSQLFunctionMathAbstract {
   }
 
   private List<ORID> computePath(final Map<ORID, ORID> leftDistances, final Map<ORID, ORID> rightDistances, final ORID neighbor) {
-    final List<ORID> result = new ArrayList<ORID>();
+    final List<ORID> result = new ArrayList<>();
 
     ORID current = neighbor;
     while (current != null) {

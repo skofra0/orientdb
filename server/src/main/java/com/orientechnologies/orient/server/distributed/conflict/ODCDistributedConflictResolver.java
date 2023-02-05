@@ -20,14 +20,13 @@
 
 package com.orientechnologies.orient.server.distributed.conflict;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.orient.core.exception.OConfigurationException;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.server.distributed.ODistributedConfiguration;
 import com.orientechnologies.orient.server.distributed.ODistributedServerManager;
-
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Conflict resolver implementation where the majority is selected only in the specified data center. Use this if you have an

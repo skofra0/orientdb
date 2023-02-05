@@ -1,13 +1,12 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.util.Map;
+import java.util.Optional;
 import com.orientechnologies.common.concur.OTimeoutException;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.sql.parser.OIdentifier;
-
-import java.util.Map;
-import java.util.Optional;
 
 /**
  * Returns the number of records contained in a class (including subclasses) Executes a count(*) on a class and returns a single

@@ -1,15 +1,14 @@
 package com.orientechnologies.orient.core.storage.impl.local.paginated.wal.cas;
 
-import com.orientechnologies.common.concur.lock.ScalableRWLock;
-import com.orientechnologies.common.io.OIOUtils;
-
-import com.orientechnologies.common.log.OLogManager;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import com.orientechnologies.common.concur.lock.ScalableRWLock;
+import com.orientechnologies.common.io.OIOUtils;
+import com.orientechnologies.common.log.OLogManager;
 
 public class OWALChannelFile implements OWALFile {
 

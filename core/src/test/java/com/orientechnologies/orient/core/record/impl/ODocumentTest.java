@@ -6,8 +6,12 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-
-
+import org.assertj.core.api.Assertions;
+import org.junit.Test;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.db.record.ridbag.ORidBag;
 import com.orientechnologies.orient.core.id.ORecordId;
@@ -17,12 +21,6 @@ import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.ORecordInternal;
 import com.orientechnologies.orient.core.serialization.serializer.record.ORecordSerializer;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.assertj.core.api.Assertions;
-import org.junit.Test;
 
 /**
  * @author Artem Orobets (enisher-at-gmail.com)
@@ -245,14 +243,14 @@ public class ODocumentTest {
   public void testSetFieldAtListIndex() {
     ODocument doc = new ODocument();
 
-    Map<String, Object> data = new HashMap<String, Object>();
+    Map<String, Object> data = new HashMap<>();
 
-    List<Object> parentArray = new ArrayList<Object>();
+    List<Object> parentArray = new ArrayList<>();
     parentArray.add(1);
     parentArray.add(2);
     parentArray.add(3);
 
-    Map<String, Object> object4 = new HashMap<String, Object>();
+    Map<String, Object> object4 = new HashMap<>();
     object4.put("prop", "A");
     parentArray.add(object4);
 
@@ -340,7 +338,7 @@ public class ODocumentTest {
   @Test(expected = IllegalArgumentException.class)
   public void testFailNullMapKey() {
     ODocument doc = new ODocument();
-    Map<String, String> map = new HashMap<String, String>();
+    Map<String, String> map = new HashMap<>();
     map.put(null, "dd");
     doc.field("testMap", map);
     doc.convertAllMultiValuesToTrackedVersions();
@@ -349,7 +347,7 @@ public class ODocumentTest {
   @Test
   public void testGetSetProperty() {
     ODocument doc = new ODocument();
-    Map<String, String> map = new HashMap<String, String>();
+    Map<String, String> map = new HashMap<>();
     map.put("foo", "valueInTheMap");
     doc.field("theMap", map);
     doc.setProperty("theMap.foo", "bar");

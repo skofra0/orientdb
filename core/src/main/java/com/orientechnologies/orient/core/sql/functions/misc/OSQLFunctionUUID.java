@@ -19,11 +19,10 @@
  */
 package com.orientechnologies.orient.core.sql.functions.misc;
 
+import java.util.UUID;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunctionAbstract;
-
-import java.util.UUID;
 
 /**
  * Generates a UUID as a 128-bits value using the Leach-Salz variant. For more information look at:

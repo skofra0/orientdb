@@ -1,12 +1,11 @@
 package com.orientechnologies.orient.core.storage.cluster;
 
+import java.io.IOException;
 import com.orientechnologies.orient.core.storage.OCluster;
 import com.orientechnologies.orient.core.storage.config.OClusterBasedStorageConfiguration;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperation;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.base.ODurableComponent;
-
-import java.io.IOException;
 
 public abstract class OPaginatedCluster extends ODurableComponent implements OCluster {
   public enum RECORD_STATUS {

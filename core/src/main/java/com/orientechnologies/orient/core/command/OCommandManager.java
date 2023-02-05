@@ -19,26 +19,29 @@
  */
 package com.orientechnologies.orient.core.command;
 
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.util.OCallable;
 import com.orientechnologies.orient.core.command.script.OCommandExecutorScript;
 import com.orientechnologies.orient.core.command.script.OCommandScript;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
-import com.orientechnologies.orient.core.sql.*;
+import com.orientechnologies.orient.core.sql.OCommandExecutorSQLDelegate;
+import com.orientechnologies.orient.core.sql.OCommandExecutorSQLLiveSelect;
+import com.orientechnologies.orient.core.sql.OCommandExecutorSQLResultsetDelegate;
+import com.orientechnologies.orient.core.sql.OCommandSQL;
+import com.orientechnologies.orient.core.sql.OCommandSQLResultset;
 import com.orientechnologies.orient.core.sql.query.OLiveQuery;
 import com.orientechnologies.orient.core.sql.query.OSQLAsynchQuery;
 import com.orientechnologies.orient.core.sql.query.OSQLNonBlockingQuery;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-
 public class OCommandManager {
   private static OCommandManager                                                          instance          = new OCommandManager();
-  private        Map<String, Class<? extends OCommandRequest>>                            commandRequesters = new HashMap<String, Class<? extends OCommandRequest>>();
-  private        Map<Class<? extends OCommandRequest>, OCallable<Void, OCommandRequest>>  configCallbacks   = new HashMap<Class<? extends OCommandRequest>, OCallable<Void, OCommandRequest>>();
-  private        Map<Class<? extends OCommandRequest>, Class<? extends OCommandExecutor>> commandReqExecMap = new HashMap<Class<? extends OCommandRequest>, Class<? extends OCommandExecutor>>();
+  private        Map<String, Class<? extends OCommandRequest>>                            commandRequesters = new HashMap<>();
+  private        Map<Class<? extends OCommandRequest>, OCallable<Void, OCommandRequest>>  configCallbacks   = new HashMap<>();
+  private        Map<Class<? extends OCommandRequest>, Class<? extends OCommandExecutor>> commandReqExecMap = new HashMap<>();
   private        Map<String, OScriptExecutor>                                             scriptExecutors   = new HashMap<>();
 
   protected OCommandManager() {

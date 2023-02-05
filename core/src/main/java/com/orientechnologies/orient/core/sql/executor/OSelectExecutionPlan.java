@@ -1,12 +1,11 @@
 package com.orientechnologies.orient.core.sql.executor;
 
-import com.orientechnologies.common.exception.OException;
-import com.orientechnologies.orient.core.command.OCommandContext;
-import com.orientechnologies.orient.core.exception.OCommandExecutionException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import com.orientechnologies.common.exception.OException;
+import com.orientechnologies.orient.core.command.OCommandContext;
+import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 
 /**
  * Created by luigidellaquila on 06/07/16.

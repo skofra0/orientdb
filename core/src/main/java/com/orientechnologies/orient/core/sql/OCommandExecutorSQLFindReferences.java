@@ -19,6 +19,10 @@
   */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.core.command.OCommandRequest;
 import com.orientechnologies.orient.core.command.OCommandRequestText;
@@ -27,11 +31,6 @@ import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * FIND REFERENCES command: Finds references to records in all or part of database
@@ -43,7 +42,7 @@ public class OCommandExecutorSQLFindReferences extends OCommandExecutorSQLEarlyR
   public static final String KEYWORD_FIND       = "FIND";
   public static final String KEYWORD_REFERENCES = "REFERENCES";
 
-  private Set<ORID> recordIds = new HashSet<ORID>();
+  private Set<ORID> recordIds = new HashSet<>();
   private String        classList;
   private StringBuilder subQuery;
 

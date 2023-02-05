@@ -20,13 +20,9 @@
 package com.orientechnologies.orient.core.db;
 
 import static org.junit.Assert.assertEquals;
-
+import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.junit.Ignore;
-import org.junit.Test;
-
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.ODatabase.ATTRIBUTES;
 

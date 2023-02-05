@@ -19,11 +19,10 @@
  */
 package com.orientechnologies.orient.core.db;
 
+import java.util.concurrent.atomic.AtomicReference;
 import com.orientechnologies.orient.core.OOrientListenerAbstract;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.exception.ODatabaseException;
-
-import java.util.concurrent.atomic.AtomicReference;
 
 public class ODatabaseRecordThreadLocal extends ThreadLocal<ODatabaseDocumentInternal> {
 

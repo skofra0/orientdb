@@ -1,5 +1,10 @@
 package com.orientechnologies.orient.core.encryption.impl;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.Assert;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.ODatabase;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
@@ -10,13 +15,6 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import com.orientechnologies.orient.core.storage.OStorage;
-import org.junit.Assert;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
-import static org.assertj.core.api.Assertions.*;
 
 /**
  * @author Luca Garulli (l.garulli--(at)--orientdb.com)

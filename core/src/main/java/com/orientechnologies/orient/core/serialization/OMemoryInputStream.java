@@ -19,10 +19,9 @@
   */
 package com.orientechnologies.orient.core.serialization;
 
-import com.orientechnologies.common.util.OArrays;
-
 import java.io.IOException;
 import java.io.InputStream;
+import com.orientechnologies.common.util.OArrays;
 
 /**
  * Class to parse and write buffers in very fast way.

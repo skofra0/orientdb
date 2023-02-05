@@ -19,6 +19,14 @@
  */
 package com.orientechnologies.orient.core.sql.query;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import com.orientechnologies.common.util.OCommonConst;
 import com.orientechnologies.orient.core.command.OCommandRequestText;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
@@ -34,15 +42,6 @@ import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.serialization.OMemoryStream;
 import com.orientechnologies.orient.core.serialization.serializer.record.ORecordSerializer;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
 /**
  * SQL query implementation.
@@ -153,7 +152,7 @@ public abstract class OSQLQuery<T> extends OQueryAbstract<T> implements OCommand
     param.setFieldType("params", OType.EMBEDDEDMAP);
     final Map<String, Object> params = param.rawField("params");
 
-    final Map<Object, Object> result = new HashMap<Object, Object>();
+    final Map<Object, Object> result = new HashMap<>();
     for (Entry<String, Object> p : params.entrySet()) {
       if (Character.isDigit(p.getKey().charAt(0)))
         result.put(Integer.parseInt(p.getKey()), p.getValue());
@@ -175,14 +174,14 @@ public abstract class OSQLQuery<T> extends OQueryAbstract<T> implements OCommand
 
   @SuppressWarnings("unchecked")
   private Map<Object, Object> convertToRIDsIfPossible(final Map<Object, Object> params) {
-    final Map<Object, Object> newParams = new HashMap<Object, Object>(params.size());
+    final Map<Object, Object> newParams = new HashMap<>(params.size());
 
     for (Entry<Object, Object> entry : params.entrySet()) {
       final Object value = entry.getValue();
 
       if (value instanceof Set<?> && !((Set<?>) value).isEmpty() && ((Set<?>) value).iterator().next() instanceof ORecord) {
         // CONVERT RECORDS AS RIDS
-        final Set<ORID> newSet = new HashSet<ORID>();
+        final Set<ORID> newSet = new HashSet<>();
         for (ORecord rec : (Set<ORecord>) value) {
           newSet.add(rec.getIdentity());
         }
@@ -190,7 +189,7 @@ public abstract class OSQLQuery<T> extends OQueryAbstract<T> implements OCommand
 
       } else if (value instanceof List<?> && !((List<?>) value).isEmpty() && ((List<?>) value).get(0) instanceof ORecord) {
         // CONVERT RECORDS AS RIDS
-        final List<ORID> newList = new ArrayList<ORID>();
+        final List<ORID> newList = new ArrayList<>();
         for (ORecord rec : (List<ORecord>) value) {
           newList.add(rec.getIdentity());
         }
@@ -199,7 +198,7 @@ public abstract class OSQLQuery<T> extends OQueryAbstract<T> implements OCommand
       } else if (value instanceof Map<?, ?> && !((Map<?, ?>) value).isEmpty() && ((Map<?, ?>) value).values().iterator()
           .next() instanceof ORecord) {
         // CONVERT RECORDS AS RIDS
-        final Map<Object, ORID> newMap = new HashMap<Object, ORID>();
+        final Map<Object, ORID> newMap = new HashMap<>();
         for (Entry<?, ORecord> mapEntry : ((Map<?, ORecord>) value).entrySet()) {
           newMap.put(mapEntry.getKey(), mapEntry.getValue().getIdentity());
         }

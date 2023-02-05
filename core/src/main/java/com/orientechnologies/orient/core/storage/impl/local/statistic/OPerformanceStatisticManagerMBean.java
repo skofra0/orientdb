@@ -16,8 +16,9 @@
 
 package com.orientechnologies.orient.core.storage.impl.local.statistic;
 
-import com.orientechnologies.common.log.OLogManager;
-
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import javax.management.Attribute;
 import javax.management.AttributeList;
 import javax.management.AttributeNotFoundException;
@@ -33,9 +34,7 @@ import javax.management.MBeanParameterInfo;
 import javax.management.ReflectionException;
 import javax.management.RuntimeOperationsException;
 import javax.management.modelmbean.ModelMBeanAttributeInfo;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import com.orientechnologies.common.log.OLogManager;
 
 /**
  * JMX bean which allows to start/stop monitoring of OrientDB performance

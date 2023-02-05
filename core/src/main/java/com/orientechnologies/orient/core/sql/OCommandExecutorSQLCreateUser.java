@@ -1,13 +1,12 @@
 package com.orientechnologies.orient.core.sql;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.orient.core.command.OCommandDistributedReplicateRequest;
 import com.orientechnologies.orient.core.command.OCommandRequest;
 import com.orientechnologies.orient.core.command.OCommandRequestText;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Creates a new user.
@@ -50,7 +49,7 @@ public class OCommandExecutorSQLCreateUser extends OCommandExecutorSQLAbstract i
     parserRequiredKeyword(KEYWORD_BY);
     this.pass = parserRequiredWord(false, "Expected <user-password>");
 
-    this.roles = new ArrayList<String>();
+    this.roles = new ArrayList<>();
 
     String temp;
     while ((temp = parseOptionalWord(true)) != null) {

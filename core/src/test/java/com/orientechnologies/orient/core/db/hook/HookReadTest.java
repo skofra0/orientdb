@@ -1,18 +1,16 @@
 package com.orientechnologies.orient.core.db.hook;
 
+import static org.junit.Assert.assertEquals;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import java.util.List;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.hook.ORecordHook;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * Created by tglman on 01/06/16.
@@ -56,7 +54,7 @@ public class HookReadTest {
 
     database.save(new ODocument("TestClass"));
 
-    List<ODocument> res = database.query(new OSQLSynchQuery<Object>("select from TestClass"));
+    List<ODocument> res = database.query(new OSQLSynchQuery<>("select from TestClass"));
     assertEquals(res.get(0).field("read"), "test");
 
   }

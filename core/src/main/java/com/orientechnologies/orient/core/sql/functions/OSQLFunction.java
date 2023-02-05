@@ -19,10 +19,9 @@
   */
 package com.orientechnologies.orient.core.sql.functions;
 
+import java.util.List;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
-
-import java.util.List;
 
 /**
  * Interface that defines a SQL Function. Functions can be state-less if registered as instance, or state-full when registered as

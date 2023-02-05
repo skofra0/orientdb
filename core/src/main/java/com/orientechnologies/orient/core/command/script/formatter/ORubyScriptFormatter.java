@@ -19,9 +19,8 @@
   */
 package com.orientechnologies.orient.core.command.script.formatter;
 
-import com.orientechnologies.orient.core.metadata.function.OFunction;
-
 import java.util.Scanner;
+import com.orientechnologies.orient.core.metadata.function.OFunction;
 
 /**
  * Ruby script formatter

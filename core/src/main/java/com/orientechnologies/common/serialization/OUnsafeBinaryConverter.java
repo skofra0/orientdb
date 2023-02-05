@@ -24,7 +24,6 @@ import java.lang.reflect.Field;
 import java.nio.ByteOrder;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
-
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import sun.misc.Unsafe;
 

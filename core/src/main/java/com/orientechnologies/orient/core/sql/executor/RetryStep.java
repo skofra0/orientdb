@@ -1,5 +1,7 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.util.Iterator;
+import java.util.List;
 import com.orientechnologies.common.concur.ONeedRetryException;
 import com.orientechnologies.common.concur.OTimeoutException;
 import com.orientechnologies.orient.core.command.OBasicCommandContext;
@@ -7,9 +9,6 @@ import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.OExecutionThreadLocal;
 import com.orientechnologies.orient.core.exception.OCommandInterruptedException;
 import com.orientechnologies.orient.core.sql.parser.OStatement;
-
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by luigidellaquila on 19/09/16.

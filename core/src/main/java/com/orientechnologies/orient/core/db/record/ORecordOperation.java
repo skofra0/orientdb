@@ -19,11 +19,10 @@
  */
 package com.orientechnologies.orient.core.db.record;
 
+import java.util.Locale;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.storage.ORecordCallback;
-
-import java.util.Locale;
 
 /**
  * Contains the information about a database operation.

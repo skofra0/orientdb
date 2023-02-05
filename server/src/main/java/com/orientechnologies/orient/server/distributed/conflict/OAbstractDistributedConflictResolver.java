@@ -20,12 +20,11 @@
 
 package com.orientechnologies.orient.server.distributed.conflict;
 
-import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.orient.core.storage.ORawBuffer;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.orientechnologies.orient.core.storage.ORawBuffer;
 
 /**
  * Abstract class to simplify implementation of distributed conflict resolvers.

@@ -18,19 +18,17 @@
 
 package com.orientechnologies.lucene.tests;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.Ignore;
+import org.junit.Test;
+import java.util.HashMap;
+import java.util.Map;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.OEdge;
 import com.orientechnologies.orient.core.record.OVertex;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
-import org.junit.Ignore;
-import org.junit.Test;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Created by Enrico Risa on 18/09/15.

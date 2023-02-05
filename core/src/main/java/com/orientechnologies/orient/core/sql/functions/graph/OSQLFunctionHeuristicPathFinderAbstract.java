@@ -19,13 +19,17 @@
   */
 package com.orientechnologies.orient.core.sql.functions.graph;
 
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.metadata.function.OFunction;
 import com.orientechnologies.orient.core.record.ODirection;
 import com.orientechnologies.orient.core.record.OVertex;
 import com.orientechnologies.orient.core.sql.functions.math.OSQLFunctionMathAbstract;
-
-import java.util.*;
 
 /**
  * Abstract class to find paths between nodes using heuristic .
@@ -59,7 +63,7 @@ public abstract class OSQLFunctionHeuristicPathFinderAbstract extends OSQLFuncti
   protected String           paramCustomHeuristicFormula = "";
 
   protected OCommandContext context;
-  protected              List<OVertex> route = new LinkedList<OVertex>();
+  protected              List<OVertex> route = new LinkedList<>();
   protected static final float         MIN   = 0f;
 
   public OSQLFunctionHeuristicPathFinderAbstract(final String iName, final int iMinParams, final int iMaxParams) {
@@ -86,14 +90,14 @@ public abstract class OSQLFunctionHeuristicPathFinderAbstract extends OSQLFuncti
       OCommandContext iContext);
 
   protected LinkedList<OVertex> getPath() {
-    final LinkedList<OVertex> path = new LinkedList<OVertex>(route);
+    final LinkedList<OVertex> path = new LinkedList<>(route);
     return path;
   }
 
   protected Set<OVertex> getNeighbors(final OVertex node) {
     context.incrementVariable("getNeighbors");
 
-    final Set<OVertex> neighbors = new HashSet<OVertex>();
+    final Set<OVertex> neighbors = new HashSet<>();
     if (node != null) {
       for (OVertex v : node.getVertices(paramDirection, paramEdgeTypeNames)) {
         final OVertex ov = (OVertex) v;

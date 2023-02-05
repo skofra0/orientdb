@@ -19,8 +19,8 @@
  */
 package com.orientechnologies.orient.core.sql.parser.operators;
 
-import com.orientechnologies.orient.core.sql.parser.OLuceneOperator;
 import org.junit.Test;
+import com.orientechnologies.orient.core.sql.parser.OLuceneOperator;
 
 /**
  * @author Luigi Dell'Aquila (l.dellaquila-(at)-orientdb.com)

@@ -31,7 +31,7 @@ import java.util.Set;
  */
 public class ODefaultCollateFactory implements OCollateFactory {
 
-  private static final Map<String, OCollate> COLLATES = new HashMap<String, OCollate>(2);
+  private static final Map<String, OCollate> COLLATES = new HashMap<>(2);
 
   static {
     register(new ODefaultCollate());

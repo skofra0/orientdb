@@ -19,18 +19,20 @@
  */
 package com.orientechnologies.orient.core.serialization.serializer;
 
-import com.orientechnologies.common.util.OPair;
-import com.orientechnologies.orient.core.id.ORID;
-import com.orientechnologies.orient.core.id.ORecordId;
-import com.orientechnologies.orient.core.sql.executor.ORidSet;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.text.ParseException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import com.orientechnologies.common.util.OPair;
+import com.orientechnologies.orient.core.id.ORID;
+import com.orientechnologies.orient.core.id.ORecordId;
+import com.orientechnologies.orient.core.sql.executor.ORidSet;
 
 public class OJSONReader {
   public static final char NEW_LINE = '\n';

@@ -20,10 +20,6 @@
 
 package com.orientechnologies.orient.core.index;
 
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-
-import java.util.Map;
-
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)
  * @since 4/22/14

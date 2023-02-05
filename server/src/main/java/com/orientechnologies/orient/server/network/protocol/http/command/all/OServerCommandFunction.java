@@ -19,11 +19,10 @@
     */
 package com.orientechnologies.orient.server.network.protocol.http.command.all;
 
+import java.io.IOException;
 import com.orientechnologies.orient.server.config.OServerCommandConfiguration;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpResponse;
-
-import java.io.IOException;
 
 public class OServerCommandFunction extends OServerCommandAbstractLogic {
    private static final String[] NAMES = { "GET|function/*", "POST|function/*" };

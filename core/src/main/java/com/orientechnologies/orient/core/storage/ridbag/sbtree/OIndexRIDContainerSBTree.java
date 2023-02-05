@@ -20,6 +20,12 @@
 
 package com.orientechnologies.orient.core.storage.ridbag.sbtree;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Objects;
+import java.util.Set;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.serialization.types.OBooleanSerializer;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
@@ -32,9 +38,6 @@ import com.orientechnologies.orient.core.storage.index.sbtree.OSBTreeMapEntryIte
 import com.orientechnologies.orient.core.storage.index.sbtree.OTreeInternal;
 import com.orientechnologies.orient.core.storage.index.sbtreebonsai.local.OBonsaiBucketPointer;
 import com.orientechnologies.orient.core.storage.index.sbtreebonsai.local.OSBTreeBonsaiLocal;
-
-import java.io.IOException;
-import java.util.*;
 
 /**
  * Persistent Set<OIdentifiable> implementation that uses the SBTree to handle entries in persistent way.

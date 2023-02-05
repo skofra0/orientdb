@@ -19,13 +19,12 @@
  */
 package com.orientechnologies.orient.core.storage.impl.local.paginated;
 
+import java.util.HashSet;
+import java.util.Set;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.storage.cluster.OPaginatedCluster;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperationMetadata;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * This class is used inside of {@link OPaginatedCluster} class as container for the records ids which were changed during

@@ -19,6 +19,15 @@
  */
 package com.orientechnologies.orient.core.sql.filter;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Pattern;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.log.OLogManager;
@@ -46,11 +55,6 @@ import com.orientechnologies.orient.core.sql.functions.OSQLFunctionRuntime;
 import com.orientechnologies.orient.core.sql.operator.OQueryOperator;
 import com.orientechnologies.orient.core.sql.operator.OQueryOperatorMatches;
 import com.orientechnologies.orient.core.sql.query.OSQLQuery;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.regex.Pattern;
 
 /**
  * Run-time query condition evaluator.
@@ -391,7 +395,7 @@ public class OSQLFilterCondition {
       final Iterable<?> multiValue = OMultiValue.getMultiValueIterable(iValue, false);
 
       // MULTI VALUE: RETURN A COPY
-      final ArrayList<Object> result = new ArrayList<Object>(OMultiValue.getSize(iValue));
+      final ArrayList<Object> result = new ArrayList<>(OMultiValue.getSize(iValue));
 
       for (final Object value : multiValue) {
         if (value instanceof OSQLFilterItem) {

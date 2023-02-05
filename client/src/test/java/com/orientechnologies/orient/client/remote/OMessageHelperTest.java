@@ -1,5 +1,14 @@
 package com.orientechnologies.orient.client.remote;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.Assert;
+import org.junit.Test;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutput;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import com.orientechnologies.orient.client.remote.message.MockChannel;
 import com.orientechnologies.orient.client.remote.message.OMessageHelper;
 import com.orientechnologies.orient.client.remote.message.tx.ORecordOperationRequest;
@@ -15,12 +24,6 @@ import com.orientechnologies.orient.core.record.impl.ODirtyManager;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.record.impl.ODocumentInternal;
 import com.orientechnologies.orient.core.serialization.serializer.record.binary.ORecordSerializerNetworkFactory;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.io.*;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Created by Enrico Risa on 06/06/2017.

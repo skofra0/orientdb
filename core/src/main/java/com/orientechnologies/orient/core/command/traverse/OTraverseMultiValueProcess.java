@@ -19,11 +19,10 @@
  */
 package com.orientechnologies.orient.core.command.traverse;
 
+import java.util.Iterator;
 import com.orientechnologies.orient.core.db.record.OAutoConvertToRecord;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.id.ORID;
-
-import java.util.Iterator;
 
 public class OTraverseMultiValueProcess extends OTraverseAbstractProcess<Iterator<Object>> {
   private final OTraversePath parentPath;

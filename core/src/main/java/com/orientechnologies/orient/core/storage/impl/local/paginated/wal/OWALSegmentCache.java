@@ -19,21 +19,21 @@
  */
 package com.orientechnologies.orient.core.storage.impl.local.paginated.wal;
 
-import com.orientechnologies.common.log.OLogManager;
-
+import static com.orientechnologies.common.io.OIOUtils.readByteBuffer;
+import static com.orientechnologies.common.io.OIOUtils.writeByteBuffers;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.channels.FileChannel;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
-
-import static com.orientechnologies.common.io.OIOUtils.readByteBuffer;
-import static com.orientechnologies.common.io.OIOUtils.writeByteBuffers;
+import com.orientechnologies.common.log.OLogManager;
 
 /**
  * Write cache for the file which presents segment of WAL.

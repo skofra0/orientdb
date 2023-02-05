@@ -19,11 +19,10 @@
   */
 package com.orientechnologies.common.log;
 
+import java.util.Locale;
 import com.orientechnologies.common.parser.OVariableParser;
 import com.orientechnologies.common.parser.OVariableParserListener;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
-
-import java.util.Locale;
 
 /**
  * Console ANSI utility class that supports most of the ANSI amenities.

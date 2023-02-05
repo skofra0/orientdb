@@ -1,9 +1,8 @@
 package com.orientechnologies.distribution.integration;
 
-import com.orientechnologies.orient.core.sql.executor.OResultSet;
-import org.junit.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.Test;
+import com.orientechnologies.orient.core.sql.executor.OResultSet;
 
 /**
  * Created by frank on 15/03/2017.

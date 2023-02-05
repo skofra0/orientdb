@@ -20,7 +20,6 @@
 package com.orientechnologies.orient.core.index;
 
 import java.util.Map;
-
 import com.orientechnologies.orient.core.metadata.schema.OType;
 
 /**

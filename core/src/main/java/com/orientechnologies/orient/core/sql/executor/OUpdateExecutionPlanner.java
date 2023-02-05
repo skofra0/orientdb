@@ -1,13 +1,20 @@
 package com.orientechnologies.orient.core.sql.executor;
 
-import com.orientechnologies.orient.core.command.OCommandContext;
-import com.orientechnologies.orient.core.exception.OCommandExecutionException;
-import com.orientechnologies.orient.core.sql.parser.*;
-import com.orientechnologies.orient.core.storage.OStorage;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import com.orientechnologies.orient.core.command.OCommandContext;
+import com.orientechnologies.orient.core.exception.OCommandExecutionException;
+import com.orientechnologies.orient.core.sql.parser.OFromClause;
+import com.orientechnologies.orient.core.sql.parser.OLimit;
+import com.orientechnologies.orient.core.sql.parser.OProjection;
+import com.orientechnologies.orient.core.sql.parser.OSelectStatement;
+import com.orientechnologies.orient.core.sql.parser.OTimeout;
+import com.orientechnologies.orient.core.sql.parser.OUpdateEdgeStatement;
+import com.orientechnologies.orient.core.sql.parser.OUpdateOperations;
+import com.orientechnologies.orient.core.sql.parser.OUpdateStatement;
+import com.orientechnologies.orient.core.sql.parser.OWhereClause;
+import com.orientechnologies.orient.core.storage.OStorage;
 
 /**
  * Created by luigidellaquila on 08/08/16.
@@ -18,7 +25,7 @@ public class OUpdateExecutionPlanner {
 
   protected boolean upsert = false;
 
-  protected List<OUpdateOperations> operations   = new ArrayList<OUpdateOperations>();
+  protected List<OUpdateOperations> operations   = new ArrayList<>();
   protected boolean                 returnBefore = false;
   protected boolean                 returnAfter  = false;
   protected boolean                 returnCount  = false;

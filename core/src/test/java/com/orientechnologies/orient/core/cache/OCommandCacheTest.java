@@ -19,6 +19,12 @@
  */
 package com.orientechnologies.orient.core.cache;
 
+import org.junit.Assert;
+import org.junit.Test;
+import java.io.File;
+import java.io.IOException;
+import java.util.Collection;
+import java.util.List;
 import com.orientechnologies.common.io.OIOUtils;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
@@ -27,13 +33,6 @@ import com.orientechnologies.orient.core.metadata.OMetadataInternal;
 import com.orientechnologies.orient.core.metadata.security.OUser;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Collection;
-import java.util.List;
 
 /**
  * Created by Enrico Risa on 25/11/15.
@@ -55,7 +54,7 @@ public class OCommandCacheTest {
         ODocument doc = new ODocument("OCommandCache");
         db.save(doc);
       }
-      OSQLSynchQuery<List<ODocument>> query = new OSQLSynchQuery<List<ODocument>>("select from OCommandCache");
+      OSQLSynchQuery<List<ODocument>> query = new OSQLSynchQuery<>("select from OCommandCache");
       query.setCacheableResult(true);
       List<ODocument> results = db.query(query);
 

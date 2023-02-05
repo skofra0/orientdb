@@ -20,10 +20,9 @@
 
 package com.orientechnologies.orient.core.conflict;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.storage.OStorage;
-
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Manages the MVCC conflicts.

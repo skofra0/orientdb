@@ -1,6 +1,5 @@
 package com.orientechnologies.common.test;
 
-import org.junit.Test;
 import java.lang.reflect.Constructor;
 
 public abstract class SpeedTestMultiThreads extends SpeedTestAbstract {

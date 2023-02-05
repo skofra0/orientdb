@@ -1,13 +1,10 @@
 package com.orientechnologies.orient.core.db.document;
 
-import com.orientechnologies.orient.core.record.impl.ODocument;
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-
 import java.util.HashSet;
 import java.util.Set;
-
-import static org.junit.Assert.assertEquals;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 public class DeepLinkedDocumentSaveTest {
 

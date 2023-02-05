@@ -1,13 +1,12 @@
 package com.orientechnologies.distribution.integration.demodb;
 
+import org.junit.Assert;
+import org.junit.Test;
+import java.util.List;
+import java.util.stream.Collectors;
 import com.orientechnologies.distribution.integration.OIntegrationTestTemplate;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by santo-it on 2017-08-28.

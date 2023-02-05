@@ -16,6 +16,12 @@
 
 package com.orientechnologies.orient.core.db.record;
 
+import java.lang.reflect.Method;
+import javax.script.Bindings;
+import javax.script.Invocable;
+import javax.script.ScriptContext;
+import javax.script.ScriptEngine;
+import javax.script.ScriptException;
 import com.orientechnologies.common.concur.resource.OPartitionedObjectPool;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.log.OLogManager;
@@ -35,9 +41,6 @@ import com.orientechnologies.orient.core.metadata.schema.OImmutableClass;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.record.impl.ODocumentInternal;
 import com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper;
-
-import javax.script.*;
-import java.lang.reflect.Method;
 
 /**
  * Author : henryzhao81@gmail.com Feb 19, 2013

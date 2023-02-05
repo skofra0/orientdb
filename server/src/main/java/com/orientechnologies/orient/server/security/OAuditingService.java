@@ -19,10 +19,9 @@
  */
 package com.orientechnologies.orient.server.security;
 
+import java.io.IOException;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.security.OAuditingOperation;
-
-import java.io.IOException;
 
 /**
  * Provides an interface the auditing service.

@@ -1,11 +1,10 @@
 package com.orientechnologies.lucene.tests;
 
-import com.orientechnologies.orient.core.index.OIndex;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.orient.core.sql.OCommandSQL;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import com.orientechnologies.orient.core.index.OIndex;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
  * Created by Enrico Risa on 05/10/16.

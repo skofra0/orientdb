@@ -19,14 +19,11 @@
  */
 package com.orientechnologies.orient.core.security.symmetrickey;
 
-import com.orientechnologies.common.log.OLogManager;
+import java.util.Map;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.exception.OSecurityException;
 import com.orientechnologies.orient.core.metadata.security.OUser;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.orient.core.security.symmetrickey.OSymmetricKeyConfig;
-import com.orientechnologies.orient.core.exception.OSecurityException;
-
-import java.util.Map;
 
 /**
  * Implements the OSymmetricKeyConfig interface for OUser records.

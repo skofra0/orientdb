@@ -20,12 +20,13 @@
 
 package com.orientechnologies.orient.core.compression.impl;
 
-import com.orientechnologies.common.io.OFileUtils;
-import com.orientechnologies.common.io.OIOUtils;
-import com.orientechnologies.common.log.OLogManager;
-import com.orientechnologies.orient.core.command.OCommandOutputListener;
-
-import java.io.*;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -35,6 +36,10 @@ import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
+import com.orientechnologies.common.io.OFileUtils;
+import com.orientechnologies.common.io.OIOUtils;
+import com.orientechnologies.common.log.OLogManager;
+import com.orientechnologies.orient.core.command.OCommandOutputListener;
 
 /**
  * Compression Utility.
@@ -44,7 +49,7 @@ import java.util.zip.ZipOutputStream;
 public class OZIPCompressionUtil {
   public static List<String> compressDirectory(final String sourceFolderName, final ZipOutputStream zos,
       final String[] iSkipFileExtensions, final OCommandOutputListener iOutput) throws IOException {
-    final List<String> compressedFiles = new ArrayList<String>();
+    final List<String> compressedFiles = new ArrayList<>();
     addFolder(zos, sourceFolderName, sourceFolderName, iSkipFileExtensions, iOutput, compressedFiles);
     return compressedFiles;
   }

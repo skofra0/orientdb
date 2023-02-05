@@ -1,17 +1,21 @@
 package com.orientechnologies.orient.core.serialization.serializer.result.binary;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.serialization.serializer.record.binary.BytesContainer;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.sql.executor.OResultInternal;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.*;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by luigidellaquila on 09/12/16.
@@ -76,62 +80,62 @@ public class OResultSerializationTest {
   public void testSimpleLiteralList() {
 
     OResultInternal document = new OResultInternal();
-    List<String> strings = new ArrayList<String>();
+    List<String> strings = new ArrayList<>();
     strings.add("a");
     strings.add("b");
     strings.add("c");
     document.setProperty("listStrings", strings);
 
-    List<Short> shorts = new ArrayList<Short>();
+    List<Short> shorts = new ArrayList<>();
     shorts.add((short) 1);
     shorts.add((short) 2);
     shorts.add((short) 3);
     document.setProperty("shorts", shorts);
 
-    List<Long> longs = new ArrayList<Long>();
+    List<Long> longs = new ArrayList<>();
     longs.add((long) 1);
     longs.add((long) 2);
     longs.add((long) 3);
     document.setProperty("longs", longs);
 
-    List<Integer> ints = new ArrayList<Integer>();
+    List<Integer> ints = new ArrayList<>();
     ints.add(1);
     ints.add(2);
     ints.add(3);
     document.setProperty("integers", ints);
 
-    List<Float> floats = new ArrayList<Float>();
+    List<Float> floats = new ArrayList<>();
     floats.add(1.1f);
     floats.add(2.2f);
     floats.add(3.3f);
     document.setProperty("floats", floats);
 
-    List<Double> doubles = new ArrayList<Double>();
+    List<Double> doubles = new ArrayList<>();
     doubles.add(1.1);
     doubles.add(2.2);
     doubles.add(3.3);
     document.setProperty("doubles", doubles);
 
-    List<Date> dates = new ArrayList<Date>();
+    List<Date> dates = new ArrayList<>();
     dates.add(new Date());
     dates.add(new Date());
     dates.add(new Date());
     document.setProperty("dates", dates);
 
-    List<Byte> bytes = new ArrayList<Byte>();
+    List<Byte> bytes = new ArrayList<>();
     bytes.add((byte) 0);
     bytes.add((byte) 1);
     bytes.add((byte) 3);
     document.setProperty("bytes", bytes);
 
     // TODO: char not currently supported in orient.
-    List<Character> chars = new ArrayList<Character>();
+    List<Character> chars = new ArrayList<>();
     chars.add('A');
     chars.add('B');
     chars.add('C');
     // document.field("chars", chars);
 
-    List<Boolean> booleans = new ArrayList<Boolean>();
+    List<Boolean> booleans = new ArrayList<>();
     booleans.add(true);
     booleans.add(false);
     booleans.add(false);
@@ -166,42 +170,42 @@ public class OResultSerializationTest {
   public void testSimpleMapStringLiteral() {
     OResultInternal document = new OResultInternal();
 
-    Map<String, String> mapString = new HashMap<String, String>();
+    Map<String, String> mapString = new HashMap<>();
     mapString.put("key", "value");
     mapString.put("key1", "value1");
     document.setProperty("mapString", mapString);
 
-    Map<String, Integer> mapInt = new HashMap<String, Integer>();
+    Map<String, Integer> mapInt = new HashMap<>();
     mapInt.put("key", 2);
     mapInt.put("key1", 3);
     document.setProperty("mapInt", mapInt);
 
-    Map<String, Long> mapLong = new HashMap<String, Long>();
+    Map<String, Long> mapLong = new HashMap<>();
     mapLong.put("key", 2L);
     mapLong.put("key1", 3L);
     document.setProperty("mapLong", mapLong);
 
-    Map<String, Short> shortMap = new HashMap<String, Short>();
+    Map<String, Short> shortMap = new HashMap<>();
     shortMap.put("key", (short) 2);
     shortMap.put("key1", (short) 3);
     document.setProperty("shortMap", shortMap);
 
-    Map<String, Date> dateMap = new HashMap<String, Date>();
+    Map<String, Date> dateMap = new HashMap<>();
     dateMap.put("key", new Date());
     dateMap.put("key1", new Date());
     document.setProperty("dateMap", dateMap);
 
-    Map<String, Float> floatMap = new HashMap<String, Float>();
+    Map<String, Float> floatMap = new HashMap<>();
     floatMap.put("key", 10f);
     floatMap.put("key1", 11f);
     document.setProperty("floatMap", floatMap);
 
-    Map<String, Double> doubleMap = new HashMap<String, Double>();
+    Map<String, Double> doubleMap = new HashMap<>();
     doubleMap.put("key", 10d);
     doubleMap.put("key1", 11d);
     document.setProperty("doubleMap", doubleMap);
 
-    Map<String, Byte> bytesMap = new HashMap<String, Byte>();
+    Map<String, Byte> bytesMap = new HashMap<>();
     bytesMap.put("key", (byte) 10);
     bytesMap.put("key1", (byte) 11);
     document.setProperty("bytesMap", bytesMap);
@@ -243,7 +247,7 @@ public class OResultSerializationTest {
     OResultInternal embeddedInMap = new OResultInternal();
     embeddedInMap.setProperty("name", "test");
     embeddedInMap.setProperty("surname", "something");
-    Map<String, OResult> map = new HashMap<String, OResult>();
+    Map<String, OResult> map = new HashMap<>();
     map.put("embedded", embeddedInMap);
     document.setProperty("map", map);
 
@@ -267,7 +271,7 @@ public class OResultSerializationTest {
     embeddedInList.setProperty("name", "test");
     embeddedInList.setProperty("surname", "something");
 
-    List<OResult> embeddedList = new ArrayList<OResult>();
+    List<OResult> embeddedList = new ArrayList<>();
     embeddedList.add(embeddedInList);
     document.setProperty("embeddedList", embeddedList);
 

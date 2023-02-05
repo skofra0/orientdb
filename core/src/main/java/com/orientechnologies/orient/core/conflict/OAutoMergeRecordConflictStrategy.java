@@ -21,7 +21,6 @@
 package com.orientechnologies.orient.core.conflict;
 
 import java.util.concurrent.atomic.AtomicInteger;
-
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.serialization.serializer.record.ORecordSaveThreadLocal;

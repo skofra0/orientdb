@@ -1,11 +1,14 @@
 package com.orientechnologies.orient.core.db.record;
 
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import java.util.Collection;
 import com.orientechnologies.orient.core.command.script.OCommandScript;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
-import org.junit.Assert;import org.junit.Before; import org.junit.After;import org.junit.Test;
-import java.util.Collection;
 
 /**
  * @author Luca Garulli (l.garulli--(at)--orientdb.com)

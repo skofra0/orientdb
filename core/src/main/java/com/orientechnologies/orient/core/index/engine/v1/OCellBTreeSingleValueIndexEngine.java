@@ -1,5 +1,8 @@
 package com.orientechnologies.orient.core.index.engine.v1;
 
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.encryption.OEncryption;
@@ -15,10 +18,6 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperation;
 import com.orientechnologies.orient.core.storage.index.sbtree.singlevalue.OCellBTreeSingleValue;
-
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 
 public final class OCellBTreeSingleValueIndexEngine implements OSingleValueIndexEngine, OCellBTreeIndexEngine {
   private static final String DATA_FILE_EXTENSION        = ".cbt";
@@ -252,7 +251,7 @@ public final class OCellBTreeSingleValueIndexEngine implements OSingleValueIndex
 
       final OIdentifiable value = currentIterator.next();
 
-      return new Map.Entry<Object, OIdentifiable>() {
+      return new Map.Entry<>() {
         @Override
         public Object getKey() {
           return currentKey;

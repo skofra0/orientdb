@@ -18,13 +18,11 @@
 
 package com.orientechnologies.lucene.tests;
 
-import com.orientechnologies.orient.core.sql.executor.OResultSet;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.io.InputStream;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import com.orientechnologies.orient.core.sql.executor.OResultSet;
 
 /**
  * Created by Enrico Risa on 02/09/15.

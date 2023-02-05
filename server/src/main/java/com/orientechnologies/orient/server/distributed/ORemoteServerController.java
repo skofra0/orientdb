@@ -19,9 +19,8 @@
  */
 package com.orientechnologies.orient.server.distributed;
 
-import com.orientechnologies.orient.core.config.OGlobalConfiguration;
-
 import java.io.IOException;
+import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 
 /**
  * Remote server controller. It handles the communication with remote servers in HA configuration.

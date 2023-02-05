@@ -17,7 +17,6 @@ package com.orientechnologies.orient.server.network.protocol.http.multipart;
 
 import java.io.IOException;
 import java.util.Map;
-
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
 

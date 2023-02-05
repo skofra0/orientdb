@@ -1,10 +1,9 @@
 package com.orientechnologies.common.serialization.types;
 
-import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALChanges;
-
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALChanges;
 
 public class OUTF8Serializer implements OBinarySerializer<String> {
   private static final int INT_MASK = 0xFFFF;

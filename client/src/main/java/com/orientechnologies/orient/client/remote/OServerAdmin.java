@@ -19,10 +19,35 @@
  */
 package com.orientechnologies.orient.client.remote;
 
+import java.io.IOException;
+import java.util.Map;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.client.binary.OChannelBinaryAsynchClient;
-import com.orientechnologies.orient.client.remote.message.*;
+import com.orientechnologies.orient.client.remote.message.OConnect37Request;
+import com.orientechnologies.orient.client.remote.message.OConnectResponse;
+import com.orientechnologies.orient.client.remote.message.OCreateDatabaseRequest;
+import com.orientechnologies.orient.client.remote.message.OCreateDatabaseResponse;
+import com.orientechnologies.orient.client.remote.message.ODistributedStatusRequest;
+import com.orientechnologies.orient.client.remote.message.ODistributedStatusResponse;
+import com.orientechnologies.orient.client.remote.message.ODropDatabaseRequest;
+import com.orientechnologies.orient.client.remote.message.ODropDatabaseResponse;
+import com.orientechnologies.orient.client.remote.message.OExistsDatabaseRequest;
+import com.orientechnologies.orient.client.remote.message.OExistsDatabaseResponse;
+import com.orientechnologies.orient.client.remote.message.OFreezeDatabaseRequest;
+import com.orientechnologies.orient.client.remote.message.OFreezeDatabaseResponse;
+import com.orientechnologies.orient.client.remote.message.OGetGlobalConfigurationRequest;
+import com.orientechnologies.orient.client.remote.message.OGetGlobalConfigurationResponse;
+import com.orientechnologies.orient.client.remote.message.OListDatabasesRequest;
+import com.orientechnologies.orient.client.remote.message.OListDatabasesResponse;
+import com.orientechnologies.orient.client.remote.message.OListGlobalConfigurationsRequest;
+import com.orientechnologies.orient.client.remote.message.OListGlobalConfigurationsResponse;
+import com.orientechnologies.orient.client.remote.message.OReleaseDatabaseRequest;
+import com.orientechnologies.orient.client.remote.message.OReleaseDatabaseResponse;
+import com.orientechnologies.orient.client.remote.message.OServerInfoRequest;
+import com.orientechnologies.orient.client.remote.message.OServerInfoResponse;
+import com.orientechnologies.orient.client.remote.message.OSetGlobalConfigurationRequest;
+import com.orientechnologies.orient.client.remote.message.OSetGlobalConfigurationResponse;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.OrientDBRemote;
@@ -34,9 +59,6 @@ import com.orientechnologies.orient.core.security.OSecurityManager;
 import com.orientechnologies.orient.core.storage.OStorage;
 import com.orientechnologies.orient.core.util.OURLConnection;
 import com.orientechnologies.orient.core.util.OURLHelper;
-
-import java.io.IOException;
-import java.util.Map;
 
 /**
  * Remote administration class of OrientDB Server instances.

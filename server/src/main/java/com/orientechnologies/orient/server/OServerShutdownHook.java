@@ -19,7 +19,6 @@
       */
 package com.orientechnologies.orient.server;
 
-import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.Orient;
 
 public class OServerShutdownHook extends Thread {

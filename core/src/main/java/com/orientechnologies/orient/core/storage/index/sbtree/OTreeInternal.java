@@ -20,12 +20,11 @@
 
 package com.orientechnologies.orient.core.storage.index.sbtree;
 
-import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperation;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperation;
 
 /**
  * @author Artem Orobets (enisher-at-gmail.com)
@@ -58,7 +57,7 @@ public interface OTreeInternal<K, V> {
     private List<Map.Entry<K, V>> entries;
 
     public AccumulativeListener(int limit) {
-      entries = new ArrayList<Map.Entry<K, V>>(limit);
+      entries = new ArrayList<>(limit);
       this.limit = limit;
     }
 

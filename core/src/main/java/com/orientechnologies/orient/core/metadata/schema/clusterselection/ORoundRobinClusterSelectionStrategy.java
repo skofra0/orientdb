@@ -15,10 +15,9 @@
  */
 package com.orientechnologies.orient.core.metadata.schema.clusterselection;
 
+import java.util.concurrent.atomic.AtomicLong;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Returns the cluster selecting by round robin algorithm.

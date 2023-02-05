@@ -1,5 +1,9 @@
 package com.orientechnologies.distribution.integration;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.Test;
+import java.util.List;
+import java.util.stream.Collectors;
 import com.orientechnologies.orient.core.collate.OCaseInsensitiveCollate;
 import com.orientechnologies.orient.core.collate.ODefaultCollate;
 import com.orientechnologies.orient.core.db.ODatabase;
@@ -9,12 +13,6 @@ import com.orientechnologies.orient.core.metadata.schema.OProperty;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
-import org.junit.Test;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * This integration test keeps track of issues to avoid regressions. It creates a database called as the class name, which is

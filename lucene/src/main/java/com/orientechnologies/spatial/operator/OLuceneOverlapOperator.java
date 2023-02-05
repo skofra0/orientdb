@@ -14,6 +14,12 @@
  */
 package com.orientechnologies.spatial.operator;
 
+import org.apache.lucene.spatial.query.SpatialOperation;
+import org.locationtech.spatial4j.shape.Shape;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.lucene.collections.OLuceneResultSet;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
@@ -27,13 +33,6 @@ import com.orientechnologies.orient.core.sql.filter.OSQLFilterCondition;
 import com.orientechnologies.spatial.collections.OSpatialCompositeKey;
 import com.orientechnologies.spatial.strategy.SpatialQueryBuilderAbstract;
 import com.orientechnologies.spatial.strategy.SpatialQueryBuilderOverlap;
-import org.apache.lucene.spatial.query.SpatialOperation;
-import org.locationtech.spatial4j.shape.Shape;
-
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class OLuceneOverlapOperator extends OLuceneSpatialOperator {
 
@@ -47,7 +46,7 @@ public class OLuceneOverlapOperator extends OLuceneSpatialOperator {
     Object key;
     key = keyParams.get(0);
 
-    Map<String, Object> queryParams = new HashMap<String, Object>();
+    Map<String, Object> queryParams = new HashMap<>();
     queryParams.put(SpatialQueryBuilderAbstract.GEO_FILTER, SpatialQueryBuilderOverlap.NAME);
     queryParams.put(SpatialQueryBuilderAbstract.SHAPE, key);
 

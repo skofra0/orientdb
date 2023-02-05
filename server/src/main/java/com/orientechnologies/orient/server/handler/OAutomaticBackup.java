@@ -20,24 +20,6 @@
 
 package com.orientechnologies.orient.server.handler;
 
-import com.orientechnologies.common.exception.OException;
-import com.orientechnologies.common.io.OFileUtils;
-import com.orientechnologies.common.io.OIOUtils;
-import com.orientechnologies.common.log.OLogManager;
-import com.orientechnologies.common.parser.OSystemVariableResolver;
-import com.orientechnologies.common.parser.OVariableParser;
-import com.orientechnologies.common.parser.OVariableParserListener;
-import com.orientechnologies.orient.core.Orient;
-import com.orientechnologies.orient.core.command.OCommandOutputListener;
-import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
-import com.orientechnologies.orient.core.db.tool.ODatabaseExport;
-import com.orientechnologies.orient.core.exception.OConfigurationException;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.orient.server.OServer;
-import com.orientechnologies.orient.server.config.OServerParameterConfiguration;
-import com.orientechnologies.orient.server.plugin.OServerPluginAbstract;
-import com.orientechnologies.orient.server.plugin.OServerPluginConfigurable;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -56,6 +38,23 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import com.orientechnologies.common.exception.OException;
+import com.orientechnologies.common.io.OFileUtils;
+import com.orientechnologies.common.io.OIOUtils;
+import com.orientechnologies.common.log.OLogManager;
+import com.orientechnologies.common.parser.OSystemVariableResolver;
+import com.orientechnologies.common.parser.OVariableParser;
+import com.orientechnologies.common.parser.OVariableParserListener;
+import com.orientechnologies.orient.core.Orient;
+import com.orientechnologies.orient.core.command.OCommandOutputListener;
+import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
+import com.orientechnologies.orient.core.db.tool.ODatabaseExport;
+import com.orientechnologies.orient.core.exception.OConfigurationException;
+import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.orientechnologies.orient.server.OServer;
+import com.orientechnologies.orient.server.config.OServerParameterConfiguration;
+import com.orientechnologies.orient.server.plugin.OServerPluginAbstract;
+import com.orientechnologies.orient.server.plugin.OServerPluginConfigurable;
 
 /**
  * Automatically creates a backup at configured time. Starting from v2.2, this component is able also to create incremental backup
@@ -88,8 +87,8 @@ public class OAutomaticBackup extends OServerPluginAbstract implements OServerPl
 
   private String      targetDirectory  = "backup";
   private String      targetFileName;
-  private Set<String> includeDatabases = new HashSet<String>();
-  private Set<String> excludeDatabases = new HashSet<String>();
+  private Set<String> includeDatabases = new HashSet<>();
+  private Set<String> excludeDatabases = new HashSet<>();
   private OServer     serverInstance;
 
   @Override

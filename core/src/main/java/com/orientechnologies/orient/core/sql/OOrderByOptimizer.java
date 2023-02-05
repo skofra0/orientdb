@@ -20,11 +20,10 @@
 
 package com.orientechnologies.orient.core.sql;
 
+import java.util.List;
 import com.orientechnologies.common.util.OPair;
 import com.orientechnologies.orient.core.index.OIndex;
 import com.orientechnologies.orient.core.index.OIndexDefinition;
-
-import java.util.List;
 
 /**
  * @author Artem Orobets (enisher-at-gmail.com)

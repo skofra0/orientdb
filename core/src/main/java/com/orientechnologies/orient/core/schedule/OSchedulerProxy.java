@@ -16,10 +16,9 @@
 
 package com.orientechnologies.orient.core.schedule;
 
+import java.util.Map;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.record.OProxedResource;
-
-import java.util.Map;
 
 /**
  * Proxy implementation of the Scheduler.

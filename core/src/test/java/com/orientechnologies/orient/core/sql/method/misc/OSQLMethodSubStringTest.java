@@ -1,11 +1,10 @@
 package com.orientechnologies.orient.core.sql.method.misc;
 
-import com.orientechnologies.orient.core.sql.functions.text.OSQLMethodSubString;
-import org.junit.Before;
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import org.junit.Before;
+import org.junit.Test;
+import com.orientechnologies.orient.core.sql.functions.text.OSQLMethodSubString;
 
 /**
  * Tests the "asList()" method implemented by the OSQLMethodAsList class.  Note

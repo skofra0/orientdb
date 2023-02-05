@@ -16,6 +16,9 @@
 
 package com.orientechnologies.lucene.index;
 
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.search.Query;
 import com.orientechnologies.lucene.engine.OLuceneIndexEngine;
 import com.orientechnologies.orient.core.exception.OInvalidIndexEngineIdException;
 import com.orientechnologies.orient.core.index.engine.OBaseIndexEngine;
@@ -23,9 +26,6 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.parser.ParseException;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
 import com.orientechnologies.orient.core.storage.impl.local.OIndexEngineCallback;
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.document.Document;
-import org.apache.lucene.search.Query;
 
 public class OLuceneFullTextIndex extends OLuceneIndexNotUnique {
 

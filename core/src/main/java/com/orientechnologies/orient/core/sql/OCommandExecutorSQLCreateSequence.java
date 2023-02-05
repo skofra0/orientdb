@@ -1,5 +1,7 @@
 package com.orientechnologies.orient.core.sql;
 
+import java.util.Arrays;
+import java.util.Map;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.core.command.OCommandDistributedReplicateRequest;
 import com.orientechnologies.orient.core.command.OCommandRequest;
@@ -9,9 +11,6 @@ import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 import com.orientechnologies.orient.core.metadata.sequence.OSequence;
 import com.orientechnologies.orient.core.metadata.sequence.OSequence.SEQUENCE_TYPE;
 import com.orientechnologies.orient.core.metadata.sequence.OSequenceHelper;
-
-import java.util.Arrays;
-import java.util.Map;
 
 /**
  * @author Matan Shukry (matanshukry@gmail.com)

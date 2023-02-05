@@ -21,7 +21,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-
 import com.orientechnologies.common.util.OSizeable;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
@@ -56,14 +55,14 @@ public class OSQLMethodAsSet extends OAbstractSQLMethod {
     }
 
     if (ioResult instanceof Collection<?>) {
-      return new HashSet<Object>((Collection<Object>) ioResult);
+      return new HashSet<>((Collection<Object>) ioResult);
     } else if (!(ioResult instanceof ODocument) && ioResult instanceof Iterable<?>) {
       ioResult = ((Iterable<?>) ioResult).iterator();
     }
 
     if (ioResult instanceof Iterator<?>) {
-      final Set<Object> set = ioResult instanceof OSizeable ? new HashSet<Object>(((OSizeable) ioResult).size())
-          : new HashSet<Object>();
+      final Set<Object> set = ioResult instanceof OSizeable ? new HashSet<>(((OSizeable) ioResult).size())
+          : new HashSet<>();
 
       for (Iterator<Object> iter = (Iterator<Object>) ioResult; iter.hasNext(); ) {
         set.add(iter.next());

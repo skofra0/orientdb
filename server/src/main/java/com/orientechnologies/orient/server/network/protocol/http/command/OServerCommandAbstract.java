@@ -19,6 +19,11 @@
  */
 package com.orientechnologies.orient.server.network.protocol.http.command;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.ArrayList;
+import java.util.List;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper;
@@ -27,12 +32,6 @@ import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpRequestException;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpResponse;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpUtils;
-
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class OServerCommandAbstract implements OServerCommand {
 
@@ -96,7 +95,7 @@ public abstract class OServerCommandAbstract implements OServerCommand {
     error.field("code", iCode);
     error.field("reason", iReason);
     error.field("content", iContent);
-    List<ODocument> errors = new ArrayList<ODocument>();
+    List<ODocument> errors = new ArrayList<>();
     errors.add(error);
     response.field("errors", errors);
     iResponse.send(iCode, iReason, OHttpUtils.CONTENT_JSON, response.toJSON("prettyPrint"), iHeaders);

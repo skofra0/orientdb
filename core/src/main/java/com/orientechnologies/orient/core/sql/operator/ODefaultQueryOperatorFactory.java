@@ -15,14 +15,14 @@
  */
 package com.orientechnologies.orient.core.sql.operator;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 import com.orientechnologies.orient.core.sql.operator.math.OQueryOperatorDivide;
 import com.orientechnologies.orient.core.sql.operator.math.OQueryOperatorMinus;
 import com.orientechnologies.orient.core.sql.operator.math.OQueryOperatorMod;
 import com.orientechnologies.orient.core.sql.operator.math.OQueryOperatorMultiply;
 import com.orientechnologies.orient.core.sql.operator.math.OQueryOperatorPlus;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Default operator factory.
@@ -34,7 +34,7 @@ public class ODefaultQueryOperatorFactory implements OQueryOperatorFactory{
     private static final Set<OQueryOperator> OPERATORS;
 
     static {
-        final Set<OQueryOperator> operators = new HashSet<OQueryOperator>();
+        final Set<OQueryOperator> operators = new HashSet<>();
         operators.add(new OQueryOperatorEquals());
         operators.add(new OQueryOperatorAnd()); 
         operators.add(new OQueryOperatorOr()); 

@@ -19,6 +19,18 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import static com.orientechnologies.common.util.OClassLoaderHelper.lookupProviderWithOrientClassLoader;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.collection.OMultiCollectionIterator;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.common.log.OLogManager;
@@ -49,12 +61,6 @@ import com.orientechnologies.orient.core.sql.parser.OStatementCache;
 import com.orientechnologies.orient.core.sql.parser.OrientSql;
 import com.orientechnologies.orient.core.sql.parser.ParseException;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.util.*;
-
-import static com.orientechnologies.common.util.OClassLoaderHelper.lookupProviderWithOrientClassLoader;
 
 public class OSQLEngine {
 
@@ -138,7 +144,7 @@ public class OSQLEngine {
           final Iterator<OSQLFunctionFactory> ite = lookupProviderWithOrientClassLoader(OSQLFunctionFactory.class,
               orientClassLoader);
 
-          final List<OSQLFunctionFactory> factories = new ArrayList<OSQLFunctionFactory>();
+          final List<OSQLFunctionFactory> factories = new ArrayList<>();
           while (ite.hasNext()) {
             factories.add(ite.next());
           }
@@ -156,7 +162,7 @@ public class OSQLEngine {
 
           final Iterator<OSQLMethodFactory> ite = lookupProviderWithOrientClassLoader(OSQLMethodFactory.class, orientClassLoader);
 
-          final List<OSQLMethodFactory> factories = new ArrayList<OSQLMethodFactory>();
+          final List<OSQLMethodFactory> factories = new ArrayList<>();
           while (ite.hasNext()) {
             factories.add(ite.next());
           }
@@ -177,7 +183,7 @@ public class OSQLEngine {
 
           final Iterator<OCollateFactory> ite = lookupProviderWithOrientClassLoader(OCollateFactory.class, orientClassLoader);
 
-          final List<OCollateFactory> factories = new ArrayList<OCollateFactory>();
+          final List<OCollateFactory> factories = new ArrayList<>();
           while (ite.hasNext()) {
             factories.add(ite.next());
           }
@@ -199,7 +205,7 @@ public class OSQLEngine {
           final Iterator<OQueryOperatorFactory> ite = lookupProviderWithOrientClassLoader(OQueryOperatorFactory.class,
               orientClassLoader);
 
-          final List<OQueryOperatorFactory> factories = new ArrayList<OQueryOperatorFactory>();
+          final List<OQueryOperatorFactory> factories = new ArrayList<>();
           while (ite.hasNext()) {
             factories.add(ite.next());
           }
@@ -220,7 +226,7 @@ public class OSQLEngine {
 
           final Iterator<OCommandExecutorSQLFactory> ite = lookupProviderWithOrientClassLoader(OCommandExecutorSQLFactory.class,
               orientClassLoader);
-          final List<OCommandExecutorSQLFactory> factories = new ArrayList<OCommandExecutorSQLFactory>();
+          final List<OCommandExecutorSQLFactory> factories = new ArrayList<>();
           while (ite.hasNext()) {
             try {
               factories.add(ite.next());
@@ -242,7 +248,7 @@ public class OSQLEngine {
    * @return Set of all function names.
    */
   public static Set<String> getFunctionNames() {
-    final Set<String> types = new HashSet<String>();
+    final Set<String> types = new HashSet<>();
     final Iterator<OSQLFunctionFactory> ite = getFunctionFactories();
     while (ite.hasNext()) {
       types.addAll(ite.next().getFunctionNames());
@@ -251,7 +257,7 @@ public class OSQLEngine {
   }
 
   public static Set<String> getMethodNames() {
-    final Set<String> types = new HashSet<String>();
+    final Set<String> types = new HashSet<>();
     final Iterator<OSQLMethodFactory> ite = getMethodFactories();
     while (ite.hasNext()) {
       types.addAll(ite.next().getMethodNames());
@@ -265,7 +271,7 @@ public class OSQLEngine {
    * @return Set of all colate names.
    */
   public static Set<String> getCollateNames() {
-    final Set<String> types = new HashSet<String>();
+    final Set<String> types = new HashSet<>();
     final Iterator<OCollateFactory> ite = getCollateFactories();
     while (ite.hasNext()) {
       types.addAll(ite.next().getNames());
@@ -279,7 +285,7 @@ public class OSQLEngine {
    * @return Set of all command names.
    */
   public static Set<String> getCommandNames() {
-    final Set<String> types = new HashSet<String>();
+    final Set<String> types = new HashSet<>();
     final Iterator<OCommandExecutorSQLFactory> ite = getCommandFactories();
     while (ite.hasNext()) {
       types.addAll(ite.next().getCommandNames());
@@ -311,7 +317,7 @@ public class OSQLEngine {
       iCurrent = ((Iterable) iCurrent).iterator();
     }
     if (OMultiValue.isMultiValue(iCurrent) || iCurrent instanceof Iterator) {
-      final OMultiCollectionIterator<Object> result = new OMultiCollectionIterator<Object>();
+      final OMultiCollectionIterator<Object> result = new OMultiCollectionIterator<>();
       for (Object o : OMultiValue.getMultiValueIterable(iCurrent, false)) {
         if (iContext != null && !iContext.checkTimeout())
           return null;
@@ -368,14 +374,14 @@ public class OSQLEngine {
           // sort operators, will happen only very few times since we cache the
           // result
           final Iterator<OQueryOperatorFactory> ite = getOperatorFactories();
-          final List<OQueryOperator> operators = new ArrayList<OQueryOperator>();
+          final List<OQueryOperator> operators = new ArrayList<>();
           while (ite.hasNext()) {
             final OQueryOperatorFactory factory = ite.next();
             operators.addAll(factory.getOperators());
           }
 
-          final List<OQueryOperator> sorted = new ArrayList<OQueryOperator>();
-          final Set<Pair> pairs = new LinkedHashSet<Pair>();
+          final List<OQueryOperator> sorted = new ArrayList<>();
+          final Set<Pair> pairs = new LinkedHashSet<>();
           for (final OQueryOperator ca : operators) {
             for (final OQueryOperator cb : operators) {
               if (ca != cb) {
@@ -505,21 +511,21 @@ public class OSQLEngine {
     final Set<OIdentifiable> ids;
     if (iTarget.startsWith("(")) {
       // SUB-QUERY
-      final OSQLSynchQuery<Object> query = new OSQLSynchQuery<Object>(iTarget.substring(1, iTarget.length() - 1));
+      final OSQLSynchQuery<Object> query = new OSQLSynchQuery<>(iTarget.substring(1, iTarget.length() - 1));
       query.setContext(iContext);
 
       final List<OIdentifiable> result = database.query(query, iArgs);
       if (result == null || result.isEmpty())
         ids = Collections.emptySet();
       else {
-        ids = new HashSet<OIdentifiable>((int) (result.size() * 1.3));
+        ids = new HashSet<>((int) (result.size() * 1.3));
         for (OIdentifiable aResult : result)
           ids.add(aResult.getIdentity());
       }
     } else if (iTarget.startsWith("[")) {
       // COLLECTION OF RIDS
       final String[] idsAsStrings = iTarget.substring(1, iTarget.length() - 1).split(",");
-      ids = new HashSet<OIdentifiable>((int) (idsAsStrings.length * 1.3));
+      ids = new HashSet<>((int) (idsAsStrings.length * 1.3));
       for (String idsAsString : idsAsStrings) {
         if (idsAsString.startsWith("$")) {
           Object r = iContext.getVariable(idsAsString);

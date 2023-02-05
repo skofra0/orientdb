@@ -19,12 +19,11 @@
   */
 package com.orientechnologies.orient.core.command.script;
 
-import com.orientechnologies.common.log.OLogManager;
-
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import com.orientechnologies.common.log.OLogManager;
 
 /**
  * Script utility class

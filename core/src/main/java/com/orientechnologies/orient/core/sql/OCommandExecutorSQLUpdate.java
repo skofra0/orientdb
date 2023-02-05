@@ -19,6 +19,12 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.util.OPair;
@@ -51,8 +57,6 @@ import com.orientechnologies.orient.core.sql.query.OSQLAsynchQuery;
 import com.orientechnologies.orient.core.storage.ORecordDuplicatedException;
 import com.orientechnologies.orient.core.storage.OStorage;
 
-import java.util.*;
-
 /**
  * SQL UPDATE command.
  *
@@ -69,11 +73,11 @@ public class OCommandExecutorSQLUpdate extends OCommandExecutorSQLRetryAbstract
   private static final String                                KEYWORD_UPSERT    = "UPSERT";
   private static final String                                KEYWORD_EDGE      = "EDGE";
   private static final Object                                EMPTY_VALUE       = new Object();
-  private              List<OPair<String, Object>>           setEntries        = new ArrayList<OPair<String, Object>>();
-  private              List<OPair<String, Object>>           addEntries        = new ArrayList<OPair<String, Object>>();
-  private              List<OTriple<String, String, Object>> putEntries        = new ArrayList<OTriple<String, String, Object>>();
-  private              List<OPair<String, Object>>           removeEntries     = new ArrayList<OPair<String, Object>>();
-  private              List<OPair<String, Object>>           incrementEntries  = new ArrayList<OPair<String, Object>>();
+  private              List<OPair<String, Object>>           setEntries        = new ArrayList<>();
+  private              List<OPair<String, Object>>           addEntries        = new ArrayList<>();
+  private              List<OTriple<String, String, Object>> putEntries        = new ArrayList<>();
+  private              List<OPair<String, Object>>           removeEntries     = new ArrayList<>();
+  private              List<OPair<String, Object>>           incrementEntries  = new ArrayList<>();
   private              ODocument                             merge             = null;
   private              String                                lockStrategy      = "NONE";
   private              OReturnHandler                        returnHandler     = new ORecordCountHandler();
@@ -268,7 +272,7 @@ public class OCommandExecutorSQLUpdate extends OCommandExecutorSQLRetryAbstract
     parameters = new OCommandParameters(iArgs);
     Map<Object, Object> queryArgs;
     if (parameters.size() > 0 && parameters.getByName(0) != null) {
-      queryArgs = new HashMap<Object, Object>();
+      queryArgs = new HashMap<>();
       for (int i = parameterCounter; i < parameters.size(); i++) {
         if (parameters.getByName(i) != null)
           queryArgs.put(i - parameterCounter, parameters.getByName(i));
@@ -627,7 +631,7 @@ public class OCommandExecutorSQLUpdate extends OCommandExecutorSQLRetryAbstract
           OProperty prop = ODocumentInternal.getImmutableSchemaClass(record).getProperty(entry.getKey());
           if (prop != null && prop.getType() == OType.LINKSET)
             // SET TYPE
-            coll = new HashSet<Object>();
+            coll = new HashSet<>();
           if (prop != null && prop.getType() == OType.LINKBAG) {
             // there is no ridbag value already but property type is defined as LINKBAG
             bag = new ORidBag();
@@ -637,7 +641,7 @@ public class OCommandExecutorSQLUpdate extends OCommandExecutorSQLRetryAbstract
         }
         if (coll == null && bag == null)
           // IN ALL OTHER CASES USE A LIST
-          coll = new ArrayList<Object>();
+          coll = new ArrayList<>();
         if (coll != null) {
           // containField's condition above does NOT check subdocument's fields so
           Collection<Object> currColl = record.field(entry.getKey());
@@ -812,7 +816,7 @@ public class OCommandExecutorSQLUpdate extends OCommandExecutorSQLRetryAbstract
       final Object v = convertValue(clazz, fieldName, getFieldValueCountingParameters(fieldValue));
 
       // INSERT TRANSFORMED FIELD VALUE
-      addEntries.add(new OPair<String, Object>(fieldName, v));
+      addEntries.add(new OPair<>(fieldName, v));
       parserSkipWhiteSpaces();
 
       firstLap = false;
@@ -871,7 +875,7 @@ public class OCommandExecutorSQLUpdate extends OCommandExecutorSQLRetryAbstract
         value = EMPTY_VALUE;
 
       // INSERT FIELD NAME TO BE REMOVED
-      removeEntries.add(new OPair<String, Object>(fieldName, value));
+      removeEntries.add(new OPair<>(fieldName, value));
       parserSkipWhiteSpaces();
 
       firstLap = false;

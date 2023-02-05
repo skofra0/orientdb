@@ -17,14 +17,12 @@
  */
 package com.orientechnologies.orient.jdbc;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
-
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class OrientJdbcDriverTest {
 

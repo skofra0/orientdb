@@ -19,11 +19,10 @@
  */
 package com.orientechnologies.orient.core.exception;
 
+import java.util.Objects;
 import com.orientechnologies.common.concur.ONeedRetryException;
 import com.orientechnologies.common.exception.OHighLevelException;
 import com.orientechnologies.orient.core.id.ORID;
-
-import java.util.Objects;
 
 /**
  * Exception thrown when a create operation get a non expected RID. This could happen with distributed inserts. The client should

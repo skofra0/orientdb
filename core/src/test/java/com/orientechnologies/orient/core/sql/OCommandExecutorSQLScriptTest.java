@@ -1,15 +1,21 @@
 package com.orientechnologies.orient.core.sql;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.orient.core.command.script.OCommandScript;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.junit.*;
-
-import java.util.*;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class OCommandExecutorSQLScriptTest {
   private static String DB_STORAGE = "memory";

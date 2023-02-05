@@ -19,14 +19,13 @@
  */
 package com.orientechnologies.orient.server.network.protocol.http.command.post;
 
+import java.io.IOException;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpResponse;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpUtils;
 import com.orientechnologies.orient.server.network.protocol.http.command.OServerCommandAuthenticatedServerAbstract;
-
-import java.io.IOException;
 
 public class OServerCommandPostServer extends OServerCommandAuthenticatedServerAbstract {
   private static final String[] NAMES = { "POST|server/*" };

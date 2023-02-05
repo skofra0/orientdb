@@ -17,10 +17,10 @@
  */
 package com.orientechnologies.spatial;
 
-import com.orientechnologies.orient.core.index.OIndex;
-import com.orientechnologies.orient.core.sql.OCommandSQL;
 import org.junit.Assert;
 import org.junit.Test;
+import com.orientechnologies.orient.core.index.OIndex;
+import com.orientechnologies.orient.core.sql.OCommandSQL;
 
 /**
  * Created by Enrico Risa on 26/09/15.

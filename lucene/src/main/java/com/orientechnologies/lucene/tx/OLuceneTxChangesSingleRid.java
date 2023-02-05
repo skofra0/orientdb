@@ -18,27 +18,26 @@
 
 package com.orientechnologies.lucene.tx;
 
+import org.apache.lucene.document.Document;
+import org.apache.lucene.document.Field;
+import org.apache.lucene.index.IndexWriter;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.lucene.builder.OLuceneIndexType;
 import com.orientechnologies.lucene.engine.OLuceneIndexEngine;
 import com.orientechnologies.lucene.exception.OLuceneIndexException;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Field;
-import org.apache.lucene.index.IndexWriter;
-
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by Enrico Risa on 15/09/15.
  */
 public class OLuceneTxChangesSingleRid extends OLuceneTxChangesAbstract {
 
-  private final Set<String>   deleted     = new HashSet<String>();
-  private final Set<String>   updated     = new HashSet<String>();
-  private final Set<Document> deletedDocs = new HashSet<Document>();
+  private final Set<String>   deleted     = new HashSet<>();
+  private final Set<String>   updated     = new HashSet<>();
+  private final Set<Document> deletedDocs = new HashSet<>();
 
   public OLuceneTxChangesSingleRid(OLuceneIndexEngine engine, IndexWriter writer, IndexWriter deletedIdx) {
     super(engine, writer, deletedIdx);

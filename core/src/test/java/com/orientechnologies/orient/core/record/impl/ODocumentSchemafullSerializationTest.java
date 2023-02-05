@@ -1,5 +1,17 @@
 package com.orientechnologies.orient.core.record.impl;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.TestName;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
@@ -10,19 +22,6 @@ import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.serialization.serializer.record.ORecordSerializer;
 import com.orientechnologies.orient.core.serialization.serializer.record.ORecordSerializerFactory;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TestName;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static org.junit.Assert.*;
 
 public abstract class ODocumentSchemafullSerializationTest {
 
@@ -169,62 +168,62 @@ public abstract class ODocumentSchemafullSerializationTest {
   public void testSimpleLiteralList() {
     ODatabaseRecordThreadLocal.instance().set(databaseDocument);
     ODocument document = new ODocument(embSimp);
-    List<String> strings = new ArrayList<String>();
+    List<String> strings = new ArrayList<>();
     strings.add("a");
     strings.add("b");
     strings.add("c");
     document.field(LIST_STRINGS, strings);
 
-    List<Short> shorts = new ArrayList<Short>();
+    List<Short> shorts = new ArrayList<>();
     shorts.add((short) 1);
     shorts.add((short) 2);
     shorts.add((short) 3);
     document.field(LIST_SHORTS, shorts);
 
-    List<Long> longs = new ArrayList<Long>();
+    List<Long> longs = new ArrayList<>();
     longs.add((long) 1);
     longs.add((long) 2);
     longs.add((long) 3);
     document.field(LIST_LONGS, longs);
 
-    List<Integer> ints = new ArrayList<Integer>();
+    List<Integer> ints = new ArrayList<>();
     ints.add(1);
     ints.add(2);
     ints.add(3);
     document.field(LIST_INTEGERS, ints);
 
-    List<Float> floats = new ArrayList<Float>();
+    List<Float> floats = new ArrayList<>();
     floats.add(1.1f);
     floats.add(2.2f);
     floats.add(3.3f);
     document.field(LIST_FLOATS, floats);
 
-    List<Double> doubles = new ArrayList<Double>();
+    List<Double> doubles = new ArrayList<>();
     doubles.add(1.1);
     doubles.add(2.2);
     doubles.add(3.3);
     document.field(LIST_DOUBLES, doubles);
 
-    List<Date> dates = new ArrayList<Date>();
+    List<Date> dates = new ArrayList<>();
     dates.add(new Date());
     dates.add(new Date());
     dates.add(new Date());
     document.field(LIST_DATES, dates);
 
-    List<Byte> bytes = new ArrayList<Byte>();
+    List<Byte> bytes = new ArrayList<>();
     bytes.add((byte) 0);
     bytes.add((byte) 1);
     bytes.add((byte) 3);
     document.field(LIST_BYTES, bytes);
 
     // TODO: char not currently supported in orient.
-    List<Character> chars = new ArrayList<Character>();
+    List<Character> chars = new ArrayList<>();
     chars.add('A');
     chars.add('B');
     chars.add('C');
     // document.field("chars", chars);
 
-    List<Boolean> booleans = new ArrayList<Boolean>();
+    List<Boolean> booleans = new ArrayList<>();
     booleans.add(true);
     booleans.add(false);
     booleans.add(false);
@@ -260,42 +259,42 @@ public abstract class ODocumentSchemafullSerializationTest {
     ODatabaseRecordThreadLocal.instance().set(databaseDocument);
     ODocument document = new ODocument(embMapSimple);
 
-    Map<String, String> mapString = new HashMap<String, String>();
+    Map<String, String> mapString = new HashMap<>();
     mapString.put("key", "value");
     mapString.put("key1", "value1");
     document.field(MAP_STRING, mapString);
 
-    Map<String, Integer> mapInt = new HashMap<String, Integer>();
+    Map<String, Integer> mapInt = new HashMap<>();
     mapInt.put("key", 2);
     mapInt.put("key1", 3);
     document.field(MAP_INT, mapInt);
 
-    Map<String, Long> mapLong = new HashMap<String, Long>();
+    Map<String, Long> mapLong = new HashMap<>();
     mapLong.put("key", 2L);
     mapLong.put("key1", 3L);
     document.field(MAP_LONG, mapLong);
 
-    Map<String, Short> shortMap = new HashMap<String, Short>();
+    Map<String, Short> shortMap = new HashMap<>();
     shortMap.put("key", (short) 2);
     shortMap.put("key1", (short) 3);
     document.field(MAP_SHORT, shortMap);
 
-    Map<String, Date> dateMap = new HashMap<String, Date>();
+    Map<String, Date> dateMap = new HashMap<>();
     dateMap.put("key", new Date());
     dateMap.put("key1", new Date());
     document.field(MAP_DATE, dateMap);
 
-    Map<String, Float> floatMap = new HashMap<String, Float>();
+    Map<String, Float> floatMap = new HashMap<>();
     floatMap.put("key", 10f);
     floatMap.put("key1", 11f);
     document.field(MAP_FLOAT, floatMap);
 
-    Map<String, Double> doubleMap = new HashMap<String, Double>();
+    Map<String, Double> doubleMap = new HashMap<>();
     doubleMap.put("key", 10d);
     doubleMap.put("key1", 11d);
     document.field(MAP_DOUBLE, doubleMap);
 
-    Map<String, Byte> bytesMap = new HashMap<String, Byte>();
+    Map<String, Byte> bytesMap = new HashMap<>();
     bytesMap.put("key", (byte) 10);
     bytesMap.put("key1", (byte) 11);
     document.field(MAP_BYTES, bytesMap);

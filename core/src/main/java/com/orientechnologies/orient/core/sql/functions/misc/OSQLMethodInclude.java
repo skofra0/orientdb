@@ -19,15 +19,14 @@
   */
 package com.orientechnologies.orient.core.sql.functions.misc;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.method.misc.OAbstractSQLMethod;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Filter the content by including only some fields. If the content is a document, then creates a copy with only the included
@@ -82,7 +81,7 @@ public class OSQLMethodInclude extends OAbstractSQLMethod {
         return copy((Map) iThis, iParams);
       } else if (OMultiValue.isMultiValue(iThis)) {
         // ACT ON MULTIPLE DOCUMENTS
-        final List<Object> result = new ArrayList<Object>(OMultiValue.getSize(iThis));
+        final List<Object> result = new ArrayList<>(OMultiValue.getSize(iThis));
         for (Object o : OMultiValue.getMultiValueIterable(iThis, false)) {
           if (o instanceof OIdentifiable) {
             result.add(copy((ODocument) ((OIdentifiable) o).getRecord(), iParams));
@@ -105,7 +104,7 @@ public class OSQLMethodInclude extends OAbstractSQLMethod {
 
         if (fieldName.endsWith("*")) {
           final String fieldPart = fieldName.substring(0, fieldName.length() - 1);
-          final List<String> toInclude = new ArrayList<String>();
+          final List<String> toInclude = new ArrayList<>();
           for (String f : document.fieldNames()) {
             if (f.startsWith(fieldPart))
               toInclude.add(f);
@@ -129,7 +128,7 @@ public class OSQLMethodInclude extends OAbstractSQLMethod {
 
         if (fieldName.endsWith("*")) {
           final String fieldPart = fieldName.substring(0, fieldName.length() - 1);
-          final List<String> toInclude = new ArrayList<String>();
+          final List<String> toInclude = new ArrayList<>();
           for (Object f : map.keySet()) {
             if (f.toString().startsWith(fieldPart))
               toInclude.add(f.toString());

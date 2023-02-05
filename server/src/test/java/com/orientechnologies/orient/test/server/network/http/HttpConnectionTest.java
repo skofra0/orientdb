@@ -1,12 +1,11 @@
 package com.orientechnologies.orient.test.server.network.http;
 
-import com.orientechnologies.orient.core.config.OGlobalConfiguration;
-import com.orientechnologies.orient.core.record.impl.ODocument;
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.io.IOException;
 import java.util.Collection;
+import com.orientechnologies.orient.core.config.OGlobalConfiguration;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
  * Tests HTTP "connect" command.

@@ -21,7 +21,6 @@
 package com.orientechnologies.common.util;
 
 import java.lang.reflect.Array;
-
 import com.orientechnologies.common.log.OLogManager;
 
 @SuppressWarnings("unchecked")

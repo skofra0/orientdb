@@ -18,9 +18,8 @@
  */
 package com.orientechnologies.orient.server.distributed;
 
-import com.orientechnologies.orient.core.id.ORecordId;
-
 import java.util.Collection;
+import com.orientechnologies.orient.core.id.ORecordId;
 
 /**
  * Base interface for the distributed database repairer.

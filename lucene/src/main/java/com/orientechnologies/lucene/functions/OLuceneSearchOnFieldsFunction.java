@@ -1,5 +1,14 @@
 package com.orientechnologies.lucene.functions;
 
+import static com.orientechnologies.lucene.functions.OLuceneFunctionsUtils.getOrCreateMemoryIndex;
+import org.apache.lucene.index.IndexableField;
+import org.apache.lucene.index.memory.MemoryIndex;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.lucene.builder.OLuceneQueryBuilder;
 import com.orientechnologies.lucene.collections.OLuceneCompositeKey;
@@ -13,14 +22,11 @@ import com.orientechnologies.orient.core.record.OElement;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.sql.executor.OResultInternal;
-import com.orientechnologies.orient.core.sql.parser.*;
-import org.apache.lucene.index.IndexableField;
-import org.apache.lucene.index.memory.MemoryIndex;
-
-import java.util.*;
-import java.util.stream.Collectors;
-
-import static com.orientechnologies.lucene.functions.OLuceneFunctionsUtils.getOrCreateMemoryIndex;
+import com.orientechnologies.orient.core.sql.parser.OBinaryCompareOperator;
+import com.orientechnologies.orient.core.sql.parser.OExpression;
+import com.orientechnologies.orient.core.sql.parser.OFromClause;
+import com.orientechnologies.orient.core.sql.parser.OFromItem;
+import com.orientechnologies.orient.core.sql.parser.ParseException;
 
 /**
  * Created by frank on 15/01/2017.
@@ -149,7 +155,7 @@ public class OLuceneSearchOnFieldsFunction extends OLuceneSearchFunctionTemplate
   }
 
   public <T> List<T> intersection(List<T> list1, List<T> list2) {
-    List<T> list = new ArrayList<T>();
+    List<T> list = new ArrayList<>();
 
     for (T t : list1) {
       if (list2.contains(t)) {

@@ -64,6 +64,6 @@ public class ORecordCacheSoftRefs extends OAbstractMapCache<OSoftRefsHashMap<ORI
   @Override
   public void clear() {
     cache.clear();
-    cache = new OSoftRefsHashMap<ORID, ORecord>();
+    cache = new OSoftRefsHashMap<>();
   }
 }

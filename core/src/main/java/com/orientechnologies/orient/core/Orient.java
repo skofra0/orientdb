@@ -19,6 +19,35 @@
  */
 package com.orientechnologies.orient.core;
 
+import java.lang.ref.ReferenceQueue;
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.Future;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 import com.orientechnologies.common.directmemory.OByteBufferPool;
 import com.orientechnologies.common.directmemory.ODirectMemoryAllocator;
 import com.orientechnologies.common.io.OFileUtils;
@@ -45,21 +74,6 @@ import com.orientechnologies.orient.core.security.OSecuritySystem;
 import com.orientechnologies.orient.core.shutdown.OShutdownHandler;
 import com.orientechnologies.orient.core.storage.OStorage;
 
-import java.lang.ref.ReferenceQueue;
-import java.lang.ref.WeakReference;
-import java.util.*;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.Future;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-
 public class Orient extends OListenerManger<OOrientListener> {
   public static final String ORIENTDB_HOME = "ORIENTDB_HOME";
   public static final String URL_SYNTAX    = "<engine>:<db-type>:<db-name>[?<db-param>=<db-value>[&]]*";
@@ -69,15 +83,15 @@ public class Orient extends OListenerManger<OOrientListener> {
 
   private static volatile boolean registerDatabaseByPath = false;
 
-  private final ConcurrentMap<String, OEngine> engines = new ConcurrentHashMap<String, OEngine>();
+  private final ConcurrentMap<String, OEngine> engines = new ConcurrentHashMap<>();
 
-  private final Map<ODatabaseLifecycleListener, ODatabaseLifecycleListener.PRIORITY> dbLifecycleListeners          = new LinkedHashMap<ODatabaseLifecycleListener, ODatabaseLifecycleListener.PRIORITY>();
+  private final Map<ODatabaseLifecycleListener, ODatabaseLifecycleListener.PRIORITY> dbLifecycleListeners          = new LinkedHashMap<>();
   private final OScriptManager                                                       scriptManager                 = new OScriptManager();
   private final ThreadGroup                                                          threadGroup;
   private final ReadWriteLock                                                        engineLock                    = new ReentrantReadWriteLock();
   private final ORecordConflictStrategyFactory                                       recordConflictStrategy        = new ORecordConflictStrategyFactory();
-  private final ReferenceQueue<OOrientStartupListener>                               removedStartupListenersQueue  = new ReferenceQueue<OOrientStartupListener>();
-  private final ReferenceQueue<OOrientShutdownListener>                              removedShutdownListenersQueue = new ReferenceQueue<OOrientShutdownListener>();
+  private final ReferenceQueue<OOrientStartupListener>                               removedStartupListenersQueue  = new ReferenceQueue<>();
+  private final ReferenceQueue<OOrientShutdownListener>                              removedShutdownListenersQueue = new ReferenceQueue<>();
   private final Set<OOrientStartupListener>                                          startupListeners              = Collections
       .newSetFromMap(new ConcurrentHashMap<OOrientStartupListener, Boolean>());
   private final Set<WeakHashSetValueHolder<OOrientStartupListener>>                  weakStartupListeners          = Collections
@@ -85,7 +99,7 @@ public class Orient extends OListenerManger<OOrientListener> {
   private final Set<WeakHashSetValueHolder<OOrientShutdownListener>>                 weakShutdownListeners         = Collections
       .newSetFromMap(new ConcurrentHashMap<WeakHashSetValueHolder<OOrientShutdownListener>, Boolean>());
 
-  private final PriorityQueue<OShutdownHandler> shutdownHandlers = new PriorityQueue<OShutdownHandler>(11,
+  private final PriorityQueue<OShutdownHandler> shutdownHandlers = new PriorityQueue<>(11,
       new Comparator<OShutdownHandler>() {
         @Override
         public int compare(OShutdownHandler handlerOne, OShutdownHandler handlerTwo) {
@@ -633,7 +647,7 @@ public class Orient extends OListenerManger<OOrientListener> {
   }
 
   public void addDbLifecycleListener(final ODatabaseLifecycleListener iListener) {
-    final Map<ODatabaseLifecycleListener, ODatabaseLifecycleListener.PRIORITY> tmp = new LinkedHashMap<ODatabaseLifecycleListener, ODatabaseLifecycleListener.PRIORITY>(
+    final Map<ODatabaseLifecycleListener, ODatabaseLifecycleListener.PRIORITY> tmp = new LinkedHashMap<>(
         dbLifecycleListeners);
     if (iListener.getPriority() == null)
       throw new IllegalArgumentException("Priority of DatabaseLifecycleListener '" + iListener + "' cannot be null");
@@ -714,7 +728,7 @@ public class Orient extends OListenerManger<OOrientListener> {
 
   public void registerWeakOrientStartupListener(OOrientStartupListener listener) {
     purgeWeakStartupListeners();
-    weakStartupListeners.add(new WeakHashSetValueHolder<OOrientStartupListener>(listener, removedStartupListenersQueue));
+    weakStartupListeners.add(new WeakHashSetValueHolder<>(listener, removedStartupListenersQueue));
   }
 
   public void unregisterOrientStartupListener(OOrientStartupListener listener) {
@@ -723,17 +737,17 @@ public class Orient extends OListenerManger<OOrientListener> {
 
   public void unregisterWeakOrientStartupListener(OOrientStartupListener listener) {
     purgeWeakStartupListeners();
-    weakStartupListeners.remove(new WeakHashSetValueHolder<OOrientStartupListener>(listener, null));
+    weakStartupListeners.remove(new WeakHashSetValueHolder<>(listener, null));
   }
 
   public void registerWeakOrientShutdownListener(OOrientShutdownListener listener) {
     purgeWeakShutdownListeners();
-    weakShutdownListeners.add(new WeakHashSetValueHolder<OOrientShutdownListener>(listener, removedShutdownListenersQueue));
+    weakShutdownListeners.add(new WeakHashSetValueHolder<>(listener, removedShutdownListenersQueue));
   }
 
   public void unregisterWeakOrientShutdownListener(OOrientShutdownListener listener) {
     purgeWeakShutdownListeners();
-    weakShutdownListeners.remove(new WeakHashSetValueHolder<OOrientShutdownListener>(listener, null));
+    weakShutdownListeners.remove(new WeakHashSetValueHolder<>(listener, null));
   }
 
   @Override

@@ -19,14 +19,13 @@
 
 package com.orientechnologies.orient.core.engine;
 
+import java.util.Locale;
 import com.orientechnologies.common.io.OFileUtils;
 import com.orientechnologies.common.jna.ONative;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.util.OMemory;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.storage.cache.local.twoq.O2QCache;
-
-import java.util.Locale;
 
 /**
  * Manages common initialization logic for memory and plocal engines. These engines are tight together through dependency to {@link

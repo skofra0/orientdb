@@ -19,6 +19,15 @@
  */
 package com.orientechnologies.orient.core.db.record.ridbag.embedded;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.NavigableMap;
+import java.util.NoSuchElementException;
+import java.util.UUID;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.serialization.types.OIntegerSerializer;
 import com.orientechnologies.common.util.OCommonConst;
@@ -37,8 +46,6 @@ import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.ORecordInternal;
 import com.orientechnologies.orient.core.serialization.serializer.binary.impl.OLinkSerializer;
 import com.orientechnologies.orient.core.storage.ridbag.sbtree.Change;
-
-import java.util.*;
 
 public class OEmbeddedRidBag implements ORidBagDelegate {
   private boolean contentWasChanged = false;
@@ -144,7 +151,7 @@ public class OEmbeddedRidBag implements ORidBagDelegate {
         ORecordInternal.unTrack(OEmbeddedRidBag.this.owner, nextValue);
 
       fireCollectionChangedEvent(
-          new OMultiValueChangeEvent<OIdentifiable, OIdentifiable>(OMultiValueChangeEvent.OChangeType.REMOVE, nextValue, null,
+          new OMultiValueChangeEvent<>(OMultiValueChangeEvent.OChangeType.REMOVE, nextValue, null,
               nextValue));
     }
 
@@ -234,7 +241,7 @@ public class OEmbeddedRidBag implements ORidBagDelegate {
     contentWasChanged = true;
 
     fireCollectionChangedEvent(
-        new OMultiValueChangeEvent<OIdentifiable, OIdentifiable>(OMultiValueChangeEvent.OChangeType.ADD, identifiable,
+        new OMultiValueChangeEvent<>(OMultiValueChangeEvent.OChangeType.ADD, identifiable,
             identifiable));
   }
 
@@ -247,7 +254,7 @@ public class OEmbeddedRidBag implements ORidBagDelegate {
     copy.size = size;
     copy.owner = owner;
     if (changeListeners != null) {
-      copy.changeListeners = new LinkedList<OMultiValueChangeListener<OIdentifiable, OIdentifiable>>(changeListeners);
+      copy.changeListeners = new LinkedList<>(changeListeners);
     }
     return copy;
   }
@@ -263,7 +270,7 @@ public class OEmbeddedRidBag implements ORidBagDelegate {
         ORecordInternal.unTrack(this.owner, identifiable);
 
       fireCollectionChangedEvent(
-          new OMultiValueChangeEvent<OIdentifiable, OIdentifiable>(OMultiValueChangeEvent.OChangeType.REMOVE, identifiable, null,
+          new OMultiValueChangeEvent<>(OMultiValueChangeEvent.OChangeType.REMOVE, identifiable, null,
               identifiable));
     }
   }
@@ -367,7 +374,7 @@ public class OEmbeddedRidBag implements ORidBagDelegate {
   @Override
   public void addChangeListener(final OMultiValueChangeListener<OIdentifiable, OIdentifiable> changeListener) {
     if (changeListeners == null)
-      changeListeners = new LinkedList<OMultiValueChangeListener<OIdentifiable, OIdentifiable>>();
+      changeListeners = new LinkedList<>();
     changeListeners.add(changeListener);
   }
 

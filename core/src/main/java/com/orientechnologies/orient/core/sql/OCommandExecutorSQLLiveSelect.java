@@ -19,6 +19,8 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.Map;
+import java.util.Random;
 import com.orientechnologies.common.util.OCallable;
 import com.orientechnologies.orient.core.command.OCommandRequest;
 import com.orientechnologies.orient.core.command.OCommandRequestText;
@@ -40,9 +42,6 @@ import com.orientechnologies.orient.core.query.live.OLiveQueryListener;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.query.OLegacyResultSet;
 import com.orientechnologies.orient.core.sql.query.OLiveResultListener;
-
-import java.util.Map;
-import java.util.Random;
 
 /**
  * @author Luigi Dell'Aquila (l.dellaquila-(at)-orientdb.com)

@@ -19,6 +19,10 @@
  */
 package com.orientechnologies.orient.stresstest;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import com.orientechnologies.common.io.OIOUtils;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.client.remote.OStorageRemote;
@@ -28,11 +32,6 @@ import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.stresstest.workload.OCheckWorkload;
 import com.orientechnologies.orient.stresstest.workload.OWorkload;
 import com.orientechnologies.orient.stresstest.workload.OWorkloadFactory;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * The main class of the OStressTester. It is instantiated from the OStressTesterCommandLineParser and takes care of launching the
@@ -53,7 +52,7 @@ public class OStressTester {
   private final OStressTesterSettings   settings;
 
   private static final OWorkloadFactory workloadFactory = new OWorkloadFactory();
-  private List<OWorkload>               workloads       = new ArrayList<OWorkload>();
+  private List<OWorkload>               workloads       = new ArrayList<>();
 
   public OStressTester(final List<OWorkload> workloads, ODatabaseIdentifier databaseIdentifier,
       final OStressTesterSettings settings) throws Exception {

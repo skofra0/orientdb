@@ -2,6 +2,11 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=true,TRACK_TOKENS=true,NODE_PREFIX=O,NODE_EXTENDS=,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package com.orientechnologies.orient.core.sql.parser;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import com.orientechnologies.orient.core.command.OBasicCommandContext;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.ODatabase;
@@ -10,16 +15,10 @@ import com.orientechnologies.orient.core.sql.executor.OUpdateExecutionPlan;
 import com.orientechnologies.orient.core.sql.executor.OUpdateExecutionPlanner;
 import com.orientechnologies.orient.core.storage.OStorage;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 public class OUpdateStatement extends OStatement {
   public OFromClause target;
 
-  protected List<OUpdateOperations> operations = new ArrayList<OUpdateOperations>();
+  protected List<OUpdateOperations> operations = new ArrayList<>();
 
   protected boolean upsert = false;
 

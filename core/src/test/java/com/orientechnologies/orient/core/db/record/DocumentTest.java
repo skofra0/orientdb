@@ -20,13 +20,16 @@
 
 package com.orientechnologies.orient.core.db.record;
 
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import java.util.Map;
 import com.orientechnologies.orient.core.command.OBasicCommandContext;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import org.junit.Assert;import org.junit.After; import org.junit.Before; import org.junit.Test;
-import java.util.Map;
 
 public class DocumentTest {
   private ODatabaseDocumentTx db;

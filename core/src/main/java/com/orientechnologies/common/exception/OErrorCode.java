@@ -1,12 +1,11 @@
 package com.orientechnologies.common.exception;
 
+import java.lang.reflect.InvocationTargetException;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.util.OApi;
 import com.orientechnologies.orient.core.exception.OBackupInProgressException;
 import com.orientechnologies.orient.core.exception.OConcurrentModificationException;
 import com.orientechnologies.orient.core.exception.OQueryParsingException;
-
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * Enumeration with the error managed by OrientDB. This class has been introduced in v.2.2 and little by little will contain all the

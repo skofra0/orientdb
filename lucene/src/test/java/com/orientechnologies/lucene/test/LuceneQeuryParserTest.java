@@ -1,17 +1,15 @@
 package com.orientechnologies.lucene.test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import org.apache.lucene.analysis.core.KeywordAnalyzer;
+import org.junit.Before;
+import org.junit.Test;
+import java.io.InputStream;
+import java.util.List;
 import com.orientechnologies.orient.core.command.script.OCommandScript;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.apache.lucene.analysis.core.KeywordAnalyzer;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.io.InputStream;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Created by frank on 19/05/2016.

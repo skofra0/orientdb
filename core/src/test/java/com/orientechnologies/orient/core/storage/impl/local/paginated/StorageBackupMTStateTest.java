@@ -1,5 +1,21 @@
 package com.orientechnologies.orient.core.storage.impl.local.paginated;
 
+import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.Test;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import com.orientechnologies.common.concur.lock.OModificationOperationProhibitedException;
 import com.orientechnologies.common.concur.lock.OReadersWriterSpinLock;
 import com.orientechnologies.common.io.OFileUtils;
@@ -17,16 +33,6 @@ import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import com.orientechnologies.orient.core.storage.OStorage;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com) <lomakin.andrey@gmail.com>.
@@ -40,7 +46,7 @@ public class StorageBackupMTStateTest {
 
   private final OReadersWriterSpinLock flowLock = new OReadersWriterSpinLock();
 
-  private final ConcurrentMap<String, AtomicInteger> classInstancesCounters = new ConcurrentHashMap<String, AtomicInteger>();
+  private final ConcurrentMap<String, AtomicInteger> classInstancesCounters = new ConcurrentHashMap<>();
 
   private final AtomicInteger classCounter = new AtomicInteger();
 
@@ -97,7 +103,7 @@ public class StorageBackupMTStateTest {
     backupExecutor.scheduleWithFixedDelay(new IncrementalBackupThread(), 5, 5, TimeUnit.MINUTES);
     classCreatorExecutor.scheduleWithFixedDelay(new ClassAdder(), 7, 5, TimeUnit.MINUTES);
 
-    List<Future<Void>> futures = new ArrayList<Future<Void>>();
+    List<Future<Void>> futures = new ArrayList<>();
 
     futures.add(executor.submit(new NonTxInserter()));
     futures.add(executor.submit(new NonTxInserter()));

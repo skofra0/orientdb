@@ -1,15 +1,12 @@
 package com.orientechnologies.orient.client.remote.message;
 
-import com.orientechnologies.common.exception.OErrorCode;
-import com.orientechnologies.orient.core.record.impl.ODocument;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import com.orientechnologies.common.exception.OErrorCode;
 
 /**
  * Created by tglman on 13/06/17.

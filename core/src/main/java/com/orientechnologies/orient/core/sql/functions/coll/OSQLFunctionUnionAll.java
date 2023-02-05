@@ -19,16 +19,15 @@
   */
 package com.orientechnologies.orient.core.sql.functions.coll;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 import com.orientechnologies.common.collection.OMultiCollectionIterator;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemVariable;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
 
 /**
  * This operator can work as aggregate or inline. If only one argument is passed than aggregates, otherwise executes, and returns, a
@@ -56,7 +55,7 @@ public class OSQLFunctionUnionAll extends OSQLFunctionMultiValueAbstract<Collect
           value = ((OSQLFilterItemVariable) value).getValue(iCurrentRecord, iCurrentResult, iContext);
 
         if (context == null)
-          context = new ArrayList<Object>();
+          context = new ArrayList<>();
 
         OMultiValue.add(context, value);
       }
@@ -64,7 +63,7 @@ public class OSQLFunctionUnionAll extends OSQLFunctionMultiValueAbstract<Collect
       return context;
     } else {
       // IN-LINE MODE (STATELESS)
-      final OMultiCollectionIterator<OIdentifiable> result = new OMultiCollectionIterator<OIdentifiable>();
+      final OMultiCollectionIterator<OIdentifiable> result = new OMultiCollectionIterator<>();
       for (Object value : iParams) {
         if (value != null) {
           if (value instanceof OSQLFilterItemVariable)
@@ -84,7 +83,7 @@ public class OSQLFunctionUnionAll extends OSQLFunctionMultiValueAbstract<Collect
 
   @Override
   public Object mergeDistributedResult(List<Object> resultsToMerge) {
-    final Collection<Object> result = new HashSet<Object>();
+    final Collection<Object> result = new HashSet<>();
     for (Object iParameter : resultsToMerge) {
       @SuppressWarnings("unchecked")
       final Collection<Object> items = (Collection<Object>) iParameter;

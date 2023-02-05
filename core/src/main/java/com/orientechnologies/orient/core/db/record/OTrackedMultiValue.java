@@ -19,7 +19,6 @@
   */
 package com.orientechnologies.orient.core.db.record;
 
-import java.util.Collection;
 import java.util.List;
 
 /**

@@ -1,13 +1,11 @@
 package com.orientechnologies.orient.core.sql.method.misc;
 
-import com.orientechnologies.orient.core.sql.executor.OResultInternal;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.Arrays;
 import java.util.LinkedHashSet;
-
-import static org.junit.Assert.assertEquals;
+import com.orientechnologies.orient.core.sql.executor.OResultInternal;
 
 public class OSQLMethodKeysTest {
 

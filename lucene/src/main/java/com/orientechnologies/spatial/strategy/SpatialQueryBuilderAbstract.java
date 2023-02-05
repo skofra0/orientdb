@@ -14,15 +14,14 @@
  */
 package com.orientechnologies.spatial.strategy;
 
+import org.apache.lucene.spatial.SpatialStrategy;
+import org.apache.lucene.spatial.bbox.BBoxStrategy;
+import org.locationtech.spatial4j.shape.Shape;
+import java.util.Map;
 import com.orientechnologies.orient.core.index.OIndexEngineException;
 import com.orientechnologies.spatial.engine.OLuceneSpatialIndexContainer;
 import com.orientechnologies.spatial.query.OSpatialQueryContext;
 import com.orientechnologies.spatial.shape.OShapeBuilder;
-import org.apache.lucene.spatial.SpatialStrategy;
-import org.apache.lucene.spatial.bbox.BBoxStrategy;
-import org.locationtech.spatial4j.shape.Shape;
-
-import java.util.Map;
 
 /**
  * Created by Enrico Risa on 11/08/15.

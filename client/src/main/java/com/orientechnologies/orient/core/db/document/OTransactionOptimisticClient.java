@@ -1,5 +1,12 @@
 package com.orientechnologies.orient.core.db.document;
 
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.NavigableMap;
+import java.util.Set;
+import java.util.TreeMap;
 import com.orientechnologies.common.comparator.ODefaultComparator;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.client.remote.message.tx.IndexChange;
@@ -12,15 +19,10 @@ import com.orientechnologies.orient.core.exception.ODatabaseException;
 import com.orientechnologies.orient.core.hook.ORecordHook;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
-import com.orientechnologies.orient.core.metadata.security.ORole;
-import com.orientechnologies.orient.core.metadata.security.ORule;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.ORecordInternal;
-import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.tx.OTransactionIndexChangesPerKey;
 import com.orientechnologies.orient.core.tx.OTransactionOptimistic;
-
-import java.util.*;
 
 /**
  * Created by tglman on 03/01/17.
@@ -36,7 +38,7 @@ public class OTransactionOptimisticClient extends OTransactionOptimistic {
   public void replaceContent(List<ORecordOperationRequest> operations, List<IndexChange> indexChanges) {
 
     Map<ORID, ORecordOperation> oldEntries = this.allEntries;
-    this.allEntries = new LinkedHashMap<ORID, ORecordOperation>();
+    this.allEntries = new LinkedHashMap<>();
     int createCount = -2;//Start from -2 because temporary rids start from -2
     for (ORecordOperationRequest operation : operations) {
       if (!operation.getOldId().equals(operation.getId()))

@@ -17,9 +17,6 @@
  */
 package com.orientechnologies.spatial.shape;
 
-import com.orientechnologies.orient.core.db.ODatabaseInternal;
-import com.orientechnologies.orient.core.metadata.schema.OClass;
-import com.orientechnologies.orient.core.record.impl.ODocument;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.io.WKBWriter;
@@ -33,11 +30,13 @@ import org.locationtech.spatial4j.shape.Rectangle;
 import org.locationtech.spatial4j.shape.Shape;
 import org.locationtech.spatial4j.shape.jts.JtsGeometry;
 import org.locationtech.spatial4j.shape.jts.JtsShapeFactory;
-
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
+import com.orientechnologies.orient.core.db.ODatabaseInternal;
+import com.orientechnologies.orient.core.metadata.schema.OClass;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 public abstract class OShapeBuilder<T extends Shape> {
 
@@ -46,8 +45,8 @@ public abstract class OShapeBuilder<T extends Shape> {
   protected static final JtsSpatialContext SPATIAL_CONTEXT;
   protected static final GeometryFactory   GEOMETRY_FACTORY;
   protected static final JtsShapeFactory   SHAPE_FACTORY;
-  private static final Map<String, Integer> capStyles = new HashMap<String, Integer>();
-  private static final Map<String, Integer> join      = new HashMap<String, Integer>();
+  private static final Map<String, Integer> capStyles = new HashMap<>();
+  private static final Map<String, Integer> join      = new HashMap<>();
 
   static {
 

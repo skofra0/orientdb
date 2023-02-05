@@ -19,13 +19,25 @@
  */
 package com.orientechnologies.orient.core.record.impl;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import com.orientechnologies.common.collection.OMultiCollectionIterator;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.util.OPair;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
-import com.orientechnologies.orient.core.db.record.*;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.db.record.ORecordElement;
+import com.orientechnologies.orient.core.db.record.ORecordLazyList;
+import com.orientechnologies.orient.core.db.record.ORecordLazyMultiValue;
+import com.orientechnologies.orient.core.db.record.ORecordOperation;
 import com.orientechnologies.orient.core.db.record.ridbag.ORidBag;
 import com.orientechnologies.orient.core.exception.ODatabaseException;
 import com.orientechnologies.orient.core.exception.ORecordNotFoundException;
@@ -36,11 +48,14 @@ import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OProperty;
 import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import com.orientechnologies.orient.core.metadata.schema.OType;
-import com.orientechnologies.orient.core.record.*;
+import com.orientechnologies.orient.core.record.ODirection;
+import com.orientechnologies.orient.core.record.OEdge;
+import com.orientechnologies.orient.core.record.OElement;
+import com.orientechnologies.orient.core.record.ORecord;
+import com.orientechnologies.orient.core.record.ORecordInternal;
+import com.orientechnologies.orient.core.record.OVertex;
 import com.orientechnologies.orient.core.serialization.OSerializableStream;
 import com.orientechnologies.orient.core.storage.OStorage;
-
-import java.util.*;
 
 /**
  * @author Luigi Dell'Aquila
@@ -260,7 +275,7 @@ public class OVertexDelegate implements OVertex {
   }
 
   @Override
-  public <RET> RET getProperty(String name) {
+  public <R> R getProperty(String name) {
     return element.getProperty(name);
   }
 
@@ -275,7 +290,7 @@ public class OVertexDelegate implements OVertex {
   }
 
   @Override
-  public <RET> RET removeProperty(String name) {
+  public <R> R removeProperty(String name) {
     return element.removeProperty(name);
   }
 
@@ -350,13 +365,13 @@ public class OVertexDelegate implements OVertex {
       // FIELDS THAT STARTS WITH "out_"
       if (iFieldName.startsWith(CONNECTION_OUT_PREFIX)) {
         if (iClassNames == null || iClassNames.length == 0)
-          return new OPair<ODirection, String>(ODirection.OUT, getConnectionClass(ODirection.OUT, iFieldName));
+          return new OPair<>(ODirection.OUT, getConnectionClass(ODirection.OUT, iFieldName));
 
         // CHECK AGAINST ALL THE CLASS NAMES
         for (String clsName : iClassNames) {
 
           if (iFieldName.equals(CONNECTION_OUT_PREFIX + clsName))
-            return new OPair<ODirection, String>(ODirection.OUT, clsName);
+            return new OPair<>(ODirection.OUT, clsName);
 
           // GO DOWN THROUGH THE INHERITANCE TREE
           OClass type = schema.getClass(clsName);
@@ -365,7 +380,7 @@ public class OVertexDelegate implements OVertex {
               clsName = subType.getName();
 
               if (iFieldName.equals(CONNECTION_OUT_PREFIX + clsName))
-                return new OPair<ODirection, String>(ODirection.OUT, clsName);
+                return new OPair<>(ODirection.OUT, clsName);
             }
           }
         }
@@ -377,13 +392,13 @@ public class OVertexDelegate implements OVertex {
       // FIELDS THAT STARTS WITH "in_"
       if (iFieldName.startsWith(CONNECTION_IN_PREFIX)) {
         if (iClassNames == null || iClassNames.length == 0)
-          return new OPair<ODirection, String>(ODirection.IN, getConnectionClass(ODirection.IN, iFieldName));
+          return new OPair<>(ODirection.IN, getConnectionClass(ODirection.IN, iFieldName));
 
         // CHECK AGAINST ALL THE CLASS NAMES
         for (String clsName : iClassNames) {
 
           if (iFieldName.equals(CONNECTION_IN_PREFIX + clsName))
-            return new OPair<ODirection, String>(ODirection.IN, clsName);
+            return new OPair<>(ODirection.IN, clsName);
 
           // GO DOWN THROUGH THE INHERITANCE TREE
           OClass type = schema.getClass(clsName);
@@ -392,7 +407,7 @@ public class OVertexDelegate implements OVertex {
               clsName = subType.getName();
 
               if (iFieldName.equals(CONNECTION_IN_PREFIX + clsName))
-                return new OPair<ODirection, String>(ODirection.IN, clsName);
+                return new OPair<>(ODirection.IN, clsName);
             }
           }
         }
@@ -434,7 +449,7 @@ public class OVertexDelegate implements OVertex {
 
     OSchema schema = db.getMetadata().getSchema();
 
-    Set<String> allClassNames = new HashSet<String>();
+    Set<String> allClassNames = new HashSet<>();
     for (String className : iClassNames) {
       allClassNames.add(className);
       OClass clazz = schema.getClass(className);
@@ -481,7 +496,7 @@ public class OVertexDelegate implements OVertex {
 
     if (found == null) {
       if (propType == OType.LINKLIST || (prop != null && "true".equalsIgnoreCase(prop.getCustom("ordered")))) {//TODO constant
-        final Collection coll = new ORecordLazyList(iFromVertex);
+        final var coll = new ORecordLazyList(iFromVertex);
         coll.add(iTo);
         out = coll;
         outType = OType.LINKLIST;
@@ -563,9 +578,9 @@ public class OVertexDelegate implements OVertex {
   }
 
   @Override
-  public <RET> RET setDirty() {
+  public <R> R setDirty() {
     element.setDirty();
-    return (RET) this;
+    return (R) this;
   }
 
   @Override
@@ -594,26 +609,26 @@ public class OVertexDelegate implements OVertex {
   }
 
   @Override
-  public <RET extends ORecord> RET reset() {
+  public <R extends ORecord> R reset() {
     element.reset();
-    return (RET) this;
+    return (R) this;
   }
 
   @Override
-  public <RET extends ORecord> RET unload() {
+  public <R extends ORecord> R unload() {
     element.unload();
-    return (RET) this;
+    return (R) this;
   }
 
   @Override
-  public <RET extends ORecord> RET clear() {
+  public <R extends ORecord> R clear() {
     element.clear();
-    return (RET) this;
+    return (R) this;
   }
 
   @Override
-  public <RET extends ORecord> RET copy() {
-    return (RET) new OVertexDelegate(element.copy());
+  public <R extends ORecord> R copy() {
+    return (R) new OVertexDelegate(element.copy());
   }
 
   @Override
@@ -637,50 +652,50 @@ public class OVertexDelegate implements OVertex {
   }
 
   @Override
-  public <RET extends ORecord> RET load() throws ORecordNotFoundException {
-    return (RET) element.load();
+  public <R extends ORecord> R load() throws ORecordNotFoundException {
+    return (R) element.load();
   }
 
   @Override
-  public <RET extends ORecord> RET reload() throws ORecordNotFoundException {
+  public <R extends ORecord> R reload() throws ORecordNotFoundException {
     element.reload();
-    return (RET) this;
+    return (R) this;
   }
 
   @Override
-  public <RET extends ORecord> RET reload(String fetchPlan, boolean ignoreCache, boolean force) throws ORecordNotFoundException {
+  public <R extends ORecord> R reload(String fetchPlan, boolean ignoreCache, boolean force) throws ORecordNotFoundException {
     element.reload(fetchPlan, ignoreCache, force);
-    return (RET) this;
+    return (R) this;
   }
 
   @Override
-  public <RET extends ORecord> RET save() {
+  public <R extends ORecord> R save() {
     element.save();
-    return (RET) this;
+    return (R) this;
   }
 
   @Override
-  public <RET extends ORecord> RET save(String iCluster) {
+  public <R extends ORecord> R save(String iCluster) {
     element.save(iCluster);
-    return (RET) this;
+    return (R) this;
   }
 
   @Override
-  public <RET extends ORecord> RET save(boolean forceCreate) {
+  public <R extends ORecord> R save(boolean forceCreate) {
     element.save(forceCreate);
-    return (RET) this;
+    return (R) this;
   }
 
   @Override
-  public <RET extends ORecord> RET save(String iCluster, boolean forceCreate) {
+  public <R extends ORecord> R save(String iCluster, boolean forceCreate) {
     element.save(iCluster, forceCreate);
-    return (RET) this;
+    return (R) this;
   }
 
   @Override
-  public <RET extends ORecord> RET fromJSON(String iJson) {
+  public <R extends ORecord> R fromJSON(String iJson) {
     element.fromJSON(iJson);
-    return (RET) this;
+    return (R) this;
   }
 
   @Override
@@ -881,11 +896,10 @@ public class OVertexDelegate implements OVertex {
         // ADD THE NEW ONE
         bag.add(iNewVertex);
 
-    } else if (fieldValue instanceof Collection) {
-      final Collection col = (Collection) fieldValue;
-
-      if (col.remove(iVertexToRemove))
+    } else if (fieldValue instanceof Collection col) {
+      if (col.remove(iVertexToRemove)) {
         col.add(iNewVertex);
+      }
     }
 
     iVertex.save();

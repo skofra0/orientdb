@@ -14,14 +14,13 @@
  */
 package com.orientechnologies.spatial.query;
 
-import com.orientechnologies.lucene.query.OLuceneQueryContext;
-import com.orientechnologies.orient.core.command.OCommandContext;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.SortField;
 import org.apache.lucene.spatial.query.SpatialArgs;
-
 import java.util.List;
+import com.orientechnologies.lucene.query.OLuceneQueryContext;
+import com.orientechnologies.orient.core.command.OCommandContext;
 
 /**
  * Created by Enrico Risa on 08/01/15.

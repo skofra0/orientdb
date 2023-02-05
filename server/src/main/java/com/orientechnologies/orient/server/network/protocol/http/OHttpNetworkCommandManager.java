@@ -20,25 +20,24 @@
 
 package com.orientechnologies.orient.server.network.protocol.http;
 
-import com.orientechnologies.common.util.OPatternConst;
-import com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper;
-import com.orientechnologies.orient.server.OServer;
-import com.orientechnologies.orient.server.network.protocol.http.command.OServerCommand;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import com.orientechnologies.common.util.OPatternConst;
+import com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper;
+import com.orientechnologies.orient.server.OServer;
+import com.orientechnologies.orient.server.network.protocol.http.command.OServerCommand;
 
 public class OHttpNetworkCommandManager {
 
   private static final String               URL_PART_PATTERN = "([a-zA-Z0-9%:\\\\+]*)";
 
-  private final Map<String, OServerCommand> exactCommands    = new ConcurrentHashMap<String, OServerCommand>();
-  private final Map<String, OServerCommand> wildcardCommands = new ConcurrentHashMap<String, OServerCommand>();
-  private final Map<String, OServerCommand> restCommands     = new ConcurrentHashMap<String, OServerCommand>();
+  private final Map<String, OServerCommand> exactCommands    = new ConcurrentHashMap<>();
+  private final Map<String, OServerCommand> wildcardCommands = new ConcurrentHashMap<>();
+  private final Map<String, OServerCommand> restCommands     = new ConcurrentHashMap<>();
   private final OHttpNetworkCommandManager  parent;
   private final OServer                     server;
 
@@ -96,7 +95,7 @@ public class OHttpNetworkCommandManager {
   }
 
   public Map<String, String> extractUrlTokens(String requestUrl) {
-    Map<String, String> result = new HashMap<String, String>();
+    Map<String, String> result = new HashMap<>();
     String urlPattern = findUrlPattern(requestUrl);
     if (urlPattern == null) {
       return result;

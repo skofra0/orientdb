@@ -1,5 +1,24 @@
 package com.orientechnologies.orient.core.storage.ridbag.sbtree;
 
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
@@ -8,24 +27,12 @@ import com.orientechnologies.orient.core.exception.OConcurrentModificationExcept
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class OSBTreeRidBagConcurrencyMultiRidBag {
   public static final String                                               URL                 = "plocal:target/testdb/OSBTreeRidBagConcurrencyMultiRidBag";
   private final       AtomicInteger                                        positionCounter     = new AtomicInteger();
-  private final       ConcurrentHashMap<ORID, ConcurrentSkipListSet<ORID>> ridTreePerDocument  = new ConcurrentHashMap<ORID, ConcurrentSkipListSet<ORID>>();
-  private final       AtomicReference<Long>                                lastClusterPosition = new AtomicReference<Long>();
+  private final       ConcurrentHashMap<ORID, ConcurrentSkipListSet<ORID>> ridTreePerDocument  = new ConcurrentHashMap<>();
+  private final       AtomicReference<Long>                                lastClusterPosition = new AtomicReference<>();
 
   private final CountDownLatch latch = new CountDownLatch(1);
 
@@ -82,7 +89,7 @@ public class OSBTreeRidBagConcurrencyMultiRidBag {
       lastClusterPosition.set(document.getIdentity().getClusterPosition());
     }
 
-    final List<Future<?>> futures = new ArrayList<Future<?>>();
+    final List<Future<?>> futures = new ArrayList<>();
 
     Random random = new Random();
     for (int i = 0; i < 5; i++)
@@ -182,7 +189,7 @@ public class OSBTreeRidBagConcurrencyMultiRidBag {
       latch.await();
       try {
         while (cont) {
-          List<ORID> ridsToAdd = new ArrayList<ORID>();
+          List<ORID> ridsToAdd = new ArrayList<>();
           for (int i = 0; i < 10; i++) {
             ridsToAdd.add(new ORecordId(0, positionCounter.incrementAndGet()));
           }
@@ -253,7 +260,7 @@ public class OSBTreeRidBagConcurrencyMultiRidBag {
             ORidBag ridBag = document.field("ridBag");
             Iterator<OIdentifiable> iterator = ridBag.iterator();
 
-            List<ORID> ridsToDelete = new ArrayList<ORID>();
+            List<ORID> ridsToDelete = new ArrayList<>();
             int counter = 0;
             while (iterator.hasNext()) {
               OIdentifiable identifiable = iterator.next();

@@ -1,5 +1,7 @@
 package com.orientechnologies.orient.core.record.impl;
 
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.ODatabaseSession;
 import com.orientechnologies.orient.core.db.ODatabaseType;
@@ -8,9 +10,6 @@ import com.orientechnologies.orient.core.db.OrientDBConfig;
 import com.orientechnologies.orient.core.exception.ODatabaseException;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OType;
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * Created by tglman on 25/01/16.

@@ -2,7 +2,6 @@ package com.orientechnologies.orient.client.remote;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.metadata.security.OToken;
 import com.orientechnologies.orient.core.metadata.security.binary.OBinaryTokenSerializer;

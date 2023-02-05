@@ -19,11 +19,16 @@
  */
 package com.orientechnologies.orient.core.sql.functions.coll;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
-
-import java.util.*;
 
 /**
  * This operator add an item in a list. The list accepts duplicates.
@@ -41,13 +46,13 @@ public class OSQLFunctionList extends OSQLFunctionMultiValueAbstract<List<Object
       OCommandContext iContext) {
     if (iParams.length > 1)
       // IN LINE MODE
-      context = new ArrayList<Object>();
+      context = new ArrayList<>();
 
     for (Object value : iParams) {
       if (value != null) {
         if (iParams.length == 1 && context == null)
           // AGGREGATION MODE (STATEFULL)
-          context = new ArrayList<Object>();
+          context = new ArrayList<>();
 
         if (value instanceof Map)
           context.add(value);
@@ -77,7 +82,7 @@ public class OSQLFunctionList extends OSQLFunctionMultiValueAbstract<List<Object
   @Override
   public Object mergeDistributedResult(List<Object> resultsToMerge) {
     if (returnDistributedResult()) {
-      final Collection<Object> result = new HashSet<Object>();
+      final Collection<Object> result = new HashSet<>();
       for (Object iParameter : resultsToMerge) {
         final Map<String, Object> container = (Map<String, Object>) ((Collection<?>) iParameter).iterator().next();
         result.addAll((Collection<?>) container.get("context"));
@@ -93,7 +98,7 @@ public class OSQLFunctionList extends OSQLFunctionMultiValueAbstract<List<Object
 
   protected List<Object> prepareResult(List<Object> res) {
     if (returnDistributedResult()) {
-      final Map<String, Object> doc = new HashMap<String, Object>();
+      final Map<String, Object> doc = new HashMap<>();
       doc.put("node", getDistributedStorageId());
       doc.put("context", res);
       return Collections.<Object>singletonList(doc);

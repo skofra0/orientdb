@@ -21,16 +21,13 @@ package com.orientechnologies.orient.core.serialization.serializer.stream;
 
 import java.io.IOException;
 import java.util.Arrays;
-
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.util.OArrays;
 import com.orientechnologies.orient.core.command.OCommandRequestText;
 import com.orientechnologies.orient.core.command.script.OCommandScript;
 import com.orientechnologies.orient.core.exception.OSerializationException;
-import com.orientechnologies.orient.core.query.OQuery;
 import com.orientechnologies.orient.core.serialization.OBinaryProtocol;
-import com.orientechnologies.orient.core.serialization.OSerializableStream;
 import com.orientechnologies.orient.core.serialization.serializer.record.ORecordSerializer;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OLiveQuery;
@@ -72,7 +69,7 @@ public class OStreamSerializerAnyStreamable {
       // CHECK FOR ALIASES
       if (className.equalsIgnoreCase("q"))
         // QUERY
-        stream = new OSQLSynchQuery<Object>();
+        stream = new OSQLSynchQuery<>();
       else if (className.equalsIgnoreCase("c"))
         // SQL COMMAND
         stream = new OCommandSQL();

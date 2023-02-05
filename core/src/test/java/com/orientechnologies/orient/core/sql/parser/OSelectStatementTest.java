@@ -1,21 +1,19 @@
 package com.orientechnologies.orient.core.sql.parser;
 
-import com.orientechnologies.orient.core.command.OBasicCommandContext;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import com.orientechnologies.orient.core.command.OBasicCommandContext;
 
 public class OSelectStatementTest {
 
@@ -329,8 +327,8 @@ public class OSelectStatementTest {
     try {
       SimpleNode result = osql.parse();
       OSelectStatement stm = (OSelectStatement) result;
-      Map<Object, Object> params = new HashMap<Object, Object>();
-      params.put("param1", new HashSet<Object>());
+      Map<Object, Object> params = new HashMap<>();
+      params.put("param1", new HashSet<>());
 
       StringBuilder parsed = new StringBuilder();
       stm.toString(params, parsed);

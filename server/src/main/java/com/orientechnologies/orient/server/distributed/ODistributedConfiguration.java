@@ -19,11 +19,20 @@
  */
 package com.orientechnologies.orient.server.distributed;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.exception.OConfigurationException;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-
-import java.util.*;
 
 /**
  * Immutable Distributed configuration. It uses an ODocument object to store the configuration. Every changes must be done by
@@ -57,7 +66,7 @@ public class ODistributedConfiguration {
 
   protected final ODocument configuration;
   protected static final List<String>         DEFAULT_CLUSTER_NAME = Collections.singletonList(ALL_WILDCARD);
-  private static         ThreadLocal<Integer> overwriteWriteQuorum = new ThreadLocal<Integer>();
+  private static         ThreadLocal<Integer> overwriteWriteQuorum = new ThreadLocal<>();
 
   public enum ROLES {
     MASTER, REPLICA
@@ -165,7 +174,7 @@ public class ODistributedConfiguration {
     if (iClusterNames == null || iClusterNames.isEmpty())
       iClusterNames = DEFAULT_CLUSTER_NAME;
 
-    final Map<String, Collection<String>> servers = new HashMap<String, Collection<String>>(iClusterNames.size());
+    final Map<String, Collection<String>> servers = new HashMap<>(iClusterNames.size());
 
     // TRY TO SEE IF IT CAN BE EXECUTED ON LOCAL NODE ONLY
     boolean canUseLocalNode = true;
@@ -184,7 +193,7 @@ public class ODistributedConfiguration {
     }
 
 // GROUP BY SERVER WITH THE NUMBER OF CLUSTERS
-    final Map<String, Collection<String>> serverMap = new HashMap<String, Collection<String>>();
+    final Map<String, Collection<String>> serverMap = new HashMap<>();
     for (String p : iClusterNames) {
       final List<String> serverList = getClusterConfiguration(p).field(SERVERS);
       for (String s : serverList) {
@@ -193,7 +202,7 @@ public class ODistributedConfiguration {
 
         Collection<String> clustersInServer = serverMap.get(s);
         if (clustersInServer == null) {
-          clustersInServer = new HashSet<String>();
+          clustersInServer = new HashSet<>();
           serverMap.put(s, clustersInServer);
         }
         clustersInServer.add(p);
@@ -208,7 +217,7 @@ public class ODistributedConfiguration {
       return serverMap;
 
 // ORDER BY NUMBER OF CLUSTERS
-    final List<String> orderedServers = new ArrayList<String>(serverMap.keySet());
+    final List<String> orderedServers = new ArrayList<>(serverMap.keySet());
     Collections.sort(orderedServers, new Comparator<String>() {
       @Override
       public int compare(final String o1, final String o2) {
@@ -217,9 +226,9 @@ public class ODistributedConfiguration {
     });
 
 // BROWSER ORDERED SERVER MAP PUTTING THE MINIMUM SERVER TO COVER ALL THE CLUSTERS
-    final Set<String> remainingClusters = new HashSet<String>(iClusterNames); // KEEPS THE REMAINING CLUSTER TO ADD IN FINAL
+    final Set<String> remainingClusters = new HashSet<>(iClusterNames); // KEEPS THE REMAINING CLUSTER TO ADD IN FINAL
 // RESULT
-    final Set<String> includedClusters = new HashSet<String>(iClusterNames.size()); // KEEPS THE COLLECTION OF ALREADY INCLUDED
+    final Set<String> includedClusters = new HashSet<>(iClusterNames.size()); // KEEPS THE COLLECTION OF ALREADY INCLUDED
     // CLUSTERS
     for (String s : orderedServers) {
       final Collection<String> clusters = serverMap.get(s);
@@ -251,8 +260,8 @@ public class ODistributedConfiguration {
     if (iClusterNames == null || iClusterNames.isEmpty())
       iClusterNames = DEFAULT_CLUSTER_NAME;
 
-    final List<String> notDefinedClusters = new ArrayList<String>(5);
-    final List<String> candidates = new ArrayList<String>(5);
+    final List<String> notDefinedClusters = new ArrayList<>(5);
+    final List<String> candidates = new ArrayList<>(5);
 
     for (String p : iClusterNames) {
       if (p == null)
@@ -289,7 +298,7 @@ public class ODistributedConfiguration {
     if (iClusterNames == null || iClusterNames.isEmpty())
       return getAllConfiguredServers();
 
-    final Set<String> partitions = new HashSet<String>(iClusterNames.size());
+    final Set<String> partitions = new HashSet<>(iClusterNames.size());
     for (String p : iClusterNames) {
       final List<String> serverList = getClusterConfiguration(p).field(SERVERS);
       if (serverList != null) {
@@ -350,7 +359,7 @@ public class ODistributedConfiguration {
     final List<String> serverList = getClusterConfiguration(iClusterName).field(SERVERS);
     if (serverList != null) {
       // COPY AND REMOVE ANY NEW_NODE_TAG
-      List<String> filteredServerList = new ArrayList<String>(serverList.size());
+      List<String> filteredServerList = new ArrayList<>(serverList.size());
       for (String s : serverList) {
         if (!s.equals(NEW_NODE_TAG) && (iExclude == null || !iExclude.equals(s)))
           filteredServerList.add(s);
@@ -368,7 +377,7 @@ public class ODistributedConfiguration {
     final List<String> serverList = getClusterConfiguration(null).field(SERVERS);
     if (serverList != null) {
       // COPY AND REMOVE ANY NEW_NODE_TAG
-      List<String> masters = new ArrayList<String>(serverList.size());
+      List<String> masters = new ArrayList<>(serverList.size());
       for (String s : serverList) {
         if (!s.equals(NEW_NODE_TAG))
           masters.add(s);
@@ -398,7 +407,7 @@ public class ODistributedConfiguration {
    */
   public Set<String> getAllConfiguredServers() {
 
-    final Set<String> servers = new HashSet<String>();
+    final Set<String> servers = new HashSet<>();
 
     for (String p : getClusterNames()) {
       final List<String> serverList = getClusterConfiguration(p).field(SERVERS);
@@ -417,7 +426,7 @@ public class ODistributedConfiguration {
    * @param iNodeName Server name
    */
   public Set<String> getClustersOnServer(final String iNodeName) {
-    final Set<String> clusters = new HashSet<String>();
+    final Set<String> clusters = new HashSet<>();
     for (String cl : getClusterNames()) {
       final List<String> servers = getServers(cl, null);
       if (servers.contains(iNodeName))
@@ -432,7 +441,7 @@ public class ODistributedConfiguration {
    * @param iNodeName Server name
    */
   public Set<String> getClustersOwnedByServer(final String iNodeName) {
-    final Set<String> clusters = new HashSet<String>();
+    final Set<String> clusters = new HashSet<>();
     for (String cl : getClusterNames()) {
       if (iNodeName.equals(getClusterOwner(cl)))
         clusters.add(cl);
@@ -500,7 +509,7 @@ public class ODistributedConfiguration {
   public List<String> getConfiguredServers(final String iClusterName) {
 
     final Collection<? extends String> list = (Collection<? extends String>) getClusterConfiguration(iClusterName).field(SERVERS);
-    return list != null ? new ArrayList<String>(list) : null;
+    return list != null ? new ArrayList<>(list) : null;
   }
 
   /**
@@ -557,7 +566,7 @@ public class ODistributedConfiguration {
   public Set<String> getRegisteredServers() {
 
     final ODocument servers = configuration.field(SERVERS);
-    final Set<String> result = new HashSet<String>();
+    final Set<String> result = new HashSet<>();
     if (servers != null)
       for (String s : servers.fieldNames())
         result.add(s);
@@ -577,7 +586,7 @@ public class ODistributedConfiguration {
     if (dcs == null)
       return Collections.EMPTY_SET;
 
-    final Set<String> result = new HashSet<String>();
+    final Set<String> result = new HashSet<>();
     for (String dc : dcs.fieldNames()) {
       result.add(dc);
     }
@@ -642,7 +651,7 @@ public class ODistributedConfiguration {
       throw new OConfigurationException(
           "Data center '" + dataCenter + "' does not contain any server in distributed database configuration");
 
-    return new ArrayList<String>(servers);
+    return new ArrayList<>(servers);
   }
 
   /**

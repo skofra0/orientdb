@@ -16,13 +16,12 @@
  */
 package com.orientechnologies.orient.core.sql.functions.conversion;
 
+import java.util.Locale;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.sql.method.misc.OAbstractSQLMethod;
-
-import java.util.Locale;
 
 /**
  * Converts a value to another type in Java or OrientDB's supported types.

@@ -20,12 +20,11 @@
 
 package com.orientechnologies.orient.server.distributed.conflict;
 
-import com.orientechnologies.orient.core.id.ORecordId;
-import com.orientechnologies.orient.server.distributed.ODistributedServerManager;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import com.orientechnologies.orient.core.id.ORecordId;
+import com.orientechnologies.orient.server.distributed.ODistributedServerManager;
 
 /**
  * Conflict resolver implementation based on the majority of results. If there is no majority, no operation is executed.
@@ -47,7 +46,7 @@ public class OMajorityDistributedConflictResolver extends OAbstractDistributedCo
 
     final int bestResultServerCount = candidates.get(bestResult).size();
 
-    final List<Object> exclude = new ArrayList<Object>();
+    final List<Object> exclude = new ArrayList<>();
     exclude.add(bestResult);
 
     final Object nextBestResult = getBestResult(candidates, exclude);

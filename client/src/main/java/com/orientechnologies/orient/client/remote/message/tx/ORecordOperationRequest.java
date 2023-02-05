@@ -1,7 +1,6 @@
 package com.orientechnologies.orient.client.remote.message.tx;
 
 import com.orientechnologies.orient.core.id.ORID;
-import com.orientechnologies.orient.core.record.ORecord;
 
 public class ORecordOperationRequest {
   private byte    type;

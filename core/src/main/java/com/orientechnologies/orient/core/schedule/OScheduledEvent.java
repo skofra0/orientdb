@@ -16,6 +16,10 @@
 
 package com.orientechnologies.orient.core.schedule;
 
+import java.text.ParseException;
+import java.util.Date;
+import java.util.Map;
+import java.util.TimerTask;
 import com.orientechnologies.common.concur.ONeedRetryException;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.Orient;
@@ -30,11 +34,6 @@ import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.schedule.OScheduler.STATUS;
 import com.orientechnologies.orient.core.type.ODocumentWrapper;
-
-import java.text.ParseException;
-import java.util.Date;
-import java.util.Map;
-import java.util.TimerTask;
 
 /**
  * Represents an instance of a scheduled event.

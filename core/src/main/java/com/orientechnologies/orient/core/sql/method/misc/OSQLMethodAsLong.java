@@ -17,7 +17,6 @@
 package com.orientechnologies.orient.core.sql.method.misc;
 
 import java.util.Date;
-
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 

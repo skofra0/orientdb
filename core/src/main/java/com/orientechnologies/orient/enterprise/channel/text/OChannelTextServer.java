@@ -23,7 +23,6 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-
 import com.orientechnologies.orient.core.config.OContextConfiguration;
 
 public class OChannelTextServer extends OChannelText {

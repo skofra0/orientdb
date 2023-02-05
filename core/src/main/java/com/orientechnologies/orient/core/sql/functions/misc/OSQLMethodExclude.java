@@ -19,16 +19,15 @@
  */
 package com.orientechnologies.orient.core.sql.functions.misc;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.method.misc.OAbstractSQLMethod;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Filter the content by excluding only some fields. If the content is a document, then creates a copy without the excluded fields.
@@ -82,7 +81,7 @@ public class OSQLMethodExclude extends OAbstractSQLMethod {
         return copy((Map) iThis, iParams);
       } else if (OMultiValue.isMultiValue(iThis)) {
         // ACT ON MULTIPLE DOCUMENTS
-        final List<Object> result = new ArrayList<Object>(OMultiValue.getSize(iThis));
+        final List<Object> result = new ArrayList<>(OMultiValue.getSize(iThis));
         for (Object o : OMultiValue.getMultiValueIterable(iThis, false)) {
           if (o instanceof OIdentifiable) {
             result.add(copy((ODocument) ((OIdentifiable) o).getRecord(), iParams));
@@ -103,7 +102,7 @@ public class OSQLMethodExclude extends OAbstractSQLMethod {
         final String fieldName = iFieldName.toString();
         if (fieldName.endsWith("*")) {
           final String fieldPart = fieldName.substring(0, fieldName.length() - 1);
-          final List<String> toExclude = new ArrayList<String>();
+          final List<String> toExclude = new ArrayList<>();
           for (String f : doc.fieldNames()) {
             if (f.startsWith(fieldPart))
               toExclude.add(f);
@@ -128,7 +127,7 @@ public class OSQLMethodExclude extends OAbstractSQLMethod {
 
         if (fieldName.endsWith("*")) {
           final String fieldPart = fieldName.substring(0, fieldName.length() - 1);
-          final List<String> toExclude = new ArrayList<String>();
+          final List<String> toExclude = new ArrayList<>();
           for (String f : doc.fieldNames()) {
             if (f.startsWith(fieldPart))
               toExclude.add(f);

@@ -19,14 +19,6 @@
  */
 package com.orientechnologies.orient.enterprise.channel.binary;
 
-import com.orientechnologies.orient.core.Orient;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.id.ORecordId;
-import com.orientechnologies.orient.core.record.ORecord;
-import com.orientechnologies.orient.core.record.ORecordInternal;
-
-import java.io.IOException;
-
 /**
  * The range of the requests is 1-79.
  *

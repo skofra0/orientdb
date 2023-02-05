@@ -19,11 +19,10 @@
  */
 package com.orientechnologies.common.profiler;
 
-import com.orientechnologies.orient.core.record.impl.ODocument;
-
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
  * Contains the profiling data abount timing.
@@ -47,7 +46,7 @@ public class OProfilerEntry {
   public long        lastResetEntries = 0;
   public long        lastReset;
 
-  public Set<String> users   = new HashSet<String>();
+  public Set<String> users   = new HashSet<>();
 
   public OProfilerEntry() {
     firstExecution = System.currentTimeMillis();

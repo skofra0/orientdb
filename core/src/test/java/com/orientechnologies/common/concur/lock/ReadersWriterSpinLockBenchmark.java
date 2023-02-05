@@ -2,7 +2,11 @@ package com.orientechnologies.common.concur.lock;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -24,7 +28,7 @@ public class ReadersWriterSpinLockBenchmark {
   private volatile long c = 47;
 
   public void benchmark() throws Exception {
-    List<Future> futures = new ArrayList<Future>();
+    List<Future> futures = new ArrayList<>();
 
     for (int i = 0; i < 8; i++)
       futures.add(executorService.submit(new Reader()));

@@ -2,6 +2,11 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=true,TRACK_TOKENS=true,NODE_PREFIX=O,NODE_EXTENDS=,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package com.orientechnologies.orient.core.sql.parser;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.orient.core.command.OBasicCommandContext;
 import com.orientechnologies.orient.core.command.OCommandContext;
@@ -9,12 +14,6 @@ import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
 import com.orientechnologies.orient.core.sql.operator.OQueryOperatorEquals;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class OInCondition extends OBooleanExpression {
   protected OExpression            left;
@@ -195,7 +194,7 @@ public class OInCondition extends OBooleanExpression {
 
   @Override
   protected List<Object> getExternalCalculationConditions() {
-    List<Object> result = new ArrayList<Object>();
+    List<Object> result = new ArrayList<>();
 
     if (operator != null) {
       result.add(this);
@@ -307,7 +306,7 @@ public class OInCondition extends OBooleanExpression {
 
     List<String> conditionX = rightMathExpression == null ? null : rightMathExpression.getMatchPatternInvolvedAliases();
 
-    List<String> result = new ArrayList<String>();
+    List<String> result = new ArrayList<>();
     if (leftX != null) {
       result.addAll(leftX);
     }

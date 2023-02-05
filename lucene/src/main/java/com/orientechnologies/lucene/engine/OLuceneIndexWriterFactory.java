@@ -1,14 +1,12 @@
 package com.orientechnologies.lucene.engine;
 
-import com.orientechnologies.orient.core.record.impl.ODocument;
+import static org.apache.lucene.index.IndexWriterConfig.OpenMode.CREATE_OR_APPEND;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
-
 import java.io.IOException;
-
-import static org.apache.lucene.index.IndexWriterConfig.OpenMode.CREATE_OR_APPEND;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
  * Created by frank on 05/01/2016.

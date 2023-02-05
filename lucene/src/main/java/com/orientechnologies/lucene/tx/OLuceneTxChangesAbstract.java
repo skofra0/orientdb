@@ -18,17 +18,16 @@
 
 package com.orientechnologies.lucene.tx;
 
-import com.orientechnologies.common.exception.OException;
-import com.orientechnologies.common.log.OLogManager;
-import com.orientechnologies.lucene.engine.OLuceneIndexEngine;
-import com.orientechnologies.lucene.exception.OLuceneIndexException;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.TopDocs;
-
 import java.io.IOException;
+import com.orientechnologies.common.exception.OException;
+import com.orientechnologies.common.log.OLogManager;
+import com.orientechnologies.lucene.engine.OLuceneIndexEngine;
+import com.orientechnologies.lucene.exception.OLuceneIndexException;
 
 /**
  * Created by Enrico Risa on 28/09/15.

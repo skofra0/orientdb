@@ -20,16 +20,15 @@
 
 package com.orientechnologies.orient.core.storage.cache;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Map;
 import com.orientechnologies.common.types.OModifiableBoolean;
 import com.orientechnologies.orient.core.command.OCommandOutputListener;
 import com.orientechnologies.orient.core.storage.cache.local.OBackgroundExceptionListener;
 import com.orientechnologies.orient.core.storage.impl.local.OLowDiskSpaceListener;
 import com.orientechnologies.orient.core.storage.impl.local.OPageIsBrokenListener;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OLogSequenceNumber;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Map;
 
 public interface OWriteCache {
   /**

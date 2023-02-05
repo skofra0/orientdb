@@ -19,15 +19,6 @@
  */
 package com.orientechnologies.orient.core.index;
 
-import com.orientechnologies.common.comparator.ODefaultComparator;
-import com.orientechnologies.common.listener.OProgressListener;
-import com.orientechnologies.common.serialization.types.OBinarySerializer;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.exception.OInvalidIndexEngineIdException;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.orient.core.serialization.serializer.stream.OStreamSerializerRID;
-import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -36,6 +27,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import com.orientechnologies.common.comparator.ODefaultComparator;
+import com.orientechnologies.common.listener.OProgressListener;
+import com.orientechnologies.common.serialization.types.OBinarySerializer;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.exception.OInvalidIndexEngineIdException;
+import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.orientechnologies.orient.core.serialization.serializer.stream.OStreamSerializerRID;
+import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
 
 /**
  * Abstract Index implementation that allows only one value for a key.
@@ -88,7 +87,7 @@ public abstract class OIndexOneValue extends OIndexAbstract<OIdentifiable> {
 
   @Override
   public OIndexCursor iterateEntries(Collection<?> keys, boolean ascSortOrder) {
-    final List<Object> sortedKeys = new ArrayList<Object>(keys);
+    final List<Object> sortedKeys = new ArrayList<>(keys);
     final Comparator<Object> comparator;
 
     if (ascSortOrder)
@@ -129,7 +128,7 @@ public abstract class OIndexOneValue extends OIndexAbstract<OIdentifiable> {
         final Object resultKey = key;
         final OIdentifiable resultValue = result;
 
-        return new Map.Entry<Object, OIdentifiable>() {
+        return new Map.Entry<>() {
           @Override
           public Object getKey() {
             return resultKey;

@@ -19,17 +19,20 @@
 
 package com.orientechnologies.orient.core.tx;
 
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.index.OIndex;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import org.junit.*;
-
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * @author Sergey Sitnikov
@@ -242,7 +245,7 @@ public class DuplicateNonUniqueIndexChangesTxTest {
   @Test
   @SuppressWarnings("unchecked")
   public void testManyManyUpdatesToTheSameKey() {
-    final Set<Integer> unseen = new HashSet<Integer>();
+    final Set<Integer> unseen = new HashSet<>();
 
     db.begin();
     for (int i = 0; i < OTransactionIndexChangesPerKey.SET_ADD_THRESHOLD * 2; ++i) {
@@ -263,7 +266,7 @@ public class DuplicateNonUniqueIndexChangesTxTest {
   @SuppressWarnings("unchecked")
   private void assertRids(String indexKey, OIdentifiable... rids) {
     final Iterable<OIdentifiable> actualRids = (Iterable<OIdentifiable>) index.get(indexKey);
-    final Set<OIdentifiable> set = new HashSet<OIdentifiable>();
+    final Set<OIdentifiable> set = new HashSet<>();
     for (OIdentifiable i : actualRids)
       set.add(i);
     Assert.assertEquals(set, new HashSet<Object>(Arrays.asList(rids)));

@@ -19,18 +19,17 @@
  */
 package com.orientechnologies.orient.server.network.protocol.http;
 
-import com.orientechnologies.common.concur.resource.OSharedResourceAbstract;
-import com.orientechnologies.common.log.OLogManager;
-import com.orientechnologies.orient.core.Orient;
-import com.orientechnologies.orient.core.config.OGlobalConfiguration;
-import com.orientechnologies.orient.server.OServer;
-
 import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
+import com.orientechnologies.common.concur.resource.OSharedResourceAbstract;
+import com.orientechnologies.common.log.OLogManager;
+import com.orientechnologies.orient.core.Orient;
+import com.orientechnologies.orient.core.config.OGlobalConfiguration;
+import com.orientechnologies.orient.server.OServer;
 
 /**
  * Handles the HTTP sessions such as a real HTTP Server.
@@ -38,7 +37,7 @@ import java.util.Random;
  * @author Luca Garulli (l.garulli--(at)--orientdb.com)
  */
 public class OHttpSessionManager extends OSharedResourceAbstract {
-  private Map<String, OHttpSession> sessions = new HashMap<String, OHttpSession>();
+  private Map<String, OHttpSession> sessions = new HashMap<>();
   private int                       expirationTime;
   private Random                    random   = new SecureRandom();
 

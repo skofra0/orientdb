@@ -16,6 +16,11 @@
 
 package com.orientechnologies.orient.core.schedule;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.util.OCallable;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
@@ -29,12 +34,6 @@ import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-
 /**
  * Scheduler default implementation.
  *
@@ -43,7 +42,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @since Mar 28, 2013
  */
 public class OSchedulerImpl {
-  private ConcurrentHashMap<String, OScheduledEvent> events = new ConcurrentHashMap<String, OScheduledEvent>();
+  private ConcurrentHashMap<String, OScheduledEvent> events = new ConcurrentHashMap<>();
 
   public OSchedulerImpl() {
   }
@@ -161,7 +160,7 @@ public class OSchedulerImpl {
 
       if (event != null) {
         // UPDATED EVENT
-        final Set<String> dirtyFields = new HashSet<String>(Arrays.asList(doc.getDirtyFields()));
+        final Set<String> dirtyFields = new HashSet<>(Arrays.asList(doc.getDirtyFields()));
 
         if (dirtyFields.contains(OScheduledEvent.PROP_NAME))
           throw new OValidationException("Scheduled event cannot change name");

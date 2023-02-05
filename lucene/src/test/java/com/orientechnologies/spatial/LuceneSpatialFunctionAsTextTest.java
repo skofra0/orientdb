@@ -17,20 +17,19 @@
  */
 package com.orientechnologies.spatial;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.spatial4j.shape.Shape;
+import java.text.ParseException;
+import java.util.List;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
-import org.locationtech.jts.geom.Geometry;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.locationtech.spatial4j.shape.Shape;
-
-import java.text.ParseException;
-import java.util.List;
 
 /**
  * Created by Enrico Risa on 14/08/15.

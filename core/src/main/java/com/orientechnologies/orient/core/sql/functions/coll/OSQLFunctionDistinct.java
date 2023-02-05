@@ -19,12 +19,11 @@
   */
 package com.orientechnologies.orient.core.sql.functions.coll;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunctionAbstract;
-
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 /**
  * Keeps items only once removing duplicates
@@ -35,7 +34,7 @@ import java.util.Set;
 public class OSQLFunctionDistinct extends OSQLFunctionAbstract {
   public static final String NAME    = "distinct";
 
-  private Set<Object>        context = new LinkedHashSet<Object>();
+  private Set<Object>        context = new LinkedHashSet<>();
 
   public OSQLFunctionDistinct() {
     super(NAME, 1, 1);

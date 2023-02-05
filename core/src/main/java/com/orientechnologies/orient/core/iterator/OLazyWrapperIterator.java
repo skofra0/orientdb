@@ -19,13 +19,12 @@
  */
 package com.orientechnologies.orient.core.iterator;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 import com.orientechnologies.common.util.OResettable;
 import com.orientechnologies.common.util.OSizeable;
 import com.orientechnologies.orient.core.db.record.OAutoConvertToRecord;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
-
-import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 /**
  * Iterator that created wrapped objects during browsing.

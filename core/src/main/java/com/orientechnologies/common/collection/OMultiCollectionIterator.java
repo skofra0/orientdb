@@ -19,15 +19,6 @@
  */
 package com.orientechnologies.common.collection;
 
-import com.orientechnologies.common.util.OResettable;
-import com.orientechnologies.common.util.OSizeable;
-import com.orientechnologies.common.util.OSupportsContains;
-import com.orientechnologies.orient.core.db.record.OAutoConvertToRecord;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.db.record.ridbag.ORidBag;
-import com.orientechnologies.orient.core.iterator.OLazyWrapperIterator;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -36,6 +27,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
+import com.orientechnologies.common.util.OResettable;
+import com.orientechnologies.common.util.OSizeable;
+import com.orientechnologies.common.util.OSupportsContains;
+import com.orientechnologies.orient.core.db.record.OAutoConvertToRecord;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.db.record.ridbag.ORidBag;
+import com.orientechnologies.orient.core.iterator.OLazyWrapperIterator;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
  * Iterator that allow to iterate against multiple collection of elements.
@@ -58,7 +57,7 @@ public class OMultiCollectionIterator<T> implements Iterator<T>, Iterable<T>, OR
   private int skipped = 0;
 
   public OMultiCollectionIterator() {
-    sources = new ArrayList<Object>();
+    sources = new ArrayList<>();
   }
 
   public OMultiCollectionIterator(final Iterator<? extends Collection<?>> iterator) {
@@ -269,13 +268,13 @@ public class OMultiCollectionIterator<T> implements Iterator<T>, Iterable<T>, OR
             final int arraySize = Array.getLength(next);
             if (arraySize > 0) {
               if (arraySize == 1)
-                partialIterator = new OIterableObject<T>((T) Array.get(next, 0));
+                partialIterator = new OIterableObject<>((T) Array.get(next, 0));
               else
                 partialIterator = (Iterator<T>) OMultiValue.getMultiValueIterator(next, false);
               return true;
             }
           } else {
-            partialIterator = new OIterableObject<T>((T) next);
+            partialIterator = new OIterableObject<>((T) next);
             return true;
           }
         }

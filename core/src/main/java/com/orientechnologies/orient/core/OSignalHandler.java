@@ -20,20 +20,19 @@
 
 package com.orientechnologies.orient.core;
 
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map.Entry;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import sun.misc.Signal;
 import sun.misc.SignalHandler;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Map.Entry;
-
 @SuppressWarnings("restriction")
 public class OSignalHandler implements SignalHandler {
   private Hashtable<Signal, SignalHandler> redefinedHandlers = new Hashtable(4);
-  private List<OSignalListener>            listeners         = new ArrayList<OSignalListener>();
+  private List<OSignalListener>            listeners         = new ArrayList<>();
 
   public interface OSignalListener {
     void onSignal(Signal signal);

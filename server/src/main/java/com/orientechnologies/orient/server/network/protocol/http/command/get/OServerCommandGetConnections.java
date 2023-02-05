@@ -19,14 +19,13 @@
  */
 package com.orientechnologies.orient.server.network.protocol.http.command.get;
 
+import java.io.StringWriter;
 import com.orientechnologies.orient.core.serialization.serializer.OJSONWriter;
 import com.orientechnologies.orient.server.OServerInfo;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpResponse;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpUtils;
 import com.orientechnologies.orient.server.network.protocol.http.command.OServerCommandAuthenticatedServerAbstract;
-
-import java.io.StringWriter;
 
 public class OServerCommandGetConnections extends OServerCommandAuthenticatedServerAbstract {
   private static final String[] NAMES = { "GET|connections/*" };

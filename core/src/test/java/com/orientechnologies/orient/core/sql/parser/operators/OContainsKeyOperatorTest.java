@@ -19,12 +19,11 @@
  */
 package com.orientechnologies.orient.core.sql.parser.operators;
 
-import com.orientechnologies.orient.core.sql.parser.OContainsKeyOperator;
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.util.HashMap;
 import java.util.Map;
+import com.orientechnologies.orient.core.sql.parser.OContainsKeyOperator;
 
 /**
  * @author Luigi Dell'Aquila (l.dellaquila-(at)-orientdb.com)
@@ -38,7 +37,7 @@ public class OContainsKeyOperatorTest {
     Assert.assertFalse(op.execute(null, null));
     Assert.assertFalse(op.execute(null, "foo"));
 
-    Map<Object, Object> originMap = new HashMap<Object, Object>();
+    Map<Object, Object> originMap = new HashMap<>();
     Assert.assertFalse(op.execute(originMap, "foo"));
     Assert.assertFalse(op.execute(originMap, null));
 

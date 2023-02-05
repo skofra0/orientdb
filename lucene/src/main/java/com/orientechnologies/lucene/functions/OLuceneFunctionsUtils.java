@@ -1,11 +1,11 @@
 package com.orientechnologies.lucene.functions;
 
+import org.apache.lucene.index.memory.MemoryIndex;
 import com.orientechnologies.lucene.index.OLuceneFullTextIndex;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.metadata.OMetadata;
 import com.orientechnologies.orient.core.sql.parser.OExpression;
-import org.apache.lucene.index.memory.MemoryIndex;
 
 /**
  * Created by frank on 13/02/2017.

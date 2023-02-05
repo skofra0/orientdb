@@ -19,19 +19,29 @@
  */
 package com.orientechnologies.orient.core.metadata.schema;
 
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.comparator.OCaseInsentiveComparator;
 import com.orientechnologies.common.exception.OException;
-import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.util.OCollections;
 import com.orientechnologies.orient.core.collate.OCollate;
 import com.orientechnologies.orient.core.collate.ODefaultCollate;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
-import com.orientechnologies.orient.core.db.OScenarioThreadLocal;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.record.ORecordElement;
 import com.orientechnologies.orient.core.exception.OSchemaException;
-import com.orientechnologies.orient.core.index.*;
+import com.orientechnologies.orient.core.index.OIndex;
+import com.orientechnologies.orient.core.index.OIndexDefinition;
+import com.orientechnologies.orient.core.index.OIndexManager;
+import com.orientechnologies.orient.core.index.OPropertyIndexDefinition;
 import com.orientechnologies.orient.core.metadata.security.ORole;
 import com.orientechnologies.orient.core.metadata.security.ORule;
 import com.orientechnologies.orient.core.record.impl.ODocument;
@@ -39,9 +49,6 @@ import com.orientechnologies.orient.core.sql.OSQLEngine;
 import com.orientechnologies.orient.core.storage.OAutoshardedStorage;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
 import com.orientechnologies.orient.core.type.ODocumentWrapperNoClass;
-
-import java.text.ParseException;
-import java.util.*;
 
 /**
  * Contains the description of a persistent class property.
@@ -190,7 +197,7 @@ public abstract class OPropertyImpl extends ODocumentWrapperNoClass implements O
     try {
       final OIndexManager indexManager = getDatabase().getMetadata().getIndexManager();
 
-      final ArrayList<OIndex<?>> relatedIndexes = new ArrayList<OIndex<?>>();
+      final ArrayList<OIndex<?>> relatedIndexes = new ArrayList<>();
       for (final OIndex<?> index : indexManager.getClassIndexes(owner.getName())) {
         final OIndexDefinition definition = index.getDefinition();
 
@@ -411,7 +418,7 @@ public abstract class OPropertyImpl extends ODocumentWrapperNoClass implements O
       if (customFields != null)
         return customFields.keySet();
 
-      return new HashSet<String>();
+      return new HashSet<>();
     } finally {
       releaseSchemaReadLock();
     }
@@ -660,7 +667,7 @@ public abstract class OPropertyImpl extends ODocumentWrapperNoClass implements O
     acquireSchemaReadLock();
     try {
       final Set<OIndex<?>> indexes = owner.getIndexes();
-      final List<OIndex<?>> indexList = new LinkedList<OIndex<?>>();
+      final List<OIndex<?>> indexList = new LinkedList<>();
       for (final OIndex<?> index : indexes) {
         final OIndexDefinition indexDefinition = index.getDefinition();
         if (indexDefinition.getFields().contains(globalRef.getName()))

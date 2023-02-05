@@ -19,13 +19,12 @@
  */
 package com.orientechnologies.orient.core.sql.functions.coll;
 
-import com.orientechnologies.orient.core.command.OCommandContext;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.orientechnologies.orient.core.command.OCommandContext;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
  * This operator add an entry in a map. The entry is composed by a key and a value.
@@ -106,12 +105,12 @@ public class OSQLFunctionDocument extends OSQLFunctionMultiValueAbstract<ODocume
   @Override
   public Object mergeDistributedResult(List<Object> resultsToMerge) {
     if (returnDistributedResult()) {
-      final Map<String, Map<Object, Object>> chunks = new HashMap<String, Map<Object, Object>>();
+      final Map<String, Map<Object, Object>> chunks = new HashMap<>();
       for (Object iParameter : resultsToMerge) {
         final Map<String, Object> container = (Map<String, Object>) ((Map<Object, Object>) iParameter).get("doc");
         chunks.put((String) container.get("node"), (Map<Object, Object>) container.get("context"));
       }
-      final Map<Object, Object> result = new HashMap<Object, Object>();
+      final Map<Object, Object> result = new HashMap<>();
       for (Map<Object, Object> chunk : chunks.values()) {
         result.putAll(chunk);
       }

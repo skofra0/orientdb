@@ -18,11 +18,11 @@
 
 package com.orientechnologies.lucene.test;
 
+import org.junit.Before;
+import org.junit.Test;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  * Created by Enrico Risa on 14/08/15.

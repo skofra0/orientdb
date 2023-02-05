@@ -1,5 +1,9 @@
 package com.orientechnologies.orient.server;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import com.orientechnologies.common.exception.OErrorCode;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.client.remote.message.OLiveQueryPushRequest;
@@ -11,11 +15,6 @@ import com.orientechnologies.orient.core.exception.OCoreException;
 import com.orientechnologies.orient.core.exception.OLiveQueryInterruptedException;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.server.network.protocol.binary.ONetworkProtocolBinary;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Created by tglman on 19/06/17.

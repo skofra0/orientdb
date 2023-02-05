@@ -1,15 +1,13 @@
 package com.orientechnologies.orient.core.sql.functions.stat;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 public class OSQLFunctionVarianceTest {
 
@@ -69,17 +67,17 @@ public class OSQLFunctionVarianceTest {
 
   @Test
   public void testDistributed() {
-    Map<String, Object> doc1 = new HashMap<String, Object>();
+    Map<String, Object> doc1 = new HashMap<>();
     doc1.put("n", 2L);
     doc1.put("mean", 5.5);
     doc1.put("var", 2.25);
 
-    Map<String, Object> doc2 = new HashMap<String, Object>();
+    Map<String, Object> doc2 = new HashMap<>();
     doc2.put("n", 2L);
     doc2.put("mean", 9d);
     doc2.put("var", 36d);
 
-    List<Object> results = new ArrayList<Object>(2);
+    List<Object> results = new ArrayList<>(2);
     results.add(doc1);
     results.add(doc2);
 

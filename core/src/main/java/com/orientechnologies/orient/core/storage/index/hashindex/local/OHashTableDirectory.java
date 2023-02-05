@@ -20,14 +20,13 @@
 
 package com.orientechnologies.orient.core.storage.index.hashindex.local;
 
+import java.io.IOException;
 import com.orientechnologies.common.serialization.types.OByteSerializer;
 import com.orientechnologies.common.serialization.types.OLongSerializer;
 import com.orientechnologies.orient.core.storage.cache.OCacheEntry;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperation;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.base.ODurableComponent;
-
-import java.io.IOException;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)

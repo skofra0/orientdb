@@ -20,9 +20,8 @@
 
 package com.orientechnologies.orient.core.storage.cache.local.twoq;
 
-import com.orientechnologies.orient.core.storage.cache.OCacheEntry;
-
 import java.util.Iterator;
+import com.orientechnologies.orient.core.storage.cache.OCacheEntry;
 
 /**
  * @author Artem Orobets (enisher-at-gmail.com)

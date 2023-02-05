@@ -19,11 +19,10 @@
   */
 package com.orientechnologies.orient.server.plugin;
 
+import java.util.Collection;
 import com.orientechnologies.orient.server.OClientConnection;
 import com.orientechnologies.orient.server.OServer;
 import com.orientechnologies.orient.server.network.protocol.ONetworkProtocol;
-
-import java.util.Collection;
 
 public class OServerPluginHelper {
 

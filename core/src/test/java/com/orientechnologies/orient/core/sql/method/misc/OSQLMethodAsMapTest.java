@@ -1,13 +1,11 @@
 package com.orientechnologies.orient.core.sql.method.misc;
 
-import com.orientechnologies.orient.core.record.impl.ODocument;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import static org.junit.Assert.assertEquals;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
  * Tests the "asMap()" method implemented by the OSQLMethodAsMap class.  Note
@@ -28,7 +26,7 @@ public class OSQLMethodAsMapTest {
   @Test
   public void testMap() {
     // The expected behavior is to return the map itself.
-    HashMap<Object, Object> aMap = new HashMap<Object, Object>();
+    HashMap<Object, Object> aMap = new HashMap<>();
     aMap.put("p1", 1);
     aMap.put("p2", 2);
     Object result = function.execute(null, null, null, aMap, null);
@@ -39,7 +37,7 @@ public class OSQLMethodAsMapTest {
   public void testNull() {
     // The expected behavior is to return an empty map.
     Object result = function.execute(null, null, null, null, null);
-    assertEquals(result, new HashMap<Object, Object>());
+    assertEquals(result, new HashMap<>());
   }
 
   public void testODocument() {
@@ -59,7 +57,7 @@ public class OSQLMethodAsMapTest {
     // The expected behavior is to return a map where the even values (0th,
     // 2nd, 4th, etc) are keys and the odd values (1st, 3rd, etc.) are
     // property values.
-    ArrayList<Object> aCollection = new ArrayList<Object>();
+    ArrayList<Object> aCollection = new ArrayList<>();
     aCollection.add("p1");
     aCollection.add(1);
     aCollection.add("p2");
@@ -67,7 +65,7 @@ public class OSQLMethodAsMapTest {
 
     Object result = function.execute(null, null, null, aCollection, null);
 
-    HashMap<Object, Object> expected = new HashMap<Object, Object>();
+    HashMap<Object, Object> expected = new HashMap<>();
     expected.put("p1", 1);
     expected.put("p2", 2);
     assertEquals(result, expected);
@@ -78,7 +76,7 @@ public class OSQLMethodAsMapTest {
     // The expected behavior is to return a map where the even values (0th,
     // 2nd, 4th, etc) are keys and the odd values (1st, 3rd, etc.) are
     // property values.
-    ArrayList<Object> aCollection = new ArrayList<Object>();
+    ArrayList<Object> aCollection = new ArrayList<>();
     aCollection.add("p1");
     aCollection.add(1);
     aCollection.add("p2");
@@ -86,7 +84,7 @@ public class OSQLMethodAsMapTest {
 
     Object result = function.execute(null, null, null, aCollection.iterator(), null);
 
-    HashMap<Object, Object> expected = new HashMap<Object, Object>();
+    HashMap<Object, Object> expected = new HashMap<>();
     expected.put("p1", 1);
     expected.put("p2", 2);
     assertEquals(result, expected);

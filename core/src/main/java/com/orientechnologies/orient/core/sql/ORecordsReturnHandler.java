@@ -20,12 +20,11 @@
 
 package com.orientechnologies.orient.core.sql;
 
+import java.util.ArrayList;
+import java.util.List;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Artem Orobets (enisher-at-gmail.com)
@@ -42,7 +41,7 @@ public abstract class ORecordsReturnHandler implements OReturnHandler {
 
   @Override
   public void reset() {
-    results = new ArrayList<Object>();
+    results = new ArrayList<>();
   }
 
   @Override

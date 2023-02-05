@@ -20,12 +20,11 @@
 
 package com.orientechnologies.orient.core.index;
 
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-
 import java.util.HashSet;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)
@@ -38,7 +37,7 @@ public abstract class OIndexAbstractCursor implements OIndexCursor {
 
   @Override
   public Set<OIdentifiable> toValues() {
-    final HashSet<OIdentifiable> result = new HashSet<OIdentifiable>();
+    final HashSet<OIdentifiable> result = new HashSet<>();
     Map.Entry<Object, OIdentifiable> entry = nextEntry();
 
     while (entry != null) {
@@ -51,7 +50,7 @@ public abstract class OIndexAbstractCursor implements OIndexCursor {
 
   @Override
   public Set<Map.Entry<Object, OIdentifiable>> toEntries() {
-    final HashSet<Map.Entry<Object, OIdentifiable>> result = new HashSet<Map.Entry<Object, OIdentifiable>>();
+    final HashSet<Map.Entry<Object, OIdentifiable>> result = new HashSet<>();
 
     Map.Entry<Object, OIdentifiable> entry = nextEntry();
 
@@ -65,7 +64,7 @@ public abstract class OIndexAbstractCursor implements OIndexCursor {
 
   @Override
   public Set<Object> toKeys() {
-    final HashSet<Object> result = new HashSet<Object>();
+    final HashSet<Object> result = new HashSet<>();
 
     Map.Entry<Object, OIdentifiable> entry = nextEntry();
 

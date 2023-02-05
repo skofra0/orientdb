@@ -19,6 +19,8 @@
     */
 package com.orientechnologies.orient.server.network.protocol.http;
 
+import java.io.IOException;
+import java.net.Socket;
 import com.orientechnologies.orient.client.binary.OBinaryRequestExecutor;
 import com.orientechnologies.orient.core.config.OContextConfiguration;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
@@ -28,9 +30,6 @@ import com.orientechnologies.orient.server.OServer;
 import com.orientechnologies.orient.server.network.OServerNetworkListener;
 import com.orientechnologies.orient.server.network.protocol.http.command.post.OServerCommandPostImportDatabase;
 import com.orientechnologies.orient.server.network.protocol.http.command.post.OServerCommandPostUploadSingleFile;
-
-import java.io.IOException;
-import java.net.Socket;
 
 public class ONetworkProtocolHttpDb extends ONetworkProtocolHttpAbstract {
   private static final int CURRENT_PROTOCOL_VERSION = 10;

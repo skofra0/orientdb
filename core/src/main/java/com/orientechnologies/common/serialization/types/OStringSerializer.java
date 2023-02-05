@@ -20,9 +20,8 @@
 
 package com.orientechnologies.common.serialization.types;
 
-import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALChanges;
-
 import java.nio.ByteBuffer;
+import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALChanges;
 
 /**
  * Serializer for {@link String} type.

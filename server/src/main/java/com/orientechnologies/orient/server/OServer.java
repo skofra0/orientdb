@@ -19,6 +19,26 @@
  */
 package com.orientechnologies.orient.server;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.locks.ReentrantLock;
+import javax.management.InstanceAlreadyExistsException;
+import javax.management.MBeanRegistrationException;
+import javax.management.MalformedObjectNameException;
+import javax.management.NotCompliantMBeanException;
 import com.orientechnologies.common.console.OConsoleReader;
 import com.orientechnologies.common.console.ODefaultConsoleReader;
 import com.orientechnologies.common.exception.OException;
@@ -32,14 +52,27 @@ import com.orientechnologies.orient.core.OConstants;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.config.OContextConfiguration;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
-import com.orientechnologies.orient.core.db.*;
+import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
+import com.orientechnologies.orient.core.db.ODatabaseType;
+import com.orientechnologies.orient.core.db.OrientDB;
+import com.orientechnologies.orient.core.db.OrientDBConfig;
+import com.orientechnologies.orient.core.db.OrientDBInternal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTxInternal;
 import com.orientechnologies.orient.core.exception.OConfigurationException;
 import com.orientechnologies.orient.core.exception.ODatabaseException;
 import com.orientechnologies.orient.core.exception.OStorageException;
 import com.orientechnologies.orient.core.metadata.security.OToken;
 import com.orientechnologies.orient.core.security.OSecurityManager;
-import com.orientechnologies.orient.server.config.*;
+import com.orientechnologies.orient.server.config.OServerConfiguration;
+import com.orientechnologies.orient.server.config.OServerConfigurationManager;
+import com.orientechnologies.orient.server.config.OServerEntryConfiguration;
+import com.orientechnologies.orient.server.config.OServerHandlerConfiguration;
+import com.orientechnologies.orient.server.config.OServerNetworkListenerConfiguration;
+import com.orientechnologies.orient.server.config.OServerNetworkProtocolConfiguration;
+import com.orientechnologies.orient.server.config.OServerParameterConfiguration;
+import com.orientechnologies.orient.server.config.OServerSocketFactoryConfiguration;
+import com.orientechnologies.orient.server.config.OServerStorageConfiguration;
+import com.orientechnologies.orient.server.config.OServerUserConfiguration;
 import com.orientechnologies.orient.server.distributed.ODistributedServerManager;
 import com.orientechnologies.orient.server.handler.OConfigurableHooksManager;
 import com.orientechnologies.orient.server.network.OServerNetworkListener;
@@ -55,25 +88,10 @@ import com.orientechnologies.orient.server.security.ODefaultServerSecurity;
 import com.orientechnologies.orient.server.security.OServerSecurity;
 import com.orientechnologies.orient.server.token.OTokenHandlerImpl;
 
-import javax.management.InstanceAlreadyExistsException;
-import javax.management.MBeanRegistrationException;
-import javax.management.MalformedObjectNameException;
-import javax.management.NotCompliantMBeanException;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.security.SecureRandom;
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.locks.ReentrantLock;
-
 public class OServer {
   private static final String                                         ROOT_PASSWORD_VAR      = "ORIENTDB_ROOT_PASSWORD";
   private static       ThreadGroup                                    threadGroup;
-  private static       Map<String, OServer>                           distributedServers     = new ConcurrentHashMap<String, OServer>();
+  private static       Map<String, OServer>                           distributedServers     = new ConcurrentHashMap<>();
   private              CountDownLatch                                 startupLatch;
   private              CountDownLatch                                 shutdownLatch;
   private final        boolean                                        shutdownEngineOnExit;
@@ -83,16 +101,16 @@ public class OServer {
   protected            OServerConfigurationManager                    serverCfg;
   protected            OContextConfiguration                          contextConfiguration;
   protected            OServerShutdownHook                            shutdownHook;
-  protected            Map<String, Class<? extends ONetworkProtocol>> networkProtocols       = new HashMap<String, Class<? extends ONetworkProtocol>>();
-  protected            Map<String, OServerSocketFactory>              networkSocketFactories = new HashMap<String, OServerSocketFactory>();
-  protected            List<OServerNetworkListener>                   networkListeners       = new ArrayList<OServerNetworkListener>();
-  protected            List<OServerLifecycleListener>                 lifecycleListeners     = new ArrayList<OServerLifecycleListener>();
+  protected            Map<String, Class<? extends ONetworkProtocol>> networkProtocols       = new HashMap<>();
+  protected            Map<String, OServerSocketFactory>              networkSocketFactories = new HashMap<>();
+  protected            List<OServerNetworkListener>                   networkListeners       = new ArrayList<>();
+  protected            List<OServerLifecycleListener>                 lifecycleListeners     = new ArrayList<>();
   protected            OServerPluginManager                           pluginManager;
   protected            OConfigurableHooksManager                      hookManager;
   protected            ODistributedServerManager                      distributedManager;
   protected            OServerSecurity                                serverSecurity;
   private              SecureRandom                                   random                 = new SecureRandom();
-  private              Map<String, Object>                            variables              = new HashMap<String, Object>();
+  private              Map<String, Object>                            variables              = new HashMap<>();
   private              String                                         serverRootDirectory;
   private              String                                         databaseDirectory;
   private              OClientConnectionManager                       clientConnectionManager;
@@ -624,7 +642,7 @@ public class OServer {
 
   public Map<String, String> getAvailableStorageNames() {
     Set<String> dbs = listDatabases();
-    Map<String, String> toSend = new HashMap<String, String>();
+    Map<String, String> toSend = new HashMap<>();
     for (String dbName : dbs) {
       toSend.put(dbName, dbName);
     }
@@ -1145,7 +1163,7 @@ public class OServer {
 
     if (configuration.handlers != null) {
       // ACTIVATE PLUGINS
-      final List<OServerPlugin> plugins = new ArrayList<OServerPlugin>();
+      final List<OServerPlugin> plugins = new ArrayList<>();
 
       for (OServerHandlerConfiguration h : configuration.handlers) {
         if (h.parameters != null) {

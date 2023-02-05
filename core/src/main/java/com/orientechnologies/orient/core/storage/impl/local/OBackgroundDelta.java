@@ -1,17 +1,18 @@
 package com.orientechnologies.orient.core.storage.impl.local;
 
+import static com.orientechnologies.orient.core.config.OGlobalConfiguration.DISTRIBUTED_CHECK_HEALTH_EVERY;
+import static com.orientechnologies.orient.core.config.OGlobalConfiguration.DISTRIBUTED_DEPLOYCHUNK_TASK_SYNCH_TIMEOUT;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PipedInputStream;
+import java.io.PipedOutputStream;
+import java.util.SortedSet;
+import java.util.TimerTask;
+import java.util.concurrent.CountDownLatch;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.command.OCommandOutputListener;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OLogSequenceNumber;
-
-import java.io.*;
-import java.util.SortedSet;
-import java.util.TimerTask;
-import java.util.concurrent.CountDownLatch;
-
-import static com.orientechnologies.orient.core.config.OGlobalConfiguration.DISTRIBUTED_CHECK_HEALTH_EVERY;
-import static com.orientechnologies.orient.core.config.OGlobalConfiguration.DISTRIBUTED_DEPLOYCHUNK_TASK_SYNCH_TIMEOUT;
 
 public class OBackgroundDelta implements Runnable, OSyncSource {
   private          TimerTask                 timer;

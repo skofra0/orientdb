@@ -1,5 +1,14 @@
 package com.orientechnologies.lucene.index;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import org.apache.lucene.analysis.en.EnglishAnalyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import java.io.IOException;
+import java.util.List;
+import java.util.logging.Level;
 import com.orientechnologies.common.io.OIOUtils;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.lucene.test.BaseLuceneTest;
@@ -7,17 +16,6 @@ import com.orientechnologies.orient.core.command.script.OCommandScript;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.apache.lucene.analysis.en.EnglishAnalyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.logging.Level;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Created by frank on 20/09/2016.

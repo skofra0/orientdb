@@ -1,17 +1,16 @@
 package com.orientechnologies.orient.test.server.network.http;
 
-import com.orientechnologies.orient.core.record.impl.ODocument;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
-import org.junit.Before;
 import org.junit.Assert;
-
+import org.junit.Before;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Iterator;
 import java.util.List;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
  * Test HTTP "batch" command.

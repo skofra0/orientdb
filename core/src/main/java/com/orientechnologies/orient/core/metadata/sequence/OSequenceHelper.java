@@ -19,8 +19,8 @@
  */
 package com.orientechnologies.orient.core.metadata.sequence;
 
-import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.metadata.sequence.OSequence.SEQUENCE_TYPE;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
  * @author Matan Shukry (matanshukry@gmail.com)

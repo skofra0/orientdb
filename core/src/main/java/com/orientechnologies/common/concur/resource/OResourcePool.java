@@ -19,16 +19,19 @@
  */
 package com.orientechnologies.common.concur.resource;
 
-import com.orientechnologies.common.concur.lock.OInterruptedException;
-import com.orientechnologies.common.concur.lock.OLockException;
-import com.orientechnologies.common.exception.OException;
-import com.orientechnologies.common.log.OLogManager;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import com.orientechnologies.common.concur.lock.OInterruptedException;
+import com.orientechnologies.common.concur.lock.OLockException;
+import com.orientechnologies.common.exception.OException;
+import com.orientechnologies.common.log.OLogManager;
 
 /**
  * Generic non reentrant implementation about pool of resources. It pre-allocates a semaphore of maxResources. Resources are lazily
@@ -41,8 +44,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class OResourcePool<K, V> {
   protected final Semaphore sem;
-  protected final Queue<V> resources    = new ConcurrentLinkedQueue<V>();
-  protected final Queue<V> resourcesOut = new ConcurrentLinkedQueue<V>();
+  protected final Queue<V> resources    = new ConcurrentLinkedQueue<>();
+  protected final Queue<V> resourcesOut = new ConcurrentLinkedQueue<>();
   protected final Collection<V>               unmodifiableresources;
   private final   int                         maxResources;
   protected       OResourcePoolListener<K, V> listener;
@@ -153,7 +156,7 @@ public class OResourcePool<K, V> {
   }
 
   public Collection<V> getAllResources() {
-    List<V> all = new ArrayList<V>(resources);
+    List<V> all = new ArrayList<>(resources);
     all.addAll(resourcesOut);
     return all;
   }

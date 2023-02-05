@@ -19,6 +19,9 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.Collections;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.listener.OProgressListener;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.command.OCommandExecutor;
@@ -32,10 +35,6 @@ import com.orientechnologies.orient.core.sql.parser.OStatement;
 import com.orientechnologies.orient.core.sql.parser.OStatementCache;
 import com.orientechnologies.orient.core.sql.query.OSQLAsynchQuery;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-
-import java.util.Collections;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Wrapper for OPrifileStorageStatement command (for compatibility with the old executor architecture,
@@ -59,7 +58,7 @@ public class OCommandExecutorToOStatementWrapper implements OCommandExecutor {
       request = (OSQLAsynchQuery<ODocument>) iCommand;
     } else {
       // BUILD A QUERY OBJECT FROM THE COMMAND REQUEST
-      request = new OSQLSynchQuery<ODocument>(textRequest.getText());
+      request = new OSQLSynchQuery<>(textRequest.getText());
       if (textRequest.getResultListener() != null) {
         request.setResultListener(textRequest.getResultListener());
       }

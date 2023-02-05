@@ -1,16 +1,8 @@
 package com.orientechnologies.orient.core.index;
 
-import com.orientechnologies.orient.core.db.OPartitionedDatabasePool;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
-import com.orientechnologies.orient.core.metadata.schema.OClass;
-import com.orientechnologies.orient.core.metadata.schema.OType;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.orient.core.sql.OCommandSQL;
-import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -18,6 +10,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicBoolean;
+import com.orientechnologies.orient.core.db.OPartitionedDatabasePool;
+import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
+import com.orientechnologies.orient.core.metadata.schema.OClass;
+import com.orientechnologies.orient.core.metadata.schema.OType;
+import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.orientechnologies.orient.core.sql.OCommandSQL;
+import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 
 public class OLiveIndexRebuildTest {
   private final OPartitionedDatabasePool pool = new OPartitionedDatabasePool("memory:liveIndexRebuild", "admin", "admin");
@@ -47,7 +46,7 @@ public class OLiveIndexRebuildTest {
     }
 
     ExecutorService executorService = Executors.newFixedThreadPool(6);
-    List<Future<?>> futures = new ArrayList<Future<?>>();
+    List<Future<?>> futures = new ArrayList<>();
 
     for (int i = 0; i < 5; i++) {
       futures.add(executorService.submit(new Reader()));

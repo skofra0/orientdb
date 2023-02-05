@@ -19,6 +19,20 @@
  */
 package com.orientechnologies.orient.core.metadata.schema;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.collection.OMultiCollectionIterator;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.common.io.OIOUtils;
@@ -41,21 +55,6 @@ import com.orientechnologies.orient.core.serialization.ODocumentSerializable;
 import com.orientechnologies.orient.core.serialization.OSerializableStream;
 import com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper;
 import com.orientechnologies.orient.core.sql.executor.OResult;
-
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Generic representation of a type.<br> allowAssignmentFrom accepts any class, but Array.class means that the type accepts generic
@@ -118,7 +117,7 @@ public enum OType {
 
   protected static final OType[]              TYPES_BY_ID    = new OType[24];
   // Values previosly stored in javaTypes
-  protected static final Map<Class<?>, OType> TYPES_BY_CLASS = new HashMap<Class<?>, OType>();
+  protected static final Map<Class<?>, OType> TYPES_BY_CLASS = new HashMap<>();
 
   static {
     for (OType oType : values()) {
@@ -177,7 +176,7 @@ public enum OType {
     id = iId;
     javaDefaultType = iJavaDefaultType;
     allowAssignmentFrom = iAllowAssignmentBy;
-    castable = new HashSet<OType>();
+    castable = new HashSet<>();
     castable.add(this);
   }
 
@@ -414,7 +413,7 @@ public enum OType {
         // we will add all of the items in the collection to a set.  Otherwise
         // we will create a singleton set with only the value in it.
         if (iValue instanceof Collection<?>) {
-          final Set<Object> set = new HashSet<Object>();
+          final Set<Object> set = new HashSet<>();
           set.addAll((Collection<? extends Object>) iValue);
           return set;
         } else {
@@ -426,7 +425,7 @@ public enum OType {
         // we will add all of the items in the collection to a List.  Otherwise
         // we will create a singleton List with only the value in it.
         if (iValue instanceof Collection<?>) {
-          final List<Object> list = new ArrayList<Object>();
+          final List<Object> list = new ArrayList<>();
           list.addAll((Collection<? extends Object>) iValue);
           return list;
         } else {
@@ -438,7 +437,7 @@ public enum OType {
         // we will return a list if the value is a collection or
         // a singleton set if the value is not a collection.
         if (iValue instanceof Collection<?>) {
-          final List<Object> set = new ArrayList<Object>();
+          final List<Object> set = new ArrayList<>();
           set.addAll((Collection<? extends Object>) iValue);
           return set;
         } else {
@@ -467,7 +466,7 @@ public enum OType {
         return iValue.toString();
       } else if (OIdentifiable.class.isAssignableFrom(iTargetClass)) {
         if (OMultiValue.isMultiValue(iValue)) {
-          List<OIdentifiable> result = new ArrayList<OIdentifiable>();
+          List<OIdentifiable> result = new ArrayList<>();
           for (Object o : OMultiValue.getMultiValueIterable(iValue)) {
             if (o instanceof OIdentifiable) {
               result.add((OIdentifiable) o);

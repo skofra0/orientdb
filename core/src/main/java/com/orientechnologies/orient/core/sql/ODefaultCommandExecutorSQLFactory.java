@@ -15,16 +15,15 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.core.command.OCommandExecutor;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 import com.orientechnologies.orient.core.sql.parser.OMatchStatement;
 import com.orientechnologies.orient.core.sql.parser.OProfileStorageStatement;
-
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Default command operator executor factory.
@@ -38,7 +37,7 @@ public class ODefaultCommandExecutorSQLFactory implements OCommandExecutorSQLFac
   static {
 
     // COMMANDS
-    final Map<String, Class<? extends OCommandExecutor>> commands = new HashMap<String, Class<? extends OCommandExecutor>>();
+    final Map<String, Class<? extends OCommandExecutor>> commands = new HashMap<>();
     commands.put(OCommandExecutorSQLAlterDatabase.KEYWORD_ALTER + " " + OCommandExecutorSQLAlterDatabase.KEYWORD_DATABASE,
         OCommandExecutorSQLAlterDatabase.class);
     commands.put(OCommandExecutorSQLSelect.KEYWORD_SELECT, OCommandExecutorSQLSelect.class);

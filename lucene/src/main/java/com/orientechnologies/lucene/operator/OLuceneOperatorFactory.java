@@ -16,18 +16,17 @@
 
 package com.orientechnologies.lucene.operator;
 
-import com.orientechnologies.orient.core.sql.operator.OQueryOperator;
-import com.orientechnologies.orient.core.sql.operator.OQueryOperatorFactory;
-
 import java.util.HashSet;
 import java.util.Set;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperator;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperatorFactory;
 
 public class OLuceneOperatorFactory implements OQueryOperatorFactory {
 
   private final Set<OQueryOperator> operators;
 
   public OLuceneOperatorFactory() {
-    operators = new HashSet<OQueryOperator>();
+    operators = new HashSet<>();
 
     operators.add(new OLuceneTextOperator());
 

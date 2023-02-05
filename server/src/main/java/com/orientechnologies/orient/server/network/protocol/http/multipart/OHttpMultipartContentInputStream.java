@@ -110,7 +110,7 @@ public class OHttpMultipartContentInputStream extends InputStream {
   protected void bufferData() throws IOException {
     boolean checkingEnd = true;
     int boundaryCursor = 0;
-    final ArrayList<Integer> buffer = new ArrayList<Integer>();
+    final ArrayList<Integer> buffer = new ArrayList<>();
     int b;
     while (checkingEnd && (b = wrappedInputStream.read()) > -1) {
       buffer.add(b);

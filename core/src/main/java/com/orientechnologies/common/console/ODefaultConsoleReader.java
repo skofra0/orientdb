@@ -20,11 +20,10 @@
 
 package com.orientechnologies.common.console;
 
-import com.orientechnologies.common.thread.OSoftThread;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import com.orientechnologies.common.thread.OSoftThread;
 
 /**
  * Console reader implementation that uses the Java System.in.

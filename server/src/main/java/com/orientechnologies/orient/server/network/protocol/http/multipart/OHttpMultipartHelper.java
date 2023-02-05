@@ -16,7 +16,6 @@
 package com.orientechnologies.orient.server.network.protocol.http.multipart;
 
 import java.io.IOException;
-
 import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpUtils;
 

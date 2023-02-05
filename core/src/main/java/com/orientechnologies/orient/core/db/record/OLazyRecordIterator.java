@@ -20,7 +20,6 @@
 package com.orientechnologies.orient.core.db.record;
 
 import java.util.Iterator;
-
 import com.orientechnologies.common.collection.OLazyIterator;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.util.OResettable;

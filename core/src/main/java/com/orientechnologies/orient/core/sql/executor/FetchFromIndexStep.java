@@ -1,5 +1,16 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 import com.orientechnologies.common.collection.OMultiCollectionIterator;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.common.concur.OTimeoutException;
@@ -36,17 +47,6 @@ import com.orientechnologies.orient.core.sql.parser.OInCondition;
 import com.orientechnologies.orient.core.sql.parser.OLeOperator;
 import com.orientechnologies.orient.core.sql.parser.OLtOperator;
 import com.orientechnologies.orient.core.sql.parser.OValueExpression;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Created by luigidellaquila on 23/07/16.
@@ -186,7 +186,7 @@ public class FetchFromIndexStep extends AbstractExecutionStep {
 
     if (nextEntry == null && nullKeyIterator != null && nullKeyIterator.hasNext()) {
       OIdentifiable nextValue = (OIdentifiable) nullKeyIterator.next();
-      nextEntry = new Map.Entry<Object, OIdentifiable>() {
+      nextEntry = new Map.Entry<>() {
         @Override
         public Object getKey() {
           return null;
@@ -494,7 +494,7 @@ public class FetchFromIndexStep extends AbstractExecutionStep {
           return null;
         }
         Object val = iter.next();
-        return new Map.Entry<Object, OIdentifiable>() {
+        return new Map.Entry<>() {
           @Override
           public Object getKey() {
             return null;

@@ -1,14 +1,12 @@
 package com.orientechnologies.orient.core.ridbag;
 
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+import java.util.UUID;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.db.record.ridbag.embedded.OEmbeddedRidBag;
 import com.orientechnologies.orient.core.id.ORecordId;
-import org.junit.Test;
-
-import java.util.UUID;
-
-import static org.junit.Assert.assertEquals;
 
 public class OEmbeddedRidBagBasicTest {
 

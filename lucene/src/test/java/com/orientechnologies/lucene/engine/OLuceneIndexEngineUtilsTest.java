@@ -1,13 +1,11 @@
 package com.orientechnologies.lucene.engine;
 
-import com.orientechnologies.orient.core.record.impl.ODocument;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.apache.lucene.search.SortField;
 import org.junit.Test;
-
 import java.util.Arrays;
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 public class OLuceneIndexEngineUtilsTest {
 

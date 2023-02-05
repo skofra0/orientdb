@@ -17,10 +17,9 @@
  */
 package com.orientechnologies.spatial.collections;
 
-import com.orientechnologies.lucene.collections.OLuceneCompositeKey;
 import org.apache.lucene.spatial.query.SpatialOperation;
-
 import java.util.List;
+import com.orientechnologies.lucene.collections.OLuceneCompositeKey;
 
 public class OSpatialCompositeKey extends OLuceneCompositeKey {
 

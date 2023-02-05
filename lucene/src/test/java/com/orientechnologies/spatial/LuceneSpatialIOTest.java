@@ -17,22 +17,35 @@
  */
 package com.orientechnologies.spatial;
 
-import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.spatial.shape.*;
-import org.locationtech.jts.geom.*;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.GeometryCollection;
+import org.locationtech.jts.geom.LineString;
+import org.locationtech.jts.geom.MultiLineString;
+import org.locationtech.jts.geom.MultiPoint;
+import org.locationtech.jts.geom.MultiPolygon;
+import org.locationtech.jts.geom.Polygon;
 import org.locationtech.spatial4j.shape.Point;
 import org.locationtech.spatial4j.shape.Rectangle;
 import org.locationtech.spatial4j.shape.Shape;
 import org.locationtech.spatial4j.shape.jts.JtsGeometry;
-
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.orientechnologies.spatial.shape.OGeometryCollectionShapeBuilder;
+import com.orientechnologies.spatial.shape.OLineStringShapeBuilder;
+import com.orientechnologies.spatial.shape.OMultiLineStringShapeBuilder;
+import com.orientechnologies.spatial.shape.OMultiPointShapeBuilder;
+import com.orientechnologies.spatial.shape.OMultiPolygonShapeBuilder;
+import com.orientechnologies.spatial.shape.OPointShapeBuilder;
+import com.orientechnologies.spatial.shape.OPolygonShapeBuilder;
+import com.orientechnologies.spatial.shape.ORectangleShapeBuilder;
+import com.orientechnologies.spatial.shape.OShapeFactory;
 
 /**
  * Created by Enrico Risa on 06/08/15.
@@ -83,7 +96,7 @@ public class LuceneSpatialIOTest extends BaseSpatialLuceneTest {
     OMultiPointShapeBuilder builder = new OMultiPointShapeBuilder();
     String multiPoint = builder.asText(doc);
 
-    List<Coordinate> points = new ArrayList<Coordinate>() {
+    List<Coordinate> points = new ArrayList<>() {
       {
         add(new Coordinate(-71.160281, 42.258729));
         add(new Coordinate(-71.160837, 42.259113));
@@ -201,7 +214,7 @@ public class LuceneSpatialIOTest extends BaseSpatialLuceneTest {
       }
     });
 
-    List<Coordinate> coordinates = new ArrayList<Coordinate>();
+    List<Coordinate> coordinates = new ArrayList<>();
     coordinates.add(new Coordinate(-45, 30));
     coordinates.add(new Coordinate(45, 30));
     coordinates.add(new Coordinate(45, -30));

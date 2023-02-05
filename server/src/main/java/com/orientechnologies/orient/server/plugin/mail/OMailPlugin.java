@@ -19,6 +19,13 @@
  */
 package com.orientechnologies.orient.server.plugin.mail;
 
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import javax.script.Bindings;
+import javax.script.ScriptEngine;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.command.script.OScriptInjection;
@@ -29,21 +36,13 @@ import com.orientechnologies.orient.server.config.OServerParameterConfiguration;
 import com.orientechnologies.orient.server.plugin.OServerPluginAbstract;
 import com.orientechnologies.orient.server.plugin.OServerPluginConfigurable;
 
-import javax.script.Bindings;
-import javax.script.ScriptEngine;
-import java.io.IOException;
-import java.text.ParseException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
 public class OMailPlugin extends OServerPluginAbstract implements OScriptInjection, OServerPluginConfigurable {
   private static final String       CONFIG_PROFILE_PREFIX = "profile.";
   private static final String       CONFIG_MAIL_PREFIX    = "mail.";
 
   private ODocument                 configuration;
 
-  private Map<String, OMailProfile> profiles              = new HashMap<String, OMailProfile>();
+  private Map<String, OMailProfile> profiles              = new HashMap<>();
 
   private String                    configFile            = "${ORIENTDB_HOME}/config/mail.json";
 

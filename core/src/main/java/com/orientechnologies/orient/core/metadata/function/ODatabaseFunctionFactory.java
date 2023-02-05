@@ -20,7 +20,6 @@
 package com.orientechnologies.orient.core.metadata.function;
 
 import java.util.Set;
-
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;

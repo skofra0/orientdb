@@ -19,10 +19,9 @@
   */
 package com.orientechnologies.orient.core.query;
 
+import java.util.List;
 import com.orientechnologies.orient.core.collate.OCollate;
 import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemFieldMultiAbstract;
-
-import java.util.List;
 
 /**
  * Represent multiple values in query.

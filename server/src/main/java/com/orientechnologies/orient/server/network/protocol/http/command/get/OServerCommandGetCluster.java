@@ -19,17 +19,15 @@
  */
 package com.orientechnologies.orient.server.network.protocol.http.command.get;
 
+import java.util.ArrayList;
+import java.util.List;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpResponse;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpUtils;
 import com.orientechnologies.orient.server.network.protocol.http.command.OServerCommandAuthenticatedDbAbstract;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class OServerCommandGetCluster extends OServerCommandAuthenticatedDbAbstract {
   private static final String[] NAMES = { "GET|cluster/*" };
@@ -52,7 +50,7 @@ public class OServerCommandGetCluster extends OServerCommandAuthenticatedDbAbstr
       if (db.getClusterIdByName(urlParts[2]) > -1) {
         final int limit = urlParts.length > 3 ? Integer.parseInt(urlParts[3]) : 20;
 
-        final List<OIdentifiable> response = new ArrayList<OIdentifiable>();
+        final List<OIdentifiable> response = new ArrayList<>();
         for (ORecord rec : db.browseCluster(urlParts[2])) {
           if (limit > 0 && response.size() >= limit)
             break;

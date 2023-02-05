@@ -1,5 +1,8 @@
 package com.orientechnologies.lucene.engine;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.index.OIndexDefinition;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
@@ -7,17 +10,13 @@ import com.orientechnologies.orient.core.metadata.schema.OProperty;
 import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 public class OLuceneClassIndexContext {
 
   protected final OIndexDefinition definition;
   protected final String           name;
   protected final boolean          automatic;
   protected final ODocument        metadata;
-  protected final Map<String, Boolean> fieldsToStore = new HashMap<String, Boolean>();
+  protected final Map<String, Boolean> fieldsToStore = new HashMap<>();
   protected final OClass indexClass;
 
   public OLuceneClassIndexContext(OSchema schema, OIndexDefinition definition, String name, boolean automatic, ODocument metadata) {

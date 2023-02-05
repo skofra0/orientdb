@@ -17,12 +17,19 @@
  */
 package com.orientechnologies.spatial.sandbox;
 
-import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.spatial.shape.OMultiPolygonShapeBuilder;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
-import org.apache.lucene.index.*;
-import org.apache.lucene.search.*;
+import org.apache.lucene.index.DirectoryReader;
+import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.index.IndexableField;
+import org.apache.lucene.search.BooleanClause;
+import org.apache.lucene.search.BooleanQuery;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.MatchAllDocsQuery;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.spatial.prefix.RecursivePrefixTreeStrategy;
 import org.apache.lucene.spatial.prefix.tree.GeohashPrefixTree;
 import org.apache.lucene.spatial.query.SpatialArgs;
@@ -33,11 +40,12 @@ import org.junit.Test;
 import org.locationtech.spatial4j.context.jts.JtsSpatialContext;
 import org.locationtech.spatial4j.shape.Shape;
 import org.locationtech.spatial4j.shape.SpatialRelation;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.util.Map;
+import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.orientechnologies.spatial.shape.OMultiPolygonShapeBuilder;
 
 /**
  * Created by Enrico Risa on 01/10/15.

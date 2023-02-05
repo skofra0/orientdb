@@ -19,6 +19,22 @@
  */
 package com.orientechnologies.orient.core.db.tool;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.zip.Deflater;
+import java.util.zip.GZIPOutputStream;
 import com.orientechnologies.common.io.OFileUtils;
 import com.orientechnologies.common.io.OIOException;
 import com.orientechnologies.common.log.OLogManager;
@@ -43,23 +59,6 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.serialization.serializer.OJSONWriter;
 import com.orientechnologies.orient.core.serialization.serializer.record.string.ORecordSerializerJSON;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
-import java.util.zip.Deflater;
-import java.util.zip.GZIPOutputStream;
 
 /**
  * Export data from a database to a file.
@@ -533,7 +532,7 @@ public class ODatabaseExport extends ODatabaseImpExpAbstract {
     if (!s.getClasses().isEmpty()) {
       writer.beginCollection(2, true, "classes");
 
-      final List<OClass> classes = new ArrayList<OClass>(s.getClasses());
+      final List<OClass> classes = new ArrayList<>(s.getClasses());
       Collections.sort(classes);
 
       for (OClass cls : classes) {
@@ -565,7 +564,7 @@ public class ODatabaseExport extends ODatabaseImpExpAbstract {
         if (!cls.properties().isEmpty()) {
           writer.beginCollection(4, true, "properties");
 
-          final List<OProperty> properties = new ArrayList<OProperty>(cls.declaredProperties());
+          final List<OProperty> properties = new ArrayList<>(cls.declaredProperties());
           Collections.sort(properties);
 
           for (OProperty p : properties) {
@@ -593,7 +592,7 @@ public class ODatabaseExport extends ODatabaseImpExpAbstract {
             if (p.getRegexp() != null)
               writer.writeAttribute(0, false, "regexp", p.getRegexp());
             final Set<String> customKeys = p.getCustomKeys();
-            final Map<String, String> custom = new HashMap<String, String>();
+            final Map<String, String> custom = new HashMap<>();
             for (String key : customKeys)
               custom.put(key, p.getCustom(key));
 
@@ -605,7 +604,7 @@ public class ODatabaseExport extends ODatabaseImpExpAbstract {
           writer.endCollection(4, true);
         }
         final Set<String> customKeys = cls.getCustomKeys();
-        final Map<String, String> custom = new HashMap<String, String>();
+        final Map<String, String> custom = new HashMap<>();
         for (String key : customKeys)
           custom.put(key, cls.getCustom(key));
 

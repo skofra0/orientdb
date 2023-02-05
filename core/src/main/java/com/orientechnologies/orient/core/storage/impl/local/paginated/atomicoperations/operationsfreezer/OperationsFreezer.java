@@ -1,9 +1,5 @@
 package com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.operationsfreezer;
 
-import com.orientechnologies.common.exception.OException;
-import com.orientechnologies.common.log.OLogManager;
-import com.orientechnologies.common.types.OModifiableInteger;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -14,6 +10,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.LongAdder;
 import java.util.concurrent.locks.LockSupport;
+import com.orientechnologies.common.exception.OException;
+import com.orientechnologies.common.log.OLogManager;
+import com.orientechnologies.common.types.OModifiableInteger;
 
 public final class OperationsFreezer {
   private final LongAdder     operationsCount = new LongAdder();

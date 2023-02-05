@@ -3,7 +3,6 @@ package com.orientechnologies.common.collection;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +13,7 @@ public class OMultiValueTest {
 
   @Test
   public void testListSize() {
-    List<String> collection = new ArrayList<String>();
+    List<String> collection = new ArrayList<>();
     OMultiValue.add(collection, "foo");
     OMultiValue.add(collection, "bar");
     OMultiValue.add(collection, "baz");
@@ -30,7 +29,7 @@ public class OMultiValueTest {
 
   @Test
   public void testListFirstLast() {
-    List<String> collection = new ArrayList<String>();
+    List<String> collection = new ArrayList<>();
     OMultiValue.add(collection, "foo");
     OMultiValue.add(collection, "bar");
     OMultiValue.add(collection, "baz");
@@ -49,7 +48,7 @@ public class OMultiValueTest {
   @Test
   public void testListValue() {
     Assert.assertNull(OMultiValue.getValue(null, 0));
-    List<String> collection = new ArrayList<String>();
+    List<String> collection = new ArrayList<>();
     OMultiValue.add(collection, "foo");
     OMultiValue.add(collection, "bar");
     OMultiValue.add(collection, "baz");
@@ -65,7 +64,7 @@ public class OMultiValueTest {
   @Test
   public void testListRemove() {
     Assert.assertNull(OMultiValue.getValue(null, 0));
-    List<String> collection = new ArrayList<String>();
+    List<String> collection = new ArrayList<>();
     OMultiValue.add(collection, "foo");
     OMultiValue.add(collection, "bar");
     OMultiValue.add(collection, "baz");
@@ -77,7 +76,7 @@ public class OMultiValueTest {
   }
 
   public void testToString() {
-    List<String> collection = new ArrayList<String>();
+    List<String> collection = new ArrayList<>();
     OMultiValue.add(collection, 1);
     OMultiValue.add(collection, 2);
     OMultiValue.add(collection, 3);

@@ -19,9 +19,6 @@
  */
 package com.orientechnologies.orient.core.sql.functions.coll;
 
-import com.orientechnologies.orient.core.command.OCommandContext;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -29,6 +26,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import com.orientechnologies.orient.core.command.OCommandContext;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
 
 /**
  * This operator can work as aggregate or inline. If only one argument is passed than aggregates, otherwise executes, and returns,
@@ -72,8 +71,8 @@ public class OSQLFunctionSymmetricDifference extends OSQLFunctionMultiValueAbstr
     if (iParams.length == 1) {
       // AGGREGATION MODE (STATEFUL)
       if (context == null) {
-        context = new HashSet<Object>();
-        rejected = new HashSet<Object>();
+        context = new HashSet<>();
+        rejected = new HashSet<>();
       }
       if (value instanceof Collection<?>) {
         addItemsToResult((Collection<Object>) value, context, rejected);
@@ -84,8 +83,8 @@ public class OSQLFunctionSymmetricDifference extends OSQLFunctionMultiValueAbstr
       return null;
     } else {
       // IN-LINE MODE (STATELESS)
-      final Set<Object> result = new HashSet<Object>();
-      final Set<Object> rejected = new HashSet<Object>();
+      final Set<Object> result = new HashSet<>();
+      final Set<Object> rejected = new HashSet<>();
 
       for (Object iParameter : iParams) {
         if (iParameter instanceof Collection<?>) {
@@ -102,7 +101,7 @@ public class OSQLFunctionSymmetricDifference extends OSQLFunctionMultiValueAbstr
   @Override
   public Set<Object> getResult() {
     if (returnDistributedResult()) {
-      final Map<String, Object> doc = new HashMap<String, Object>();
+      final Map<String, Object> doc = new HashMap<>();
       doc.put("result", context);
       doc.put("rejected", rejected);
       return Collections.<Object> singleton(doc);
@@ -118,8 +117,8 @@ public class OSQLFunctionSymmetricDifference extends OSQLFunctionMultiValueAbstr
   @Override
   public Object mergeDistributedResult(List<Object> resultsToMerge) {
     if (returnDistributedResult()) {
-      final Set<Object> result = new HashSet<Object>();
-      final Set<Object> rejected = new HashSet<Object>();
+      final Set<Object> result = new HashSet<>();
+      final Set<Object> rejected = new HashSet<>();
       for (Object item : resultsToMerge) {
         rejected.addAll(unwrap(item, "rejected"));
       }

@@ -2,7 +2,6 @@ package com.orientechnologies.orient.jdbc;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
-
 import java.sql.Statement;
 import java.util.HashMap;
 
@@ -36,7 +35,7 @@ public class OrientJdbcIssuesTest extends OrientJdbcDbPerMethodTemplateTest {
         .executeQuery("select firstName , lastName , address, amount from Demo");
 
     while (resSet.next()) {
-      HashMap<String, Object> item = new HashMap<String, Object>();
+      HashMap<String, Object> item = new HashMap<>();
 
       int numCols = resSet.getMetaData().getColumnCount();
 

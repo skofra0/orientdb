@@ -17,22 +17,21 @@
  */
 package com.orientechnologies.spatial.shape;
 
-import com.orientechnologies.orient.core.db.ODatabaseInternal;
-import com.orientechnologies.orient.core.record.OElement;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.orient.core.sql.executor.OResult;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.spatial4j.shape.Point;
 import org.locationtech.spatial4j.shape.Rectangle;
 import org.locationtech.spatial4j.shape.Shape;
 import org.locationtech.spatial4j.shape.ShapeCollection;
 import org.locationtech.spatial4j.shape.jts.JtsGeometry;
-
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.orientechnologies.orient.core.db.ODatabaseInternal;
+import com.orientechnologies.orient.core.record.OElement;
+import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.orientechnologies.orient.core.sql.executor.OResult;
 
 public class OShapeFactory extends OComplexShapeBuilder {
 
@@ -40,7 +39,7 @@ public class OShapeFactory extends OComplexShapeBuilder {
 
   protected OShapeOperation operation;
 
-  private Map<String, OShapeBuilder> factories = new HashMap<String, OShapeBuilder>();
+  private Map<String, OShapeBuilder> factories = new HashMap<>();
 
   protected OShapeFactory() {
     operation = new OShapeOperationImpl(this);
@@ -219,7 +218,7 @@ public class OShapeFactory extends OComplexShapeBuilder {
     }
     if(geometry instanceof org.locationtech.jts.geom.GeometryCollection){
     	org.locationtech.jts.geom.GeometryCollection gc = (org.locationtech.jts.geom.GeometryCollection) geometry;
-    	List<Shape> shapes = new ArrayList<Shape>();
+    	List<Shape> shapes = new ArrayList<>();
     	for(int i = 0; i < gc.getNumGeometries(); i++){
     		Geometry geo = gc.getGeometryN(i);
     		Shape shape = null;
@@ -231,7 +230,7 @@ public class OShapeFactory extends OComplexShapeBuilder {
 			}
     		shapes.add(shape);
     	}
-    	return toDoc(new ShapeCollection<Shape>(shapes, SPATIAL_CONTEXT));
+    	return toDoc(new ShapeCollection<>(shapes, SPATIAL_CONTEXT));
     }
     return toDoc(SPATIAL_CONTEXT.makeShape(geometry));
   }

@@ -19,10 +19,9 @@
   */
 package com.orientechnologies.orient.core.index;
 
-import com.orientechnologies.orient.core.collate.OCollate;
-
 import java.util.ArrayList;
 import java.util.List;
+import com.orientechnologies.orient.core.collate.OCollate;
 
 /**
  * Collate implementation used on composite indexes.
@@ -38,7 +37,7 @@ public class OCompositeCollate implements OCollate {
     this.oCompositeIndexDefinition = oCompositeIndexDefinition;
   }
 
-  private final List<OCollate> collates = new ArrayList<OCollate>();
+  private final List<OCollate> collates = new ArrayList<>();
 
   public void addCollate(OCollate collate) {
     collates.add(collate);

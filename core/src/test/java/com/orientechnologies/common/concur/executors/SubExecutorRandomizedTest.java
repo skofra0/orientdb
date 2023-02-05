@@ -20,18 +20,22 @@
 
 package com.orientechnologies.common.concur.executors;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+import java.util.concurrent.RejectedExecutionException;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * @author Sergey Sitnikov
@@ -229,7 +233,7 @@ public class SubExecutorRandomizedTest {
 
     Thread.sleep(TIME);
 
-    final Set<Future<Boolean>> futures = new HashSet<Future<Boolean>>();
+    final Set<Future<Boolean>> futures = new HashSet<>();
     for (int i = 0; i < CORES; ++i)
       try {
         futures.add(subExecutor.submit(new Callable<Boolean>() {

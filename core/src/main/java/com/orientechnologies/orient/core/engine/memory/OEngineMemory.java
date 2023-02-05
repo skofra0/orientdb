@@ -19,6 +19,7 @@
  */
 package com.orientechnologies.orient.core.engine.memory;
 
+import java.util.Map;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.io.OIOUtils;
 import com.orientechnologies.common.log.OLogManager;
@@ -27,8 +28,6 @@ import com.orientechnologies.orient.core.engine.OMemoryAndLocalPaginatedEnginesI
 import com.orientechnologies.orient.core.exception.ODatabaseException;
 import com.orientechnologies.orient.core.storage.OStorage;
 import com.orientechnologies.orient.core.storage.memory.ODirectMemoryStorage;
-
-import java.util.Map;
 
 public class OEngineMemory extends OEngineAbstract {
   public static final String NAME = "memory";

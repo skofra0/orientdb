@@ -20,7 +20,6 @@
 package com.orientechnologies.orient.core.security;
 
 import com.orientechnologies.orient.core.exception.OSecurityException;
-import com.orientechnologies.orient.core.security.OCredentialInterceptor;
 
 /**
  * Provides a default credential interceptor that does nothing.

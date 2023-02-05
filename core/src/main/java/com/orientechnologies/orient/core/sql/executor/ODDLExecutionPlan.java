@@ -1,12 +1,11 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.util.Collections;
+import java.util.List;
 import com.orientechnologies.orient.core.command.OBasicCommandContext;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 import com.orientechnologies.orient.core.sql.parser.ODDLStatement;
-
-import java.util.Collections;
-import java.util.List;
 
 /**
  * @author Luigi Dell'Aquila (l.dellaquila-(at)-orientdb.com)

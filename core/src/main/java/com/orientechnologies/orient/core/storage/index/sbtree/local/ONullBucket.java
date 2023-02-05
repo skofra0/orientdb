@@ -19,11 +19,10 @@
  */
 package com.orientechnologies.orient.core.storage.index.sbtree.local;
 
+import java.io.IOException;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.orient.core.storage.cache.OCacheEntry;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.base.ODurablePage;
-
-import java.io.IOException;
 
 /**
  * 
@@ -72,9 +71,9 @@ public class ONullBucket<V> extends ODurablePage {
 
     final boolean isLink = getByteValue(NEXT_FREE_POSITION + 1) == 0;
     if (isLink)
-      return new OSBTreeValue<V>(true, getLongValue(NEXT_FREE_POSITION + 2), null);
+      return new OSBTreeValue<>(true, getLongValue(NEXT_FREE_POSITION + 2), null);
 
-    return new OSBTreeValue<V>(false, -1, deserializeFromDirectMemory(valueSerializer, NEXT_FREE_POSITION + 2));
+    return new OSBTreeValue<>(false, -1, deserializeFromDirectMemory(valueSerializer, NEXT_FREE_POSITION + 2));
   }
 
   public void removeValue() {

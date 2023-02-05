@@ -1,12 +1,11 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.util.Collections;
+import java.util.Iterator;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.sql.parser.OFieldMatchPathItem;
 import com.orientechnologies.orient.core.sql.parser.OMatchPathItem;
-
-import java.util.Collections;
-import java.util.Iterator;
 
 public class MatchFieldTraverser extends MatchEdgeTraverser {
   public MatchFieldTraverser(OResult lastUpstreamRecord, EdgeTraversal edge) {

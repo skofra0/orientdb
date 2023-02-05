@@ -19,7 +19,6 @@
  */
 package com.orientechnologies.orient.core.db;
 
-import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**

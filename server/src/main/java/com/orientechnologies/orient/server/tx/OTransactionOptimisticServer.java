@@ -1,5 +1,13 @@
 package com.orientechnologies.orient.server.tx;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.NavigableMap;
+import java.util.Set;
+import java.util.TreeMap;
 import com.orientechnologies.common.comparator.ODefaultComparator;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.client.remote.message.tx.IndexChange;
@@ -18,26 +26,25 @@ import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.index.OClassIndexManager;
 import com.orientechnologies.orient.core.index.OCompositeKey;
 import com.orientechnologies.orient.core.index.OIndex;
-import com.orientechnologies.orient.core.metadata.security.ORole;
-import com.orientechnologies.orient.core.metadata.security.ORule;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.ORecordInternal;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.record.impl.ODocumentInternal;
 import com.orientechnologies.orient.core.serialization.serializer.record.binary.ORecordSerializerNetworkV37;
 import com.orientechnologies.orient.core.storage.OBasicTransaction;
-import com.orientechnologies.orient.core.tx.*;
-
-import java.util.*;
+import com.orientechnologies.orient.core.tx.OTransactionIndexChanges;
+import com.orientechnologies.orient.core.tx.OTransactionIndexChangesPerKey;
+import com.orientechnologies.orient.core.tx.OTransactionOptimistic;
+import com.orientechnologies.orient.core.tx.OTransactionRealAbstract;
 
 /**
  * Created by tglman on 28/12/16.
  */
 public class OTransactionOptimisticServer extends OTransactionOptimistic {
 
-  private final Map<ORID, ORecordOperation>   tempEntries    = new LinkedHashMap<ORID, ORecordOperation>();
-  private final Map<ORecordId, ORecord>       createdRecords = new HashMap<ORecordId, ORecord>();
-  private final Map<ORecordId, ORecord>       updatedRecords = new HashMap<ORecordId, ORecord>();
+  private final Map<ORID, ORecordOperation>   tempEntries    = new LinkedHashMap<>();
+  private final Map<ORecordId, ORecord>       createdRecords = new HashMap<>();
+  private final Map<ORecordId, ORecord>       updatedRecords = new HashMap<>();
   private final Set<ORID>                     deletedRecord  = new HashSet<>();
   private final int                           clientTxId;
   private       List<ORecordOperationRequest> operations;

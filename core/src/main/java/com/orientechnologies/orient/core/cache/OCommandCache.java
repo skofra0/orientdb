@@ -19,9 +19,8 @@
  */
 package com.orientechnologies.orient.core.cache;
 
-import com.orientechnologies.orient.core.metadata.security.OSecurityUser;
-
 import java.util.Set;
+import com.orientechnologies.orient.core.metadata.security.OSecurityUser;
 
 /**
  * Generic query cache interface.

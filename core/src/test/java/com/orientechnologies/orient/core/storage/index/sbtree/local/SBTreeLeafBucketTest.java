@@ -1,5 +1,12 @@
 package com.orientechnologies.orient.core.storage.index.sbtree.local;
 
+import org.junit.Assert;
+import org.junit.Test;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Random;
+import java.util.TreeSet;
 import com.orientechnologies.common.directmemory.OByteBufferPool;
 import com.orientechnologies.common.directmemory.OPointer;
 import com.orientechnologies.common.serialization.types.OLongSerializer;
@@ -9,13 +16,6 @@ import com.orientechnologies.orient.core.serialization.serializer.binary.impl.OL
 import com.orientechnologies.orient.core.storage.cache.OCacheEntry;
 import com.orientechnologies.orient.core.storage.cache.OCacheEntryImpl;
 import com.orientechnologies.orient.core.storage.cache.OCachePointer;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Random;
-import java.util.TreeSet;
-import org.junit.Assert;
-import org.junit.Test;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)

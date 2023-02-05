@@ -1,5 +1,19 @@
 package com.orientechnologies.orient.core.record.impl;
 
+import static org.junit.Assert.fail;
+import org.junit.Assert;
+import org.junit.Test;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
@@ -8,13 +22,6 @@ import com.orientechnologies.orient.core.exception.OValidationException;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OType;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.text.SimpleDateFormat;
-import java.util.*;
-
-import static org.junit.Assert.fail;
 
 public class ODocumentValidationTest {
 
@@ -87,21 +94,21 @@ public class ODocumentValidationTest {
       ODocument embeddedInList = new ODocument("EmbeddedValidation");
       embeddedInList.field("int", 30);
       embeddedInList.field("long", 30);
-      final ArrayList<ODocument> embeddedList = new ArrayList<ODocument>();
+      final ArrayList<ODocument> embeddedList = new ArrayList<>();
       embeddedList.add(embeddedInList);
       d.field("embeddedList", embeddedList);
 
       ODocument embeddedInSet = new ODocument("EmbeddedValidation");
       embeddedInSet.field("int", 30);
       embeddedInSet.field("long", 30);
-      final Set<ODocument> embeddedSet = new HashSet<ODocument>();
+      final Set<ODocument> embeddedSet = new HashSet<>();
       embeddedSet.add(embeddedInSet);
       d.field("embeddedSet", embeddedSet);
 
       ODocument embeddedInMap = new ODocument("EmbeddedValidation");
       embeddedInMap.field("int", 30);
       embeddedInMap.field("long", 30);
-      final Map<String, ODocument> embeddedMap = new HashMap<String, ODocument>();
+      final Map<String, ODocument> embeddedMap = new HashMap<>();
       embeddedMap.put("testEmbedded", embeddedInMap);
       d.field("embeddedMap", embeddedMap);
 
@@ -180,7 +187,7 @@ public class ODocumentValidationTest {
       ODocument d = new ODocument(clazz);
       d.field("int", 30);
       d.field("long", 30);
-      final Set<ODocument> embeddedSet = new HashSet<ODocument>();
+      final Set<ODocument> embeddedSet = new HashSet<>();
       d.field("embeddedSet", embeddedSet);
 
       ODocument embeddedInSet = new ODocument("EmbeddedValidation");
@@ -221,7 +228,7 @@ public class ODocumentValidationTest {
       ODocument d = new ODocument(clazz);
       d.field("int", 30);
       d.field("long", 30);
-      final ArrayList<ODocument> embeddedList = new ArrayList<ODocument>();
+      final ArrayList<ODocument> embeddedList = new ArrayList<>();
       d.field("embeddedList", embeddedList);
 
       ODocument embeddedInList = new ODocument("EmbeddedValidation");
@@ -263,7 +270,7 @@ public class ODocumentValidationTest {
       ODocument d = new ODocument(clazz);
       d.field("int", 30);
       d.field("long", 30);
-      final Map<String, ODocument> embeddedMap = new HashMap<String, ODocument>();
+      final Map<String, ODocument> embeddedMap = new HashMap<>();
       d.field("embeddedMap", embeddedMap);
 
       ODocument embeddedInMap = new ODocument("EmbeddedValidation");
@@ -348,14 +355,14 @@ public class ODocumentValidationTest {
       d.field("short", 10);
       d.field("string", "yeah");
       d.field("embeddedList", Arrays.asList("a", "b"));
-      d.field("embeddedSet", new HashSet<String>(Arrays.asList("a", "b")));
-      HashMap<String, String> cont = new HashMap<String, String>();
+      d.field("embeddedSet", new HashSet<>(Arrays.asList("a", "b")));
+      HashMap<String, String> cont = new HashMap<>();
       cont.put("one", "one");
       cont.put("two", "one");
       d.field("embeddedMap", cont);
       d.field("linkList", Arrays.asList(new ORecordId(40, 30), new ORecordId(40, 34)));
-      d.field("linkSet", new HashSet<ORecordId>(Arrays.asList(new ORecordId(40, 30), new ORecordId(40, 31))));
-      HashMap<String, ORecordId> cont1 = new HashMap<String, ORecordId>();
+      d.field("linkSet", new HashSet<>(Arrays.asList(new ORecordId(40, 30), new ORecordId(40, 31))));
+      HashMap<String, ORecordId> cont1 = new HashMap<>();
       cont1.put("one", new ORecordId(30, 30));
       cont1.put("two", new ORecordId(30, 30));
       d.field("linkMap", cont1);
@@ -380,8 +387,8 @@ public class ODocumentValidationTest {
       checkField(d, "short", 20);
       checkField(d, "string", "0123456789101112");
       checkField(d, "embeddedList", Arrays.asList("a", "b", "d"));
-      checkField(d, "embeddedSet", new HashSet<String>(Arrays.asList("a", "b", "d")));
-      HashMap<String, String> con1 = new HashMap<String, String>();
+      checkField(d, "embeddedSet", new HashSet<>(Arrays.asList("a", "b", "d")));
+      HashMap<String, String> con1 = new HashMap<>();
       con1.put("one", "one");
       con1.put("two", "one");
       con1.put("three", "one");
@@ -389,9 +396,9 @@ public class ODocumentValidationTest {
       checkField(d, "embeddedMap", con1);
       checkField(d, "linkList", Arrays.asList(new ORecordId(40, 30), new ORecordId(40, 33), new ORecordId(40, 31)));
       checkField(d, "linkSet",
-          new HashSet<ORecordId>(Arrays.asList(new ORecordId(40, 30), new ORecordId(40, 33), new ORecordId(40, 31))));
+          new HashSet<>(Arrays.asList(new ORecordId(40, 30), new ORecordId(40, 33), new ORecordId(40, 31))));
 
-      HashMap<String, ORecordId> cont3 = new HashMap<String, ORecordId>();
+      HashMap<String, ORecordId> cont3 = new HashMap<>();
       cont3.put("one", new ORecordId(30, 30));
       cont3.put("two", new ORecordId(30, 30));
       cont3.put("three", new ORecordId(30, 30));
@@ -466,13 +473,13 @@ public class ODocumentValidationTest {
       d.field("link", id);
       // d.field("embedded", new ODocument().field("test", "test"));
       d.field("embeddedList", Arrays.asList("a"));
-      d.field("embeddedSet", new HashSet<String>(Arrays.asList("a")));
-      Map<String, String> map = new HashMap<String, String>();
+      d.field("embeddedSet", new HashSet<>(Arrays.asList("a")));
+      Map<String, String> map = new HashMap<>();
       map.put("some", "value");
       d.field("embeddedMap", map);
       d.field("linkList", Arrays.asList(new ORecordId(40, 50)));
-      d.field("linkSet", new HashSet<ORecordId>(Arrays.asList(new ORecordId(40, 50))));
-      HashMap<String, ORecordId> map1 = new HashMap<String, ORecordId>();
+      d.field("linkSet", new HashSet<>(Arrays.asList(new ORecordId(40, 50))));
+      HashMap<String, ORecordId> map1 = new HashMap<>();
       map1.put("some", new ORecordId(40, 50));
       d.field("linkMap", map1);
       ORidBag bag1 = new ORidBag();
@@ -622,10 +629,10 @@ public class ODocumentValidationTest {
       ODocument d = new ODocument(clazz);
       List<Integer> list = Arrays.asList(1, 2);
       d.field("embeddedList", list);
-      Set<Integer> set = new HashSet<Integer>(list);
+      Set<Integer> set = new HashSet<>(list);
       d.field("embeddedSet", set);
 
-      Map<String, Integer> map = new HashMap<String, Integer>();
+      Map<String, Integer> map = new HashMap<>();
       map.put("a", 1);
       map.put("b", 2);
       d.field("embeddedMap", map);
@@ -633,8 +640,8 @@ public class ODocumentValidationTest {
       d.validate();
 
       checkField(d, "embeddedList", Arrays.asList("a", "b"));
-      checkField(d, "embeddedSet", new HashSet<String>(Arrays.asList("a", "b")));
-      Map<String, String> map1 = new HashMap<String, String>();
+      checkField(d, "embeddedSet", new HashSet<>(Arrays.asList("a", "b")));
+      Map<String, String> map1 = new HashMap<>();
       map1.put("a", "a1");
       map1.put("b", "a2");
       checkField(d, "embeddedMap", map1);
@@ -664,14 +671,14 @@ public class ODocumentValidationTest {
       d.field("embedded", new ODocument(clazz1));
       List<ODocument> list = Arrays.asList(new ODocument(clazz1));
       d.field("linkList", list);
-      Set<ODocument> set = new HashSet<ODocument>(list);
+      Set<ODocument> set = new HashSet<>(list);
       d.field("linkSet", set);
       List<ODocument> embeddedList = Arrays.asList(new ODocument(clazz1), null);
       d.field("embeddedList", embeddedList);
-      Set<ODocument> embeddedSet = new HashSet<ODocument>(embeddedList);
+      Set<ODocument> embeddedSet = new HashSet<>(embeddedList);
       d.field("embeddedSet", embeddedSet);
 
-      Map<String, ODocument> map = new HashMap<String, ODocument>();
+      Map<String, ODocument> map = new HashMap<>();
       map.put("a", new ODocument(clazz1));
       d.field("linkMap", map);
 
@@ -681,21 +688,21 @@ public class ODocumentValidationTest {
       checkField(d, "embedded", new ODocument(clazz));
 
       checkField(d, "linkList", Arrays.asList("a", "b"));
-      checkField(d, "linkSet", new HashSet<String>(Arrays.asList("a", "b")));
+      checkField(d, "linkSet", new HashSet<>(Arrays.asList("a", "b")));
 
-      Map<String, String> map1 = new HashMap<String, String>();
+      Map<String, String> map1 = new HashMap<>();
       map1.put("a", "a1");
       map1.put("b", "a2");
       checkField(d, "linkMap", map1);
 
       checkField(d, "linkList", Arrays.asList(new ODocument(clazz)));
-      checkField(d, "linkSet", new HashSet<ODocument>(Arrays.asList(new ODocument(clazz))));
+      checkField(d, "linkSet", new HashSet<>(Arrays.asList(new ODocument(clazz))));
       checkField(d, "embeddedList", Arrays.asList(new ODocument(clazz)));
       checkField(d, "embeddedSet", Arrays.asList(new ODocument(clazz)));
       ORidBag bag = new ORidBag();
       bag.add(new ODocument(clazz));
       checkField(d, "linkBag", bag);
-      Map<String, ODocument> map2 = new HashMap<String, ODocument>();
+      Map<String, ODocument> map2 = new HashMap<>();
       map2.put("a", new ODocument(clazz));
       checkField(d, "linkMap", map2);
 
@@ -720,11 +727,11 @@ public class ODocumentValidationTest {
       d.field("embedded", new ODocument(clazz1));
       List<ODocument> list = Arrays.asList(new ODocument(clazz1));
       d.field("linkList", list);
-      Set<ODocument> set = new HashSet<ODocument>(list);
+      Set<ODocument> set = new HashSet<>(list);
       d.field("linkSet", set);
       d.field("linkBag", new ORidBag());
 
-      Map<String, ODocument> map = new HashMap<String, ODocument>();
+      Map<String, ODocument> map = new HashMap<>();
       map.put("a", new ODocument(clazz1));
       d.field("linkMap", map);
       db.save(d);

@@ -1,5 +1,12 @@
 package com.orientechnologies.orient.core.sql.functions.graph;
 
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.orient.core.command.OBasicCommandContext;
 import com.orientechnologies.orient.core.db.ODatabaseType;
 import com.orientechnologies.orient.core.db.OrientDB;
@@ -7,21 +14,13 @@ import com.orientechnologies.orient.core.db.OrientDBConfig;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.record.OVertex;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class OSQLFunctionShortestPathTest {
 
   private OrientDB          orientDB;
   private ODatabaseDocument graph;
 
-  private Map<Integer, OVertex> vertices = new HashMap<Integer, OVertex>();
+  private Map<Integer, OVertex> vertices = new HashMap<>();
   private OSQLFunctionShortestPath function;
 
   @Before
@@ -122,7 +121,7 @@ public class OSQLFunctionShortestPathTest {
 
   @Test
   public void testMaxDepth1() throws Exception {
-    Map<String, Object> additionalParams = new HashMap<String, Object>();
+    Map<String, Object> additionalParams = new HashMap<>();
     additionalParams.put(OSQLFunctionShortestPath.PARAM_MAX_DEPTH, 11);
     final List<ORID> result = function
         .execute(null, null, null, new Object[] { vertices.get(1), vertices.get(20), null, null, additionalParams },
@@ -133,7 +132,7 @@ public class OSQLFunctionShortestPathTest {
 
   @Test
   public void testMaxDepth2() throws Exception {
-    Map<String, Object> additionalParams = new HashMap<String, Object>();
+    Map<String, Object> additionalParams = new HashMap<>();
     additionalParams.put(OSQLFunctionShortestPath.PARAM_MAX_DEPTH, 12);
     final List<ORID> result = function
         .execute(null, null, null, new Object[] { vertices.get(1), vertices.get(20), null, null, additionalParams },
@@ -144,7 +143,7 @@ public class OSQLFunctionShortestPathTest {
 
   @Test
   public void testMaxDepth3() throws Exception {
-    Map<String, Object> additionalParams = new HashMap<String, Object>();
+    Map<String, Object> additionalParams = new HashMap<>();
     additionalParams.put(OSQLFunctionShortestPath.PARAM_MAX_DEPTH, 10);
     final List<ORID> result = function
         .execute(null, null, null, new Object[] { vertices.get(1), vertices.get(20), null, null, additionalParams },
@@ -155,7 +154,7 @@ public class OSQLFunctionShortestPathTest {
 
   @Test
   public void testMaxDepth4() throws Exception {
-    Map<String, Object> additionalParams = new HashMap<String, Object>();
+    Map<String, Object> additionalParams = new HashMap<>();
     additionalParams.put(OSQLFunctionShortestPath.PARAM_MAX_DEPTH, 3);
     final List<ORID> result = function
         .execute(null, null, null, new Object[] { vertices.get(1), vertices.get(20), null, null, additionalParams },

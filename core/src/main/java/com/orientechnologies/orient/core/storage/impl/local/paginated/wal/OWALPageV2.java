@@ -15,10 +15,9 @@
  */
 package com.orientechnologies.orient.core.storage.impl.local.paginated.wal;
 
+import java.nio.ByteBuffer;
 import com.orientechnologies.common.serialization.types.OIntegerSerializer;
 import com.orientechnologies.common.serialization.types.OLongSerializer;
-
-import java.nio.ByteBuffer;
 
 /**
  * WAL page is organized using following format:

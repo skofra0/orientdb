@@ -17,10 +17,8 @@ package com.orientechnologies.orient.server.network.protocol.http.command.get;
 
 import java.io.IOException;
 import java.util.Date;
-
 import com.orientechnologies.common.util.OPatternConst;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.metadata.schema.OProperty;
 import com.orientechnologies.orient.core.metadata.schema.OType;

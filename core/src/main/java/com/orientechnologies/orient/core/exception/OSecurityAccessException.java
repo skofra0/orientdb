@@ -19,9 +19,7 @@
  */
 package com.orientechnologies.orient.core.exception;
 
-import com.orientechnologies.common.exception.OErrorCode;
 import com.orientechnologies.common.exception.OHighLevelException;
-import com.orientechnologies.orient.core.storage.impl.local.paginated.base.ODurableComponent;
 
 public class OSecurityAccessException extends OSecurityException implements OHighLevelException {
 

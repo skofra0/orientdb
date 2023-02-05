@@ -161,7 +161,7 @@
         </fileSet>
         
         <!--
-         | Service NEXUS_MOD
+         | Service DEEM_MOD
         -->
         <fileSet>
             <directory>${basedir}/service</directory>
@@ -199,7 +199,7 @@
             </includes>
             <excludes>
                 <exclude>com.orientechnologies:orientdb-etl:*</exclude>
-                <exclude>com.orientechnologies:nexus_orientdb:*</exclude>
+                <exclude>com.orientechnologies:deem_orientdb:*</exclude>
             </excludes>
         </dependencySet>
         <dependencySet>

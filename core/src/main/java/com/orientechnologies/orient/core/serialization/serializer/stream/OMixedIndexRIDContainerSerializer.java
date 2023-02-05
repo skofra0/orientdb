@@ -1,5 +1,8 @@
 package com.orientechnologies.orient.core.serialization.serializer.stream;
 
+import java.nio.ByteBuffer;
+import java.util.HashSet;
+import java.util.Set;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.common.serialization.types.OIntegerSerializer;
 import com.orientechnologies.common.serialization.types.OLongSerializer;
@@ -12,10 +15,6 @@ import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALCh
 import com.orientechnologies.orient.core.storage.index.sbtreebonsai.local.OBonsaiBucketPointer;
 import com.orientechnologies.orient.core.storage.ridbag.sbtree.OIndexRIDContainerSBTree;
 import com.orientechnologies.orient.core.storage.ridbag.sbtree.OMixedIndexRIDContainer;
-
-import java.nio.ByteBuffer;
-import java.util.HashSet;
-import java.util.Set;
 
 public class OMixedIndexRIDContainerSerializer implements OBinarySerializer<OMixedIndexRIDContainer> {
   public static final OMixedIndexRIDContainerSerializer INSTANCE = new OMixedIndexRIDContainerSerializer();

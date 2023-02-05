@@ -19,11 +19,10 @@
  */
 package com.orientechnologies.orient.core.index;
 
-import com.orientechnologies.common.util.OSizeable;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-
 import java.util.Map;
 import java.util.NoSuchElementException;
+import com.orientechnologies.common.util.OSizeable;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
 
 /**
  * Implementation of index cursor in case of only single entree should be returned.
@@ -67,7 +66,7 @@ public class OIndexCursorSingleValue extends OIndexAbstractCursor implements OSi
     final OIdentifiable value = identifiable;
     identifiable = null;
 
-    return new Map.Entry<Object, OIdentifiable>() {
+    return new Map.Entry<>() {
 
       @Override
       public Object getKey() {

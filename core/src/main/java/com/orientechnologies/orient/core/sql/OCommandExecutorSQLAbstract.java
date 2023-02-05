@@ -19,6 +19,11 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.core.command.OCommandContext.TIMEOUT_STRATEGY;
 import com.orientechnologies.orient.core.command.OCommandDistributedReplicateRequest;
@@ -35,8 +40,6 @@ import com.orientechnologies.orient.core.metadata.schema.OClassImpl;
 import com.orientechnologies.orient.core.metadata.security.ORule;
 import com.orientechnologies.orient.core.sql.parser.OStatement;
 import com.orientechnologies.orient.core.sql.parser.OStatementCache;
-
-import java.util.*;
 
 /**
  * SQL abstract Command Executor implementation.
@@ -153,7 +156,7 @@ public abstract class OCommandExecutorSQLAbstract extends OCommandExecutorAbstra
   protected Set<String> getInvolvedClustersOfClasses(final Collection<String> iClassNames) {
     final ODatabaseDocument db = getDatabase();
 
-    final Set<String> clusters = new HashSet<String>();
+    final Set<String> clusters = new HashSet<>();
 
     for (String clazz : iClassNames) {
       final OClass cls = ((OMetadataInternal) db.getMetadata()).getImmutableSchemaSnapshot().getClass(clazz);
@@ -171,7 +174,7 @@ public abstract class OCommandExecutorSQLAbstract extends OCommandExecutorAbstra
   protected Set<String> getInvolvedClustersOfClusters(final Collection<String> iClusterNames) {
     final ODatabaseDocument db = getDatabase();
 
-    final Set<String> clusters = new HashSet<String>();
+    final Set<String> clusters = new HashSet<>();
 
     for (String cluster : iClusterNames) {
       final String c = cluster.toLowerCase(Locale.ENGLISH);
@@ -186,7 +189,7 @@ public abstract class OCommandExecutorSQLAbstract extends OCommandExecutorAbstra
   protected Set<String> getInvolvedClustersOfIndex(final String iIndexName) {
     final ODatabaseDocumentInternal db = getDatabase();
 
-    final Set<String> clusters = new HashSet<String>();
+    final Set<String> clusters = new HashSet<>();
 
     final OMetadataInternal metadata = (OMetadataInternal) db.getMetadata();
     final OIndex<?> idx = metadata.getIndexManager().getIndex(iIndexName);

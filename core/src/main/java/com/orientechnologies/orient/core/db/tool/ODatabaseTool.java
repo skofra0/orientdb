@@ -21,11 +21,9 @@ package com.orientechnologies.orient.core.db.tool;
 
 import java.util.Collections;
 import java.util.List;
-
 import com.orientechnologies.common.io.OIOUtils;
 import com.orientechnologies.orient.core.command.OCommandOutputListener;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper;
 
 /**

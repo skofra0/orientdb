@@ -19,10 +19,9 @@
  */
 package com.orientechnologies.orient.core.metadata.security;
 
+import java.util.List;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-
-import java.util.List;
 
 /**
  */

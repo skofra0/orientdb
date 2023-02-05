@@ -21,7 +21,6 @@
 package com.orientechnologies.orient.core.storage.index.sbtree.local;
 
 import java.io.IOException;
-
 import com.orientechnologies.common.serialization.types.OIntegerSerializer;
 import com.orientechnologies.common.serialization.types.OLongSerializer;
 import com.orientechnologies.orient.core.storage.cache.OCacheEntry;

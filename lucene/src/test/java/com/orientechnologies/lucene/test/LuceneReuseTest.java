@@ -1,15 +1,14 @@
 package com.orientechnologies.lucene.test;
 
+import org.junit.Assert;
+import org.junit.Test;
+import java.util.Collection;
+import java.util.Date;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.util.Collection;
-import java.util.Date;
 
 /**
  * Created by Enrico Risa on 27/10/16.

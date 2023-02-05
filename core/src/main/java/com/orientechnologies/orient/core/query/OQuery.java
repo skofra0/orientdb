@@ -20,7 +20,6 @@
 package com.orientechnologies.orient.core.query;
 
 import java.util.List;
-
 import com.orientechnologies.orient.core.command.OCommandRequest;
 
 public interface OQuery<T extends Object> extends OCommandRequest {

@@ -19,14 +19,13 @@
  */
 package com.orientechnologies.common.collection;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.parser.OOrderBy;
 import com.orientechnologies.orient.core.sql.parser.OOrderByItem;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 public class OSortedMultiIterator<T extends OIdentifiable> implements Iterator<T> {
 
@@ -35,8 +34,8 @@ public class OSortedMultiIterator<T extends OIdentifiable> implements Iterator<T
 
   private final OOrderBy    orderBy;
 
-  private List<Iterator<T>> sourceIterators = new ArrayList<Iterator<T>>();
-  private List<T>           heads           = new ArrayList<T>();
+  private List<Iterator<T>> sourceIterators = new ArrayList<>();
+  private List<T>           heads           = new ArrayList<>();
 
   private int               status          = STATUS_INIT;
 

@@ -2,12 +2,12 @@
 package com.orientechnologies.orient.core.sql.parser;
 
 import java.io.InputStream;
-import java.util.List;
 import java.util.ArrayList;
-import com.orientechnologies.orient.core.sql.OCommandSQLParsingException;
+import java.util.List;
 import com.orientechnologies.orient.core.exception.OQueryParsingException;
 
 /** Orient Database Sql grammar. */
+@SuppressWarnings("unused")
 public class OrientSql/*@bgen(jjtree)*/implements OrientSqlTreeConstants, OrientSqlConstants {/*@bgen(jjtree)*/
   protected JJTOrientSqlState jjtree = new JJTOrientSqlState();
   private int inputParamCount = 0;
@@ -2431,7 +2431,7 @@ jjtn000.jjtSetFirstToken(getToken(1));Token token = null;
         case MINUS:
         case 261:
           lastRid = Rid();
-                    jjtn000.rids = new ArrayList();
+                    jjtn000.rids = new ArrayList<>();
                     jjtn000.rids.add(lastRid);
           label_5:
           while (true) {
@@ -8977,7 +8977,7 @@ Token token;
     boolean jjtc000 = true;
     jjtree.openNodeScope(jjtn000);
     jjtn000.jjtSetFirstToken(getToken(1));Token token;
-    jjtn000.leftExpressions = new ArrayList();
+    jjtn000.leftExpressions = new ArrayList<>();
     OExpression lastExpression;
     try {
       jj_consume_token(KEY);
@@ -20089,7 +20089,7 @@ Token token;
           jj_consume_token(ELSE);
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
           case LBRACE:
-                    jjtn000.elseStatements = new ArrayList();
+                    jjtn000.elseStatements = new ArrayList<>();
             jj_consume_token(LBRACE);
             label_60:
             while (true) {

@@ -19,12 +19,11 @@
  */
 package com.orientechnologies.orient.core.sql.parser;
 
-import com.orientechnologies.orient.core.sql.OCommandSQLParsingException;
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import com.orientechnologies.orient.core.sql.OCommandSQLParsingException;
 
 /**
  * Created by luigidellaquila on 02/07/15.

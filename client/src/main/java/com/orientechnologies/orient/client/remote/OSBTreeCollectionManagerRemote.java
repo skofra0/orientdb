@@ -20,6 +20,10 @@
 
 package com.orientechnologies.orient.client.remote;
 
+import java.lang.ref.WeakReference;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.common.serialization.types.OIntegerSerializer;
@@ -34,11 +38,6 @@ import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoper
 import com.orientechnologies.orient.core.storage.index.sbtreebonsai.local.OSBTreeBonsai;
 import com.orientechnologies.orient.core.storage.ridbag.sbtree.OBonsaiCollectionPointer;
 import com.orientechnologies.orient.core.storage.ridbag.sbtree.OSBTreeCollectionManagerAbstract;
-
-import java.lang.ref.WeakReference;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 /**
  * @author Artem Orobets (enisher-at-gmail.com)
@@ -86,7 +85,7 @@ public class OSBTreeCollectionManagerRemote extends OSBTreeCollectionManagerAbst
       OBinarySerializer<OIdentifiable> keySerializer = OLinkSerializer.INSTANCE;
       OBinarySerializer<Integer> valueSerializer = OIntegerSerializer.INSTANCE;
 
-      return new OSBTreeBonsaiRemote<OIdentifiable, Integer>(pointer, keySerializer, valueSerializer);
+      return new OSBTreeBonsaiRemote<>(pointer, keySerializer, valueSerializer);
     } else {
       throw new UnsupportedOperationException("Creation of SB-Tree from remote storage is not allowed");
     }
@@ -97,7 +96,7 @@ public class OSBTreeCollectionManagerRemote extends OSBTreeCollectionManagerAbst
     OBinarySerializer<OIdentifiable> keySerializer = OLinkSerializer.INSTANCE;
     OBinarySerializer<Integer> valueSerializer = OIntegerSerializer.INSTANCE;
 
-    return new OSBTreeBonsaiRemote<OIdentifiable, Integer>(collectionPointer, keySerializer, valueSerializer);
+    return new OSBTreeBonsaiRemote<>(collectionPointer, keySerializer, valueSerializer);
   }
 
   @Override
@@ -106,7 +105,7 @@ public class OSBTreeCollectionManagerRemote extends OSBTreeCollectionManagerAbst
     if (id == null)
       id = UUID.randomUUID();
 
-    pendingCollections.get().put(id, new WeakReference<ORidBag>(collection));
+    pendingCollections.get().put(id, new WeakReference<>(collection));
 
     return id;
   }
@@ -144,7 +143,7 @@ public class OSBTreeCollectionManagerRemote extends OSBTreeCollectionManagerAbst
   private static class PendingCollectionsThreadLocal extends ThreadLocal<Map<UUID, WeakReference<ORidBag>>> {
     @Override
     protected Map<UUID, WeakReference<ORidBag>> initialValue() {
-      return new HashMap<UUID, WeakReference<ORidBag>>();
+      return new HashMap<>();
     }
   }
 }

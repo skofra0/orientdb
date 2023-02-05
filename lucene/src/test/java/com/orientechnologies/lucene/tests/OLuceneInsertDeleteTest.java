@@ -18,6 +18,12 @@
 
 package com.orientechnologies.lucene.tests;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.Before;
+import org.junit.Test;
+import java.io.InputStream;
+import java.util.Collection;
+import java.util.concurrent.TimeUnit;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.index.OIndex;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
@@ -26,14 +32,6 @@ import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.io.InputStream;
-import java.util.Collection;
-import java.util.concurrent.TimeUnit;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Created by enricorisa on 28/06/14.

@@ -1,14 +1,13 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import static org.junit.Assert.assertEquals;
+import org.junit.Assert;
+import org.junit.Test;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.junit.Assert;
-import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * @author Luigi Dell'Aquila
@@ -42,7 +41,7 @@ public class ORebuildIndexStatementExecutionTest {
       OResult resultRecord = result.next();
       Assert.assertEquals(resultRecord.<Object>getProperty("totalIndexed"), 2l);
       Assert.assertFalse(result.hasNext());
-      assertEquals(db.query(new OSQLSynchQuery<Object>("select from " + className + " where key = 'a'")).size(), 2);
+      assertEquals(db.query(new OSQLSynchQuery<>("select from " + className + " where key = 'a'")).size(), 2);
     } finally {
       db.drop();
     }

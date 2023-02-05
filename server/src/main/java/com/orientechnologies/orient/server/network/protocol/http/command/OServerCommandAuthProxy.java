@@ -15,15 +15,13 @@
  */
 package com.orientechnologies.orient.server.network.protocol.http.command;
 
+import java.util.Arrays;
 import com.orientechnologies.orient.core.exception.OConfigurationException;
 import com.orientechnologies.orient.server.config.OServerCommandConfiguration;
 import com.orientechnologies.orient.server.config.OServerEntryConfiguration;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpResponse;
-import com.orientechnologies.orient.server.network.protocol.http.OHttpSessionManager;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpUtils;
-
-import java.util.Arrays;
 
 /**
  * @author Luca Molino (molino.luca--at--gmail.com)

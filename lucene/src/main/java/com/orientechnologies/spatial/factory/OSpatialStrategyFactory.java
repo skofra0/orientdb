@@ -17,17 +17,17 @@
  */
 package com.orientechnologies.spatial.factory;
 
+import org.apache.lucene.spatial.SpatialStrategy;
+import org.apache.lucene.spatial.bbox.BBoxStrategy;
+import org.apache.lucene.spatial.prefix.RecursivePrefixTreeStrategy;
+import org.apache.lucene.spatial.prefix.tree.GeohashPrefixTree;
+import org.locationtech.spatial4j.context.SpatialContext;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.index.OIndexDefinition;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OProperty;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.spatial.shape.OShapeBuilder;
-import org.apache.lucene.spatial.SpatialStrategy;
-import org.apache.lucene.spatial.bbox.BBoxStrategy;
-import org.apache.lucene.spatial.prefix.RecursivePrefixTreeStrategy;
-import org.apache.lucene.spatial.prefix.tree.GeohashPrefixTree;
-import org.locationtech.spatial4j.context.SpatialContext;
 
 /**
  * Created by Enrico Risa on 02/10/15.

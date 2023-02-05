@@ -1,9 +1,8 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.util.Iterator;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
-
-import java.util.Iterator;
 
 /**
  * Created by luigidellaquila on 25/10/16.

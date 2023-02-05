@@ -1,6 +1,6 @@
 package com.orientechnologies.lucene.sandbox;
 
-import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -18,10 +18,8 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.RAMDirectory;
 import org.junit.After;
 import org.junit.Test;
-
 import java.io.IOException;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 
 /**
  * Created by frank on 9/28/15.

@@ -1,12 +1,12 @@
 package com.orientechnologies.orient.core.sql.functions.misc;
 
+import org.junit.Assert;
+import org.junit.Test;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
-import org.junit.Assert;
-import org.junit.Test;
 
 public class OSQLFunctionIndexKeySizeTest {
 

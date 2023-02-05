@@ -19,11 +19,6 @@
  */
 package com.orientechnologies.orient.core.sql.functions.coll;
 
-import com.orientechnologies.common.collection.OMultiValue;
-import com.orientechnologies.orient.core.command.OCommandContext;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -31,6 +26,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import com.orientechnologies.common.collection.OMultiValue;
+import com.orientechnologies.orient.core.command.OCommandContext;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
  * This operator add an item in a set. The set doesn't accept duplicates, so adding multiple times the same value has no effect: the
@@ -50,13 +49,13 @@ public class OSQLFunctionSet extends OSQLFunctionMultiValueAbstract<Set<Object>>
       OCommandContext iContext) {
     if (iParams.length > 1)
       // IN LINE MODE
-      context = new HashSet<Object>();
+      context = new HashSet<>();
 
     for (Object value : iParams) {
       if (value != null) {
         if (iParams.length == 1 && context == null)
           // AGGREGATION MODE (STATEFULL)
-          context = new HashSet<Object>();
+          context = new HashSet<>();
 
         if (value instanceof ODocument)
           context.add(value);
@@ -87,7 +86,7 @@ public class OSQLFunctionSet extends OSQLFunctionMultiValueAbstract<Set<Object>>
   @Override
   public Object mergeDistributedResult(List<Object> resultsToMerge) {
     if (returnDistributedResult()) {
-      final Collection<Object> result = new HashSet<Object>();
+      final Collection<Object> result = new HashSet<>();
       for (Object iParameter : resultsToMerge) {
         final Map<String, Object> container = (Map<String, Object>) ((Collection<?>) iParameter).iterator().next();
         result.addAll((Collection<?>) container.get("context"));
@@ -103,7 +102,7 @@ public class OSQLFunctionSet extends OSQLFunctionMultiValueAbstract<Set<Object>>
 
   protected Set<Object> prepareResult(Set<Object> res) {
     if (returnDistributedResult()) {
-      final Map<String, Object> doc = new HashMap<String, Object>();
+      final Map<String, Object> doc = new HashMap<>();
       doc.put("node", getDistributedStorageId());
       doc.put("context", context);
       return Collections.<Object> singleton(doc);

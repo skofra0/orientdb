@@ -20,15 +20,14 @@
 
 package com.orientechnologies.orient.core.intent;
 
+import java.util.HashMap;
+import java.util.Map;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.ODatabaseInternal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.hook.ORecordHook;
 import com.orientechnologies.orient.core.index.OClassIndexManager;
 import com.orientechnologies.orient.core.metadata.security.OSecurityUser;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class OIntentMassiveInsert implements OIntent {
   private boolean                                     previousRetainRecords;
@@ -71,8 +70,8 @@ public class OIntentMassiveInsert implements OIntent {
 
     if (disableHooks) {
       // REMOVE ALL HOOKS BUT INDEX
-      removedHooks = new HashMap<ORecordHook, ORecordHook.HOOK_POSITION>();
-      HashMap<ORecordHook, ORecordHook.HOOK_POSITION> hooks = new HashMap<ORecordHook, ORecordHook.HOOK_POSITION>(
+      removedHooks = new HashMap<>();
+      HashMap<ORecordHook, ORecordHook.HOOK_POSITION> hooks = new HashMap<>(
           ownerDb.getHooks());
       for (Map.Entry<ORecordHook, ORecordHook.HOOK_POSITION> hook : hooks.entrySet()) {
         if (!(hook.getKey() instanceof OClassIndexManager)) {
@@ -157,7 +156,7 @@ public class OIntentMassiveInsert implements OIntent {
     copy.disableHooks = disableHooks;
     copy.currentUser = currentUser;
     if (removedHooks != null)
-      copy.removedHooks = new HashMap<ORecordHook, ORecordHook.HOOK_POSITION>(removedHooks);
+      copy.removedHooks = new HashMap<>(removedHooks);
     return copy;
   }
 }

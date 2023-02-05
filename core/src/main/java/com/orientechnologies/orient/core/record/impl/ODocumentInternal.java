@@ -20,15 +20,14 @@
 
 package com.orientechnologies.orient.core.record.impl;
 
+import java.util.Map.Entry;
+import java.util.Set;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.record.ORecordElement;
 import com.orientechnologies.orient.core.metadata.schema.OGlobalProperty;
 import com.orientechnologies.orient.core.metadata.schema.OImmutableClass;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.OElement;
-
-import java.util.Map.Entry;
-import java.util.Set;
 
 public class ODocumentInternal {
 

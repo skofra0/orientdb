@@ -28,7 +28,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-
 import com.orientechnologies.common.util.OArrays;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
@@ -62,8 +61,8 @@ public class OImmutableSchema implements OSchema {
     identity = schemaShared.getIdentity();
     clusterSelectionFactory = schemaShared.getClusterSelectionFactory();
 
-    clustersToClasses = new HashMap<Integer, OClass>(schemaShared.getClasses(database).size() * 3);
-    classes = new HashMap<String, OClass>(schemaShared.getClasses(database).size());
+    clustersToClasses = new HashMap<>(schemaShared.getClasses(database).size() * 3);
+    classes = new HashMap<>(schemaShared.getClasses(database).size());
 
     for (OClass oClass : schemaShared.getClasses(database)) {
       final OImmutableClass immutableClass = new OImmutableClass(oClass, this);
@@ -76,14 +75,14 @@ public class OImmutableSchema implements OSchema {
         clustersToClasses.put(clusterId, immutableClass);
     }
 
-    properties = new ArrayList<OGlobalProperty>();
+    properties = new ArrayList<>();
     for (OGlobalProperty globalProperty : schemaShared.getGlobalProperties())
       properties.add(globalProperty);
 
     for (OClass cl : classes.values()) {
       ((OImmutableClass) cl).init();
     }
-    this.blogClusters = Collections.unmodifiableSet(new HashSet<Integer>(schemaShared.getBlobClusters()));
+    this.blogClusters = Collections.unmodifiableSet(new HashSet<>(schemaShared.getBlobClusters()));
   }
 
   @Override
@@ -194,7 +193,7 @@ public class OImmutableSchema implements OSchema {
   @Override
   public Collection<OClass> getClasses() {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_READ);
-    return new HashSet<OClass>(classes.values());
+    return new HashSet<>(classes.values());
   }
 
   @Override
@@ -222,7 +221,7 @@ public class OImmutableSchema implements OSchema {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_READ);
 
     final int clusterId = getDatabase().getClusterIdByName(clusterName);
-    final Set<OClass> result = new HashSet<OClass>();
+    final Set<OClass> result = new HashSet<>();
     for (OClass c : classes.values()) {
       if (OArrays.contains(c.getPolymorphicClusterIds(), clusterId))
         result.add(c);

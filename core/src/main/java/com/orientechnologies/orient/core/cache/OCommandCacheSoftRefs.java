@@ -20,6 +20,12 @@
 
 package com.orientechnologies.orient.core.cache;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.io.OIOUtils;
@@ -36,13 +42,6 @@ import com.orientechnologies.orient.core.sql.query.OLegacyResultSet;
 import com.orientechnologies.orient.core.storage.OStorage;
 import com.orientechnologies.orient.core.storage.disk.OLocalPaginatedStorage;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Command cache implementation that uses Soft references to avoid overloading Java Heap.
@@ -79,7 +78,7 @@ public class OCommandCacheSoftRefs implements OCommandCache {
 
   private final    String                databaseName;
   private final    String                fileConfigPath;
-  private          Set<String>           clusters = new HashSet<String>();
+  private          Set<String>           clusters = new HashSet<>();
   private volatile boolean               enable;
   private          OCommandCacheImplRefs cache    = new OCommandCacheImplRefs();
   private          int                   minExecutionTime;

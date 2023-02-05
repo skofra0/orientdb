@@ -22,7 +22,6 @@ package com.orientechnologies.orient.core.sql;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.index.OIndex;
 
@@ -47,7 +46,7 @@ public class OMetricRecorder {
     if (context.isRecordingMetrics()) {
       Set<String> idxNames = (Set<String>) context.getVariable("involvedIndexes");
       if (idxNames == null) {
-        idxNames = new HashSet<String>();
+        idxNames = new HashSet<>();
         context.setVariable("involvedIndexes", idxNames);
       }
       if (index instanceof OChainedIndexProxy) {

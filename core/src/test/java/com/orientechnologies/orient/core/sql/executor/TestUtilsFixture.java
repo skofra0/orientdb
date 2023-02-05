@@ -1,14 +1,14 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import org.apache.commons.lang.RandomStringUtils;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import com.orientechnologies.orient.core.db.ODatabaseType;
 import com.orientechnologies.orient.core.db.OrientDB;
 import com.orientechnologies.orient.core.db.OrientDBConfig;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OSchema;
-import org.apache.commons.lang.RandomStringUtils;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 
 /**
  * Created by olena.kolesnyk on 28/07/2017.

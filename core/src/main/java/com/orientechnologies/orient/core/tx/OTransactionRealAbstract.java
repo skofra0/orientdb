@@ -19,6 +19,16 @@
  */
 package com.orientechnologies.orient.core.tx;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.db.record.ORecordOperation;
@@ -39,23 +49,20 @@ import com.orientechnologies.orient.core.storage.OBasicTransaction;
 import com.orientechnologies.orient.core.tx.OTransactionIndexChanges.OPERATION;
 import com.orientechnologies.orient.core.tx.OTransactionIndexChangesPerKey.OTransactionIndexEntry;
 
-import java.util.*;
-import java.util.Map.Entry;
-
 public abstract class OTransactionRealAbstract extends OTransactionAbstract implements OTransactionInternal {
-  protected Map<ORID, ORID>                                   updatedRids           = new HashMap<ORID, ORID>();
-  protected Map<ORID, ORecordOperation>                       allEntries            = new LinkedHashMap<ORID, ORecordOperation>();
-  protected Map<String, OTransactionIndexChanges>             indexEntries          = new LinkedHashMap<String, OTransactionIndexChanges>();
-  protected Map<ORID, List<OTransactionRecordIndexOperation>> recordIndexOperations = new HashMap<ORID, List<OTransactionRecordIndexOperation>>();
+  protected Map<ORID, ORID>                                   updatedRids           = new HashMap<>();
+  protected Map<ORID, ORecordOperation>                       allEntries            = new LinkedHashMap<>();
+  protected Map<String, OTransactionIndexChanges>             indexEntries          = new LinkedHashMap<>();
+  protected Map<ORID, List<OTransactionRecordIndexOperation>> recordIndexOperations = new HashMap<>();
   protected int                                               id;
   protected int                                               newObjectCounter      = -2;
-  protected Map<String, Object>                               userData              = new HashMap<String, Object>();
+  protected Map<String, Object>                               userData              = new HashMap<>();
 
   /**
    * This set is used to track which documents are changed during tx, if documents are changed but not saved all changes are made
    * during tx will be undone.
    */
-  protected final Set<ODocument> changedDocuments = new HashSet<ODocument>();
+  protected final Set<ODocument> changedDocuments = new HashSet<>();
 
   protected OTransactionRealAbstract(ODatabaseDocumentInternal database, int id) {
     super(database);
@@ -159,7 +166,7 @@ public abstract class OTransactionRealAbstract extends OTransactionAbstract impl
    * Called by class iterator.
    */
   public List<ORecordOperation> getNewRecordEntriesByClass(final OClass iClass, final boolean iPolymorphic) {
-    final List<ORecordOperation> result = new ArrayList<ORecordOperation>();
+    final List<ORecordOperation> result = new ArrayList<>();
 
     if (iClass == null)
       // RETURN ALL THE RECORDS
@@ -188,7 +195,7 @@ public abstract class OTransactionRealAbstract extends OTransactionAbstract impl
    * Called by cluster iterator.
    */
   public List<ORecordOperation> getNewRecordEntriesByClusterIds(final int[] iIds) {
-    final List<ORecordOperation> result = new ArrayList<ORecordOperation>();
+    final List<ORecordOperation> result = new ArrayList<>();
 
     if (iIds == null)
       // RETURN ALL THE RECORDS
@@ -220,7 +227,7 @@ public abstract class OTransactionRealAbstract extends OTransactionAbstract impl
     List<String> list = null;
     for (String indexName : indexEntries.keySet()) {
       if (list == null)
-        list = new ArrayList<String>();
+        list = new ArrayList<>();
       list.add(indexName);
     }
     return list;
@@ -239,7 +246,7 @@ public abstract class OTransactionRealAbstract extends OTransactionAbstract impl
       if (indexEntry.getValue().cleared)
         indexDoc.field("clear", Boolean.TRUE);
 
-      final List<ODocument> entries = new ArrayList<ODocument>();
+      final List<ODocument> entries = new ArrayList<>();
       indexDoc.field("entries", entries, OType.EMBEDDEDLIST);
 
       // STORE INDEX ENTRIES
@@ -304,7 +311,7 @@ public abstract class OTransactionRealAbstract extends OTransactionAbstract impl
       List<OTransactionRecordIndexOperation> transactionIndexOperations = recordIndexOperations.get(iValue.getIdentity());
 
       if (transactionIndexOperations == null) {
-        transactionIndexOperations = new ArrayList<OTransactionRecordIndexOperation>();
+        transactionIndexOperations = new ArrayList<>();
         recordIndexOperations.put(iValue.getIdentity().copy(), transactionIndexOperations);
       }
 
@@ -320,7 +327,7 @@ public abstract class OTransactionRealAbstract extends OTransactionAbstract impl
     // XXX: Identity update may mutate the index keys, so we have to identify and reinsert potentially affected index keys to keep
     // the OTransactionIndexChanges.changesPerKey in a consistent state.
 
-    final List<KeyChangesUpdateRecord> keyRecordsToReinsert = new ArrayList<KeyChangesUpdateRecord>();
+    final List<KeyChangesUpdateRecord> keyRecordsToReinsert = new ArrayList<>();
     final OIndexManager indexManager = getDatabase().getMetadata().getIndexManager();
     for (Entry<String, OTransactionIndexChanges> entry : indexEntries.entrySet()) {
       final OIndex<?> index = indexManager.getIndex(entry.getKey());
@@ -415,7 +422,7 @@ public abstract class OTransactionRealAbstract extends OTransactionAbstract impl
     } else
       keyContainer = null;
 
-    final List<ODocument> operations = new ArrayList<ODocument>();
+    final List<ODocument> operations = new ArrayList<>();
 
     // SERIALIZE VALUES
     if (entry.entries != null && !entry.entries.isEmpty()) {

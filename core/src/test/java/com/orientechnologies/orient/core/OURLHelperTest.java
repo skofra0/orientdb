@@ -1,13 +1,11 @@
 package com.orientechnologies.orient.core;
 
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+import java.io.File;
 import com.orientechnologies.orient.core.exception.OConfigurationException;
 import com.orientechnologies.orient.core.util.OURLConnection;
 import com.orientechnologies.orient.core.util.OURLHelper;
-import org.junit.Test;
-
-import java.io.File;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * Created by tglman on 21/02/17.

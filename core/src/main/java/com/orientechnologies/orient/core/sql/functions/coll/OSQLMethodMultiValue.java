@@ -16,14 +16,13 @@
  */
 package com.orientechnologies.orient.core.sql.functions.coll;
 
+import java.util.ArrayList;
+import java.util.List;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.record.impl.ODocumentHelper;
 import com.orientechnologies.orient.core.sql.method.misc.OAbstractSQLMethod;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Works against multi value objects like collections, maps and arrays.
@@ -55,7 +54,7 @@ public class OSQLMethodMultiValue extends OAbstractSQLMethod {
     }
 
     // MULTI VALUES
-    final List<Object> list = new ArrayList<Object>();
+    final List<Object> list = new ArrayList<>();
     for (int i = 0; i < iParams.length; ++i) {
       if (OMultiValue.isMultiValue(iParams[i])) {
         for (Object o : OMultiValue.getMultiValueIterable(iParams[i], false)) {

@@ -20,19 +20,16 @@
 package com.orientechnologies.orient.server.network.protocol.http.command.post;
 
 import java.io.IOException;
- import java.util.Map;
-
+import java.util.Map;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
- import com.orientechnologies.orient.core.metadata.schema.OClass;
- import com.orientechnologies.orient.core.metadata.schema.OProperty;
- import com.orientechnologies.orient.core.metadata.schema.OType;
- import com.orientechnologies.orient.core.record.impl.ODocument;
- import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
- import com.orientechnologies.orient.server.network.protocol.http.OHttpRequestException;
- import com.orientechnologies.orient.server.network.protocol.http.OHttpResponse;
- import com.orientechnologies.orient.server.network.protocol.http.OHttpUtils;
- import com.orientechnologies.orient.server.network.protocol.http.command.OServerCommandAuthenticatedDbAbstract;
+import com.orientechnologies.orient.core.metadata.schema.OClass;
+import com.orientechnologies.orient.core.metadata.schema.OProperty;
+import com.orientechnologies.orient.core.metadata.schema.OType;
+import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
+import com.orientechnologies.orient.server.network.protocol.http.OHttpResponse;
+import com.orientechnologies.orient.server.network.protocol.http.OHttpUtils;
+import com.orientechnologies.orient.server.network.protocol.http.command.OServerCommandAuthenticatedDbAbstract;
 
 public class OServerCommandPostProperty extends OServerCommandAuthenticatedDbAbstract {
    private static final String   PROPERTY_TYPE_JSON_FIELD = "propertyType";

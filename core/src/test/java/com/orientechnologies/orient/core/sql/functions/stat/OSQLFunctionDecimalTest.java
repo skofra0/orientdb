@@ -1,17 +1,15 @@
 package com.orientechnologies.orient.core.sql.functions.stat;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import org.junit.Before;
+import org.junit.Test;
+import java.math.BigDecimal;
+import java.util.List;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.functions.math.OSQLFunctionDecimal;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.math.BigDecimal;
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 public class OSQLFunctionDecimalTest {
 

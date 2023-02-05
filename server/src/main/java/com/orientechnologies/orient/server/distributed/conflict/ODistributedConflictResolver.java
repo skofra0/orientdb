@@ -20,12 +20,11 @@
 
 package com.orientechnologies.orient.server.distributed.conflict;
 
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.server.distributed.ODistributedServerManager;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * Base interface to manage distributed conflicts. The onConflict() method is responsible to resolve the conflicts by providing the

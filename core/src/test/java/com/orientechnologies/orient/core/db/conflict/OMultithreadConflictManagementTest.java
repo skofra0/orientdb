@@ -1,14 +1,7 @@
 package com.orientechnologies.orient.core.db.conflict;
 
-import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.db.record.ridbag.ORidBag;
-import com.orientechnologies.orient.core.id.ORID;
-import com.orientechnologies.orient.core.id.ORecordId;
-import com.orientechnologies.orient.core.record.impl.ODocument;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,8 +9,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import static org.junit.Assert.assertTrue;
+import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
+import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.db.record.ridbag.ORidBag;
+import com.orientechnologies.orient.core.id.ORID;
+import com.orientechnologies.orient.core.id.ORecordId;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 public class OMultithreadConflictManagementTest {
 
@@ -71,7 +69,7 @@ public class OMultithreadConflictManagementTest {
 
       ORidBag bag2 = doc.field("bag");
       bag2.setAutoConvertToRecord(false);
-      List<ORecordId> ids = new ArrayList<ORecordId>(
+      List<ORecordId> ids = new ArrayList<>(
           Arrays.asList(new ORecordId(30, 20), new ORecordId(30, 31), new ORecordId(30, 32)));
       for (OIdentifiable ide : bag2) {
         assertTrue(ids.remove(ide));

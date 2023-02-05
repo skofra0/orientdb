@@ -19,6 +19,12 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.common.io.OIOUtils;
 import com.orientechnologies.common.parser.OBaseParser;
@@ -36,11 +42,13 @@ import com.orientechnologies.orient.core.record.impl.ODocumentHelper;
 import com.orientechnologies.orient.core.record.impl.ODocumentInternal;
 import com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper;
 import com.orientechnologies.orient.core.serialization.serializer.record.string.ORecordSerializerCSVAbstract;
-import com.orientechnologies.orient.core.sql.filter.*;
+import com.orientechnologies.orient.core.sql.filter.OSQLFilterItem;
+import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemAbstract;
+import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemField;
+import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemParameter;
+import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemVariable;
+import com.orientechnologies.orient.core.sql.filter.OSQLPredicate;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunctionRuntime;
-
-import java.math.BigDecimal;
-import java.util.*;
 
 /**
  * SQL Helper class
@@ -106,7 +114,7 @@ public class OSQLHelper {
       final List<String> items = OStringSerializerHelper
           .smartSplit(iValue.substring(1, iValue.length() - 1), OStringSerializerHelper.RECORD_SEPARATOR);
 
-      final List<Object> coll = new ArrayList<Object>();
+      final List<Object> coll = new ArrayList<>();
       for (String item : items) {
         coll.add(parseValue(item, iContext, resolveContextVariables));
       }
@@ -118,7 +126,7 @@ public class OSQLHelper {
       final List<String> items = OStringSerializerHelper
           .smartSplit(iValue.substring(1, iValue.length() - 1), OStringSerializerHelper.RECORD_SEPARATOR);
 
-      final Map<Object, Object> map = new HashMap<Object, Object>();
+      final Map<Object, Object> map = new HashMap<>();
       for (String item : items) {
         final List<String> parts = OStringSerializerHelper.smartSplit(item, OStringSerializerHelper.ENTRY_SEPARATOR);
 
@@ -321,10 +329,10 @@ public class OSQLHelper {
     if (iFields == null)
       return null;
 
-    final List<OPair<String, Object>> fields = new ArrayList<OPair<String, Object>>(iFields.size());
+    final List<OPair<String, Object>> fields = new ArrayList<>(iFields.size());
 
     for (Map.Entry<String, Object> entry : iFields.entrySet())
-      fields.add(new OPair<String, Object>(entry.getKey(), entry.getValue()));
+      fields.add(new OPair<>(entry.getKey(), entry.getValue()));
 
     return bindParameters(iDocument, fields, iArguments, iContext);
   }
@@ -372,7 +380,7 @@ public class OSQLHelper {
           }
 
           if (OMultiValue.isMultiValue(fieldValue)) {
-            final List<Object> tempColl = new ArrayList<Object>(OMultiValue.getSize(fieldValue));
+            final List<Object> tempColl = new ArrayList<>(OMultiValue.getSize(fieldValue));
 
             String singleFieldName = null;
             for (Object o : OMultiValue.getMultiValueIterable(fieldValue, false)) {

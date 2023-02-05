@@ -1,14 +1,13 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.util.Map;
+import java.util.Optional;
 import com.orientechnologies.common.concur.OTimeoutException;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.impl.OBlob;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.record.impl.ORecordBytes;
-
-import java.util.Map;
-import java.util.Optional;
 
 /**
  * <p>Reads an upstream result set and returns a new result set that contains copies of the original OResult instances

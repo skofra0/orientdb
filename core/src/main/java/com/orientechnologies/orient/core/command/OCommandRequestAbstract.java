@@ -19,18 +19,17 @@
  */
 package com.orientechnologies.orient.core.command;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.listener.OProgressListener;
 import com.orientechnologies.orient.core.command.OCommandContext.TIMEOUT_STRATEGY;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.replication.OAsyncReplicationError;
 import com.orientechnologies.orient.core.replication.OAsyncReplicationOk;
-
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Text based Command Request abstract class.
@@ -52,7 +51,7 @@ public abstract class OCommandRequestAbstract implements OCommandRequestInternal
   protected OAsyncReplicationOk    onAsyncReplicationOk;
   protected OAsyncReplicationError onAsyncReplicationError;
 
-  private final Set<String> nodesToExclude = new HashSet<String>();
+  private final Set<String> nodesToExclude = new HashSet<>();
   private boolean recordResultSet = true;
 
 
@@ -86,7 +85,7 @@ public abstract class OCommandRequestAbstract implements OCommandRequestInternal
       if (iArgs.length == 1 && iArgs[0] != null && iArgs[0].getClass().isArray() && iArgs[0] instanceof Object[])
         iArgs = (Object[]) iArgs[0];
 
-      params = new HashMap<Object, Object>(iArgs.length);
+      params = new HashMap<>(iArgs.length);
       for (int i = 0; i<iArgs.length; ++i) {
         Object par = iArgs[i];
 

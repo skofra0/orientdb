@@ -19,14 +19,20 @@
  */
 package com.orientechnologies.orient.core.sql.functions.coll;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.common.util.OSupportsContains;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.db.record.ridbag.ORidBag;
 import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemVariable;
-
-import java.util.*;
 
 /**
  * This operator can work as aggregate or inline. If only one argument is passed than aggregates, otherwise executes, and returns,
@@ -135,7 +141,7 @@ public class OSQLFunctionIntersect extends OSQLFunctionMultiValueAbstract<Object
   @SuppressWarnings("unchecked")
   @Override
   public Object mergeDistributedResult(List<Object> resultsToMerge) {
-    final Collection<Object> result = new HashSet<Object>();
+    final Collection<Object> result = new HashSet<>();
     if (!resultsToMerge.isEmpty()) {
       final Collection<Object> items = (Collection<Object>) resultsToMerge.get(0);
       if (items != null) {

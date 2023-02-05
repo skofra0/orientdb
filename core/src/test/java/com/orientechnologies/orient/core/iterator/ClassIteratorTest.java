@@ -1,18 +1,17 @@
 package com.orientechnologies.orient.core.iterator;
 
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import java.util.HashSet;
+import java.util.Set;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.metadata.schema.clusterselection.ODefaultClusterSelectionStrategy;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * @author Artem Loginov
@@ -57,7 +56,7 @@ public class ClassIteratorTest {
     initializeDatabase();
 
     // Insert some data
-    names = new HashSet<String>();
+    names = new HashSet<>();
     names.add("Adam");
     names.add("Bob");
     names.add("Calvin");
@@ -137,7 +136,7 @@ public class ClassIteratorTest {
     }
 
     // Use descending class iterator.
-    final ORecordIteratorClass<ODocument> personIter = new ORecordIteratorClassDescendentOrder<ODocument>(db, db, "Person", true);
+    final ORecordIteratorClass<ODocument> personIter = new ORecordIteratorClassDescendentOrder<>(db, db, "Person", true);
 
     personIter.setRange(null, null); // open range
 
@@ -160,7 +159,7 @@ public class ClassIteratorTest {
       createPerson("PersonMultipleClusters", name);
     }
 
-    final ORecordIteratorClass<ODocument> personIter = new ORecordIteratorClass<ODocument>(db, "PersonMultipleClusters", true);
+    final ORecordIteratorClass<ODocument> personIter = new ORecordIteratorClass<>(db, "PersonMultipleClusters", true);
 
     int docNum = 0;
 

@@ -20,13 +20,12 @@
 
 package com.orientechnologies.common.serialization.types;
 
-import com.orientechnologies.common.serialization.OBinaryConverter;
-import com.orientechnologies.common.serialization.OBinaryConverterFactory;
-import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALChanges;
-
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Arrays;
+import com.orientechnologies.common.serialization.OBinaryConverter;
+import com.orientechnologies.common.serialization.OBinaryConverterFactory;
+import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALChanges;
 
 /**
  * Serializer for byte arrays .

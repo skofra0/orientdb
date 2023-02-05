@@ -20,6 +20,7 @@
 
 package com.orientechnologies.orient.core.storage.impl.local.paginated.base;
 
+import java.io.IOException;
 import com.orientechnologies.common.concur.resource.OSharedResourceAdaptive;
 import com.orientechnologies.common.function.TxConsumer;
 import com.orientechnologies.common.function.TxFunction;
@@ -29,8 +30,6 @@ import com.orientechnologies.orient.core.storage.cache.OWriteCache;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperation;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperationsManager;
-
-import java.io.IOException;
 
 /**
  * Base class for all durable data structures, that is data structures state of which can be consistently restored after system

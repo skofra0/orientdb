@@ -18,13 +18,12 @@
 
 package com.orientechnologies.lucene.tx;
 
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
-
 import java.util.Collections;
 import java.util.Set;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
 
 /**
  * Created by Enrico Risa on 15/09/15.

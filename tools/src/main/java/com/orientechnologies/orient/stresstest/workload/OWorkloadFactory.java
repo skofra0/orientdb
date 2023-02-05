@@ -19,9 +19,12 @@
  */
 package com.orientechnologies.orient.stresstest.workload;
 
-import java.util.*;
-
 import static com.orientechnologies.common.util.OClassLoaderHelper.lookupProviderWithOrientClassLoader;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Factory of workloads.
@@ -29,7 +32,7 @@ import static com.orientechnologies.common.util.OClassLoaderHelper.lookupProvide
  * @author Luca Garulli (l.garulli--(at)--orientdb.com)
  */
 public class OWorkloadFactory {
-  private Map<String, OWorkload> registered = new HashMap<String, OWorkload>();
+  private Map<String, OWorkload> registered = new HashMap<>();
 
   public OWorkloadFactory() {
     register(new OCRUDWorkload());

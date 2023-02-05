@@ -19,18 +19,17 @@
   */
 package com.orientechnologies.orient.server.network.protocol.http.command.get;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.server.OSystemDatabase;
 import com.orientechnologies.orient.server.config.OServerConfiguration;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpResponse;
 import com.orientechnologies.orient.server.network.protocol.http.command.OServerCommandAuthenticatedServerAbstract;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
 public class OServerCommandGetListDatabases extends OServerCommandAuthenticatedServerAbstract {
   private static final String[] NAMES = { "GET|listDatabases" };
@@ -62,7 +61,7 @@ public class OServerCommandGetListDatabases extends OServerCommandAuthenticatedS
     }
 
     // ORDER DATABASE NAMES (CASE INSENSITIVE)
-    final List<String> orderedStorages = new ArrayList<String>(storageNames);
+    final List<String> orderedStorages = new ArrayList<>(storageNames);
     Collections.sort(orderedStorages, new Comparator<String>() {
       @Override
       public int compare(final String o1, final String o2) {

@@ -1,19 +1,17 @@
 package com.orientechnologies.orient.core.db.graph;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import com.orientechnologies.orient.core.db.ODatabaseType;
 import com.orientechnologies.orient.core.db.OrientDB;
 import com.orientechnologies.orient.core.db.OrientDBConfig;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.record.ODirection;
 import com.orientechnologies.orient.core.record.OEdge;
-import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.OVertex;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 
 /**
  * Created by tglman on 20/02/17.

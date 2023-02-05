@@ -1,7 +1,5 @@
 package com.orientechnologies.common.concur.lock;
 
-import com.orientechnologies.common.exception.OException;
-
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -10,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import com.orientechnologies.common.exception.OException;
 
 public class OSimpleLockManagerImpl<T> implements OSimpleLockManager<T> {
 

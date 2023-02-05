@@ -1,22 +1,18 @@
 package com.orientechnologies.orient.server;
 
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-
 import javax.management.InstanceAlreadyExistsException;
 import javax.management.MBeanRegistrationException;
 import javax.management.MalformedObjectNameException;
 import javax.management.NotCompliantMBeanException;
-
 import com.orientechnologies.common.io.OFileUtils;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
 import com.orientechnologies.orient.client.remote.OServerAdmin;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.db.OPartitionedDatabasePool;
@@ -60,7 +56,7 @@ public class HookInstallServerTest {
         .getResourceAsStream("com/orientechnologies/orient/server/network/orientdb-server-config.xml"));
     OServerHookConfiguration hc = new OServerHookConfiguration();
     hc.clazz = MyHook.class.getName();
-    ret.getConfiguration().hooks = new ArrayList<OServerHookConfiguration>();
+    ret.getConfiguration().hooks = new ArrayList<>();
     ret.getConfiguration().hooks.add(hc);
     server.startup(ret.getConfiguration());
     server.activate();

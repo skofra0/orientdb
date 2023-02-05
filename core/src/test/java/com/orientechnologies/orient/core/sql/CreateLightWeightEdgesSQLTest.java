@@ -1,16 +1,18 @@
 package com.orientechnologies.orient.core.sql;
 
-import com.orientechnologies.orient.core.db.*;
-import com.orientechnologies.orient.core.exception.OConcurrentModificationException;
-import com.orientechnologies.orient.core.sql.executor.OResultSet;
+import static org.junit.Assert.assertEquals;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.concurrent.CountDownLatch;
 import java.util.stream.IntStream;
-
-import static org.junit.Assert.assertEquals;
+import com.orientechnologies.orient.core.db.ODatabasePool;
+import com.orientechnologies.orient.core.db.ODatabaseSession;
+import com.orientechnologies.orient.core.db.ODatabaseType;
+import com.orientechnologies.orient.core.db.OrientDB;
+import com.orientechnologies.orient.core.db.OrientDBConfig;
+import com.orientechnologies.orient.core.exception.OConcurrentModificationException;
+import com.orientechnologies.orient.core.sql.executor.OResultSet;
 
 public class CreateLightWeightEdgesSQLTest {
 

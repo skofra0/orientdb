@@ -1,5 +1,11 @@
 package com.orientechnologies.orient.core.sql.select;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import java.util.List;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.record.ORecord;
@@ -7,14 +13,6 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.record.impl.ORecordBytes;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 /**
  * Created by tglman on 15/04/16.
@@ -39,7 +37,7 @@ public class TestBinaryRecordsQuery {
   public void testSelectBinary() {
     database.save(new ORecordBytes("blabla".getBytes()), "BlobCluster");
 
-    List<ORecord> res = database.query(new OSQLSynchQuery<Object>("select from cluster:BlobCluster"));
+    List<ORecord> res = database.query(new OSQLSynchQuery<>("select from cluster:BlobCluster"));
 
     assertEquals(1, res.size());
   }
@@ -48,7 +46,7 @@ public class TestBinaryRecordsQuery {
   public void testSelectRidBinary() {
     ORecord rec = database.save(new ORecordBytes("blabla".getBytes()), "BlobCluster");
 
-    List<ORecord> res = database.query(new OSQLSynchQuery<Object>("select @rid from cluster:BlobCluster"));
+    List<ORecord> res = database.query(new OSQLSynchQuery<>("select @rid from cluster:BlobCluster"));
     assertEquals(1, res.size());
   }
 

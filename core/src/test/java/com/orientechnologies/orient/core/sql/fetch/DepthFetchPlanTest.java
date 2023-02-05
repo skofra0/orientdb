@@ -1,5 +1,7 @@
 package com.orientechnologies.orient.core.sql.fetch;
 
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.fetch.OFetchContext;
@@ -8,9 +10,6 @@ import com.orientechnologies.orient.core.fetch.remote.ORemoteFetchContext;
 import com.orientechnologies.orient.core.fetch.remote.ORemoteFetchListener;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
 
 public class DepthFetchPlanTest {
 

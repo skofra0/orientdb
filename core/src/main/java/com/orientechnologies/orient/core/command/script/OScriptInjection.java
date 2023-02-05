@@ -19,10 +19,9 @@
   */
 package com.orientechnologies.orient.core.command.script;
 
-import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
-
 import javax.script.Bindings;
 import javax.script.ScriptEngine;
+import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 
 /**
  * Inject custom settings on Script execution.

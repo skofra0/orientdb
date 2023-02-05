@@ -19,8 +19,20 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.types.OModifiableBoolean;
-import com.orientechnologies.orient.core.command.*;
+import com.orientechnologies.orient.core.command.OCommandDistributedReplicateRequest;
+import com.orientechnologies.orient.core.command.OCommandExecutor;
+import com.orientechnologies.orient.core.command.OCommandManager;
+import com.orientechnologies.orient.core.command.OCommandRequest;
+import com.orientechnologies.orient.core.command.OCommandRequestInternal;
+import com.orientechnologies.orient.core.command.OCommandRequestText;
+import com.orientechnologies.orient.core.command.OCommandResultListener;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
@@ -35,8 +47,6 @@ import com.orientechnologies.orient.core.record.OVertex;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.filter.OSQLFilter;
 import com.orientechnologies.orient.core.sql.query.OSQLAsynchQuery;
-
-import java.util.*;
 
 /**
  * SQL DELETE EDGE command.
@@ -103,14 +113,14 @@ public class OCommandExecutorSQLDeleteEdge extends OCommandExecutorSQLSetAware
               throwSyntaxErrorException("TO '" + toExpr + "' is not allowed when specify a RID (" + rids + ")");
 
           } else if (temp.startsWith("#")) {
-            rids = new ArrayList<ORecordId>();
+            rids = new ArrayList<>();
             rids.add(new ORecordId(temp));
             if (fromExpr != null || toExpr != null)
               throwSyntaxErrorException("Specifying the RID " + rids + " is not allowed with FROM/TO");
 
           } else if (temp.startsWith("[") && temp.endsWith("]")) {
             temp = temp.substring(1, temp.length() - 1);
-            rids = new ArrayList<ORecordId>();
+            rids = new ArrayList<>();
             for (String rid : temp.split(",")) {
               rid = rid.trim();
               if (!rid.startsWith("#")) {
@@ -201,7 +211,7 @@ public class OCommandExecutorSQLDeleteEdge extends OCommandExecutorSQLSetAware
       return removed;
     } else {
       // MULTIPLE EDGES
-      final Set<OEdge> edges = new HashSet<OEdge>();
+      final Set<OEdge> edges = new HashSet<>();
       if (query == null) {
         db.begin();
         Set<OIdentifiable> fromIds = null;
@@ -404,7 +414,7 @@ public class OCommandExecutorSQLDeleteEdge extends OCommandExecutorSQLSetAware
 
   @Override
   public Set<String> getInvolvedClusters() {
-    final HashSet<String> result = new HashSet<String>();
+    final HashSet<String> result = new HashSet<>();
     if (rids != null) {
       final ODatabaseDocumentInternal database = getDatabase();
       for (ORecordId rid : rids) {

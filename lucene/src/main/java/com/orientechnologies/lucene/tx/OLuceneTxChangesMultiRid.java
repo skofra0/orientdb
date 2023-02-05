@@ -18,26 +18,30 @@
 
 package com.orientechnologies.lucene.tx;
 
-import com.orientechnologies.common.exception.OException;
-import com.orientechnologies.lucene.engine.OLuceneIndexEngine;
-import com.orientechnologies.lucene.exception.OLuceneIndexException;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import org.apache.lucene.analysis.core.KeywordAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexableField;
 import org.apache.lucene.index.memory.MemoryIndex;
 import org.apache.lucene.search.Query;
-
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import com.orientechnologies.common.exception.OException;
+import com.orientechnologies.lucene.engine.OLuceneIndexEngine;
+import com.orientechnologies.lucene.exception.OLuceneIndexException;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
 
 /**
  * Created by Enrico Risa on 15/09/15.
  */
 public class OLuceneTxChangesMultiRid extends OLuceneTxChangesAbstract {
-  private final Map<String, List<String>> deleted     = new HashMap<String, List<String>>();
-  private final Set<Document>             deletedDocs = new HashSet<Document>();
+  private final Map<String, List<String>> deleted     = new HashMap<>();
+  private final Set<Document>             deletedDocs = new HashSet<>();
 
   public OLuceneTxChangesMultiRid(OLuceneIndexEngine engine, IndexWriter writer, IndexWriter deletedIdx) {
     super(engine, writer, deletedIdx);

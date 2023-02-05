@@ -1,15 +1,18 @@
 package com.orientechnologies.orient.core.storage.index.hashindex.local;
 
+import org.junit.After;
+import org.junit.Before;
+import java.io.File;
 import com.orientechnologies.common.io.OFileUtils;
 import com.orientechnologies.common.serialization.types.OIntegerSerializer;
-import com.orientechnologies.orient.core.db.*;
+import com.orientechnologies.orient.core.db.ODatabaseInternal;
+import com.orientechnologies.orient.core.db.ODatabaseSession;
+import com.orientechnologies.orient.core.db.ODatabaseType;
+import com.orientechnologies.orient.core.db.OrientDB;
+import com.orientechnologies.orient.core.db.OrientDBConfig;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.serialization.serializer.binary.OBinarySerializerFactory;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
-import org.junit.After;
-import org.junit.Before;
-
-import java.io.File;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)
@@ -31,7 +34,7 @@ public class OLocalHashTableTestIT extends OLocalHashTableBase {
     orientDB.create(DB_NAME, ODatabaseType.PLOCAL);
     final ODatabaseSession databaseDocumentTx = orientDB.open(DB_NAME, "admin", "admin");
 
-    OMurmurHash3HashFunction<Integer> murmurHash3HashFunction = new OMurmurHash3HashFunction<Integer>(OIntegerSerializer.INSTANCE);
+    OMurmurHash3HashFunction<Integer> murmurHash3HashFunction = new OMurmurHash3HashFunction<>(OIntegerSerializer.INSTANCE);
 
     final OAbstractPaginatedStorage storage = (OAbstractPaginatedStorage) ((ODatabaseInternal) databaseDocumentTx).getStorage();
     localHashTable = new OLocalHashTable<>("localHashTableTest", ".imc", ".tsc", ".obf", ".nbh", storage);

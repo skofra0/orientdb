@@ -20,9 +20,8 @@
 
 package com.orientechnologies.orient.core.command.traverse;
 
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-
 import java.util.ArrayDeque;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
 
 /**
  * @author Artem Orobets (enisher-at-gmail.com)
@@ -38,7 +37,7 @@ public class OTraversePath {
 
   @Override
   public String toString() {
-    final ArrayDeque<PathItem> stack = new ArrayDeque<PathItem>();
+    final ArrayDeque<PathItem> stack = new ArrayDeque<>();
     PathItem currentItem = lastPathItem;
     while (currentItem != null) {
       stack.push(currentItem);

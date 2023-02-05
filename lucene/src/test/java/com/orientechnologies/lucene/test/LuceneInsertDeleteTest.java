@@ -18,6 +18,13 @@
 
 package com.orientechnologies.lucene.test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.Before;
+import org.junit.Test;
+import java.io.InputStream;
+import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 import com.orientechnologies.orient.core.command.script.OCommandScript;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.index.OIndex;
@@ -28,15 +35,6 @@ import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.io.InputStream;
-import java.util.Collection;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Created by enricorisa on 28/06/14.
@@ -93,14 +91,14 @@ public class LuceneInsertDeleteTest extends BaseLuceneTest {
         .execute();
 
 
-    List<ODocument> docs = db.query(new OSQLSynchQuery<Object>("select from Song where title lucene 'mountain'"));
+    List<ODocument> docs = db.query(new OSQLSynchQuery<>("select from Song where title lucene 'mountain'"));
 
     assertThat(docs).hasSize(4);
     TimeUnit.SECONDS.sleep(5);
 
     db.command(new OCommandSQL("delete vertex from Song where title lucene 'mountain'")).execute();
 
-    docs = db.query(new OSQLSynchQuery<Object>("select from Song where  title lucene 'mountain'"));
+    docs = db.query(new OSQLSynchQuery<>("select from Song where  title lucene 'mountain'"));
     assertThat(docs).hasSize(0);
   }
 }

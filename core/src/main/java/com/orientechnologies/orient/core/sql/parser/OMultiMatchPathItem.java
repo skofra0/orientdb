@@ -2,14 +2,18 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=true,TRACK_TOKENS=true,NODE_PREFIX=O,NODE_EXTENDS=,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package com.orientechnologies.orient.core.sql.parser;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 
-import java.util.*;
-import java.util.stream.Collectors;
-
 public class OMultiMatchPathItem extends OMatchPathItem {
-  protected List<OMatchPathItem> items = new ArrayList<OMatchPathItem>();
+  protected List<OMatchPathItem> items = new ArrayList<>();
 
   public OMultiMatchPathItem(int id) {
     super(id);
@@ -43,11 +47,11 @@ public class OMultiMatchPathItem extends OMatchPathItem {
 
   protected Iterable<OIdentifiable> traversePatternEdge(OMatchStatement.MatchContext matchContext, OIdentifiable startingPoint,
       OCommandContext iCommandContext) {
-    Set<OIdentifiable> result = new HashSet<OIdentifiable>();
+    Set<OIdentifiable> result = new HashSet<>();
     result.add(startingPoint);
     for (OMatchPathItem subItem : items) {
       Set<OIdentifiable> startingPoints = result;
-      result = new HashSet<OIdentifiable>();
+      result = new HashSet<>();
       for (OIdentifiable sp : startingPoints) {
         Iterable<OIdentifiable> subResult = subItem.executeTraversal(matchContext, iCommandContext, sp, 0);
         if (subResult instanceof Collection) {

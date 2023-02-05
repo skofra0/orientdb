@@ -17,20 +17,27 @@
  */
 package com.orientechnologies.spatial;
 
-import com.orientechnologies.lucene.test.BaseLuceneTest;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.spatial.shape.OMultiPolygonShapeBuilder;
-import org.locationtech.jts.geom.*;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.GeometryCollection;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.LineString;
+import org.locationtech.jts.geom.LinearRing;
+import org.locationtech.jts.geom.MultiPolygon;
+import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.geom.Polygon;
 import org.locationtech.spatial4j.context.jts.JtsSpatialContext;
 import org.locationtech.spatial4j.shape.Shape;
 import org.locationtech.spatial4j.shape.jts.JtsGeometry;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import com.orientechnologies.lucene.test.BaseLuceneTest;
+import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.orientechnologies.spatial.shape.OMultiPolygonShapeBuilder;
 
 /**
  * Created by Enrico Risa on 07/08/15.
@@ -51,14 +58,14 @@ public abstract class BaseSpatialLuceneTest extends BaseLuceneTest {
   protected              GeometryFactory   geometryFactory    = context.getGeometryFactory();
 
   protected Polygon polygonTestHole() {
-    List<Coordinate> outerRing = new ArrayList<Coordinate>();
+    List<Coordinate> outerRing = new ArrayList<>();
     outerRing.add(new Coordinate(100.0, 1.0));
     outerRing.add(new Coordinate(101.0, 1.0));
     outerRing.add(new Coordinate(101.0, 0.0));
     outerRing.add(new Coordinate(100.0, 0.0));
     outerRing.add(new Coordinate(100.0, 1.0));
 
-    List<Coordinate> hole = new ArrayList<Coordinate>();
+    List<Coordinate> hole = new ArrayList<>();
     hole.add(new Coordinate(100.2, 0.8));
     hole.add(new Coordinate(100.2, 0.2));
     hole.add(new Coordinate(100.8, 0.2));
@@ -71,7 +78,7 @@ public abstract class BaseSpatialLuceneTest extends BaseLuceneTest {
   }
 
   protected List<List<List<Double>>> polygonCoordTestHole() {
-    return new ArrayList<List<List<Double>>>() {
+    return new ArrayList<>() {
       {
         add(new ArrayList<List<Double>>() {
           {

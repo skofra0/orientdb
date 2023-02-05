@@ -19,18 +19,15 @@
  */
 package com.orientechnologies.orient.core.record.impl;
 
+import java.io.UnsupportedEncodingException;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.ORecordAbstract;
 import com.orientechnologies.orient.core.record.ORecordStringable;
-import com.orientechnologies.orient.core.serialization.OBinaryProtocol;
-
-import java.io.UnsupportedEncodingException;
 
 /**
  * It's schema less. Use this if you need to store Strings at low level. The object can be reused across calls to the database by

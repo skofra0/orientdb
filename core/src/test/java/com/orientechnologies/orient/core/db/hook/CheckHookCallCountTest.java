@@ -1,5 +1,10 @@
 package com.orientechnologies.orient.core.db.hook;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import org.junit.Test;
+import java.util.List;
+import java.util.UUID;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.hook.ODocumentHookAbstract;
@@ -8,13 +13,6 @@ import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.junit.Test;
-
-import java.util.List;
-import java.util.UUID;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 public class CheckHookCallCountTest {
   private final String CLASS_NAME   = "Data";
@@ -84,7 +82,7 @@ public class CheckHookCallCountTest {
         @Override
         public void onRecordAfterRead(ODocument iDocument) {
           String script = "select sum(a, b) as value from " + iDocument.getIdentity();
-          List<ODocument> calculated = database.query(new OSQLSynchQuery<Object>(script));
+          List<ODocument> calculated = database.query(new OSQLSynchQuery<>(script));
           if (calculated != null && !calculated.isEmpty()) {
             iDocument.field("c", calculated.get(0).<Object>field("value"));
           }

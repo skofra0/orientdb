@@ -1,5 +1,31 @@
 package com.orientechnologies.orient.core.storage.impl.local.paginated;
 
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
+import org.junit.Test;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import com.orientechnologies.common.io.OFileUtils;
 import com.orientechnologies.orient.core.command.OCommandOutputListener;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
@@ -13,17 +39,6 @@ import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.storage.OStorage;
-import org.junit.*;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.*;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.util.*;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)
@@ -85,7 +100,7 @@ public class LocalPaginatedStorageRestoreFromWALAndAddAdditionalRecords {
 
   @Test @Ignore
   public void testRestoreAndAddNewItems() throws Exception {
-    List<Future<Void>> futures = new ArrayList<Future<Void>>();
+    List<Future<Void>> futures = new ArrayList<>();
 
     baseDocumentTx.declareIntent(new OIntentMassiveInsert());
 
@@ -220,8 +235,8 @@ public class LocalPaginatedStorageRestoreFromWALAndAddAdditionalRecords {
       ODatabaseRecordThreadLocal.instance().set(baseDB);
 
       try {
-        List<ORID> testTwoList = new ArrayList<ORID>();
-        List<ORID> firstDocs = new ArrayList<ORID>();
+        List<ORID> testTwoList = new ArrayList<>();
+        List<ORID> firstDocs = new ArrayList<>();
 
         OClass classOne = baseDB.getMetadata().getSchema().getClass("TestOne");
         OClass classTwo = baseDB.getMetadata().getSchema().getClass("TestTwo");
@@ -236,7 +251,7 @@ public class LocalPaginatedStorageRestoreFromWALAndAddAdditionalRecords {
 
           docOne.field("stringProp", stringProp);
 
-          Set<String> stringSet = new HashSet<String>();
+          Set<String> stringSet = new HashSet<>();
           for (int n = 0; n < 5; n++) {
             stringSet.add("str" + random.nextInt());
           }
@@ -249,7 +264,7 @@ public class LocalPaginatedStorageRestoreFromWALAndAddAdditionalRecords {
           if (random.nextBoolean()) {
             ODocument docTwo = new ODocument(classTwo);
 
-            List<String> stringList = new ArrayList<String>();
+            List<String> stringList = new ArrayList<>();
 
             for (int n = 0; n < 5; n++) {
               stringList.add("strnd" + random.nextInt());
@@ -264,7 +279,7 @@ public class LocalPaginatedStorageRestoreFromWALAndAddAdditionalRecords {
             int startIndex = random.nextInt(testTwoList.size());
             int endIndex = random.nextInt(testTwoList.size() - startIndex) + startIndex;
 
-            Map<String, ORID> linkMap = new HashMap<String, ORID>();
+            Map<String, ORID> linkMap = new HashMap<>();
 
             for (int n = startIndex; n < endIndex; n++) {
               ORID docTwoRid = testTwoList.get(n);

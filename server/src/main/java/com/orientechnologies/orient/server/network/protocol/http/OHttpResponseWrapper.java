@@ -19,13 +19,12 @@
   */
 package com.orientechnologies.orient.server.network.protocol.http;
 
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.record.ORecord;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.record.ORecord;
 
 /**
  * Wrapper to use the HTTP response in functions and scripts. This class mimics the J2EE HTTPResponse class.

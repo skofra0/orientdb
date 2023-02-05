@@ -28,7 +28,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import com.orientechnologies.common.concur.lock.OAdaptiveLock;
 import com.orientechnologies.common.concur.lock.OLockException;
 import com.orientechnologies.common.concur.resource.OReentrantResourcePool;
@@ -43,7 +42,7 @@ import com.orientechnologies.orient.core.storage.OStorage;
 public abstract class ODatabasePoolAbstract<DB extends ODatabaseInternal> extends OAdaptiveLock implements
     OResourcePoolListener<String, DB>, OOrientListener {
 
-  private final HashMap<String, OReentrantResourcePool<String, DB>> pools = new HashMap<String, OReentrantResourcePool<String, DB>>();
+  private final HashMap<String, OReentrantResourcePool<String, DB>> pools = new HashMap<>();
   protected Object                                                  owner;
   private int                                                       maxSize;
   private int                                                       timeout;
@@ -55,7 +54,7 @@ public abstract class ODatabasePoolAbstract<DB extends ODatabaseInternal> extend
    */
   class Evictor extends TimerTask {
 
-    private HashMap<String, Map<DB, Long>> evictionMap = new HashMap<String, Map<DB, Long>>();
+    private HashMap<String, Map<DB, Long>> evictionMap = new HashMap<>();
     private long                           minIdleTime;
 
     public Evictor(long minIdleTime) {
@@ -97,7 +96,7 @@ public abstract class ODatabasePoolAbstract<DB extends ODatabaseInternal> extend
     public void updateIdleTime(final String poolName, final DB iDatabase) {
       Map<DB, Long> pool = this.evictionMap.get(poolName);
       if (pool == null) {
-        pool = new HashMap<DB, Long>();
+        pool = new HashMap<>();
         this.evictionMap.put(poolName, pool);
       }
 
@@ -147,7 +146,7 @@ public abstract class ODatabasePoolAbstract<DB extends ODatabaseInternal> extend
       pool = pools.get(dbPooledName);
       if (pool == null)
         // CREATE A NEW ONE
-        pool = new OReentrantResourcePool<String, DB>(maxSize, this);
+        pool = new OReentrantResourcePool<>(maxSize, this);
 
       // PUT IN THE POOL MAP ONLY IF AUTHENTICATION SUCCEED
       pools.put(dbPooledName, pool);
@@ -333,7 +332,7 @@ public abstract class ODatabasePoolAbstract<DB extends ODatabaseInternal> extend
         final String dbName = e.getKey().substring(pos + 1);
         if (storageURL.equals(dbName)) {
           if (poolToClose == null)
-            poolToClose = new HashSet<String>();
+            poolToClose = new HashSet<>();
 
           poolToClose.add(e.getKey());
         }

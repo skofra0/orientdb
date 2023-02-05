@@ -18,7 +18,6 @@ package com.orientechnologies.orient.server.network;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
-
 import com.orientechnologies.orient.server.config.OServerParameterConfiguration;
 
 public abstract class OServerSocketFactory {

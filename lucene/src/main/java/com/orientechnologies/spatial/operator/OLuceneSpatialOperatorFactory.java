@@ -17,19 +17,18 @@
  */
 package com.orientechnologies.spatial.operator;
 
-import com.orientechnologies.orient.core.sql.operator.OQueryOperator;
-import com.orientechnologies.orient.core.sql.operator.OQueryOperatorFactory;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperator;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperatorFactory;
 
 public class OLuceneSpatialOperatorFactory implements OQueryOperatorFactory {
 
   public static final Set<OQueryOperator> OPERATORS;
 
   static {
-    final Set<OQueryOperator> operators = new HashSet<OQueryOperator>() {{
+    final Set<OQueryOperator> operators = new HashSet<>() {{
       add(new OLuceneNearOperator());
       add(new OLuceneWithinOperator());
       add(new OLuceneOverlapOperator());

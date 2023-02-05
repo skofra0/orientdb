@@ -20,6 +20,24 @@
 
 package com.orientechnologies.orient.core.serialization.serializer.record.binary;
 
+import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.NavigableMap;
+import java.util.Set;
+import java.util.TimeZone;
+import java.util.UUID;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.log.OLogManager;
@@ -29,7 +47,15 @@ import com.orientechnologies.common.serialization.types.OLongSerializer;
 import com.orientechnologies.common.serialization.types.OUUIDSerializer;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
-import com.orientechnologies.orient.core.db.record.*;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.db.record.ORecordElement;
+import com.orientechnologies.orient.core.db.record.ORecordLazyList;
+import com.orientechnologies.orient.core.db.record.ORecordLazyMap;
+import com.orientechnologies.orient.core.db.record.ORecordLazyMultiValue;
+import com.orientechnologies.orient.core.db.record.ORecordLazySet;
+import com.orientechnologies.orient.core.db.record.OTrackedList;
+import com.orientechnologies.orient.core.db.record.OTrackedMap;
+import com.orientechnologies.orient.core.db.record.OTrackedSet;
 import com.orientechnologies.orient.core.db.record.ridbag.ORidBag;
 import com.orientechnologies.orient.core.exception.OSerializationException;
 import com.orientechnologies.orient.core.exception.OValidationException;
@@ -40,7 +66,11 @@ import com.orientechnologies.orient.core.metadata.schema.OProperty;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.ORecordInternal;
-import com.orientechnologies.orient.core.record.impl.*;
+import com.orientechnologies.orient.core.record.impl.OBlob;
+import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.orientechnologies.orient.core.record.impl.ODocumentEntry;
+import com.orientechnologies.orient.core.record.impl.ODocumentInternal;
+import com.orientechnologies.orient.core.record.impl.ORecordFlat;
 import com.orientechnologies.orient.core.serialization.ODocumentSerializable;
 import com.orientechnologies.orient.core.serialization.OSerializableStream;
 import com.orientechnologies.orient.core.serialization.serializer.record.ORecordSerializer;
@@ -50,12 +80,6 @@ import com.orientechnologies.orient.core.storage.ridbag.sbtree.ChangeSerializati
 import com.orientechnologies.orient.core.storage.ridbag.sbtree.OBonsaiCollectionPointer;
 import com.orientechnologies.orient.core.storage.ridbag.sbtree.OSBTreeCollectionManager;
 import com.orientechnologies.orient.core.util.ODateHelper;
-
-import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.math.BigDecimal;
-import java.util.*;
-import java.util.Map.Entry;
 
 public class ORecordSerializerNetworkV37 implements ORecordSerializer {
 
@@ -166,7 +190,7 @@ public class ORecordSerializerNetworkV37 implements ORecordSerializer {
     final int classNameLen = OVarIntSerializer.readAsInteger(bytes);
     bytes.skip(classNameLen);
 
-    final List<String> result = new ArrayList<String>();
+    final List<String> result = new ArrayList<>();
 
     int size = OVarIntSerializer.readAsInteger(bytes);
     String fieldName;
@@ -278,10 +302,10 @@ public class ORecordSerializerNetworkV37 implements ORecordSerializer {
 
       break;
     case EMBEDDEDSET:
-      value = readEmbeddedCollection(bytes, new OTrackedSet<Object>(document), document);
+      value = readEmbeddedCollection(bytes, new OTrackedSet<>(document), document);
       break;
     case EMBEDDEDLIST:
-      value = readEmbeddedCollection(bytes, new OTrackedList<Object>(document), document);
+      value = readEmbeddedCollection(bytes, new OTrackedList<>(document), document);
       break;
     case LINKSET:
       value = readLinkCollection(bytes, new ORecordLazySet(document));
@@ -449,7 +473,7 @@ public class ORecordSerializerNetworkV37 implements ORecordSerializer {
 
   private Object readEmbeddedMap(final BytesContainer bytes, final ODocument document) {
     int size = OVarIntSerializer.readAsInteger(bytes);
-    final OTrackedMap result = new OTrackedMap<Object>(document);
+    final OTrackedMap result = new OTrackedMap<>(document);
     result.setInternalStatus(ORecordElement.STATUS.UNMARSHALLING);
     while ((size--) > 0) {
       String key = readString(bytes);

@@ -1,22 +1,26 @@
 package com.orientechnologies.orient.server;
 
-import com.orientechnologies.orient.client.remote.ORemoteConnectionManager;
-import com.orientechnologies.orient.client.remote.ORemoteConnectionPool;
-import com.orientechnologies.orient.core.config.OGlobalConfiguration;
-import com.orientechnologies.orient.core.db.*;
-import com.orientechnologies.orient.core.sql.executor.OResultSet;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import javax.management.InstanceAlreadyExistsException;
 import javax.management.MBeanRegistrationException;
 import javax.management.MalformedObjectNameException;
 import javax.management.NotCompliantMBeanException;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-
-import static org.junit.Assert.*;
+import com.orientechnologies.orient.client.remote.ORemoteConnectionManager;
+import com.orientechnologies.orient.client.remote.ORemoteConnectionPool;
+import com.orientechnologies.orient.core.config.OGlobalConfiguration;
+import com.orientechnologies.orient.core.db.ODatabaseSession;
+import com.orientechnologies.orient.core.db.ODatabaseType;
+import com.orientechnologies.orient.core.db.OrientDB;
+import com.orientechnologies.orient.core.db.OrientDBConfig;
+import com.orientechnologies.orient.core.db.OrientDBInternal;
+import com.orientechnologies.orient.core.db.OrientDBRemote;
+import com.orientechnologies.orient.core.sql.executor.OResultSet;
 
 public class SocketIdleCleanupIT {
 

@@ -17,17 +17,16 @@
  */
 package com.orientechnologies.spatial.shape;
 
+import org.locationtech.spatial4j.shape.Point;
+import org.locationtech.spatial4j.shape.Rectangle;
+import java.util.ArrayList;
+import java.util.List;
 import com.orientechnologies.orient.core.db.ODatabaseInternal;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OProperty;
 import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import org.locationtech.spatial4j.shape.Point;
-import org.locationtech.spatial4j.shape.Rectangle;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ORectangleShapeBuilder extends OShapeBuilder<Rectangle> {
 

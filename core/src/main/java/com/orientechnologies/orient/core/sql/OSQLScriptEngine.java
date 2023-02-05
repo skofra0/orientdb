@@ -20,6 +20,16 @@
 
 package com.orientechnologies.orient.core.sql;
 
+import java.io.IOException;
+import java.io.Reader;
+import java.util.HashMap;
+import java.util.Map;
+import javax.script.Bindings;
+import javax.script.ScriptContext;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineFactory;
+import javax.script.ScriptException;
+import javax.script.SimpleBindings;
 import com.orientechnologies.orient.core.command.script.OCommandScript;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
@@ -28,12 +38,6 @@ import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
 import com.orientechnologies.orient.core.sql.query.OBasicLegacyResultSet;
 import com.orientechnologies.orient.core.sql.query.OLegacyResultSet;
-
-import javax.script.*;
-import java.io.IOException;
-import java.io.Reader;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Dynamic script engine for OrientDB SQL commands. This implementation is multi-threads.
@@ -98,7 +102,7 @@ public class OSQLScriptEngine implements ScriptEngine {
       if (iArgs.length == 1 && iArgs[0] != null && iArgs[0].getClass().isArray() && iArgs[0] instanceof Object[])
         iArgs = (Object[]) iArgs[0];
 
-      params = new HashMap<Object, Object>(iArgs.length);
+      params = new HashMap<>(iArgs.length);
       for (int i = 0; i < iArgs.length; ++i) {
         Object par = iArgs[i];
 

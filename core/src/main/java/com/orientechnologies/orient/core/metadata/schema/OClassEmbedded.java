@@ -1,5 +1,11 @@
 package com.orientechnologies.orient.core.metadata.schema;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.Callable;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.util.OArrays;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
@@ -14,9 +20,6 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.storage.OAutoshardedStorage;
 import com.orientechnologies.orient.core.storage.OStorage;
-
-import java.util.*;
-import java.util.concurrent.Callable;
 
 /**
  * Created by tglman on 14/06/17.
@@ -245,7 +248,7 @@ public class OClassEmbedded extends OClassImpl {
     final ODatabaseDocumentInternal database = getDatabase();
     database.checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_UPDATE);
     if (classes != null) {
-      List<OClass> toCheck = new ArrayList<OClass>(classes);
+      List<OClass> toCheck = new ArrayList<>(classes);
       toCheck.add(this);
       checkParametersConflict(toCheck);
     }
@@ -399,7 +402,7 @@ public class OClassEmbedded extends OClassImpl {
   }
 
   protected void setSuperClassesInternal(final List<? extends OClass> classes) {
-    List<OClassImpl> newSuperClasses = new ArrayList<OClassImpl>();
+    List<OClassImpl> newSuperClasses = new ArrayList<>();
     OClassImpl cls;
     for (OClass superClass : classes) {
       if (superClass instanceof OClassAbstractDelegate)
@@ -414,9 +417,9 @@ public class OClassEmbedded extends OClassImpl {
       newSuperClasses.add(cls);
     }
 
-    List<OClassImpl> toAddList = new ArrayList<OClassImpl>(newSuperClasses);
+    List<OClassImpl> toAddList = new ArrayList<>(newSuperClasses);
     toAddList.removeAll(superClasses);
-    List<OClassImpl> toRemoveList = new ArrayList<OClassImpl>(superClasses);
+    List<OClassImpl> toRemoveList = new ArrayList<>(superClasses);
     toRemoveList.removeAll(newSuperClasses);
 
     for (OClassImpl toRemove : toRemoveList) {
@@ -1001,7 +1004,7 @@ public class OClassEmbedded extends OClassImpl {
       checkEmbedded();
 
       if (customFields == null)
-        customFields = new HashMap<String, String>();
+        customFields = new HashMap<>();
       if (value == null || "null".equalsIgnoreCase(value))
         customFields.remove(name);
       else

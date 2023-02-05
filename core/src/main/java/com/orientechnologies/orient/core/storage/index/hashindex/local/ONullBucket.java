@@ -21,7 +21,6 @@
 package com.orientechnologies.orient.core.storage.index.hashindex.local;
 
 import java.io.IOException;
-
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.orient.core.storage.cache.OCacheEntry;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.base.ODurablePage;

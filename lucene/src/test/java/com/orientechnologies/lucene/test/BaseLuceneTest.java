@@ -18,16 +18,19 @@
 
 package com.orientechnologies.lucene.test;
 
-import com.orientechnologies.common.io.OIOUtils;
-import com.orientechnologies.orient.core.db.*;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.TestName;
-
 import java.io.IOException;
 import java.io.InputStream;
+import com.orientechnologies.common.io.OIOUtils;
+import com.orientechnologies.orient.core.db.ODatabase;
+import com.orientechnologies.orient.core.db.ODatabaseSession;
+import com.orientechnologies.orient.core.db.ODatabaseType;
+import com.orientechnologies.orient.core.db.OrientDB;
+import com.orientechnologies.orient.core.db.OrientDBConfig;
+import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 
 /**
  * Created by enricorisa on 19/09/14.

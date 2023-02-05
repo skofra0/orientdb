@@ -19,13 +19,17 @@
  */
 package com.orientechnologies.orient.core.record.impl;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.IdentityHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.db.record.ORecordElement;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.ORecordInternal;
-
-import java.util.*;
-import java.util.Map.Entry;
 
 /**
  * @author Emanuele Tagliafetti
@@ -86,7 +90,7 @@ public class ODirtyManager {
     this.updateRecords = mergeSet(this.updateRecords, toMerge.getUpdateRecords());
     if (toMerge.getReferences() != null) {
       if (references == null)
-        references = new IdentityHashMap<ODocument, List<OIdentifiable>>();
+        references = new IdentityHashMap<>();
       for (Entry<ODocument, List<OIdentifiable>> entry : toMerge.getReferences().entrySet()) {
         List<OIdentifiable> refs = references.get(entry.getKey());
         if (refs == null)
@@ -160,11 +164,11 @@ public class ODirtyManager {
     if (pointed.getIdentity().isNew()) {
       if (!(pointed instanceof ODocument) || !((ODocument) pointed).isEmbedded()) {
         if (references == null) {
-          references = new IdentityHashMap<ODocument, List<OIdentifiable>>();
+          references = new IdentityHashMap<>();
         }
         List<OIdentifiable> refs = references.get(pointing);
         if (refs == null) {
-          refs = new ArrayList<OIdentifiable>();
+          refs = new ArrayList<>();
           references.put((ODocument) pointing, refs);
         }
         refs.add(pointed);
@@ -172,11 +176,11 @@ public class ODirtyManager {
         List<OIdentifiable> point = ORecordInternal.getDirtyManager((ORecord) pointed).getPointed((ORecord) pointed);
         if (point != null && point.size() > 0) {
           if (references == null) {
-            references = new IdentityHashMap<ODocument, List<OIdentifiable>>();
+            references = new IdentityHashMap<>();
           }
           List<OIdentifiable> refs = references.get(pointing);
           if (refs == null) {
-            refs = new ArrayList<OIdentifiable>();
+            refs = new ArrayList<>();
             references.put((ODocument) pointing, refs);
           }
           for (OIdentifiable embPoint : point) {

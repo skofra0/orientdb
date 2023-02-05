@@ -18,15 +18,15 @@
 
 package com.orientechnologies.lucene.test;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import com.orientechnologies.lucene.index.OLuceneIndexNotUnique;
 import com.orientechnologies.orient.core.index.OIndex;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  * Created by Enrico Risa on 29/04/15.

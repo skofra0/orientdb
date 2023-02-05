@@ -17,12 +17,11 @@
  */
 package com.orientechnologies.common.factory;
 
-import com.orientechnologies.common.exception.OException;
-import com.orientechnologies.common.exception.OSystemException;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
+import com.orientechnologies.common.exception.OException;
+import com.orientechnologies.common.exception.OSystemException;
 
 /**
  * Configurable stateful factory. New instances are created when newInstance() is called, invoking its default empty constructor.
@@ -33,7 +32,7 @@ import java.util.Set;
  *          Instance type
  */
 public class OConfigurableStatefulFactory<K, V> {
-  protected final Map<K, Class<? extends V>> registry = new LinkedHashMap<K, Class<? extends V>>();
+  protected final Map<K, Class<? extends V>> registry = new LinkedHashMap<>();
   protected Class<? extends V>               defaultClass;
 
   public Class<? extends V> get(final K iKey) {

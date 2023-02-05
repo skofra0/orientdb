@@ -20,10 +20,9 @@
 
 package com.orientechnologies.orient.core.command;
 
+import java.util.Set;
 import com.orientechnologies.orient.core.replication.OAsyncReplicationError;
 import com.orientechnologies.orient.core.replication.OAsyncReplicationOk;
-
-import java.util.Set;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)

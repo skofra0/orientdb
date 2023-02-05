@@ -1,16 +1,14 @@
 package com.orientechnologies.distribution.integration.demodb;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+import java.util.List;
+import java.util.stream.Collectors;
 import com.orientechnologies.distribution.integration.OIntegrationTestTemplate;
 import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
-import org.junit.Test;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
 
 /**
  * Created by frank on 15/03/2017.

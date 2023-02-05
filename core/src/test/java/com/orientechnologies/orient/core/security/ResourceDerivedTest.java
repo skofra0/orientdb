@@ -19,20 +19,16 @@
 
 package com.orientechnologies.orient.core.security;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import java.util.List;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.exception.OSecurityAccessException;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.List;
 
 /**
  * @author SDIPro
@@ -92,7 +88,7 @@ public class ResourceDerivedTest {
   }
 
   private List<ODocument> query(String sql, Object ... params) {
-    OSQLSynchQuery<ODocument> query = new OSQLSynchQuery<ODocument>(sql);
+    OSQLSynchQuery<ODocument> query = new OSQLSynchQuery<>(sql);
     return query.run(params);
   }
 

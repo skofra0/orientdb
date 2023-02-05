@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class OMatchExpression extends SimpleNode {
   protected OMatchFilter origin;
-  protected List<OMatchPathItem> items = new ArrayList<OMatchPathItem>();
+  protected List<OMatchPathItem> items = new ArrayList<>();
 
   public OMatchExpression(int id) {
     super(id);

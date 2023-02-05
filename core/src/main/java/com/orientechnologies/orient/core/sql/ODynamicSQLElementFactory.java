@@ -20,7 +20,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunction;
@@ -36,8 +35,8 @@ import com.orientechnologies.orient.core.sql.operator.OQueryOperatorFactory;
 public class ODynamicSQLElementFactory implements OCommandExecutorSQLFactory, OQueryOperatorFactory, OSQLFunctionFactory {
 
   // Used by SQLEngine to register on the fly new elements
-  static final Map<String, Object>                                       FUNCTIONS = new ConcurrentHashMap<String, Object>();
-  static final Map<String, Class<? extends OCommandExecutorSQLAbstract>> COMMANDS  = new ConcurrentHashMap<String, Class<? extends OCommandExecutorSQLAbstract>>();
+  static final Map<String, Object>                                       FUNCTIONS = new ConcurrentHashMap<>();
+  static final Map<String, Class<? extends OCommandExecutorSQLAbstract>> COMMANDS  = new ConcurrentHashMap<>();
   static final Set<OQueryOperator>                                       OPERATORS = Collections
                                                                                        .synchronizedSet(new HashSet<OQueryOperator>());
 

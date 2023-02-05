@@ -19,9 +19,8 @@
  */
 package com.orientechnologies.orient.core.storage.cache;
 
-import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OLogSequenceNumber;
-
 import java.io.IOException;
+import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OLogSequenceNumber;
 
 /**
  * This class is heart of OrientDB storage model it presents disk backed data cache which works with direct memory.

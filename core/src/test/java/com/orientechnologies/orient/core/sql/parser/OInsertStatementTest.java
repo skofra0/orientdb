@@ -1,11 +1,9 @@
 package com.orientechnologies.orient.core.sql.parser;
 
+import static org.junit.Assert.fail;
 import org.junit.Test;
-
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-
-import static org.junit.Assert.fail;
 
 public class OInsertStatementTest {
 

@@ -19,16 +19,15 @@
  */
 package com.orientechnologies.common.directmemory;
 
-import com.orientechnologies.common.log.OLogManager;
-import com.orientechnologies.orient.core.config.OContextConfiguration;
-import com.orientechnologies.orient.core.config.OGlobalConfiguration;
-
 import java.nio.ByteBuffer;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
+import com.orientechnologies.common.log.OLogManager;
+import com.orientechnologies.orient.core.config.OContextConfiguration;
+import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 
 /**
  * Object of this class works at the same time as factory for <code>DirectByteBuffer</code> objects and pool for

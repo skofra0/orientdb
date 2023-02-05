@@ -19,16 +19,15 @@
  */
 package com.orientechnologies.orient.core.sql.functions.math;
 
-import com.orientechnologies.common.collection.OMultiValue;
-import com.orientechnologies.orient.core.command.OCommandContext;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.metadata.schema.OType;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.orientechnologies.common.collection.OMultiValue;
+import com.orientechnologies.orient.core.command.OCommandContext;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.metadata.schema.OType;
 
 /**
  * Compute the average value for a field. Uses the context to save the last average number. When different Number class are used,
@@ -83,7 +82,7 @@ public class OSQLFunctionAverage extends OSQLFunctionMathAbstract {
   @Override
   public Object getResult() {
     if (returnDistributedResult()) {
-      final Map<String, Object> doc = new HashMap<String, Object>();
+      final Map<String, Object> doc = new HashMap<>();
       doc.put("sum", sum);
       doc.put("total", total);
       return doc;

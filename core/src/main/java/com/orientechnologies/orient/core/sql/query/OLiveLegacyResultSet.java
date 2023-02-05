@@ -1,7 +1,5 @@
 package com.orientechnologies.orient.core.sql.query;
 
-import com.orientechnologies.common.log.OLogManager;
-
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
@@ -11,13 +9,14 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import com.orientechnologies.common.log.OLogManager;
 
 /**
  * Created by luigidellaquila on 18/03/15.
  */
 public class OLiveLegacyResultSet<T> extends OConcurrentLegacyResultSet<T> {
 
-  final BlockingQueue<T> queue = new LinkedBlockingQueue<T>();
+  final BlockingQueue<T> queue = new LinkedBlockingQueue<>();
 
   public OLiveLegacyResultSet() {
   }
@@ -64,7 +63,7 @@ public class OLiveLegacyResultSet<T> extends OConcurrentLegacyResultSet<T> {
 
   @Override
   public Iterator<T> iterator() {
-    return new Iterator<T>() {
+    return new Iterator<>() {
 
       @Override
       public boolean hasNext() {
@@ -232,7 +231,7 @@ public class OLiveLegacyResultSet<T> extends OConcurrentLegacyResultSet<T> {
   }
 
   public OLiveLegacyResultSet<T> copy() {
-    OLiveLegacyResultSet<T> newValue = new OLiveLegacyResultSet<T>();
+    OLiveLegacyResultSet<T> newValue = new OLiveLegacyResultSet<>();
     return newValue;
   }
 }

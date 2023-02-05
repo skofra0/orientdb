@@ -1,7 +1,8 @@
 package com.orientechnologies.orient.core.index;
 
+import org.junit.After;
+import org.junit.Before;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
-import org.junit.Before; import org.junit.After;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)

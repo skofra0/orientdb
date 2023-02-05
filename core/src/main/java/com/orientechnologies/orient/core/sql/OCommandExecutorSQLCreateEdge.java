@@ -19,6 +19,12 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.util.OPair;
 import com.orientechnologies.orient.core.command.OCommandDistributedReplicateRequest;
@@ -36,8 +42,6 @@ import com.orientechnologies.orient.core.record.OElement;
 import com.orientechnologies.orient.core.record.OVertex;
 import com.orientechnologies.orient.core.sql.filter.OSQLFilterItem;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunctionRuntime;
-
-import java.util.*;
 
 /**
  * SQL CREATE EDGE command.
@@ -89,7 +93,7 @@ public class OCommandExecutorSQLCreateEdge extends OCommandExecutorSQLSetAware i
           to = parserRequiredWord(false, "Syntax error", " =><,\r\n");
 
         } else if (temp.equals(KEYWORD_SET)) {
-          fields = new ArrayList<OPair<String, Object>>();
+          fields = new ArrayList<>();
           parseSetFields(clazz, fields);
 
         } else if (temp.equals(KEYWORD_CONTENT)) {
@@ -156,7 +160,7 @@ public class OCommandExecutorSQLCreateEdge extends OCommandExecutorSQLSetAware i
       throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");
 
     ODatabaseDocumentInternal db = getDatabase();
-    final List<Object> edges = new ArrayList<Object>();
+    final List<Object> edges = new ArrayList<>();
     Set<OIdentifiable> fromIds = null;
     Set<OIdentifiable> toIds = null;
     db.begin();

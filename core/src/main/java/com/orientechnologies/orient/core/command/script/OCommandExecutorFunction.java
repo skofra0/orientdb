@@ -19,6 +19,13 @@
  */
 package com.orientechnologies.orient.core.command.script;
 
+import java.util.Map;
+import java.util.Map.Entry;
+import javax.script.Bindings;
+import javax.script.Invocable;
+import javax.script.ScriptContext;
+import javax.script.ScriptEngine;
+import javax.script.ScriptException;
 import com.orientechnologies.common.concur.resource.OPartitionedObjectPool;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.log.OLogManager;
@@ -32,10 +39,6 @@ import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.metadata.function.OFunction;
 import com.orientechnologies.orient.core.metadata.security.ORole;
 import com.orientechnologies.orient.core.metadata.security.ORule;
-
-import javax.script.*;
-import java.util.Map;
-import java.util.Map.Entry;
 
 /**
  * Executes Script Commands.

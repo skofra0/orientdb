@@ -1,19 +1,24 @@
 package com.orientechnologies.orient.core.record.impl;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OType;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.math.BigDecimal;
-import java.util.*;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class ODocumentFieldConversionTest {
 
@@ -769,7 +774,7 @@ public class ODocumentFieldConversionTest {
   @Test
   public void testMapIntegerConversion() {
     ODatabaseRecordThreadLocal.instance().set(db);
-    Map<String, Object> values = new HashMap<String, Object>();
+    Map<String, Object> values = new HashMap<>();
     ODocument doc = new ODocument(clazz);
     doc.field("integerMap", values);
     fillMap(values);
@@ -785,7 +790,7 @@ public class ODocumentFieldConversionTest {
   @Test
   public void testMapLongConversion() {
     ODatabaseRecordThreadLocal.instance().set(db);
-    Map<String, Object> values = new HashMap<String, Object>();
+    Map<String, Object> values = new HashMap<>();
     ODocument doc = new ODocument(clazz);
     doc.field("longMap", values);
     fillMap(values);
@@ -801,7 +806,7 @@ public class ODocumentFieldConversionTest {
   @Test
   public void testMapByteConversion() {
     ODatabaseRecordThreadLocal.instance().set(db);
-    Map<String, Object> values = new HashMap<String, Object>();
+    Map<String, Object> values = new HashMap<>();
     ODocument doc = new ODocument(clazz);
     doc.field("byteMap", values);
     fillMap(values);
@@ -817,7 +822,7 @@ public class ODocumentFieldConversionTest {
   @Test
   public void testMapFloatConversion() {
     ODatabaseRecordThreadLocal.instance().set(db);
-    Map<String, Object> values = new HashMap<String, Object>();
+    Map<String, Object> values = new HashMap<>();
     ODocument doc = new ODocument(clazz);
     doc.field("floatMap", values);
     fillMap(values);
@@ -833,7 +838,7 @@ public class ODocumentFieldConversionTest {
   @Test
   public void testMapDoubleConversion() {
     ODatabaseRecordThreadLocal.instance().set(db);
-    Map<String, Object> values = new HashMap<String, Object>();
+    Map<String, Object> values = new HashMap<>();
     ODocument doc = new ODocument(clazz);
     doc.field("doubleMap", values);
     fillMap(values);
@@ -849,7 +854,7 @@ public class ODocumentFieldConversionTest {
   @Test
   public void testMapDecimalConversion() {
     ODatabaseRecordThreadLocal.instance().set(db);
-    Map<String, Object> values = new HashMap<String, Object>();
+    Map<String, Object> values = new HashMap<>();
     ODocument doc = new ODocument(clazz);
     doc.field("decimalMap", values);
     fillMap(values);
@@ -865,7 +870,7 @@ public class ODocumentFieldConversionTest {
   @Test
   public void testMapStringConversion() {
     ODatabaseRecordThreadLocal.instance().set(db);
-    Map<String, Object> values = new HashMap<String, Object>();
+    Map<String, Object> values = new HashMap<>();
     ODocument doc = new ODocument(clazz);
     doc.field("stringMap", values);
     fillMap(values);
@@ -881,7 +886,7 @@ public class ODocumentFieldConversionTest {
   @Test
   public void testMapDateConversion() {
     ODatabaseRecordThreadLocal.instance().set(db);
-    Map<String, Object> values = new HashMap<String, Object>();
+    Map<String, Object> values = new HashMap<>();
     ODocument doc = new ODocument(clazz);
     doc.field("dateMap", values);
     values.put("first", (byte) 1);

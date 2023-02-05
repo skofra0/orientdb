@@ -19,6 +19,9 @@
  */
 package com.orientechnologies.orient.core.storage.impl.local.paginated;
 
+import java.io.IOException;
+import java.util.Map;
+import java.util.NavigableMap;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
@@ -29,10 +32,6 @@ import com.orientechnologies.orient.core.storage.index.sbtreebonsai.local.OSBTre
 import com.orientechnologies.orient.core.storage.ridbag.sbtree.Change;
 import com.orientechnologies.orient.core.storage.ridbag.sbtree.OBonsaiCollectionPointer;
 import com.orientechnologies.orient.core.storage.ridbag.sbtree.OSBTreeCollectionManager;
-
-import java.io.IOException;
-import java.util.Map;
-import java.util.NavigableMap;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)

@@ -19,6 +19,8 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.Iterator;
+import java.util.Map;
 import com.orientechnologies.common.concur.lock.OInterruptedException;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.command.OCommandDistributedReplicateRequest;
@@ -30,9 +32,6 @@ import com.orientechnologies.orient.core.db.record.ridbag.ORidBag;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.intent.OIntentMassiveInsert;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-
-import java.util.Iterator;
-import java.util.Map;
 
 /**
  * SQL ALTER DATABASE command: Changes an attribute of the current database.

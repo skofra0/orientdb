@@ -1,12 +1,8 @@
 package com.orientechnologies.orient.core.db.record;
 
-import com.orientechnologies.orient.core.db.record.OMultiValueChangeEvent;
-import com.orientechnologies.orient.core.db.record.OMultiValueChangeListener;
-import com.orientechnologies.orient.core.db.record.OTrackedMultiValue;
+import java.lang.ref.WeakReference;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.record.impl.ONestedMultiValueChangeEvent;
-
-import java.lang.ref.WeakReference;
 
 /**
  * Created by tglman on 11/03/16.
@@ -19,7 +15,7 @@ public class ONestedValueChangeListener<K, V> implements OMultiValueChangeListen
   private ONestedMultiValueChangeEvent<K, V> nestedEvent;
 
   public ONestedValueChangeListener(ODocument ownerDoc, OTrackedMultiValue ownerCollection, OTrackedMultiValue currentCollecion) {
-    this.ownerDoc = new WeakReference<ODocument>(ownerDoc);
+    this.ownerDoc = new WeakReference<>(ownerDoc);
     this.ownerCollection = ownerCollection;
     this.currentCollecion = currentCollecion;
   }

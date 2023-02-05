@@ -19,6 +19,31 @@
  */
 package com.orientechnologies.orient.console;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Optional;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.common.console.TTYConsoleReader;
 import com.orientechnologies.common.console.annotation.ConsoleCommand;
@@ -90,31 +115,6 @@ import com.orientechnologies.orient.core.util.OURLConnection;
 import com.orientechnologies.orient.core.util.OURLHelper;
 import com.orientechnologies.orient.server.config.OServerConfigurationManager;
 import com.orientechnologies.orient.server.config.OServerUserConfiguration;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.lang.reflect.Array;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Optional;
-import java.util.Scanner;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutputListener, OProgressListener {
   protected ODatabaseDocumentInternal currentDatabase;
@@ -326,7 +326,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
 
   protected Map<String, String> parseCommandOptions(
       @ConsoleParameter(name = "[options]", optional = true, description = "Additional options, example: -encryption=aes -compression=nothing") String options) {
-    final Map<String, String> omap = new HashMap<String, String>();
+    final Map<String, String> omap = new HashMap<>();
     if (options != null) {
       final List<String> kvOptions = OStringSerializerHelper.smartSplit(options, ',', false);
       for (String option : kvOptions) {
@@ -361,7 +361,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
     OrientDBRemote remote = (OrientDBRemote) OrientDBInternal.extract(orientDB);
     final ODocument serverInfo = remote.getServerInfo(currentDatabaseUserName, currentDatabaseUserPassword);
 
-    final List<OIdentifiable> resultSet = new ArrayList<OIdentifiable>();
+    final List<OIdentifiable> resultSet = new ArrayList<>();
 
     final List<Map<String, Object>> connections = serverInfo.field("connections");
     for (Map<String, Object> conn : connections) {
@@ -981,7 +981,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
         setResultset((List<OIdentifiable>) result);
         dumpResultSet(-1);
       } else if (result instanceof Iterator<?>) {
-        final List<OIdentifiable> list = new ArrayList<OIdentifiable>();
+        final List<OIdentifiable> list = new ArrayList<>();
         while (((Iterator) result).hasNext())
           list.add(((Iterator<OIdentifiable>) result).next());
         setResultset(list);
@@ -1305,7 +1305,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
     message("\n\nDATABASE PROPERTIES");
 
     if (dbCfg.getProperties() != null) {
-      final List<ODocument> resultSet = new ArrayList<ODocument>();
+      final List<ODocument> resultSet = new ArrayList<>();
 
       if (dbCfg.getName() != null)
         resultSet.add(new ODocument().field("NAME", "Name").field("VALUE", dbCfg.getName()));
@@ -1332,7 +1332,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
       if (!dbCfg.getProperties().isEmpty()) {
         message("\n\nDATABASE CUSTOM PROPERTIES:");
 
-        final List<ODocument> dbResultSet = new ArrayList<ODocument>();
+        final List<ODocument> dbResultSet = new ArrayList<>();
 
         for (OStorageEntryConfiguration cfg : dbCfg.getProperties())
           dbResultSet.add(new ODocument().field("NAME", cfg.name).field("VALUE", cfg.value));
@@ -1402,7 +1402,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
     if (cls.properties().size() > 0) {
       message("\n\nPROPERTIES");
 
-      final List<ODocument> resultSet = new ArrayList<ODocument>();
+      final List<ODocument> resultSet = new ArrayList<>();
 
       for (final OProperty p : cls.properties()) {
         try {
@@ -1435,7 +1435,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
     if (!indexes.isEmpty()) {
       message("\n\nINDEXES (" + indexes.size() + " altogether)");
 
-      final List<ODocument> resultSet = new ArrayList<ODocument>();
+      final List<ODocument> resultSet = new ArrayList<>();
 
       for (final OIndex<?> index : indexes) {
         final ODocument row = new ODocument();
@@ -1460,7 +1460,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
     if (cls.getCustomKeys().size() > 0) {
       message("\n\nCUSTOM ATTRIBUTES");
 
-      final List<ODocument> resultSet = new ArrayList<ODocument>();
+      final List<ODocument> resultSet = new ArrayList<>();
 
       for (final String k : cls.getCustomKeys()) {
         try {
@@ -1523,7 +1523,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
     if (prop.getCustomKeys().size() > 0) {
       message("\n\nCUSTOM ATTRIBUTES");
 
-      final List<ODocument> resultSet = new ArrayList<ODocument>();
+      final List<ODocument> resultSet = new ArrayList<>();
 
       for (final String k : prop.getCustomKeys()) {
         try {
@@ -1548,7 +1548,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
     if (!indexes.isEmpty()) {
       message("\n\nINDEXES (" + indexes.size() + " altogether)");
 
-      final List<ODocument> resultSet = new ArrayList<ODocument>();
+      final List<ODocument> resultSet = new ArrayList<>();
 
       for (final OIndex<?> index : indexes) {
         final ODocument row = new ODocument();
@@ -1575,12 +1575,12 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
     if (currentDatabaseName != null) {
       message("\n\nINDEXES");
 
-      final List<ODocument> resultSet = new ArrayList<ODocument>();
+      final List<ODocument> resultSet = new ArrayList<>();
 
       int totalIndexes = 0;
       long totalRecords = 0;
 
-      final List<OIndex<?>> indexes = new ArrayList<OIndex<?>>(currentDatabase.getMetadata().getIndexManager().getIndexes());
+      final List<OIndex<?>> indexes = new ArrayList<>(currentDatabase.getMetadata().getIndexManager().getIndexes());
       Collections.sort(indexes, new Comparator<OIndex<?>>() {
         public int compare(OIndex<?> o1, OIndex<?> o2) {
           return o1.getName().compareToIgnoreCase(o2.getName());
@@ -1654,7 +1654,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
     if (currentDatabaseName != null) {
       message("\n\nCLUSTERS (collections)");
 
-      final List<ODocument> resultSet = new ArrayList<ODocument>();
+      final List<ODocument> resultSet = new ArrayList<>();
 
       int clusterId;
       long totalElements = 0;
@@ -1662,7 +1662,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
       long totalTombstones = 0;
       long count;
 
-      final List<String> clusters = new ArrayList<String>(currentDatabase.getClusterNames());
+      final List<String> clusters = new ArrayList<>(currentDatabase.getClusterNames());
       Collections.sort(clusters);
 
       ODocument dClusters = null;
@@ -1706,7 +1706,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
               dClusterCfg = dClusters.field("*");
 
             if (dClusterCfg != null) {
-              final List<String> servers = new ArrayList<String>((Collection<? extends String>) dClusterCfg.field("servers"));
+              final List<String> servers = new ArrayList<>((Collection<? extends String>) dClusterCfg.field("servers"));
               final boolean newNode = servers.remove("<NEW_NODE>");
               if (!servers.isEmpty()) {
                 row.field("OWNER_SERVER", servers.get(0));
@@ -1769,13 +1769,13 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
     if (currentDatabaseName != null) {
       message("\n\nCLASSES");
 
-      final List<ODocument> resultSet = new ArrayList<ODocument>();
+      final List<ODocument> resultSet = new ArrayList<>();
 
       long totalElements = 0;
       long count;
 
       currentDatabase.getMetadata().reload();
-      final List<OClass> classes = new ArrayList<OClass>(currentDatabase.getMetadata().getImmutableSchemaSnapshot().getClasses());
+      final List<OClass> classes = new ArrayList<>(currentDatabase.getMetadata().getImmutableSchemaSnapshot().getClasses());
       Collections.sort(classes, new Comparator<OClass>() {
         public int compare(OClass o1, OClass o2) {
           return o1.getName().compareToIgnoreCase(o2.getName());
@@ -1848,7 +1848,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
       return;
     }
 
-    final List<OIdentifiable> servers = new ArrayList<OIdentifiable>();
+    final List<OIdentifiable> servers = new ArrayList<>();
 
     final Collection<ODocument> members = distribCfg.field("members");
 
@@ -2257,7 +2257,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
   public void properties() {
     message("\nPROPERTIES:");
 
-    final List<ODocument> resultSet = new ArrayList<ODocument>();
+    final List<ODocument> resultSet = new ArrayList<>();
 
     for (Entry<String, String> p : properties.entrySet()) {
       final ODocument row = new ODocument();
@@ -2398,7 +2398,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
 
       message("\nREMOTE SERVER CONFIGURATION");
 
-      final List<ODocument> resultSet = new ArrayList<ODocument>();
+      final List<ODocument> resultSet = new ArrayList<>();
 
       for (Entry<String, String> p : values.entrySet()) {
         final ODocument row = new ODocument();
@@ -2418,7 +2418,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
       // LOCAL STORAGE
       message("\nLOCAL SERVER CONFIGURATION");
 
-      final List<ODocument> resultSet = new ArrayList<ODocument>();
+      final List<ODocument> resultSet = new ArrayList<>();
 
       for (OGlobalConfiguration cfg : OGlobalConfiguration.values()) {
         final ODocument row = new ODocument();
@@ -2766,10 +2766,10 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
       if (currentResult instanceof List<?>)
         currentResultSet = (List<OIdentifiable>) currentResult;
       else if (currentResult instanceof Collection<?>) {
-        currentResultSet = new ArrayList<OIdentifiable>();
+        currentResultSet = new ArrayList<>();
         currentResultSet.addAll((Collection<? extends OIdentifiable>) currentResult);
       } else if (currentResult.getClass().isArray()) {
-        currentResultSet = new ArrayList<OIdentifiable>();
+        currentResultSet = new ArrayList<>();
         Collections.addAll(currentResultSet, (OIdentifiable[]) currentResult);
       }
 
@@ -2812,7 +2812,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
   }
 
   protected Map<String, List<String>> parseOptions(final String iOptions) {
-    final Map<String, List<String>> options = new HashMap<String, List<String>>();
+    final Map<String, List<String>> options = new HashMap<>();
     if (iOptions != null) {
       final List<String> opts = OStringSerializerHelper.smartSplit(iOptions, ' ');
       for (String o : opts) {
@@ -2846,7 +2846,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
         message("\nDOCUMENT @class:%s @rid:%s @version:%d", rec.getClassName(), rec.getIdentity().toString(), rec.getVersion());
       }
 
-      final List<ODocument> resultSet = new ArrayList<ODocument>();
+      final List<ODocument> resultSet = new ArrayList<>();
 
       Object value;
       for (String fieldName : rec.getPropertyNames()) {
@@ -2854,7 +2854,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
         if (value instanceof byte[])
           value = "byte[" + ((byte[]) value).length + "]";
         else if (value instanceof Iterator<?>) {
-          final List<Object> coll = new ArrayList<Object>();
+          final List<Object> coll = new ArrayList<>();
           while (((Iterator<?>) value).hasNext())
             coll.add(((Iterator<?>) value).next());
           value = coll;

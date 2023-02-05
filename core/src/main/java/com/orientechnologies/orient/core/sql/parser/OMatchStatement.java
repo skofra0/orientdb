@@ -2,11 +2,31 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=true,TRACK_TOKENS=true,NODE_PREFIX=O,NODE_EXTENDS=,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package com.orientechnologies.orient.core.sql.parser;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.IdentityHashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import com.orientechnologies.common.exception.OErrorCode;
 import com.orientechnologies.common.listener.OProgressListener;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.util.OPair;
-import com.orientechnologies.orient.core.command.*;
+import com.orientechnologies.orient.core.command.OBasicCommandContext;
+import com.orientechnologies.orient.core.command.OCommandContext;
+import com.orientechnologies.orient.core.command.OCommandExecutor;
+import com.orientechnologies.orient.core.command.OCommandRequest;
+import com.orientechnologies.orient.core.command.OCommandRequestText;
 import com.orientechnologies.orient.core.db.ODatabase;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
@@ -23,17 +43,15 @@ import com.orientechnologies.orient.core.sql.OCommandExecutorSQLResultsetDelegat
 import com.orientechnologies.orient.core.sql.OCommandExecutorSQLSelect;
 import com.orientechnologies.orient.core.sql.OCommandSQLParsingException;
 import com.orientechnologies.orient.core.sql.OIterableRecordSource;
-import com.orientechnologies.orient.core.sql.executor.*;
+import com.orientechnologies.orient.core.sql.executor.OInternalExecutionPlan;
+import com.orientechnologies.orient.core.sql.executor.OMatchExecutionPlanner;
+import com.orientechnologies.orient.core.sql.executor.OResultSet;
+import com.orientechnologies.orient.core.sql.executor.PatternEdge;
+import com.orientechnologies.orient.core.sql.executor.PatternNode;
 import com.orientechnologies.orient.core.sql.filter.OSQLTarget;
 import com.orientechnologies.orient.core.sql.query.OBasicLegacyResultSet;
 import com.orientechnologies.orient.core.sql.query.OSQLAsynchQuery;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.util.*;
-import java.util.stream.Collectors;
 
 public class OMatchStatement extends OStatement implements OCommandExecutor, OIterableRecordSource {
 
@@ -55,9 +73,9 @@ public class OMatchStatement extends OStatement implements OCommandExecutor, OIt
   public class MatchContext {
     int currentEdgeNumber = 0;
 
-    Map<String, Iterable>      candidates   = new LinkedHashMap<String, Iterable>();
-    Map<String, OIdentifiable> matched      = new LinkedHashMap<String, OIdentifiable>();
-    Map<PatternEdge, Boolean>  matchedEdges = new IdentityHashMap<PatternEdge, Boolean>();
+    Map<String, Iterable>      candidates   = new LinkedHashMap<>();
+    Map<String, OIdentifiable> matched      = new LinkedHashMap<>();
+    Map<PatternEdge, Boolean>  matchedEdges = new IdentityHashMap<>();
 
     public MatchContext copy(String alias, OIdentifiable value) {
       MatchContext result = new MatchContext();
@@ -93,7 +111,7 @@ public class OMatchStatement extends OStatement implements OCommandExecutor, OIt
 
   public static class MatchExecutionPlan {
     public List<EdgeTraversal> sortedEdges;
-    public Map<String, Long>   preFetchedAliases = new HashMap<String, Long>();
+    public Map<String, Long>   preFetchedAliases = new HashMap<>();
     public String              rootAlias;
   }
 
@@ -210,7 +228,7 @@ public class OMatchStatement extends OStatement implements OCommandExecutor, OIt
       request = (OSQLAsynchQuery<ODocument>) iRequest;
     } else {
       // BUILD A QUERY OBJECT FROM THE COMMAND REQUEST
-      request = new OSQLSynchQuery<ODocument>(textRequest.getText());
+      request = new OSQLSynchQuery<>(textRequest.getText());
       if (textRequest.getResultListener() != null) {
         request.setResultListener(textRequest.getResultListener());
       }
@@ -257,8 +275,8 @@ public class OMatchStatement extends OStatement implements OCommandExecutor, OIt
       pattern.addExpression(expr);
     }
 
-    Map<String, OWhereClause> aliasFilters = new LinkedHashMap<String, OWhereClause>();
-    Map<String, String> aliasClasses = new LinkedHashMap<String, String>();
+    Map<String, OWhereClause> aliasFilters = new LinkedHashMap<>();
+    Map<String, String> aliasClasses = new LinkedHashMap<>();
     for (OMatchExpression expr : this.matchExpressions) {
       addAliases(expr, aliasFilters, aliasClasses, context);
     }
@@ -413,7 +431,7 @@ public class OMatchStatement extends OStatement implements OCommandExecutor, OIt
       dependencies.remove(startNode.alias);
     }
 
-    Map<PatternEdge, Boolean> edges = new LinkedHashMap<PatternEdge, Boolean>();
+    Map<PatternEdge, Boolean> edges = new LinkedHashMap<>();
     for (PatternEdge outEdge : startNode.out) {
       edges.put(outEdge, true);
     }
@@ -480,10 +498,10 @@ public class OMatchStatement extends OStatement implements OCommandExecutor, OIt
    * @return map of alias to the set of aliases it depends on
    */
   private Map<String, Set<String>> getDependencies(Pattern pattern) {
-    Map<String, Set<String>> result = new HashMap<String, Set<String>>();
+    Map<String, Set<String>> result = new HashMap<>();
 
     for (PatternNode node : pattern.aliasToNode.values()) {
-      Set<String> currentDependencies = new HashSet<String>();
+      Set<String> currentDependencies = new HashSet<>();
 
       OWhereClause filter = aliasFilters.get(node.alias);
       if (filter != null && filter.baseExpression != null) {
@@ -503,20 +521,20 @@ public class OMatchStatement extends OStatement implements OCommandExecutor, OIt
    * sort edges in the order they will be matched
    */
   private List<EdgeTraversal> getTopologicalSortedSchedule(Map<String, Long> estimatedRootEntries, Pattern pattern) {
-    List<EdgeTraversal> resultingSchedule = new ArrayList<EdgeTraversal>();
+    List<EdgeTraversal> resultingSchedule = new ArrayList<>();
     Map<String, Set<String>> remainingDependencies = getDependencies(pattern);
-    Set<PatternNode> visitedNodes = new HashSet<PatternNode>();
-    Set<PatternEdge> visitedEdges = new HashSet<PatternEdge>();
+    Set<PatternNode> visitedNodes = new HashSet<>();
+    Set<PatternEdge> visitedEdges = new HashSet<>();
 
     // Sort the possible root vertices in order of estimated size, since we want to start with a small vertex set.
-    List<OPair<Long, String>> rootWeights = new ArrayList<OPair<Long, String>>();
+    List<OPair<Long, String>> rootWeights = new ArrayList<>();
     for (Map.Entry<String, Long> root : estimatedRootEntries.entrySet()) {
-      rootWeights.add(new OPair<Long, String>(root.getValue(), root.getKey()));
+      rootWeights.add(new OPair<>(root.getValue(), root.getKey()));
     }
     Collections.sort(rootWeights);
 
     // Add the starting vertices, in the correct order, to an ordered set.
-    Set<String> remainingStarts = new LinkedHashSet<String>();
+    Set<String> remainingStarts = new LinkedHashSet<>();
     for (OPair<Long, String> item : rootWeights) {
       remainingStarts.add(item.getValue());
     }
@@ -531,7 +549,7 @@ public class OMatchStatement extends OStatement implements OCommandExecutor, OIt
       // Start a new depth-first pass, adding all nodes with satisfied dependencies.
       // 1. Find a starting vertex for the depth-first pass.
       PatternNode startingNode = null;
-      List<String> startsToRemove = new ArrayList<String>();
+      List<String> startsToRemove = new ArrayList<>();
       for (String currentAlias : remainingStarts) {
         PatternNode currentNode = pattern.aliasToNode.get(currentAlias);
 
@@ -622,7 +640,7 @@ public class OMatchStatement extends OStatement implements OCommandExecutor, OIt
 
     if (allCandidates == null) {
       OSelectStatement select = buildSelectStatement(aliasClasses.get(smallestAlias), aliasFilters.get(smallestAlias));
-      allCandidates = (Iterable) getDatabase().query(new OSQLSynchQuery<Object>(select.toString()));
+      allCandidates = (Iterable) getDatabase().query(new OSQLSynchQuery<>(select.toString()));
     }
 
     if (!processContextFromCandidates(pattern, executionPlan, matchContext, aliasClasses, aliasFilters, iCommandContext, request,
@@ -648,7 +666,7 @@ public class OMatchStatement extends OStatement implements OCommandExecutor, OIt
   private Iterable<OIdentifiable> fetchAliasCandidates(String nextAlias, Map<String, OWhereClause> aliasFilters,
       OCommandContext iCommandContext, Map<String, String> aliasClasses) {
     Iterator<OIdentifiable> it = query(aliasClasses.get(nextAlias), aliasFilters.get(nextAlias), iCommandContext);
-    Set<OIdentifiable> result = new HashSet<OIdentifiable>();
+    Set<OIdentifiable> result = new HashSet<>();
     while (it.hasNext()) {
       result.add(it.next().getIdentity());
     }
@@ -1190,13 +1208,13 @@ public class OMatchStatement extends OStatement implements OCommandExecutor, OIt
 
   private Map<String, Long> estimateRootEntries(Map<String, String> aliasClasses, Map<String, OWhereClause> aliasFilters,
       OCommandContext ctx) {
-    Set<String> allAliases = new LinkedHashSet<String>();
+    Set<String> allAliases = new LinkedHashSet<>();
     allAliases.addAll(aliasClasses.keySet());
     allAliases.addAll(aliasFilters.keySet());
 
     OSchema schema = getDatabase().getMetadata().getSchema();
 
-    Map<String, Long> result = new LinkedHashMap<String, Long>();
+    Map<String, Long> result = new LinkedHashMap<>();
     for (String alias : allAliases) {
       String className = aliasClasses.get(alias);
       if (className == null) {

@@ -19,6 +19,9 @@
  */
 package com.orientechnologies.orient.core.metadata.function;
 
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.common.concur.ONeedRetryException;
 import com.orientechnologies.common.util.OCallable;
 import com.orientechnologies.orient.core.Orient;
@@ -33,10 +36,6 @@ import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.type.ODocumentWrapper;
-
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Stored function. It contains language and code to execute as a function. The execute() takes parameters. The function is
@@ -144,7 +143,7 @@ public class OFunction extends ODocumentWrapper {
     Map<Object, Object> args = null;
 
     if (iArgs.length > 0) {
-      args = new LinkedHashMap<Object, Object>();
+      args = new LinkedHashMap<>();
       for (int i = 0; i < iArgs.length; ++i) {
         // final Object argValue = ORecordSerializerStringAbstract.getTypeValue(iArgs[i].toString());
         final Object argValue = iArgs[i];
@@ -170,7 +169,7 @@ public class OFunction extends ODocumentWrapper {
   @Deprecated
   public Object executeInContext(final OCommandContext iContext, final Map<String, Object> iArgs) {
     // CONVERT PARAMETERS IN A MAP
-    final Map<Object, Object> args = new LinkedHashMap<Object, Object>();
+    final Map<Object, Object> args = new LinkedHashMap<>();
 
     if (iArgs.size() > 0) {
       // PRESERVE THE ORDER FOR PARAMETERS (ARE USED AS POSITIONAL)

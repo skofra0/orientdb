@@ -19,8 +19,16 @@
  */
 package com.orientechnologies.orient.core.db.record;
 
-import java.util.*;
-
+import java.util.AbstractCollection;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.ORecordInternal;
 import com.orientechnologies.orient.core.record.impl.ODocument;
@@ -36,7 +44,7 @@ import com.orientechnologies.orient.core.record.impl.ODocumentInternal;
 public class ORecordTrackedSet extends AbstractCollection<OIdentifiable> implements Set<OIdentifiable>,
     OTrackedMultiValue<OIdentifiable, OIdentifiable>, ORecordElement {
   protected final ORecord                                               sourceRecord;
-  protected Map<OIdentifiable, Object>                                  map             = new HashMap<OIdentifiable, Object>();
+  protected Map<OIdentifiable, Object>                                  map             = new HashMap<>();
   private STATUS                                                        status          = STATUS.NOT_LOADED;
   protected final static Object                                         ENTRY_REMOVAL   = new Object();
   private List<OMultiValueChangeListener<OIdentifiable, OIdentifiable>> changeListeners;
@@ -66,7 +74,7 @@ public class ORecordTrackedSet extends AbstractCollection<OIdentifiable> impleme
     if (e instanceof ODocument)
       ODocumentInternal.addOwner((ODocument) e, this);
 
-    fireCollectionChangedEvent(new OMultiValueChangeEvent<OIdentifiable, OIdentifiable>(OMultiValueChangeEvent.OChangeType.ADD, e,
+    fireCollectionChangedEvent(new OMultiValueChangeEvent<>(OMultiValueChangeEvent.OChangeType.ADD, e,
         e));
     return true;
   }
@@ -83,7 +91,7 @@ public class ORecordTrackedSet extends AbstractCollection<OIdentifiable> impleme
         ODocumentInternal.removeOwner((ODocument) o, this);
 
       setDirty();
-      fireCollectionChangedEvent(new OMultiValueChangeEvent<OIdentifiable, OIdentifiable>(
+      fireCollectionChangedEvent(new OMultiValueChangeEvent<>(
           OMultiValueChangeEvent.OChangeType.REMOVE, (OIdentifiable) o, null, (OIdentifiable) o));
       return true;
     }
@@ -159,7 +167,7 @@ public class ORecordTrackedSet extends AbstractCollection<OIdentifiable> impleme
 
   public void addChangeListener(final OMultiValueChangeListener<OIdentifiable, OIdentifiable> changeListener) {
     if(changeListeners == null)
-      changeListeners = new LinkedList<OMultiValueChangeListener<OIdentifiable, OIdentifiable>>();
+      changeListeners = new LinkedList<>();
     changeListeners.add(changeListener);
   }
 
@@ -169,7 +177,7 @@ public class ORecordTrackedSet extends AbstractCollection<OIdentifiable> impleme
   }
 
   public Set<OIdentifiable> returnOriginalState(final List<OMultiValueChangeEvent<OIdentifiable, OIdentifiable>> events) {
-    final Set<OIdentifiable> reverted = new HashSet<OIdentifiable>(this);
+    final Set<OIdentifiable> reverted = new HashSet<>(this);
 
     final ListIterator<OMultiValueChangeEvent<OIdentifiable, OIdentifiable>> listIterator = events.listIterator(events.size());
 

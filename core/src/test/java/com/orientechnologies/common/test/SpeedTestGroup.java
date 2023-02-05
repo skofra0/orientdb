@@ -1,17 +1,16 @@
 package com.orientechnologies.common.test;
 
+import org.junit.After;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.TreeMap;
-
-import org.junit.After; import org.junit.Test;
 public abstract class SpeedTestGroup {
 	protected static final int												TIME_WAIT	= 1000;
 
-	protected List<SpeedTestAbstract>									tests			= new ArrayList<SpeedTestAbstract>();
-	protected HashMap<String, TreeMap<Long, String>>	results		= new HashMap<String, TreeMap<Long, String>>();
+	protected List<SpeedTestAbstract>									tests			= new ArrayList<>();
+	protected HashMap<String, TreeMap<Long, String>>	results		= new HashMap<>();
 
 	protected SpeedTestGroup() {
 	}
@@ -36,7 +35,7 @@ public abstract class SpeedTestGroup {
 	public void setResult(String iResultType, String iTestName, long iResult) {
 		TreeMap<Long, String> result = results.get(iResultType);
 		if (result == null) {
-			result = new TreeMap<Long, String>();
+			result = new TreeMap<>();
 			results.put(iResultType, result);
 		}
 		result.put(iResult, iTestName);

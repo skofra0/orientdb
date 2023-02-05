@@ -1,16 +1,15 @@
 package com.orientechnologies.distribution.integration.demodb;
 
-import com.orientechnologies.distribution.integration.OIntegrationTestTemplate;
-import com.orientechnologies.orient.core.sql.executor.OResult;
-import com.orientechnologies.orient.core.sql.executor.OResultSet;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-
 import java.util.List;
 import java.util.stream.Collectors;
+import com.orientechnologies.distribution.integration.OIntegrationTestTemplate;
+import com.orientechnologies.orient.core.sql.executor.OResult;
+import com.orientechnologies.orient.core.sql.executor.OResultSet;
 
 /**
  * Created by santo-it on 2017-08-27.

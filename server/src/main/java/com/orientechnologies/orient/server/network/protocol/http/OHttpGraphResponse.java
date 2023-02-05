@@ -19,6 +19,12 @@
  */
 package com.orientechnologies.orient.server.network.protocol.http;
 
+import java.io.IOException;
+import java.io.StringWriter;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
@@ -30,13 +36,6 @@ import com.orientechnologies.orient.core.record.OElement;
 import com.orientechnologies.orient.core.record.OVertex;
 import com.orientechnologies.orient.core.serialization.serializer.OJSONWriter;
 import com.orientechnologies.orient.core.sql.executor.OResult;
-
-import java.io.IOException;
-import java.io.StringWriter;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Graph wrapper to format the response as graph.
@@ -69,7 +68,7 @@ public class OHttpGraphResponse extends OHttpResponse {
       // DIVIDE VERTICES FROM EDGES
       final Set<OVertex> vertices = new HashSet<>();
 
-      Set<ORID> edgeRids = new HashSet<ORID>();
+      Set<ORID> edgeRids = new HashSet<>();
       boolean lightweightFound = false;
 
       final Iterator<Object> iIterator = OMultiValue.getMultiValueIterator(iRecords);

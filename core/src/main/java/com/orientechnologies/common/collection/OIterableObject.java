@@ -22,7 +22,6 @@ package com.orientechnologies.common.collection;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
 import com.orientechnologies.common.util.OResettable;
 
 /**

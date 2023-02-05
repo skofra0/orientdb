@@ -1,10 +1,9 @@
 package com.orientechnologies.orient.core.encryption.impl;
 
+import javax.crypto.Cipher;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.core.encryption.OEncryption;
 import com.orientechnologies.orient.core.exception.OInvalidStorageEncryptionKeyException;
-
-import javax.crypto.Cipher;
 
 /***
  * (https://docs.oracle.com/javase/7/docs/technotes/guides/security/SunProviders.html). Issue

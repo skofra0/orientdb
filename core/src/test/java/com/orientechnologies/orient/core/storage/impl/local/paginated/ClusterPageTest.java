@@ -1,8 +1,16 @@
 package com.orientechnologies.orient.core.storage.impl.local.paginated;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
-
+import org.junit.Assert;
+import org.junit.Test;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 import com.orientechnologies.common.directmemory.OByteBufferPool;
 import com.orientechnologies.common.directmemory.OPointer;
 import com.orientechnologies.orient.core.record.ORecordVersionHelper;
@@ -12,16 +20,6 @@ import com.orientechnologies.orient.core.storage.cache.OCachePointer;
 import com.orientechnologies.orient.core.storage.cluster.OClusterPage;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OCacheEntryChanges;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALChanges;
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
-import org.junit.Assert;
-import org.junit.Test;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)

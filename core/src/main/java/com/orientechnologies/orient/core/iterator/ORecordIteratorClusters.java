@@ -19,6 +19,8 @@
  */
 package com.orientechnologies.orient.core.iterator;
 
+import java.util.Arrays;
+import java.util.NoSuchElementException;
 import com.orientechnologies.common.exception.OHighLevelException;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
@@ -26,9 +28,6 @@ import com.orientechnologies.orient.core.db.record.ORecordOperation;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.storage.OStorage;
-
-import java.util.Arrays;
-import java.util.NoSuchElementException;
 
 /**
  * Iterator to browse multiple clusters forward and backward. Once browsed in a direction, the iterator cannot change it. This

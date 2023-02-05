@@ -19,9 +19,8 @@
   */
 package com.orientechnologies.orient.core.collate;
 
-import com.orientechnologies.common.comparator.ODefaultComparator;
-
 import java.io.Serializable;
+import com.orientechnologies.common.comparator.ODefaultComparator;
 
 /**
  * Specify the Collating strategy when comparison in SQL statement is required.

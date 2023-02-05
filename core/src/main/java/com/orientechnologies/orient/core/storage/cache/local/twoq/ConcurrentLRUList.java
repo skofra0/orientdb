@@ -20,16 +20,16 @@
 
 package com.orientechnologies.orient.core.storage.cache.local.twoq;
 
-import com.orientechnologies.orient.core.storage.cache.OCacheEntry;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.concurrent.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+import com.orientechnologies.orient.core.storage.cache.OCacheEntry;
 
 /**
  * Concurrent implementation of {@link LRUList}.

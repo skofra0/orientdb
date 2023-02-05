@@ -1,7 +1,27 @@
 package com.orientechnologies.orient.server;
 
+import java.io.IOException;
+import java.lang.ref.WeakReference;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.RejectedExecutionException;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import com.orientechnologies.common.log.OLogManager;
-import com.orientechnologies.orient.client.remote.message.*;
+import com.orientechnologies.orient.client.remote.message.OBinaryPushRequest;
+import com.orientechnologies.orient.client.remote.message.OBinaryPushResponse;
+import com.orientechnologies.orient.client.remote.message.OPushDistributedConfigurationRequest;
+import com.orientechnologies.orient.client.remote.message.OPushFunctionsRequest;
+import com.orientechnologies.orient.client.remote.message.OPushIndexManagerRequest;
+import com.orientechnologies.orient.client.remote.message.OPushSchemaRequest;
+import com.orientechnologies.orient.client.remote.message.OPushSequencesRequest;
+import com.orientechnologies.orient.client.remote.message.OPushStorageConfigurationRequest;
 import com.orientechnologies.orient.core.config.OStorageConfiguration;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.OMetadataUpdateListener;
@@ -9,11 +29,6 @@ import com.orientechnologies.orient.core.index.OIndexManager;
 import com.orientechnologies.orient.core.index.OIndexManagerShared;
 import com.orientechnologies.orient.core.metadata.schema.OSchemaShared;
 import com.orientechnologies.orient.server.network.protocol.binary.ONetworkProtocolBinary;
-
-import java.io.IOException;
-import java.lang.ref.WeakReference;
-import java.util.*;
-import java.util.concurrent.*;
 
 public class OPushManager implements OMetadataUpdateListener {
 
@@ -50,7 +65,7 @@ public class OPushManager implements OMetadataUpdateListener {
   }
 
   public synchronized void subscribeDistributeConfig(ONetworkProtocolBinary channel) {
-    distributedConfigPush.add(new WeakReference<ONetworkProtocolBinary>(channel));
+    distributedConfigPush.add(new WeakReference<>(channel));
   }
 
   public synchronized void cleanPushSockets() {

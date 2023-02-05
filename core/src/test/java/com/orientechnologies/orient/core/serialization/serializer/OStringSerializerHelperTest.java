@@ -1,20 +1,25 @@
 package com.orientechnologies.orient.core.serialization.serializer;
 
-import com.orientechnologies.common.io.OIOUtils;
+import static com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper.decode;
+import static com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper.encode;
+import static com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper.indexOf;
+import static com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper.smartSplit;
+import static com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper.smartTrim;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import static com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper.*;
-import static org.junit.Assert.*;
+import com.orientechnologies.common.io.OIOUtils;
 
 public class OStringSerializerHelperTest {
 
   @Test
   public void test() {
-    final List<String> stringItems = new ArrayList<String>();
+    final List<String> stringItems = new ArrayList<>();
     final String text = "['f\\\'oo', 'don\\\'t can\\\'t', \"\\\"bar\\\"\", 'b\\\"a\\\'z', \"q\\\"u\\'x\"]";
     final int startPos = 0;
 

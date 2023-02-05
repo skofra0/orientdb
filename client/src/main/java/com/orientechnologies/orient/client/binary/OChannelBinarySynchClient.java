@@ -19,9 +19,8 @@
  */
 package com.orientechnologies.orient.client.binary;
 
-import com.orientechnologies.orient.core.config.OContextConfiguration;
-
 import java.io.IOException;
+import com.orientechnologies.orient.core.config.OContextConfiguration;
 
 /**
  * Synchronous implementation of binary channel.

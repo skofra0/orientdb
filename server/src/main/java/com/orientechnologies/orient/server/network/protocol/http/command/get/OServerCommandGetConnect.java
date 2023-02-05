@@ -20,11 +20,10 @@
 package com.orientechnologies.orient.server.network.protocol.http.command.get;
 
 import java.io.IOException;
-
- import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
- import com.orientechnologies.orient.server.network.protocol.http.OHttpResponse;
- import com.orientechnologies.orient.server.network.protocol.http.OHttpUtils;
- import com.orientechnologies.orient.server.network.protocol.http.command.OServerCommandAuthenticatedDbAbstract;
+import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
+import com.orientechnologies.orient.server.network.protocol.http.OHttpResponse;
+import com.orientechnologies.orient.server.network.protocol.http.OHttpUtils;
+import com.orientechnologies.orient.server.network.protocol.http.command.OServerCommandAuthenticatedDbAbstract;
 
 public class OServerCommandGetConnect extends OServerCommandAuthenticatedDbAbstract {
    private static final String[] NAMES = { "GET|connect/*", "HEAD|connect/*" };

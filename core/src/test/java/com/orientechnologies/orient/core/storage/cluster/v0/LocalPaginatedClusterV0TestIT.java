@@ -1,12 +1,11 @@
 package com.orientechnologies.orient.core.storage.cluster.v0;
 
+import org.junit.BeforeClass;
+import java.io.File;
+import java.io.IOException;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.storage.cluster.LocalPaginatedClusterAbstract;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
-import org.junit.BeforeClass;
-
-import java.io.File;
-import java.io.IOException;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)

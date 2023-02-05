@@ -1,11 +1,10 @@
 package com.orientechnologies.orient.core.index;
 
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.util.OSizeable;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.exception.OIndexIsRebuildingException;
-
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Wrapper which is used to detect whether the cursor is working with index

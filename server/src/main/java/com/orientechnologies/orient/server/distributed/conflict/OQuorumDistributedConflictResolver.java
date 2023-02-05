@@ -20,13 +20,12 @@
 
 package com.orientechnologies.orient.server.distributed.conflict;
 
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.server.distributed.ODistributedConfiguration;
 import com.orientechnologies.orient.server.distributed.ODistributedServerManager;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * Conflict resolver implementation based on the write quorum of results. If there is no quorum, no operation is executed.

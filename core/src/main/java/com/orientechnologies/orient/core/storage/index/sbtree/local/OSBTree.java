@@ -20,6 +20,15 @@
 
 package com.orientechnologies.orient.core.storage.index.sbtree.local;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicLong;
 import com.orientechnologies.common.comparator.ODefaultComparator;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
@@ -27,7 +36,11 @@ import com.orientechnologies.common.serialization.types.OIntegerSerializer;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.encryption.OEncryption;
 import com.orientechnologies.orient.core.exception.OTooBigIndexKeyException;
-import com.orientechnologies.orient.core.index.*;
+import com.orientechnologies.orient.core.index.OAlwaysGreaterKey;
+import com.orientechnologies.orient.core.index.OAlwaysLessKey;
+import com.orientechnologies.orient.core.index.OCompositeKey;
+import com.orientechnologies.orient.core.index.OIndexKeyUpdater;
+import com.orientechnologies.orient.core.index.OIndexUpdateAction;
 import com.orientechnologies.orient.core.index.engine.OBaseIndexEngine;
 import com.orientechnologies.orient.core.iterator.OEmptyIterator;
 import com.orientechnologies.orient.core.iterator.OEmptyMapEntryIterator;
@@ -37,10 +50,6 @@ import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedSt
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperation;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperationsManager;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.base.ODurableComponent;
-
-import java.io.IOException;
-import java.util.*;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * This is implementation which is based on B+-tree implementation threaded tree. The main differences are:
@@ -1444,7 +1453,7 @@ public class OSBTree<K, V> extends ODurableComponent {
     final K key = treeEntry.key;
     final V value = readValue(treeEntry.value, atomicOperation);
 
-    return new Map.Entry<K, V>() {
+    return new Map.Entry<>() {
       @Override
       public K getKey() {
         return key;

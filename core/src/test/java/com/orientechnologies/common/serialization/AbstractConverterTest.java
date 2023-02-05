@@ -1,8 +1,7 @@
 package com.orientechnologies.common.serialization;
 
-import java.nio.ByteOrder;
-
 import org.junit.Assert;
+import java.nio.ByteOrder;
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)
  * @since 21.05.13

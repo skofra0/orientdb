@@ -19,10 +19,9 @@
  */
 package com.orientechnologies.orient.core.db;
 
+import java.util.concurrent.Callable;
 import com.orientechnologies.orient.core.OOrientListenerAbstract;
 import com.orientechnologies.orient.core.Orient;
-
-import java.util.concurrent.Callable;
 
 /**
  * Thread local to know when the request comes from distributed requester avoiding loops.

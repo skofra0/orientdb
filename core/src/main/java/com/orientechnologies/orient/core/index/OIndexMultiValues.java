@@ -19,6 +19,15 @@
  */
 package com.orientechnologies.orient.core.index;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicLong;
 import com.orientechnologies.common.comparator.ODefaultComparator;
 import com.orientechnologies.common.listener.OProgressListener;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
@@ -34,9 +43,6 @@ import com.orientechnologies.orient.core.serialization.serializer.stream.OStream
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
 import com.orientechnologies.orient.core.storage.ridbag.sbtree.OIndexRIDContainer;
 import com.orientechnologies.orient.core.storage.ridbag.sbtree.OMixedIndexRIDContainer;
-
-import java.util.*;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Abstract index implementation that supports multi-values for the same key.
@@ -387,7 +393,7 @@ public abstract class OIndexMultiValues extends OIndexAbstract<Collection<ORID>>
 
         final OIdentifiable resultValue = currentIterator.next();
 
-        return new Map.Entry<Object, OIdentifiable>() {
+        return new Map.Entry<>() {
           @Override
           public Object getKey() {
             return currentKey;

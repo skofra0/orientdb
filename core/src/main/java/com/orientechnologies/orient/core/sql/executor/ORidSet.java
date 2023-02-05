@@ -1,11 +1,10 @@
 package com.orientechnologies.orient.core.sql.executor;
 
-import com.orientechnologies.orient.core.id.ORID;
-
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import com.orientechnologies.orient.core.id.ORID;
 
 /**
  * Special implementation of Java Set&lt;ORID&gt; to efficiently handle memory and performance.

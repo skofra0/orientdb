@@ -19,6 +19,9 @@
   */
 package com.orientechnologies.orient.core.serialization.serializer.record;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.exception.ODatabaseException;
 import com.orientechnologies.orient.core.serialization.serializer.record.binary.ORecordSerializerBinary;
@@ -27,10 +30,6 @@ import com.orientechnologies.orient.core.serialization.serializer.record.binary.
 import com.orientechnologies.orient.core.serialization.serializer.record.string.ORecordSerializerJSON;
 import com.orientechnologies.orient.core.serialization.serializer.record.string.ORecordSerializerSchemaAware2CSV;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Factory of record serialized.
  *
@@ -38,7 +37,7 @@ import java.util.Map;
  */
 public class ORecordSerializerFactory {
   private static final ORecordSerializerFactory       instance        = new ORecordSerializerFactory();
-  private              Map<String, ORecordSerializer> implementations = new HashMap<String, ORecordSerializer>();
+  private              Map<String, ORecordSerializer> implementations = new HashMap<>();
 
   private ORecordSerializer defaultRecordSerializer;
 

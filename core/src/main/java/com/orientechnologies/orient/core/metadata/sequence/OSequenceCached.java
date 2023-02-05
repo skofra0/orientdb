@@ -19,13 +19,12 @@
  */
 package com.orientechnologies.orient.core.metadata.sequence;
 
+import java.util.concurrent.Callable;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.metadata.security.ORole;
 import com.orientechnologies.orient.core.metadata.security.ORule;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-
-import java.util.concurrent.Callable;
 
 /**
  * @author Matan Shukry (matanshukry@gmail.com)

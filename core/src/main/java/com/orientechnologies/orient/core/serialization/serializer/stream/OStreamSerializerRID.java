@@ -19,15 +19,12 @@
  */
 package com.orientechnologies.orient.core.serialization.serializer.stream;
 
+import java.nio.ByteBuffer;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.id.ORID;
-import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.serialization.serializer.binary.impl.OLinkSerializer;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALChanges;
-
-import java.io.IOException;
-import java.nio.ByteBuffer;
 
 public class OStreamSerializerRID implements OBinarySerializer<OIdentifiable> {
   public static final OStreamSerializerRID INSTANCE = new OStreamSerializerRID();

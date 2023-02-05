@@ -15,7 +15,7 @@
 
     <groupId>com.orientechnologies</groupId>
     <artifactId>orientdb-parent</artifactId>
-    <version>3.0.41-nexus7</version>
+    <version>3.0.41.1</version>
     <packaging>pom</packaging>
 
     <name>OrientDB</name>
@@ -38,10 +38,8 @@
         <module>test-commons</module>
         <module>client</module>
         <module>core</module>
-  <!--  <module>object</module> -->
         <module>server</module>
         <module>tools</module>
-  <!--  <module>tests</module> -->
   <!--  <module>distributed</module> -->
   <!--  <module>graphdb</module> -->
         <module>lucene</module>  
@@ -117,8 +115,8 @@
         <heapSize>2048m</heapSize>
         <javaassist.version>3.23.1-GA</javaassist.version>
 		<asm.version>9.4</asm.version>
-		<jackson.version>2.14.1</jackson.version>
-		<jackson.databind.version>2.14.1</jackson.databind.version>
+		<jackson.version>2.14.2</jackson.version>
+		<jackson.databind.version>2.14.2</jackson.databind.version>
 		
 
     </properties>
@@ -452,7 +450,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.5</version>
+                <version>0.8.8</version>
                 <configuration>
                 </configuration>
                 <executions>
@@ -504,7 +502,7 @@
 			<dependency>
 			    <groupId>org.codehaus.jettison</groupId>
 			    <artifactId>jettison</artifactId>
-			    <version>1.5.0</version>
+			    <version>1.5.3</version>
 			</dependency>
 			<dependency>
 				<groupId>org.ow2.asm</groupId>

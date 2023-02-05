@@ -1,5 +1,12 @@
 package com.orientechnologies.orient.core.ridbag;
 
+import org.junit.Assert;
+import org.junit.Test;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.id.ORecordId;
@@ -10,10 +17,6 @@ import com.orientechnologies.orient.core.storage.index.sbtreebonsai.local.OSBTre
 import com.orientechnologies.orient.core.storage.ridbag.sbtree.OBonsaiCollectionPointer;
 import com.orientechnologies.orient.core.storage.ridbag.sbtree.OSBTreeCollectionManager;
 import com.orientechnologies.orient.core.storage.ridbag.sbtree.OSBTreeRidBag;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.util.concurrent.*;
 
 public class ConcurrencySBTreeBonsaiLocalTest {
 

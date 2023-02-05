@@ -1,7 +1,7 @@
 @ECHO OFF
 @ECHO.
 @ECHO ************************************
-@ECHO ** NEXUS ORIENT DATABASE          **
+@ECHO ** DEEM ORIENT DATABASE          **
 @ECHO ************************************
 @ECHO ORIENTDB_HOME=%ORIENTDB_HOME%
 @ECHO.
@@ -23,8 +23,8 @@ CD service
 set SERVICE_PATH=%ORIENTDB_HOME%\service
 set SERVICE_NAME=orientdb
 set PR_INSTALL=%SERVICE_PATH%\%SERVICE_NAME%.exe
-set PR_DISPLAYNAME=Nexus OrientDB
-set PR_DESCRIPTION=Nexus OrientDB Service
+set PR_DISPLAYNAME=Deem OrientDB
+set PR_DESCRIPTION=Deem OrientDB Service
  
 REM Service log configuration
 set PR_LOGPREFIX=%SERVICE_NAME%
@@ -41,12 +41,12 @@ REM Startup configuration
 SET PR_STARTPATH=%ORIENTDB_HOME%\service
 SET PR_STARTUP=auto
 SET PR_STARTMODE=jvm
-SET PR_STARTCLASS=no.nexus.OrientDbService
+SET PR_STARTCLASS=no.deem.OrientDbService
 SET PR_STARTMETHOD=start
  
 REM Shutdown configuration
 SET PR_STOPMODE=jvm
-SET PR_STOPCLASS=no.nexus.OrientDbService
+SET PR_STOPCLASS=no.deem.OrientDbService
 SET PR_STOPMETHOD=stop
  
 REM JVM configuration

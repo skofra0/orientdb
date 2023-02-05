@@ -1,10 +1,8 @@
 package com.orientechnologies.orient.core.command;
 
-import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
-import com.orientechnologies.orient.core.sql.executor.OResultSet;
-
 import java.util.Map;
+import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
+import com.orientechnologies.orient.core.sql.executor.OResultSet;
 
 /**
  * Created by tglman on 25/01/17.

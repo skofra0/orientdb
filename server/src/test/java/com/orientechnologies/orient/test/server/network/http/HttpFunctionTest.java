@@ -1,13 +1,11 @@
 package com.orientechnologies.orient.test.server.network.http;
 
-import com.orientechnologies.orient.core.record.impl.ODocument;
 import org.apache.http.util.EntityUtils;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-
 import java.io.IOException;
 import java.util.List;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
  * Test HTTP "function" command.

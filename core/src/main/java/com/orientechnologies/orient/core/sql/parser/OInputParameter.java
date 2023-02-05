@@ -2,20 +2,18 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=true,TRACK_TOKENS=true,NODE_PREFIX=O,NODE_EXTENDS=,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package com.orientechnologies.orient.core.sql.parser;
 
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.Map;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.sql.executor.OResultInternal;
-
-import java.math.BigDecimal;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.Map;
 
 public class OInputParameter extends SimpleNode {
 
@@ -88,7 +86,7 @@ public class OInputParameter extends SimpleNode {
     }
     if (OMultiValue.isMultiValue(value) && !(value instanceof byte[]) && !(value instanceof Byte[])) {
       OCollection coll = new OCollection(-1);
-      coll.expressions = new ArrayList<OExpression>();
+      coll.expressions = new ArrayList<>();
       Iterator iterator = OMultiValue.getMultiValueIterator(value);
       while (iterator.hasNext()) {
         Object o = iterator.next();
@@ -100,7 +98,7 @@ public class OInputParameter extends SimpleNode {
     }
     if (value instanceof Map) {
       OJson json = new OJson(-1);
-      json.items = new ArrayList<OJsonItem>();
+      json.items = new ArrayList<>();
       for (Object entry : ((Map) value).entrySet()) {
         OJsonItem item = new OJsonItem();
         item.leftString = "" + ((Map.Entry) entry).getKey();

@@ -19,6 +19,8 @@
  */
 package com.orientechnologies.orient.stresstest.workload;
 
+import java.util.List;
+import java.util.Locale;
 import com.orientechnologies.common.listener.OProgressListener;
 import com.orientechnologies.common.util.OCallable;
 import com.orientechnologies.orient.client.remote.OStorageRemote;
@@ -36,9 +38,6 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import com.orientechnologies.orient.stresstest.ODatabaseIdentifier;
 import com.orientechnologies.orient.stresstest.OStressTesterSettings;
-
-import java.util.List;
-import java.util.Locale;
 
 /**
  * CRUD implementation of the workload.

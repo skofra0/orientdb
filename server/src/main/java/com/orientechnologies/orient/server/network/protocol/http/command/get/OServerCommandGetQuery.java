@@ -19,6 +19,10 @@
  */
 package com.orientechnologies.orient.server.network.protocol.http.command.get;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
 import com.orientechnologies.orient.core.sql.parser.OStatement;
@@ -26,11 +30,6 @@ import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpResponse;
 import com.orientechnologies.orient.server.network.protocol.http.command.OServerCommandAuthenticatedDbAbstract;
 import com.orientechnologies.orient.server.network.protocol.http.command.post.OServerCommandPostCommand;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class OServerCommandGetQuery extends OServerCommandAuthenticatedDbAbstract {
   private static final String[] NAMES = { "GET|query/*" };

@@ -19,10 +19,9 @@
  */
 package com.orientechnologies.orient.core.sharding.auto;
 
+import static java.lang.Math.abs;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.orient.core.storage.index.hashindex.local.OMurmurHash3HashFunction;
-
-import static java.lang.Math.abs;
 
 /**
  * Auto-sharding strategy implementation that uses Murmur hashing.
@@ -34,7 +33,7 @@ public final class OAutoShardingMurmurStrategy implements OAutoShardingStrategy 
   private OMurmurHash3HashFunction hashFunction;
 
   public OAutoShardingMurmurStrategy(final OBinarySerializer keySerializer) {
-    hashFunction = new OMurmurHash3HashFunction<Object>(keySerializer);
+    hashFunction = new OMurmurHash3HashFunction<>(keySerializer);
   }
 
   public int getPartitionsId(final Object iKey, final int partitionSize) {

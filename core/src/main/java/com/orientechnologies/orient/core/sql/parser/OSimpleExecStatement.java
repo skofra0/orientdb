@@ -1,14 +1,13 @@
 package com.orientechnologies.orient.core.sql.parser;
 
+import java.util.HashMap;
+import java.util.Map;
 import com.orientechnologies.orient.core.command.OBasicCommandContext;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.ODatabase;
 import com.orientechnologies.orient.core.sql.executor.OInternalExecutionPlan;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
 import com.orientechnologies.orient.core.sql.executor.OSingleOpExecutionPlan;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Superclass for SQL statements that are too simple to deserve an execution planner.

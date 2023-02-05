@@ -1,9 +1,8 @@
 package com.orientechnologies.orient.core.db;
 
+import java.util.List;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
-
-import java.util.List;
 
 /**
  * Created by luigidellaquila on 28/06/17.

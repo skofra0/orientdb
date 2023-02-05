@@ -17,14 +17,19 @@
  */
 package com.orientechnologies.spatial.shape;
 
-import org.locationtech.jts.geom.*;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.LineString;
+import org.locationtech.jts.geom.MultiLineString;
+import org.locationtech.jts.geom.MultiPoint;
+import org.locationtech.jts.geom.MultiPolygon;
+import org.locationtech.jts.geom.Polygon;
 import org.locationtech.spatial4j.shape.Point;
 import org.locationtech.spatial4j.shape.Rectangle;
 import org.locationtech.spatial4j.shape.Shape;
 import org.locationtech.spatial4j.shape.ShapeCollection;
 import org.locationtech.spatial4j.shape.jts.JtsGeometry;
 import org.locationtech.spatial4j.shape.jts.JtsPoint;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -37,7 +42,7 @@ public abstract class OComplexShapeBuilder<T extends Shape> extends OShapeBuilde
   protected List<List<Double>> coordinatesFromLineString(LineString ring) {
 
     Coordinate[] coordinates = ring.getCoordinates();
-    List<List<Double>> numbers = new ArrayList<List<Double>>();
+    List<List<Double>> numbers = new ArrayList<>();
     for (Coordinate coordinate : coordinates) {
 
       numbers.add(Arrays.asList(coordinate.x, coordinate.y));

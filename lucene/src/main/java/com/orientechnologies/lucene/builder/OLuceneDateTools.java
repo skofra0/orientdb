@@ -1,12 +1,11 @@
 package com.orientechnologies.lucene.builder;
 
-import com.orientechnologies.common.log.OLogManager;
-import com.orientechnologies.orient.core.util.ODateHelper;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import com.orientechnologies.common.log.OLogManager;
+import com.orientechnologies.orient.core.util.ODateHelper;
 
 /**
  * This utility class replace the {@link org.apache.lucene.document.DateTools} from Lucene code base.

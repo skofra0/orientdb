@@ -1,8 +1,7 @@
 package com.orientechnologies.orient.core.util;
 
-import com.orientechnologies.orient.core.db.ODatabaseType;
-
 import java.util.Optional;
+import com.orientechnologies.orient.core.db.ODatabaseType;
 
 /**
  * Created by Enrico Risa on 17/11/16.

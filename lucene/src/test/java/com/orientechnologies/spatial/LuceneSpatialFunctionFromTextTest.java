@@ -17,15 +17,14 @@
  */
 package com.orientechnologies.spatial;
 
-import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.orient.core.sql.OCommandSQL;
-import com.orientechnologies.spatial.shape.legacy.OPointLegecyBuilder;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-
 import java.io.IOException;
 import java.util.List;
+import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.orientechnologies.orient.core.sql.OCommandSQL;
+import com.orientechnologies.spatial.shape.legacy.OPointLegecyBuilder;
 
 /**
  * Created by Enrico Risa on 13/08/15.

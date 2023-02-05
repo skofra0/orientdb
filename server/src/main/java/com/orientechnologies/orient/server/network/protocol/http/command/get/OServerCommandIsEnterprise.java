@@ -18,14 +18,13 @@
 
 package com.orientechnologies.orient.server.network.protocol.http.command.get;
 
+import java.io.IOException;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpResponse;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpUtils;
 import com.orientechnologies.orient.server.network.protocol.http.command.OServerCommandAuthenticatedServerAbstract;
-
-import java.io.IOException;
 
 /**
  * This command is called in order to know if the running instance of orientdb is EE or not.

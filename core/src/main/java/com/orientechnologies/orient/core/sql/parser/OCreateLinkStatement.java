@@ -2,6 +2,12 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=true,TRACK_TOKENS=true,NODE_PREFIX=O,NODE_EXTENDS=,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package com.orientechnologies.orient.core.sql.parser;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
@@ -21,8 +27,6 @@ import com.orientechnologies.orient.core.sql.OCommandSQLParsingException;
 import com.orientechnologies.orient.core.sql.executor.OInternalResultSet;
 import com.orientechnologies.orient.core.sql.executor.OResultInternal;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
-
-import java.util.*;
 
 public class OCreateLinkStatement extends OSimpleExecStatement {
 
@@ -150,13 +154,13 @@ public class OCreateLinkStatement extends OSimpleExecStatement {
                   multipleRelationship = true;
 
                 Collection<ODocument> coll;
-                if (oldValue instanceof Collection) {
+                if (oldValue instanceof Collection ) {
                   // ADD IT IN THE EXISTENT COLLECTION
                   coll = (Collection<ODocument>) oldValue;
                   target.setDirty();
                 } else {
                   // CREATE A NEW COLLECTION FOR BOTH
-                  coll = new ArrayList<ODocument>(2);
+                  coll = new ArrayList<>(2);
                   target.setProperty(linkName, coll);
                   coll.add((ODocument) oldValue);
                 }

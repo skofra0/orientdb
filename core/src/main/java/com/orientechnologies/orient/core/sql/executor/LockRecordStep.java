@@ -1,11 +1,10 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.util.Map;
+import java.util.Optional;
 import com.orientechnologies.common.concur.OTimeoutException;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.storage.OStorage;
-
-import java.util.Map;
-import java.util.Optional;
 
 public class LockRecordStep extends AbstractExecutionStep {
   private final OStorage.LOCKING_STRATEGY lockStrategy;

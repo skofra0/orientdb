@@ -19,6 +19,10 @@
  */
 package com.orientechnologies.orient.core.storage.index.hashindex.local;
 
+import java.io.IOException;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 import com.orientechnologies.common.comparator.ODefaultComparator;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.common.serialization.types.OByteSerializer;
@@ -29,11 +33,6 @@ import com.orientechnologies.orient.core.encryption.OEncryption;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.storage.cache.OCacheEntry;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.base.ODurablePage;
-
-import java.io.IOException;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)
@@ -152,7 +151,7 @@ public class OHashIndexBucket<K, V> extends ODurablePage implements Iterable<OHa
     }
 
     final V value = deserializeFromDirectMemory(valueSerializer, entryPosition);
-    return new Entry<K, V>(key, value, hashCode);
+    return new Entry<>(key, value, hashCode);
   }
 
   /**

@@ -19,6 +19,21 @@
  */
 package com.orientechnologies.orient.client.binary;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.net.Inet6Address;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketException;
+import java.util.ArrayList;
+import java.util.List;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.exception.OSystemException;
 import com.orientechnologies.common.log.OLogManager;
@@ -31,13 +46,6 @@ import com.orientechnologies.orient.enterprise.channel.binary.OChannelBinary;
 import com.orientechnologies.orient.enterprise.channel.binary.OChannelBinaryProtocol;
 import com.orientechnologies.orient.enterprise.channel.binary.ONetworkProtocolException;
 import com.orientechnologies.orient.enterprise.channel.binary.OResponseProcessingException;
-
-import java.io.*;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.net.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Abstract implementation of binary channel.
@@ -190,13 +198,13 @@ public abstract class OChannelBinaryClientAbstract extends OChannelBinary {
       return iClientTxId;
     } else if (iResult == OChannelBinaryProtocol.RESPONSE_STATUS_ERROR) {
 
-      final List<OPair<String, String>> exceptions = new ArrayList<OPair<String, String>>();
+      final List<OPair<String, String>> exceptions = new ArrayList<>();
 
       // EXCEPTION
       while (readByte() == 1) {
         final String excClassName = readString();
         final String excMessage = readString();
-        exceptions.add(new OPair<String, String>(excClassName, excMessage));
+        exceptions.add(new OPair<>(excClassName, excMessage));
       }
 
       byte[] serializedException = null;

@@ -19,9 +19,8 @@
   */
 package com.orientechnologies.common.comparator;
 
-import com.orientechnologies.orient.core.config.OGlobalConfiguration;
-
 import java.util.Comparator;
+import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 
 /**
  * Creates comparators for classes that does not implement {@link Comparable} but logically can be compared.

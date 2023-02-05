@@ -1,15 +1,14 @@
 package com.orientechnologies.orient.core.serialization.serializer.result.binary;
 
-import com.orientechnologies.orient.core.id.ORecordId;
-import com.orientechnologies.orient.core.serialization.serializer.record.binary.BytesContainer;
-import com.orientechnologies.orient.core.sql.executor.OResultInternal;
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import com.orientechnologies.orient.core.id.ORecordId;
+import com.orientechnologies.orient.core.serialization.serializer.record.binary.BytesContainer;
+import com.orientechnologies.orient.core.sql.executor.OResultInternal;
 
 /**
  * Created by tglman on 25/05/16.

@@ -19,13 +19,12 @@
  */
 package com.orientechnologies.orient.core.command.script;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptException;
 import com.orientechnologies.common.concur.resource.OPartitionedObjectPool;
 import com.orientechnologies.common.concur.resource.OPartitionedObjectPoolFactory;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
-
-import javax.script.ScriptEngine;
-import javax.script.ScriptException;
 
 /**
  * Manages Script engines per database. Parsing of function library is done only the first time and when changes.
@@ -41,11 +40,11 @@ public class ODatabaseScriptManager {
   public ODatabaseScriptManager(final OScriptManager iScriptManager, final String iDatabaseName) {
     scriptManager = iScriptManager;
 
-    pooledEngines = new OPartitionedObjectPoolFactory<String, ScriptEngine>(
+    pooledEngines = new OPartitionedObjectPoolFactory<>(
         new OPartitionedObjectPoolFactory.ObjectFactoryFactory<String, ScriptEngine>() {
           @Override
           public OPartitionedObjectPool.ObjectFactory<ScriptEngine> create(final String language) {
-            return new OPartitionedObjectPool.ObjectFactory<ScriptEngine>() {
+            return new OPartitionedObjectPool.ObjectFactory<>() {
               @Override
               public ScriptEngine create() {
                 final ScriptEngine scriptEngine = scriptManager.getEngine(language);

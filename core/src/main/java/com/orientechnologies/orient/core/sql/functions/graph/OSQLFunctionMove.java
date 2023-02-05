@@ -1,5 +1,7 @@
 package com.orientechnologies.orient.core.sql.functions.graph;
 
+import java.util.ArrayList;
+import java.util.List;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.common.io.OIOUtils;
 import com.orientechnologies.common.util.OCallable;
@@ -11,9 +13,6 @@ import com.orientechnologies.orient.core.record.ODirection;
 import com.orientechnologies.orient.core.record.OElement;
 import com.orientechnologies.orient.core.sql.OSQLEngine;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunctionConfigurableAbstract;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by luigidellaquila on 03/01/17.

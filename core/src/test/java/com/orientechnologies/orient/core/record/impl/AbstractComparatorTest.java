@@ -1,9 +1,13 @@
 package com.orientechnologies.orient.core.record.impl;
 
+import org.junit.Assert;
 import com.orientechnologies.orient.core.collate.OCollate;
 import com.orientechnologies.orient.core.metadata.schema.OType;
-import com.orientechnologies.orient.core.serialization.serializer.record.binary.*;
-import org.junit.Assert;
+import com.orientechnologies.orient.core.serialization.serializer.record.binary.BytesContainer;
+import com.orientechnologies.orient.core.serialization.serializer.record.binary.OBinaryComparator;
+import com.orientechnologies.orient.core.serialization.serializer.record.binary.OBinaryField;
+import com.orientechnologies.orient.core.serialization.serializer.record.binary.ODocumentSerializer;
+import com.orientechnologies.orient.core.serialization.serializer.record.binary.ORecordSerializerBinary;
 
 public abstract class AbstractComparatorTest {
 

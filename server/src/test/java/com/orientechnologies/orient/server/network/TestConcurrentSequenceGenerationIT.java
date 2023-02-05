@@ -1,22 +1,23 @@
 package com.orientechnologies.orient.server.network;
 
-import com.orientechnologies.common.io.OFileUtils;
-import com.orientechnologies.orient.core.Orient;
-import com.orientechnologies.orient.core.db.*;
-import com.orientechnologies.orient.core.record.OVertex;
-import com.orientechnologies.orient.server.OServer;
+import static org.junit.Assert.assertNotNull;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
-
-import static org.junit.Assert.assertNotNull;
+import com.orientechnologies.common.io.OFileUtils;
+import com.orientechnologies.orient.core.Orient;
+import com.orientechnologies.orient.core.db.ODatabasePool;
+import com.orientechnologies.orient.core.db.ODatabaseSession;
+import com.orientechnologies.orient.core.db.ODatabaseType;
+import com.orientechnologies.orient.core.db.OrientDB;
+import com.orientechnologies.orient.core.db.OrientDBConfig;
+import com.orientechnologies.orient.core.record.OVertex;
+import com.orientechnologies.orient.server.OServer;
 
 public class TestConcurrentSequenceGenerationIT {
   static final         int    THREADS          = 20;

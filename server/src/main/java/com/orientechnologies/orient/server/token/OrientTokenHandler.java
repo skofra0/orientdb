@@ -1,5 +1,7 @@
 package com.orientechnologies.orient.server.token;
 
+import java.security.NoSuchAlgorithmException;
+import javax.crypto.Mac;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
@@ -12,9 +14,6 @@ import com.orientechnologies.orient.server.config.OServerParameterConfiguration;
 import com.orientechnologies.orient.server.network.protocol.ONetworkProtocolData;
 import com.orientechnologies.orient.server.plugin.OServerPlugin;
 import com.orientechnologies.orient.server.plugin.OServerPluginAbstract;
-
-import javax.crypto.Mac;
-import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by emrul on 27/10/2014.

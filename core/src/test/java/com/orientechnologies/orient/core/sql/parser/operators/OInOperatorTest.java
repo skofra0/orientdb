@@ -19,11 +19,11 @@
  */
 package com.orientechnologies.orient.core.sql.parser.operators;
 
-import com.orientechnologies.orient.core.sql.parser.OInOperator;
-import org.junit.Assert; import org.junit.Test;
-
+import org.junit.Assert;
+import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
+import com.orientechnologies.orient.core.sql.parser.OInOperator;
 
 /**
  * @author Luigi Dell'Aquila (l.dellaquila-(at)-orientdb.com)
@@ -38,7 +38,7 @@ public class OInOperatorTest {
     Assert.assertFalse(op.execute("foo", null));
     Assert.assertFalse(op.execute("foo", "foo"));
 
-    List<Object> list1 = new ArrayList<Object>();
+    List<Object> list1 = new ArrayList<>();
     Assert.assertFalse(op.execute("foo", list1));
     Assert.assertFalse(op.execute(null, list1));
     Assert.assertTrue(op.execute(list1, list1));

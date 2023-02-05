@@ -19,6 +19,7 @@
  */
 package com.orientechnologies.orient.core.serialization.serializer.string;
 
+import java.io.UnsupportedEncodingException;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.exception.OSerializationException;
@@ -26,8 +27,6 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.serialization.ODocumentSerializable;
 import com.orientechnologies.orient.core.serialization.OSerializableStream;
 import com.orientechnologies.orient.core.serialization.serializer.record.string.ORecordSerializerSchemaAware2CSV;
-
-import java.io.UnsupportedEncodingException;
 
 public class OStringSerializerEmbedded implements OStringSerializer {
   public static final OStringSerializerEmbedded INSTANCE          = new OStringSerializerEmbedded();

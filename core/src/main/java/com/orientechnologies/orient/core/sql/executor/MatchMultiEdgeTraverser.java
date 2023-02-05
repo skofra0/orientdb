@@ -1,11 +1,19 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Objects;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
-import com.orientechnologies.orient.core.sql.parser.*;
-
-import java.util.*;
+import com.orientechnologies.orient.core.sql.parser.OMatchFilter;
+import com.orientechnologies.orient.core.sql.parser.OMatchPathItem;
+import com.orientechnologies.orient.core.sql.parser.OMatchPathItemFirst;
+import com.orientechnologies.orient.core.sql.parser.OMethodCall;
+import com.orientechnologies.orient.core.sql.parser.OMultiMatchPathItem;
+import com.orientechnologies.orient.core.sql.parser.OWhereClause;
 
 /**
  * Created by luigidellaquila on 14/10/16.

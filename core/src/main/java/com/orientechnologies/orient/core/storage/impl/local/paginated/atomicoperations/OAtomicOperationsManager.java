@@ -20,6 +20,9 @@
 
 package com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations;
 
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.Objects;
 import com.orientechnologies.common.concur.lock.OLockException;
 import com.orientechnologies.common.concur.lock.OOneEntryPerKeyLockManager;
 import com.orientechnologies.common.exception.OException;
@@ -42,10 +45,6 @@ import com.orientechnologies.orient.core.storage.impl.local.paginated.base.ODura
 import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OLogSequenceNumber;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWriteAheadLog;
 import com.orientechnologies.orient.core.tx.OTransactionInternal;
-
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.Objects;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)

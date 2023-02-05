@@ -1,11 +1,10 @@
 package com.orientechnologies.lucene.collections;
 
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.index.OIndexCursor;
-
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.index.OIndexCursor;
 
 /**
  * Created by frank on 03/05/2017.
@@ -28,7 +27,7 @@ public class OLuceneIndexCursor implements OIndexCursor {
 
     if (iterator.hasNext()) {
       final OIdentifiable next = iterator.next();
-      return new Map.Entry<Object, OIdentifiable>() {
+      return new Map.Entry<>() {
         @Override
         public Object getKey() {
           return key;

@@ -16,6 +16,8 @@
 
 package com.orientechnologies.lucene.operator;
 
+import java.util.Collection;
+import java.util.List;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.sql.OIndexSearchResult;
@@ -25,9 +27,6 @@ import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemField;
 import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemVariable;
 import com.orientechnologies.orient.core.sql.operator.OQueryOperatorBetween;
 import com.orientechnologies.orient.core.sql.operator.OQueryOperatorIn;
-
-import java.util.Collection;
-import java.util.List;
 
 public class OLuceneOperatorUtil {
 

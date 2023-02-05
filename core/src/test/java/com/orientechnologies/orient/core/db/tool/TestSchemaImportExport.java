@@ -1,12 +1,10 @@
 package com.orientechnologies.orient.core.db.tool;
 
+import org.junit.Assert;
+import org.junit.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.orientechnologies.orient.core.command.OCommandOutputListener;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.metadata.schema.OClass;

@@ -1,13 +1,12 @@
 package com.orientechnologies.orient.core.db.tool.importer;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.db.record.ridbag.ORidBag;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
-
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by tglman on 28/07/17.

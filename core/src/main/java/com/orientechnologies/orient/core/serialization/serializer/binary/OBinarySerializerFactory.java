@@ -20,6 +20,8 @@
 
 package com.orientechnologies.orient.core.serialization.serializer.binary;
 
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.common.serialization.types.OBinaryTypeSerializer;
@@ -49,9 +51,6 @@ import com.orientechnologies.orient.core.serialization.serializer.stream.OStream
 import com.orientechnologies.orient.core.serialization.serializer.stream.OStreamSerializerSBTreeIndexRIDContainer;
 import com.orientechnologies.orient.core.storage.index.sbtree.multivalue.v2.MultiValueEntrySerializer;
 
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-
 /**
  * This class is responsible for obtaining OBinarySerializer realization, by it's id of type of object that should be serialized.
  *
@@ -63,9 +62,9 @@ public class OBinarySerializerFactory {
    * Size of the type identifier block size
    */
   public static final int                                                     TYPE_IDENTIFIER_SIZE   = 1;
-  private final       ConcurrentMap<Byte, OBinarySerializer<?>>               serializerIdMap        = new ConcurrentHashMap<Byte, OBinarySerializer<?>>();
-  private final       ConcurrentMap<Byte, Class<? extends OBinarySerializer>> serializerClassesIdMap = new ConcurrentHashMap<Byte, Class<? extends OBinarySerializer>>();
-  private final       ConcurrentMap<OType, OBinarySerializer<?>>              serializerTypeMap      = new ConcurrentHashMap<OType, OBinarySerializer<?>>();
+  private final       ConcurrentMap<Byte, OBinarySerializer<?>>               serializerIdMap        = new ConcurrentHashMap<>();
+  private final       ConcurrentMap<Byte, Class<? extends OBinarySerializer>> serializerClassesIdMap = new ConcurrentHashMap<>();
+  private final       ConcurrentMap<OType, OBinarySerializer<?>>              serializerTypeMap      = new ConcurrentHashMap<>();
 
   private OBinarySerializerFactory() {
   }

@@ -14,8 +14,17 @@
  */
 package com.orientechnologies.spatial.engine;
 
+import static com.orientechnologies.lucene.builder.OLuceneQueryBuilder.EMPTY_METADATA;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.spatial.SpatialStrategy;
+import org.locationtech.spatial4j.distance.DistanceUtils;
+import org.locationtech.spatial4j.shape.Point;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.exception.OException;
-import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.lucene.collections.OLuceneResultSet;
 import com.orientechnologies.lucene.collections.OLuceneResultSetEmpty;
 import com.orientechnologies.lucene.query.OLuceneQueryContext;
@@ -31,18 +40,6 @@ import com.orientechnologies.orient.core.storage.OStorage;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperation;
 import com.orientechnologies.spatial.query.OSpatialQueryContext;
 import com.orientechnologies.spatial.shape.OShapeBuilder;
-import org.apache.lucene.document.Document;
-import org.apache.lucene.search.ScoreDoc;
-import org.apache.lucene.spatial.SpatialStrategy;
-import org.locationtech.spatial4j.distance.DistanceUtils;
-import org.locationtech.spatial4j.shape.Point;
-
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
-import static com.orientechnologies.lucene.builder.OLuceneQueryBuilder.EMPTY_METADATA;
 
 public class OLuceneGeoSpatialIndexEngine extends OLuceneSpatialIndexEngineAbstract {
 

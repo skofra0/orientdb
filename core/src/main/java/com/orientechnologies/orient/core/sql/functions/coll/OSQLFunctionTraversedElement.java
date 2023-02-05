@@ -19,6 +19,11 @@
  */
 package com.orientechnologies.orient.core.sql.functions.coll;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.command.traverse.OTraverseRecordProcess;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
@@ -27,12 +32,6 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.record.impl.ODocumentInternal;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunctionConfigurableAbstract;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Returns a traversed element from the stack. Use it with SQL traverse only.
@@ -84,7 +83,7 @@ public class OSQLFunctionTraversedElement extends OSQLFunctionConfigurableAbstra
     if (stack == null)
       throw new OCommandExecutionException("Cannot invoke " + getName() + "() against non traverse command");
 
-    final List<OIdentifiable> result = items > 1 ? new ArrayList<OIdentifiable>(items) : null;
+    final List<OIdentifiable> result = items > 1 ? new ArrayList<>(items) : null;
 
     if (beginIndex < 0) {
       int i = -1;

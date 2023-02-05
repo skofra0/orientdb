@@ -1,5 +1,10 @@
 package com.orientechnologies.spatial;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import java.io.File;
+import java.util.List;
 import com.orientechnologies.orient.core.db.OPartitionedDatabasePool;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
@@ -7,12 +12,6 @@ import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.io.File;
-import java.util.List;
 
 /**
  * Created by frank on 15/12/2016.
@@ -54,7 +53,7 @@ public class LuceneSpatialDropTest {
 
     db = dbPool.acquire();
     // @maggiolo00 Remove the next three lines and the test will not fail anymore
-    OSQLSynchQuery<ODocument> query = new OSQLSynchQuery<ODocument>(
+    OSQLSynchQuery<ODocument> query = new OSQLSynchQuery<>(
         "select from test where [latitude,longitude] WITHIN [[50.0,8.0],[51.0,9.0]]");
     List<ODocument> result = db.command(query).execute();
     Assert.assertEquals(insertcount, result.size());
@@ -78,7 +77,7 @@ public class LuceneSpatialDropTest {
       doc.field("longitude", 8.0 + (i * 0.000001));
       db.save(doc);
     }
-    OSQLSynchQuery<ODocument> query = new OSQLSynchQuery<ODocument>("select * from test");
+    OSQLSynchQuery<ODocument> query = new OSQLSynchQuery<>("select * from test");
     List<ODocument> result = db.command(query).execute();
     Assert.assertEquals(count, result.size());
   }

@@ -18,6 +18,12 @@
 
 package com.orientechnologies.lucene.test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.Before;
+import org.junit.Test;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.index.OIndex;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
@@ -27,14 +33,6 @@ import com.orientechnologies.orient.core.record.OVertex;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Created by enricorisa on 28/06/14.
@@ -171,27 +169,27 @@ public class LuceneListIndexingTest extends BaseLuceneTest {
     coll = (Collection<?>) idx.get("Geek");
     assertThat(coll).hasSize(2);
 
-    List<?> query = db.query(new OSQLSynchQuery<Object>("select from Person where [name,tags] lucene 'Enrico'"));
+    List<?> query = db.query(new OSQLSynchQuery<>("select from Person where [name,tags] lucene 'Enrico'"));
 
     assertThat(query).hasSize(1);
 
-    query = db.query(new OSQLSynchQuery<Object>("select from (select from Person where [name,tags] lucene 'Enrico')"));
+    query = db.query(new OSQLSynchQuery<>("select from (select from Person where [name,tags] lucene 'Enrico')"));
 
     assertThat(query).hasSize(1);
 
-    query = db.query(new OSQLSynchQuery<Object>("select from Person where [name,tags] lucene 'Jared'"));
+    query = db.query(new OSQLSynchQuery<>("select from Person where [name,tags] lucene 'Jared'"));
 
     assertThat(query).hasSize(1);
 
-    query = db.query(new OSQLSynchQuery<Object>("select from Person where [name,tags] lucene 'Funny'"));
+    query = db.query(new OSQLSynchQuery<>("select from Person where [name,tags] lucene 'Funny'"));
 
     assertThat(query).hasSize(1);
 
-    query = db.query(new OSQLSynchQuery<Object>("select from Person where [name,tags] lucene 'Geek'"));
+    query = db.query(new OSQLSynchQuery<>("select from Person where [name,tags] lucene 'Geek'"));
 
     assertThat(query).hasSize(2);
 
-    query = db.query(new OSQLSynchQuery<Object>("select from Person where [name,tags] lucene '(name:Enrico AND tags:Geek)'"));
+    query = db.query(new OSQLSynchQuery<>("select from Person where [name,tags] lucene '(name:Enrico AND tags:Geek)'"));
 
     assertThat(query).hasSize(1);
   }

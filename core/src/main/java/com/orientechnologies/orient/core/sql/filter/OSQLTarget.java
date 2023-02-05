@@ -19,6 +19,13 @@
  */
 package com.orientechnologies.orient.core.sql.filter;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.parser.OBaseParser;
 import com.orientechnologies.orient.core.command.OCommandContext;
@@ -30,9 +37,11 @@ import com.orientechnologies.orient.core.exception.OQueryParsingException;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper;
-import com.orientechnologies.orient.core.sql.*;
-
-import java.util.*;
+import com.orientechnologies.orient.core.sql.OCommandExecutorSQLAbstract;
+import com.orientechnologies.orient.core.sql.OCommandExecutorSQLResultsetDelegate;
+import com.orientechnologies.orient.core.sql.OCommandSQL;
+import com.orientechnologies.orient.core.sql.OCommandSQLParsingException;
+import com.orientechnologies.orient.core.sql.OCommandSQLResultset;
 
 /**
  * Target parser.
@@ -162,7 +171,7 @@ public class OSQLTarget extends OBaseParser {
       targetVariable = targetVariable.substring(1);
     } else if (c == OStringSerializerHelper.LINK || Character.isDigit(c)) {
       // UNIQUE RID
-      targetRecords = new ArrayList<OIdentifiable>();
+      targetRecords = new ArrayList<>();
       ((List<OIdentifiable>) targetRecords).add(new ORecordId(parserRequiredWord(true, "No valid RID")));
 
     } else if (c == OStringSerializerHelper.EMBEDDED_BEGIN) {
@@ -189,10 +198,10 @@ public class OSQLTarget extends OBaseParser {
 
     } else if (c == OStringSerializerHelper.LIST_BEGIN) {
       // COLLECTION OF RIDS
-      final List<String> rids = new ArrayList<String>();
+      final List<String> rids = new ArrayList<>();
       parserSetCurrentPosition(OStringSerializerHelper.getCollection(parserText, parserGetCurrentPosition(), rids));
 
-      targetRecords = new ArrayList<OIdentifiable>();
+      targetRecords = new ArrayList<>();
       for (String rid : rids)
         ((List<OIdentifiable>) targetRecords).add(new ORecordId(rid));
 
@@ -214,10 +223,10 @@ public class OSQLTarget extends OBaseParser {
         if (subjectToMatch.startsWith(OCommandExecutorSQLAbstract.CLUSTER_PREFIX)) {
           // REGISTER AS CLUSTER
           if (targetClusters == null)
-            targetClusters = new HashMap<String, String>();
+            targetClusters = new HashMap<>();
           final String clusterNames = subjectName.substring(OCommandExecutorSQLAbstract.CLUSTER_PREFIX.length());
           if (clusterNames.startsWith("[") && clusterNames.endsWith("]")) {
-            final Collection<String> clusters = new HashSet<String>(3);
+            final Collection<String> clusters = new HashSet<>(3);
             OStringSerializerHelper.getCollection(clusterNames, 0, clusters);
             for (String cl : clusters) {
               targetClusters.put(cl, cl);
@@ -231,7 +240,7 @@ public class OSQLTarget extends OBaseParser {
         } else if (subjectToMatch.startsWith(OCommandExecutorSQLAbstract.METADATA_PREFIX)) {
           // METADATA
           final String metadataTarget = subjectName.substring(OCommandExecutorSQLAbstract.METADATA_PREFIX.length());
-          targetRecords = new ArrayList<OIdentifiable>();
+          targetRecords = new ArrayList<>();
 
           if (metadataTarget.equals(OCommandExecutorSQLAbstract.METADATA_SCHEMA)) {
             ((ArrayList<OIdentifiable>) targetRecords).add(new ORecordId(ODatabaseRecordThreadLocal.instance().get().getStorage()
@@ -245,7 +254,7 @@ public class OSQLTarget extends OBaseParser {
         } else if (subjectToMatch.startsWith(OCommandExecutorSQLAbstract.DICTIONARY_PREFIX)) {
           // DICTIONARY
           final String key = originalSubjectName.substring(OCommandExecutorSQLAbstract.DICTIONARY_PREFIX.length());
-          targetRecords = new ArrayList<OIdentifiable>();
+          targetRecords = new ArrayList<>();
 
           final OIdentifiable value = ODatabaseRecordThreadLocal.instance().get().getDictionary().get(key);
           if (value != null)
@@ -267,7 +276,7 @@ public class OSQLTarget extends OBaseParser {
 
           // REGISTER AS CLASS
           if (targetClasses == null)
-            targetClasses = new HashMap<String, String>();
+            targetClasses = new HashMap<>();
 
           final OClass cls = ODatabaseRecordThreadLocal.instance().get().getMetadata().getImmutableSchemaSnapshot().getClass(subjectName);
           if (cls == null)

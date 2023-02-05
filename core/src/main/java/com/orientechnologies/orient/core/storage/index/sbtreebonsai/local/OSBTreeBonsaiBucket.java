@@ -20,6 +20,11 @@
 
 package com.orientechnologies.orient.core.storage.index.sbtreebonsai.local;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.common.comparator.ODefaultComparator;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.common.serialization.types.OByteSerializer;
@@ -28,12 +33,6 @@ import com.orientechnologies.common.serialization.types.OLongSerializer;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.exception.OSBTreeBonsaiLocalException;
 import com.orientechnologies.orient.core.storage.cache.OCacheEntry;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)
@@ -270,7 +269,7 @@ public class OSBTreeBonsaiBucket<K, V> extends OBonsaiBucketAbstract {
 
       V value = deserializeFromDirectMemory(valueSerializer, offset + entryPosition);
 
-      return new SBTreeEntry<K, V>(OBonsaiBucketPointer.NULL, OBonsaiBucketPointer.NULL, key, value);
+      return new SBTreeEntry<>(OBonsaiBucketPointer.NULL, OBonsaiBucketPointer.NULL, key, value);
     } else {
       OBonsaiBucketPointer leftChild = getBucketPointer(offset + entryPosition);
       entryPosition += OBonsaiBucketPointer.SIZE;
@@ -280,7 +279,7 @@ public class OSBTreeBonsaiBucket<K, V> extends OBonsaiBucketAbstract {
 
       K key = deserializeFromDirectMemory(keySerializer, offset + entryPosition);
 
-      return new SBTreeEntry<K, V>(leftChild, rightChild, key, null);
+      return new SBTreeEntry<>(leftChild, rightChild, key, null);
     }
   }
 

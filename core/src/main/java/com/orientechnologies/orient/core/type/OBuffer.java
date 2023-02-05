@@ -19,12 +19,11 @@
   */
 package com.orientechnologies.orient.core.type;
 
-import com.orientechnologies.common.io.OIOUtils;
-
 import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
+import com.orientechnologies.common.io.OIOUtils;
 
 public class OBuffer implements Externalizable {
   public byte[] buffer;

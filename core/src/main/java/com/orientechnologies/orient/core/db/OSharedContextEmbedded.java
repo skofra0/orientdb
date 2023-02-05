@@ -1,5 +1,7 @@
 package com.orientechnologies.orient.core.db;
 
+import java.util.HashMap;
+import java.util.Map;
 import com.orientechnologies.orient.core.cache.OCommandCacheSoftRefs;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.index.OIndexException;
@@ -19,9 +21,6 @@ import com.orientechnologies.orient.core.sql.parser.OExecutionPlanCache;
 import com.orientechnologies.orient.core.sql.parser.OStatementCache;
 import com.orientechnologies.orient.core.storage.OStorage;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by tglman on 13/06/17.

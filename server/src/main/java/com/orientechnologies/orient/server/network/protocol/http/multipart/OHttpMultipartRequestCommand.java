@@ -15,15 +15,14 @@
  */
 package com.orientechnologies.orient.server.network.protocol.http.multipart;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpResponse;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpUtils;
 import com.orientechnologies.orient.server.network.protocol.http.command.OServerCommandAuthenticatedDbAbstract;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 
 /**
  * @author Luca Molino (molino.luca--at--gmail.com)
@@ -44,7 +43,7 @@ public abstract class OHttpMultipartRequestCommand<B, F> extends OServerCommandA
     boolean endRequest = false;
     final OHttpMultipartContentInputStream contentIn = new OHttpMultipartContentInputStream(iRequest.multipartStream,
         iRequest.boundary);
-    final HashMap<String, String> headers = new LinkedHashMap<String, String>();
+    final HashMap<String, String> headers = new LinkedHashMap<>();
     int in;
     try {
       while (!endRequest && (in = iRequest.multipartStream.read()) > 0) {

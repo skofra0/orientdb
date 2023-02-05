@@ -1,5 +1,5 @@
 *******************************************************************************
-                              NEXUS ORIENT DATABASE
+                              DEEM ORIENT DATABASE
 *******************************************************************************
 
 WINDOWS SERVICE
@@ -10,7 +10,7 @@ WINDOWS SERVICE
    Remember to run the CMD prompt as an "Administrator"
 2) Change the root user password in ORIENTDB_HOME\config\orientdb-server-config.xml
    Simple passord example:admin
-3) Start the "Nexus OrientDB" service
+3) Start the "Deem OrientDB" service
 3) To Open Studio Web Tool, open a browser and point it to the URL:
    “http://localhost:2480”
  

@@ -19,11 +19,14 @@
  */
 package com.orientechnologies.orient.core.index;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.orient.core.db.record.OMultiValueChangeEvent;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-
-import java.util.*;
 
 /**
  * Index implementation bound to one schema class property that presents {@link com.orientechnologies.orient.core.metadata.schema.OType#EMBEDDEDMAP
@@ -67,7 +70,7 @@ public class OPropertyMapIndexDefinition extends OAbstractIndexDefinitionMultiVa
       return null;
 
     final Collection<?> mapParams = extractMapParams((Map<?, ?>) params.get(0));
-    final List<Object> result = new ArrayList<Object>(mapParams.size());
+    final List<Object> result = new ArrayList<>(mapParams.size());
     for (final Object mapParam : mapParams) {
       result.add(createSingleValue(mapParam));
     }

@@ -3,7 +3,6 @@ package com.orientechnologies.orient.test.server.network.http;
 import org.apache.http.HttpResponse;
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.io.IOException;
 
 /**

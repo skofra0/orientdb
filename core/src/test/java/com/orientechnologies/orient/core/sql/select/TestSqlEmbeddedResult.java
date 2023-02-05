@@ -1,15 +1,15 @@
 package com.orientechnologies.orient.core.sql.select;
 
+import org.junit.Assert;
+import org.junit.Test;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.junit.Assert; import org.junit.Test;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 public class TestSqlEmbeddedResult {
 
@@ -21,13 +21,13 @@ public class TestSqlEmbeddedResult {
     ODocument doc = new ODocument("Test");
     ODocument doc1 = new ODocument();
     doc1.field("format", 1);
-    Set<ODocument> docs = new HashSet<ODocument>();
+    Set<ODocument> docs = new HashSet<>();
     docs.add(doc1);
     doc.field("rel", docs);
     // doc
     db.save(doc);
 
-    List<ODocument> res = db.query(new OSQLSynchQuery<Object>("select $Pics[0] as el FROM Test LET $Pics = (select expand( rel.include('format')) from $current)"));
+    List<ODocument> res = db.query(new OSQLSynchQuery<>("select $Pics[0] as el FROM Test LET $Pics = (select expand( rel.include('format')) from $current)"));
     Assert.assertEquals(res.size(), 1);
     ODocument ele = res.get(0);
     Assert.assertNotNull(ele.field("el"));
@@ -37,7 +37,7 @@ public class TestSqlEmbeddedResult {
     Assert.assertNotNull(read.field("el"));
     Assert.assertEquals(read.fieldType("el"), OType.EMBEDDED);
     
-    res = db.query(new OSQLSynchQuery<Object>("select $Pics as el FROM Test LET $Pics = (select expand( rel.include('format')) from $current)"));
+    res = db.query(new OSQLSynchQuery<>("select $Pics as el FROM Test LET $Pics = (select expand( rel.include('format')) from $current)"));
     
     Assert.assertEquals(res.size(), 1);
     ele = res.get(0);

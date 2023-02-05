@@ -19,11 +19,6 @@
  */
 package com.orientechnologies.orient.server.network.protocol.http;
 
-import com.orientechnologies.orient.core.config.OContextConfiguration;
-import com.orientechnologies.orient.core.metadata.security.OToken;
-import com.orientechnologies.orient.server.network.protocol.ONetworkProtocolData;
-import com.orientechnologies.orient.server.network.protocol.http.multipart.OHttpMultipartBaseInputStream;
-
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
@@ -33,6 +28,10 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import com.orientechnologies.orient.core.config.OContextConfiguration;
+import com.orientechnologies.orient.core.metadata.security.OToken;
+import com.orientechnologies.orient.server.network.protocol.ONetworkProtocolData;
+import com.orientechnologies.orient.server.network.protocol.http.multipart.OHttpMultipartBaseInputStream;
 
 /**
  * Maintains information about current HTTP request.
@@ -92,7 +91,7 @@ public class OHttpRequest {
 
   public void addHeader(final String h) {
     if (headers == null)
-      headers = new HashMap<String, String>();
+      headers = new HashMap<>();
 
     final int pos = h.indexOf(':');
     if (pos > -1) {
@@ -104,7 +103,7 @@ public class OHttpRequest {
     if (content == null || content.length() < 1) {
       return null;
     }
-    HashMap<String, String> retMap = new HashMap<String, String>();
+    HashMap<String, String> retMap = new HashMap<>();
     String key, value;
     try {
       String[] pairs = content.split("\\&");

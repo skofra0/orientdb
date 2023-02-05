@@ -19,6 +19,15 @@
  */
 package com.orientechnologies.orient.core.serialization.serializer.record.string;
 
+import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.io.OIOUtils;
 import com.orientechnologies.common.profiler.OProfiler;
@@ -37,11 +46,6 @@ import com.orientechnologies.orient.core.serialization.serializer.record.ORecord
 import com.orientechnologies.orient.core.serialization.serializer.string.OStringSerializerAnyStreamable;
 import com.orientechnologies.orient.core.serialization.serializer.string.OStringSerializerEmbedded;
 import com.orientechnologies.orient.core.util.ODateHelper;
-
-import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.math.BigDecimal;
-import java.util.*;
 
 @SuppressWarnings("serial")
 public abstract class ORecordSerializerStringAbstract implements ORecordSerializer, Serializable {
@@ -417,14 +421,14 @@ public abstract class ORecordSerializerStringAbstract implements ORecordSerializ
       else if (iValue.charAt(0) == OStringSerializerHelper.LIST_BEGIN
           && iValue.charAt(iValue.length() - 1) == OStringSerializerHelper.LIST_END) {
         // LIST
-        final ArrayList<String> coll = new ArrayList<String>();
+        final ArrayList<String> coll = new ArrayList<>();
         OStringSerializerHelper.getCollection(iValue, 0, coll, OStringSerializerHelper.LIST_BEGIN,
             OStringSerializerHelper.LIST_END, OStringSerializerHelper.COLLECTION_SEPARATOR);
         return coll;
       } else if (iValue.charAt(0) == OStringSerializerHelper.SET_BEGIN
           && iValue.charAt(iValue.length() - 1) == OStringSerializerHelper.SET_END) {
         // SET
-        final Set<String> coll = new HashSet<String>();
+        final Set<String> coll = new HashSet<>();
         OStringSerializerHelper.getCollection(iValue, 0, coll, OStringSerializerHelper.SET_BEGIN, OStringSerializerHelper.SET_END,
             OStringSerializerHelper.COLLECTION_SEPARATOR);
         return coll;

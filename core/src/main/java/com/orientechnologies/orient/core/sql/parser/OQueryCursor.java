@@ -1,10 +1,9 @@
 package com.orientechnologies.orient.core.sql.parser;
 
-import com.orientechnologies.orient.core.command.OCommandContext;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import com.orientechnologies.orient.core.command.OCommandContext;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
 
 /**
  * Created by luigidellaquila on 02/10/15.

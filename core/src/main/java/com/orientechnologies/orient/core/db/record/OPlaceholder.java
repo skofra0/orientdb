@@ -19,16 +19,15 @@
  */
 package com.orientechnologies.orient.core.db.record;
 
+import java.io.DataInput;
+import java.io.DataOutput;
+import java.io.IOException;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.serialization.OStreamable;
 import com.orientechnologies.orient.core.storage.OStorage;
-
-import java.io.DataInput;
-import java.io.DataOutput;
-import java.io.IOException;
 
 /**
  * Base interface for identifiable objects. This abstraction is required to use ORID and ORecord in many points.

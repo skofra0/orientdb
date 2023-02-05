@@ -20,13 +20,12 @@
 
 package com.orientechnologies.orient.core.compression.impl;
 
-import com.orientechnologies.orient.core.serialization.OMemoryInputStream;
-import com.orientechnologies.orient.core.serialization.OMemoryStream;
-
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
+import com.orientechnologies.orient.core.serialization.OMemoryInputStream;
+import com.orientechnologies.orient.core.serialization.OMemoryStream;
 
 /**
  * @author Andrey Lomakin

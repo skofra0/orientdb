@@ -1,16 +1,14 @@
 package com.orientechnologies.lucene.engine;
 
-import com.orientechnologies.common.io.OIOUtils;
-import com.orientechnologies.orient.core.record.impl.ODocument;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.LiveIndexWriterConfig;
 import org.apache.lucene.store.RAMDirectory;
 import org.junit.Test;
-
 import java.io.File;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import com.orientechnologies.common.io.OIOUtils;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
  * Created by frank on 05/01/2016.

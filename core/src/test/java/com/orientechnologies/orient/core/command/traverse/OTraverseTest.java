@@ -1,17 +1,16 @@
 package com.orientechnologies.orient.core.command.traverse;
 
-import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.record.impl.ODocument;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
+import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
  * @author Artem Orobets (enisher-at-gmail.com)
@@ -74,7 +73,7 @@ public class OTraverseTest {
     c3.field("c3a", c3a);
     final ODocument c3b = new ODocument();
     c3.field("c3b", c3b);
-    rootDocument.field("c", new ArrayList<ODocument>(Arrays.asList(c1, c2, c3)));
+    rootDocument.field("c", new ArrayList<>(Arrays.asList(c1, c2, c3)));
 
     rootDocument.save(db.getClusterNameById(db.getDefaultClusterId()));
 
@@ -119,7 +118,7 @@ public class OTraverseTest {
     c3.field("c3a", c3a);
     final ODocument c3b = new ODocument();
     c3.field("c3b", c3b);
-    rootDocument.field("c", new ArrayList<ODocument>(Arrays.asList(c1, c2, c3)));
+    rootDocument.field("c", new ArrayList<>(Arrays.asList(c1, c2, c3)));
 
     rootDocument.save(db.getClusterNameById(db.getDefaultClusterId()));
 

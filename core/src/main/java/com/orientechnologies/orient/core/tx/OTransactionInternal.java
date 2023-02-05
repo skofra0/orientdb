@@ -19,13 +19,12 @@
  */
 package com.orientechnologies.orient.core.tx;
 
+import java.util.Collection;
+import java.util.Map;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.record.ORecordOperation;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.storage.OBasicTransaction;
-
-import java.util.Collection;
-import java.util.Map;
 
 /**
  * Expose the api for extract the internal details needed by the storage for perform the transaction commit

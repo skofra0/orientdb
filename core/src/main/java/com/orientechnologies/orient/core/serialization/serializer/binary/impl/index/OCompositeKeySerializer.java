@@ -20,6 +20,9 @@
 
 package com.orientechnologies.orient.core.serialization.serializer.binary.impl.index;
 
+import java.nio.ByteBuffer;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.common.serialization.types.OIntegerSerializer;
 import com.orientechnologies.common.serialization.types.ONullSerializer;
@@ -28,10 +31,6 @@ import com.orientechnologies.orient.core.index.OCompositeKey;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.serialization.serializer.binary.OBinarySerializerFactory;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALChanges;
-
-import java.nio.ByteBuffer;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Serializer that is used for serialization of {@link OCompositeKey} keys in index.

@@ -1,11 +1,10 @@
 package com.orientechnologies.orient.core.sql.executor;
 
-import com.orientechnologies.orient.core.command.OCommandContext;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import com.orientechnologies.orient.core.command.OCommandContext;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
 
 /**
  * Created by luigidellaquila on 12/10/16.

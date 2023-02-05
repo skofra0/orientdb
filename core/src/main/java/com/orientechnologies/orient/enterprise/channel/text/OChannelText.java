@@ -21,7 +21,6 @@ package com.orientechnologies.orient.enterprise.channel.text;
 
 import java.io.IOException;
 import java.net.Socket;
-
 import com.orientechnologies.orient.core.config.OContextConfiguration;
 import com.orientechnologies.orient.enterprise.channel.OChannel;
 

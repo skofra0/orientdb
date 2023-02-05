@@ -19,6 +19,10 @@
  */
 package com.orientechnologies.orient.server.handler;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Set;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.util.OCallable;
 import com.orientechnologies.orient.core.Orient;
@@ -32,11 +36,6 @@ import com.orientechnologies.orient.server.OServer;
 import com.orientechnologies.orient.server.config.OServerParameterConfiguration;
 import com.orientechnologies.orient.server.plugin.OServerPluginAbstract;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Set;
-
 /**
  * Allow the execution of server-side scripting. This could be a security hole in your configuration if users have access to the
  * database and can execute any kind of code.
@@ -45,7 +44,7 @@ import java.util.Set;
  */
 public class OServerSideScriptInterpreter extends OServerPluginAbstract {
   protected boolean     enabled          = false;
-  protected Set<String> allowedLanguages = new HashSet<String>();
+  protected Set<String> allowedLanguages = new HashSet<>();
 
   protected OScriptInterceptor interceptor;
 

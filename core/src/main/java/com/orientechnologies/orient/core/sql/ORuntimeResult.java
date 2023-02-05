@@ -19,6 +19,13 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import com.orientechnologies.common.util.OPair;
 import com.orientechnologies.common.util.OResettable;
 import com.orientechnologies.orient.core.command.OCommandContext;
@@ -38,9 +45,6 @@ import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemVariable;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunctionRuntime;
 import com.orientechnologies.orient.core.sql.method.OSQLMethodRuntime;
 import com.orientechnologies.orient.core.sql.method.misc.OSQLMethodField;
-
-import java.util.*;
-import java.util.Map.Entry;
 
 /**
  * Handles runtime results.
@@ -145,7 +149,7 @@ public class ORuntimeResult {
             if (projectionValue instanceof OResettable)
               ((OResettable) projectionValue).reset();
 
-            final List<Object> iteratorValues = new ArrayList<Object>();
+            final List<Object> iteratorValues = new ArrayList<>();
             final Iterator projectionValueIterator = (Iterator) projectionValue;
             while (projectionValueIterator.hasNext()) {
               Object value = projectionValueIterator.next();
@@ -185,7 +189,7 @@ public class ORuntimeResult {
             if (iterator instanceof OResettable)
               ((OResettable) iterator).reset();
 
-            final List<Object> iteratorValues = new ArrayList<Object>();
+            final List<Object> iteratorValues = new ArrayList<>();
             final Iterator projectionValueIterator = (Iterator) iterator;
             while (projectionValueIterator.hasNext()) {
               Object value = projectionValueIterator.next();

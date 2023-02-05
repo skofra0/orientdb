@@ -20,7 +20,6 @@
 package com.orientechnologies.orient.core.command;
 
 import java.util.Map;
-
 import com.orientechnologies.common.listener.OProgressListener;
 
 /**

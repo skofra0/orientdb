@@ -19,12 +19,11 @@
  */
 package com.orientechnologies.orient.core.sql.query;
 
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.orient.core.command.OCommandRequestAsynch;
 import com.orientechnologies.orient.core.command.OCommandResultListener;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * SQL asynchronous query. When executed the caller does not wait for the execution, rather the listener will be called for each

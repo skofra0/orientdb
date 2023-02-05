@@ -17,11 +17,10 @@
  */
 package com.orientechnologies.spatial;
 
+import java.nio.ByteBuffer;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALChanges;
-
-import java.nio.ByteBuffer;
 
 /**
  * Created by Enrico Risa on 04/09/15.

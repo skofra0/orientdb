@@ -1,5 +1,10 @@
 package com.orientechnologies.orient.core.sql.orderby;
 
+import static org.junit.Assert.assertEquals;
+import org.junit.Ignore;
+import org.junit.Test;
+import java.util.List;
+import java.util.Locale;
 import com.orientechnologies.orient.core.db.ODatabase.ATTRIBUTES;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
@@ -9,13 +14,6 @@ import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.junit.Ignore;
-import org.junit.Test;
-
-import java.util.List;
-import java.util.Locale;
-
-import static org.junit.Assert.assertEquals;
 
 public class TestOrderBy {
 
@@ -30,12 +28,12 @@ public class TestOrderBy {
       ORecord res1 = db.save(new ODocument("test").field("name", "Ähhhh"));
       ORecord res2 = db.save(new ODocument("test").field("name", "Ahhhh"));
       ORecord res3 = db.save(new ODocument("test").field("name", "Zebra"));
-      List<?> queryRes = db.query(new OSQLSynchQuery<Object>("select from test order by name"));
+      List<?> queryRes = db.query(new OSQLSynchQuery<>("select from test order by name"));
       assertEquals(queryRes.get(0), res2);
       assertEquals(queryRes.get(1), res1);
       assertEquals(queryRes.get(2), res3);
 
-      queryRes = db.query(new OSQLSynchQuery<Object>("select from test order by name desc "));
+      queryRes = db.query(new OSQLSynchQuery<>("select from test order by name desc "));
       assertEquals(queryRes.get(0), res3);
       assertEquals(queryRes.get(1), res1);
       assertEquals(queryRes.get(2), res2);
@@ -57,12 +55,12 @@ public class TestOrderBy {
       ORecord res1 = db.save(new ODocument("test").field("name", "Ähhhh"));
       ORecord res2 = db.save(new ODocument("test").field("name", "Ahhhh"));
       ORecord res3 = db.save(new ODocument("test").field("name", "Zebra"));
-      List<?> queryRes = db.query(new OSQLSynchQuery<Object>("select from test order by name"));
+      List<?> queryRes = db.query(new OSQLSynchQuery<>("select from test order by name"));
       assertEquals(queryRes.get(0), res2);
       assertEquals(queryRes.get(1), res1);
       assertEquals(queryRes.get(2), res3);
 
-      queryRes = db.query(new OSQLSynchQuery<Object>("select from test order by name desc "));
+      queryRes = db.query(new OSQLSynchQuery<>("select from test order by name desc "));
       assertEquals(queryRes.get(0), res3);
       assertEquals(queryRes.get(1), res1);
       assertEquals(queryRes.get(2), res2);

@@ -1,9 +1,8 @@
 package com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.operationsfreezer;
 
+import java.util.concurrent.CountDownLatch;
 import com.orientechnologies.common.concur.lock.OInterruptedException;
 import com.orientechnologies.common.exception.OException;
-
-import java.util.concurrent.CountDownLatch;
 
 final class WaitingListNode {
   /**

@@ -18,6 +18,8 @@
 
 package com.orientechnologies.lucene.test;
 
+import org.assertj.core.api.Assertions;
+import org.junit.Test;
 import com.orientechnologies.orient.core.db.ODatabaseSession;
 import com.orientechnologies.orient.core.db.ODatabaseType;
 import com.orientechnologies.orient.core.db.OrientDB;
@@ -31,8 +33,6 @@ import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import org.assertj.core.api.Assertions;
-import org.junit.Test;
 
 
 /**

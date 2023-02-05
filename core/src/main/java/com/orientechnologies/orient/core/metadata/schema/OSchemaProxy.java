@@ -20,16 +20,15 @@
  */
 package com.orientechnologies.orient.core.metadata.schema;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.record.OProxedResource;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.metadata.schema.clusterselection.OClusterSelectionFactory;
 import com.orientechnologies.orient.core.type.ODocumentWrapper;
-
-import java.util.Collection;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
 
 /**
  * Proxy class to use the shared OSchemaShared instance. Before to delegate each operations it sets the current database in the

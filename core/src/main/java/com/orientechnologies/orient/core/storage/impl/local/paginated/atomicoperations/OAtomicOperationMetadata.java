@@ -1,8 +1,7 @@
 package com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations;
 
-import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OAtomicUnitEndRecord;
-
 import java.io.Serializable;
+import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OAtomicUnitEndRecord;
 
 /**
  * Basic interface for any kind of metadata which may be stored as part of atomic operation.

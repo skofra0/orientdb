@@ -1,5 +1,13 @@
 package com.orientechnologies.orient.server;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
 import com.orientechnologies.common.io.OFileUtils;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.Orient;
@@ -10,17 +18,6 @@ import com.orientechnologies.orient.server.config.OServerNetworkListenerConfigur
 import com.orientechnologies.orient.server.config.OServerNetworkProtocolConfiguration;
 import com.orientechnologies.orient.server.network.protocol.binary.ONetworkProtocolBinary;
 import com.orientechnologies.orient.server.network.protocol.http.ONetworkProtocolHttpDb;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Created by frank on 19/11/2015.
@@ -44,11 +41,11 @@ public class OServerShutdownMainTest {
     OServerConfiguration conf = new OServerConfiguration();
     conf.network = new OServerNetworkConfiguration();
 
-    conf.network.protocols = new ArrayList<OServerNetworkProtocolConfiguration>();
+    conf.network.protocols = new ArrayList<>();
     conf.network.protocols.add(new OServerNetworkProtocolConfiguration("binary", ONetworkProtocolBinary.class.getName()));
     conf.network.protocols.add(new OServerNetworkProtocolConfiguration("http", ONetworkProtocolHttpDb.class.getName()));
 
-    conf.network.listeners = new ArrayList<OServerNetworkListenerConfiguration>();
+    conf.network.listeners = new ArrayList<>();
     conf.network.listeners.add(new OServerNetworkListenerConfiguration());
 
     server = new OServer(false);

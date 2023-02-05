@@ -19,6 +19,16 @@
  */
 package com.orientechnologies.orient.core.db.tool;
 
+import static com.orientechnologies.orient.core.record.impl.ODocumentHelper.makeDbCall;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.command.OCommandOutputListener;
 import com.orientechnologies.orient.core.config.OStorageConfiguration;
@@ -41,18 +51,6 @@ import com.orientechnologies.orient.core.record.impl.ODocumentHelper.ODbRelatedC
 import com.orientechnologies.orient.core.storage.OPhysicalPosition;
 import com.orientechnologies.orient.core.storage.ORawBuffer;
 import com.orientechnologies.orient.core.storage.OStorage;
-
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import static com.orientechnologies.orient.core.record.impl.ODocumentHelper.makeDbCall;
 
 public class ODatabaseCompare extends ODatabaseImpExpAbstract {
   private ODatabaseDocumentInternal databaseOne;

@@ -1,11 +1,10 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.util.ArrayList;
+import java.util.List;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunction;
 import com.orientechnologies.orient.core.sql.parser.OExpression;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Delegates to an aggregate function for aggregation calculation

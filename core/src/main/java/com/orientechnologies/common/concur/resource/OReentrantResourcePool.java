@@ -19,15 +19,14 @@
  */
 package com.orientechnologies.common.concur.resource;
 
-import com.orientechnologies.common.concur.lock.OLockException;
-import com.orientechnologies.orient.core.OOrientShutdownListener;
-import com.orientechnologies.orient.core.OOrientStartupListener;
-import com.orientechnologies.orient.core.Orient;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.orientechnologies.common.concur.lock.OLockException;
+import com.orientechnologies.orient.core.OOrientShutdownListener;
+import com.orientechnologies.orient.core.OOrientStartupListener;
+import com.orientechnologies.orient.core.Orient;
 
 /**
  * Reentrant implementation of Resource Pool. It manages multiple resource acquisition on thread local map. If you're looking for a
@@ -38,7 +37,7 @@ import java.util.Map;
  * @see OResourcePool
  */
 public class OReentrantResourcePool<K, V> extends OResourcePool<K, V> implements OOrientStartupListener, OOrientShutdownListener {
-  private volatile ThreadLocal<Map<K, ResourceHolder<V>>> activeResources = new ThreadLocal<Map<K, ResourceHolder<V>>>();
+  private volatile ThreadLocal<Map<K, ResourceHolder<V>>> activeResources = new ThreadLocal<>();
 
   private static final class ResourceHolder<V> {
     private final V resource;
@@ -64,14 +63,14 @@ public class OReentrantResourcePool<K, V> extends OResourcePool<K, V> implements
   @Override
   public void onStartup() {
     if (activeResources == null)
-      activeResources = new ThreadLocal<Map<K, ResourceHolder<V>>>();
+      activeResources = new ThreadLocal<>();
   }
 
   public V getResource(K key, final long maxWaitMillis, Object... additionalArgs) throws OLockException {
     Map<K, ResourceHolder<V>> resourceHolderMap = activeResources.get();
 
     if (resourceHolderMap == null) {
-      resourceHolderMap = new HashMap<K, ResourceHolder<V>>();
+      resourceHolderMap = new HashMap<>();
       activeResources.set(resourceHolderMap);
     }
 
@@ -82,7 +81,7 @@ public class OReentrantResourcePool<K, V> extends OResourcePool<K, V> implements
     }
     try {
       final V res = super.getResource(key, maxWaitMillis, additionalArgs);
-      resourceHolderMap.put(key, new ResourceHolder<V>(res));
+      resourceHolderMap.put(key, new ResourceHolder<>(res));
       return res;
 
     } catch (RuntimeException e) {
@@ -131,7 +130,7 @@ public class OReentrantResourcePool<K, V> extends OResourcePool<K, V> implements
   public void remove(final V res) {
     this.resources.remove(res);
 
-    final List<K> activeResourcesToRemove = new ArrayList<K>();
+    final List<K> activeResourcesToRemove = new ArrayList<>();
     final Map<K, ResourceHolder<V>> activeResourcesMap = activeResources.get();
 
     if (activeResourcesMap != null) {

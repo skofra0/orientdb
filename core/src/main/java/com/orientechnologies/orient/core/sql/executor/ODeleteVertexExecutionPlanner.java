@@ -2,7 +2,12 @@ package com.orientechnologies.orient.core.sql.executor;
 
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
-import com.orientechnologies.orient.core.sql.parser.*;
+import com.orientechnologies.orient.core.sql.parser.ODeleteVertexStatement;
+import com.orientechnologies.orient.core.sql.parser.OFromClause;
+import com.orientechnologies.orient.core.sql.parser.OIndexIdentifier;
+import com.orientechnologies.orient.core.sql.parser.OLimit;
+import com.orientechnologies.orient.core.sql.parser.OSelectStatement;
+import com.orientechnologies.orient.core.sql.parser.OWhereClause;
 
 /**
  * Created by luigidellaquila on 08/08/16.

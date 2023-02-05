@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.common.serialization.types.OIntegerSerializer;
 import com.orientechnologies.orient.client.remote.OBinaryResponse;
@@ -57,13 +56,13 @@ public class OSBTFetchEntriesMajorResponse<K, V> implements OBinaryResponse {
     int offset = 0;
     final int count = OIntegerSerializer.INSTANCE.deserializeLiteral(stream, 0);
     offset += OIntegerSerializer.INT_SIZE;
-    list = new ArrayList<Map.Entry<K, V>>(count);
+    list = new ArrayList<>(count);
     for (int i = 0; i < count; i++) {
       final K resultKey = keySerializer.deserialize(stream, offset);
       offset += keySerializer.getObjectSize(stream, offset);
       final V resultValue = valueSerializer.deserialize(stream, offset);
       offset += valueSerializer.getObjectSize(stream, offset);
-      list.add(new OSBTreeBonsaiRemote.TreeEntry<K, V>(resultKey, resultValue));
+      list.add(new OSBTreeBonsaiRemote.TreeEntry<>(resultKey, resultValue));
     }
   }
 

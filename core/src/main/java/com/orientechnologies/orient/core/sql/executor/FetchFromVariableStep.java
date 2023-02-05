@@ -1,14 +1,13 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Optional;
 import com.orientechnologies.common.concur.OTimeoutException;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 import com.orientechnologies.orient.core.record.OElement;
-
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Optional;
 
 /**
  * Created by luigidellaquila on 22/07/16.

@@ -1,16 +1,15 @@
 package com.orientechnologies.orient.test.server.network.http;
 
-import com.orientechnologies.orient.core.OConstants;
-import com.orientechnologies.orient.core.record.impl.ODocument;
 import org.apache.http.HttpResponse;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.Map;
+import com.orientechnologies.orient.core.OConstants;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
  * Tests HTTP "database" command.

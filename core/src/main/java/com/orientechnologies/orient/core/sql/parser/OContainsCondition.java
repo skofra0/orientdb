@@ -2,13 +2,6 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=true,TRACK_TOKENS=true,NODE_PREFIX=O,NODE_EXTENDS=,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package com.orientechnologies.orient.core.sql.parser;
 
-import com.orientechnologies.common.collection.OMultiValue;
-import com.orientechnologies.orient.core.command.OCommandContext;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.sql.executor.OResult;
-import com.orientechnologies.orient.core.sql.executor.OResultInternal;
-import com.orientechnologies.orient.core.sql.operator.OQueryOperatorEquals;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -16,6 +9,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import com.orientechnologies.common.collection.OMultiValue;
+import com.orientechnologies.orient.core.command.OCommandContext;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.sql.executor.OResult;
+import com.orientechnologies.orient.core.sql.executor.OResultInternal;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperatorEquals;
 
 public class OContainsCondition extends OBooleanExpression {
 
@@ -219,7 +218,7 @@ public class OContainsCondition extends OBooleanExpression {
 
   @Override
   protected List<Object> getExternalCalculationConditions() {
-    List<Object> result = new ArrayList<Object>();
+    List<Object> result = new ArrayList<>();
 
     if (condition != null) {
       result.addAll(condition.getExternalCalculationConditions());
@@ -317,7 +316,7 @@ public class OContainsCondition extends OBooleanExpression {
     List<String> rightX = right == null ? null : right.getMatchPatternInvolvedAliases();
     List<String> conditionX = condition == null ? null : condition.getMatchPatternInvolvedAliases();
 
-    List<String> result = new ArrayList<String>();
+    List<String> result = new ArrayList<>();
     if (leftX != null) {
       result.addAll(leftX);
     }

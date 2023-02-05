@@ -18,24 +18,20 @@
 
 package com.orientechnologies.lucene.builder;
 
+import static com.orientechnologies.lucene.builder.OLuceneIndexType.createField;
+import static com.orientechnologies.lucene.builder.OLuceneIndexType.createFields;
+import static com.orientechnologies.lucene.engine.OLuceneIndexEngineAbstract.RID;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.document.Field;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.index.OCompositeKey;
 import com.orientechnologies.orient.core.index.OIndexDefinition;
 import com.orientechnologies.orient.core.record.OElement;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Field;
-import org.apache.lucene.search.Sort;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-
-import static com.orientechnologies.lucene.builder.OLuceneIndexType.createField;
-import static com.orientechnologies.lucene.builder.OLuceneIndexType.createFields;
-import static com.orientechnologies.lucene.engine.OLuceneIndexEngineAbstract.RID;
 
 /**
  * Created by Enrico Risa on 02/09/15.
@@ -95,7 +91,7 @@ public class OLuceneDocumentBuilder {
     } else if (key instanceof List) {
       keys = ((List) key);
     } else {
-      keys = new ArrayList<Object>();
+      keys = new ArrayList<>();
       keys.add(key);
     }
 

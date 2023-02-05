@@ -1,20 +1,27 @@
 package com.orientechnologies.orient.core.storage.impl.local.statistic;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
 import org.junit.Assert;
 import org.junit.Test;
-
-import javax.management.*;
 import java.util.Arrays;
 import java.util.HashSet;
-
-import static org.mockito.Mockito.*;
+import javax.management.AttributeNotFoundException;
+import javax.management.MBeanAttributeInfo;
+import javax.management.MBeanInfo;
+import javax.management.MBeanOperationInfo;
+import javax.management.MBeanParameterInfo;
+import javax.management.ReflectionException;
+import javax.management.RuntimeOperationsException;
 
 public class PerformanceStatisticManagerMBeanTest {
 
   @Test
   public void testMbeanInfo() {
     final OPerformanceStatisticManager manager = mock(OPerformanceStatisticManager.class);
-    when(manager.getComponentNames()).thenReturn(new HashSet<String>(Arrays.asList("com1", "com2")));
+    when(manager.getComponentNames()).thenReturn(new HashSet<>(Arrays.asList("com1", "com2")));
 
     final OPerformanceStatisticManagerMBean mBean = new OPerformanceStatisticManagerMBean(manager);
     final MBeanInfo mBeanInfo = mBean.getMBeanInfo();
@@ -58,7 +65,7 @@ public class PerformanceStatisticManagerMBeanTest {
 
   public void testCacheHits() throws Exception {
     final OPerformanceStatisticManager manager = mock(OPerformanceStatisticManager.class);
-    when(manager.getComponentNames()).thenReturn(new HashSet<String>(Arrays.asList("com1", "com2")));
+    when(manager.getComponentNames()).thenReturn(new HashSet<>(Arrays.asList("com1", "com2")));
 
     when(manager.getCacheHits()).thenReturn(12);
     when(manager.getCacheHits("com1")).thenReturn(15);
@@ -93,7 +100,7 @@ public class PerformanceStatisticManagerMBeanTest {
 
   public void testReadSpeedFromCache() throws Exception {
     final OPerformanceStatisticManager manager = mock(OPerformanceStatisticManager.class);
-    when(manager.getComponentNames()).thenReturn(new HashSet<String>(Arrays.asList("com1", "com2")));
+    when(manager.getComponentNames()).thenReturn(new HashSet<>(Arrays.asList("com1", "com2")));
 
     when(manager.getReadSpeedFromCacheInPages()).thenReturn(120L);
     when(manager.getReadSpeedFromCacheInPages("com1")).thenReturn(150L);
@@ -122,7 +129,7 @@ public class PerformanceStatisticManagerMBeanTest {
 
   public void testNullPointerAttribute() throws Exception {
     final OPerformanceStatisticManager manager = mock(OPerformanceStatisticManager.class);
-    when(manager.getComponentNames()).thenReturn(new HashSet<String>(Arrays.asList("com1", "com2")));
+    when(manager.getComponentNames()).thenReturn(new HashSet<>(Arrays.asList("com1", "com2")));
 
     final OPerformanceStatisticManagerMBean mBean = new OPerformanceStatisticManagerMBean(manager);
     try {
@@ -134,7 +141,7 @@ public class PerformanceStatisticManagerMBeanTest {
 
   public void testWrongFormatAttribute() throws Exception {
     final OPerformanceStatisticManager manager = mock(OPerformanceStatisticManager.class);
-    when(manager.getComponentNames()).thenReturn(new HashSet<String>(Arrays.asList("com1", "com2")));
+    when(manager.getComponentNames()).thenReturn(new HashSet<>(Arrays.asList("com1", "com2")));
     when(manager.getCacheHits("adsf_sda")).thenReturn(0);
 
     final OPerformanceStatisticManagerMBean mBean = new OPerformanceStatisticManagerMBean(manager);
@@ -146,7 +153,7 @@ public class PerformanceStatisticManagerMBeanTest {
 
   public void testEmptyComponent() throws Exception {
     final OPerformanceStatisticManager manager = mock(OPerformanceStatisticManager.class);
-    when(manager.getComponentNames()).thenReturn(new HashSet<String>(Arrays.asList("com1", "com2")));
+    when(manager.getComponentNames()).thenReturn(new HashSet<>(Arrays.asList("com1", "com2")));
 
     final OPerformanceStatisticManagerMBean mBean = new OPerformanceStatisticManagerMBean(manager);
 
@@ -159,7 +166,7 @@ public class PerformanceStatisticManagerMBeanTest {
 
   public void testEmptyAttribute() throws Exception {
     final OPerformanceStatisticManager manager = mock(OPerformanceStatisticManager.class);
-    when(manager.getComponentNames()).thenReturn(new HashSet<String>(Arrays.asList("com1", "com2")));
+    when(manager.getComponentNames()).thenReturn(new HashSet<>(Arrays.asList("com1", "com2")));
 
     final OPerformanceStatisticManagerMBean mBean = new OPerformanceStatisticManagerMBean(manager);
 
@@ -172,7 +179,7 @@ public class PerformanceStatisticManagerMBeanTest {
 
   public void testPagesPerOperation() throws Exception {
     final OPerformanceStatisticManager manager = mock(OPerformanceStatisticManager.class);
-    when(manager.getComponentNames()).thenReturn(new HashSet<String>(Arrays.asList("com1", "com2")));
+    when(manager.getComponentNames()).thenReturn(new HashSet<>(Arrays.asList("com1", "com2")));
 
     when(manager.getAmountOfPagesPerOperation("com1")).thenReturn(150L);
     when(manager.getAmountOfPagesPerOperation("com2")).thenReturn(200L);
@@ -201,7 +208,7 @@ public class PerformanceStatisticManagerMBeanTest {
 
   public void testReadSpeedFromFile() throws Exception {
     final OPerformanceStatisticManager manager = mock(OPerformanceStatisticManager.class);
-    when(manager.getComponentNames()).thenReturn(new HashSet<String>(Arrays.asList("com1", "com2")));
+    when(manager.getComponentNames()).thenReturn(new HashSet<>(Arrays.asList("com1", "com2")));
 
     when(manager.getReadSpeedFromFileInPages()).thenReturn(120L);
     when(manager.getReadSpeedFromFileInPages("com1")).thenReturn(150L);
@@ -230,7 +237,7 @@ public class PerformanceStatisticManagerMBeanTest {
 
   public void testWriteSpeedInCache() throws Exception {
     final OPerformanceStatisticManager manager = mock(OPerformanceStatisticManager.class);
-    when(manager.getComponentNames()).thenReturn(new HashSet<String>(Arrays.asList("com1", "com2")));
+    when(manager.getComponentNames()).thenReturn(new HashSet<>(Arrays.asList("com1", "com2")));
 
     when(manager.getWriteSpeedInCacheInPages()).thenReturn(120L);
     when(manager.getWriteSpeedInCacheInPages("com1")).thenReturn(150L);
@@ -259,7 +266,7 @@ public class PerformanceStatisticManagerMBeanTest {
 
   public void testCommitTime() throws Exception {
     final OPerformanceStatisticManager manager = mock(OPerformanceStatisticManager.class);
-    when(manager.getComponentNames()).thenReturn(new HashSet<String>(Arrays.asList("com1", "com2")));
+    when(manager.getComponentNames()).thenReturn(new HashSet<>(Arrays.asList("com1", "com2")));
 
     when(manager.getCommitTime()).thenReturn(200L);
 
@@ -280,7 +287,7 @@ public class PerformanceStatisticManagerMBeanTest {
 
   public void testStartMonitoring() throws Exception {
     final OPerformanceStatisticManager manager = mock(OPerformanceStatisticManager.class);
-    when(manager.getComponentNames()).thenReturn(new HashSet<String>(Arrays.asList("com1", "com2")));
+    when(manager.getComponentNames()).thenReturn(new HashSet<>(Arrays.asList("com1", "com2")));
 
     final OPerformanceStatisticManagerMBean mBean = new OPerformanceStatisticManagerMBean(manager);
     mBean.invoke("startMonitoring", new Object[0], new String[0]);
@@ -291,7 +298,7 @@ public class PerformanceStatisticManagerMBeanTest {
 
   public void testStopMonitoring() throws Exception {
     final OPerformanceStatisticManager manager = mock(OPerformanceStatisticManager.class);
-    when(manager.getComponentNames()).thenReturn(new HashSet<String>(Arrays.asList("com1", "com2")));
+    when(manager.getComponentNames()).thenReturn(new HashSet<>(Arrays.asList("com1", "com2")));
 
     final OPerformanceStatisticManagerMBean mBean = new OPerformanceStatisticManagerMBean(manager);
     mBean.invoke("stopMonitoring", new Object[0], new String[0]);
@@ -302,7 +309,7 @@ public class PerformanceStatisticManagerMBeanTest {
 
   public void testNullMethod() throws Exception {
     final OPerformanceStatisticManager manager = mock(OPerformanceStatisticManager.class);
-    when(manager.getComponentNames()).thenReturn(new HashSet<String>(Arrays.asList("com1", "com2")));
+    when(manager.getComponentNames()).thenReturn(new HashSet<>(Arrays.asList("com1", "com2")));
 
     final OPerformanceStatisticManagerMBean mBean = new OPerformanceStatisticManagerMBean(manager);
     try {
@@ -314,7 +321,7 @@ public class PerformanceStatisticManagerMBeanTest {
 
   public void testIncorectMethodName() throws Exception {
     final OPerformanceStatisticManager manager = mock(OPerformanceStatisticManager.class);
-    when(manager.getComponentNames()).thenReturn(new HashSet<String>(Arrays.asList("com1", "com2")));
+    when(manager.getComponentNames()).thenReturn(new HashSet<>(Arrays.asList("com1", "com2")));
 
     final OPerformanceStatisticManagerMBean mBean = new OPerformanceStatisticManagerMBean(manager);
     try {

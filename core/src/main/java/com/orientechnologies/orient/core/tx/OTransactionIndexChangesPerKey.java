@@ -19,12 +19,17 @@
  */
 package com.orientechnologies.orient.core.tx;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import com.orientechnologies.common.collection.OMultiCollectionIterator;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.tx.OTransactionIndexChanges.OPERATION;
-
-import java.util.*;
 
 /**
  * Collects the changes to an index for a certain key
@@ -74,7 +79,7 @@ public class OTransactionIndexChangesPerKey {
 
   public OTransactionIndexChangesPerKey(final Object iKey) {
     this.key = iKey;
-    entries = new ArrayList<OTransactionIndexEntry>();
+    entries = new ArrayList<>();
   }
 
   public void add(OIdentifiable iValue, final OPERATION iOperation) {
@@ -131,7 +136,7 @@ public class OTransactionIndexChangesPerKey {
     // 1. Handle common fast paths.
 
     if (entries.size() < 2)
-      return new ArrayList<OTransactionIndexEntry>(entries);
+      return new ArrayList<>(entries);
 
     if (entries.size() == 2) {
       final OTransactionIndexEntry entryA = entries.get(0);
@@ -147,7 +152,7 @@ public class OTransactionIndexChangesPerKey {
         if (entryA.operation == entryB.operation) // both operations do the same on the same RID
           return Collections.singletonList(entryA);
 
-        return new ArrayList<OTransactionIndexEntry>(entries); // don't optimize remove-put on the same RID for safety
+        return new ArrayList<>(entries); // don't optimize remove-put on the same RID for safety
       }
 
       if (entryB.operation == OPERATION.REMOVE)
@@ -155,12 +160,12 @@ public class OTransactionIndexChangesPerKey {
             Collections.singletonList(entryB) /* latest key removal wins */ :
             swap(entries) /* reorder to remove-put */;
 
-      return new ArrayList<OTransactionIndexEntry>(entries); // it's either remove-put or put-put
+      return new ArrayList<>(entries); // it's either remove-put or put-put
     }
 
     // 2. Calculate observable changes to index.
 
-    final Set<OTransactionIndexEntry> interpretation = new HashSet<OTransactionIndexEntry>(entries.size());
+    final Set<OTransactionIndexEntry> interpretation = new HashSet<>(entries.size());
     OTransactionIndexEntry firstExternalRemove = null;
     for (OTransactionIndexEntry entry : entries) {
       final OIdentifiable value = entry.value;
@@ -194,7 +199,7 @@ public class OTransactionIndexChangesPerKey {
       return Collections.emptyList();
     }
 
-    final List<OTransactionIndexEntry> changes = new ArrayList<OTransactionIndexEntry>(
+    final List<OTransactionIndexEntry> changes = new ArrayList<>(
         1 /* for removal, if any */ + 2 /* for puts */);
     if (firstExternalRemove != null)
       changes.add(firstExternalRemove);
@@ -214,7 +219,7 @@ public class OTransactionIndexChangesPerKey {
     // 1. Handle common fast paths.
 
     if (entries.size() < 2)
-      return new ArrayList<OTransactionIndexEntry>(entries);
+      return new ArrayList<>(entries);
 
     if (entries.size() == 2) {
       final OTransactionIndexEntry entryA = entries.get(0);
@@ -230,7 +235,7 @@ public class OTransactionIndexChangesPerKey {
         if (entryA.operation == entryB.operation) // both operations do the same on the same RID
           return Collections.singletonList(entryA);
 
-        return new ArrayList<OTransactionIndexEntry>(entries);
+        return new ArrayList<>(entries);
       }
 
       if (entryB.operation == OPERATION.REMOVE && entryB.value == null)
@@ -247,9 +252,9 @@ public class OTransactionIndexChangesPerKey {
     // is no lightweight way to find it out using standard Java data structures, thanks to Josh Bloch for not exposing the
     // LinkedHashMap's "doubly-linked list" interface to the public, but mentioning it in the clever javadoc. So we have to
     // maintain our own queue.
-    final Deque<OTransactionIndexEntry> lastObservedPuts = new ArrayDeque<OTransactionIndexEntry>(entries.size());
+    final Deque<OTransactionIndexEntry> lastObservedPuts = new ArrayDeque<>(entries.size());
 
-    final Set<OTransactionIndexEntry> interpretation = new HashSet<OTransactionIndexEntry>(entries.size());
+    final Set<OTransactionIndexEntry> interpretation = new HashSet<>(entries.size());
     OTransactionIndexEntry firstExternalRemove = null;
     for (OTransactionIndexEntry entry : entries) {
       final OIdentifiable value = entry.value;
@@ -306,7 +311,7 @@ public class OTransactionIndexChangesPerKey {
     // 1. Handle common fast paths.
 
     if (entries.size() < 2)
-      return new ArrayList<OTransactionIndexEntry>(entries);
+      return new ArrayList<>(entries);
 
     if (entries.size() == 2) {
       final OTransactionIndexEntry entryA = entries.get(0);
@@ -321,7 +326,7 @@ public class OTransactionIndexChangesPerKey {
         if (entryB.operation == OPERATION.REMOVE)
           return Collections.singletonList(entryA); // both are removals
 
-        return new ArrayList<OTransactionIndexEntry>(entries); // second operation is a put
+        return new ArrayList<>(entries); // second operation is a put
       }
 
       if (ridB == null) {
@@ -334,17 +339,17 @@ public class OTransactionIndexChangesPerKey {
         if (entryA.operation == entryB.operation) // both operations do the same on the same RID
           return Collections.singletonList(entryA);
 
-        return new ArrayList<OTransactionIndexEntry>(entries);
+        return new ArrayList<>(entries);
       }
 
-      return new ArrayList<OTransactionIndexEntry>(entries); // it's put-put on different RIDs
+      return new ArrayList<>(entries); // it's put-put on different RIDs
     }
 
     // 2. Calculate observable changes to index.
 
-    final Set<OTransactionIndexEntry> changes = new HashSet<OTransactionIndexEntry>(entries.size());
+    final Set<OTransactionIndexEntry> changes = new HashSet<>(entries.size());
 
-    final Set<OTransactionIndexEntry> interpretation = new HashSet<OTransactionIndexEntry>(entries.size());
+    final Set<OTransactionIndexEntry> interpretation = new HashSet<>(entries.size());
     boolean seenKeyRemoval = false;
     for (OTransactionIndexEntry entry : entries) {
       final OIdentifiable value = entry.value;
@@ -388,7 +393,7 @@ public class OTransactionIndexChangesPerKey {
       changes.addAll(interpretation);
       return changes;
     } else {
-      final OMultiCollectionIterator<OTransactionIndexEntry> result = new OMultiCollectionIterator<OTransactionIndexEntry>();
+      final OMultiCollectionIterator<OTransactionIndexEntry> result = new OMultiCollectionIterator<>();
       result.setAutoConvertToRecord(false);
       result.add(changes);
       result.add(interpretation);
@@ -398,7 +403,7 @@ public class OTransactionIndexChangesPerKey {
 
   private static Iterable<OTransactionIndexEntry> swap(List<OTransactionIndexEntry> list) {
     assert list.size() == 2;
-    final List<OTransactionIndexEntry> result = new ArrayList<OTransactionIndexEntry>(2);
+    final List<OTransactionIndexEntry> result = new ArrayList<>(2);
     result.add(list.get(1));
     result.add(list.get(0));
     return result;

@@ -1,20 +1,14 @@
 package com.orientechnologies.orient.core.db;
 
-import com.orientechnologies.common.types.OModifiableInteger;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.id.ORID;
-import com.orientechnologies.orient.core.record.OElement;
-import com.orientechnologies.orient.core.record.ORecord;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.orient.core.sql.parser.OInteger;
+import static org.junit.Assert.assertEquals;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
-
-import static org.junit.Assert.assertEquals;
+import com.orientechnologies.common.types.OModifiableInteger;
+import com.orientechnologies.orient.core.id.ORID;
+import com.orientechnologies.orient.core.record.OElement;
 
 public class OSessionRetryTest {
 

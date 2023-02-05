@@ -1,5 +1,26 @@
 package com.orientechnologies.orient.core.storage.impl.local.paginated;
 
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import com.orientechnologies.orient.core.command.OCommandOutputListener;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
@@ -15,14 +36,6 @@ import com.orientechnologies.orient.core.record.ORecordInternal;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.storage.OStorage;
 import com.orientechnologies.orient.core.tx.OTransaction;
-import org.junit.*;
-
-import java.io.*;
-import java.util.*;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)
@@ -91,7 +104,7 @@ public class LocalPaginatedStorageRestoreTx {
   @Test
   @Ignore
   public void testSimpleRestore() throws Exception {
-    List<Future<Void>> futures = new ArrayList<Future<Void>>();
+    List<Future<Void>> futures = new ArrayList<>();
 
     baseDocumentTx.declareIntent(new OIntentMassiveInsert());
 
@@ -196,8 +209,8 @@ public class LocalPaginatedStorageRestoreTx {
       db.open("admin", "admin");
       int rollbacksCount = 0;
       try {
-        List<ORID> secondDocs = new ArrayList<ORID>();
-        List<ORID> firstDocs = new ArrayList<ORID>();
+        List<ORID> secondDocs = new ArrayList<>();
+        List<ORID> firstDocs = new ArrayList<>();
 
         OClass classOne = db.getMetadata().getSchema().getClass("TestOne");
         OClass classTwo = db.getMetadata().getSchema().getClass("TestTwo");
@@ -215,7 +228,7 @@ public class LocalPaginatedStorageRestoreTx {
 
             docOne.field("stringProp", stringProp);
 
-            Set<String> stringSet = new HashSet<String>();
+            Set<String> stringSet = new HashSet<>();
             for (int n = 0; n < 5; n++) {
               stringSet.add("str" + random.nextInt());
             }
@@ -228,7 +241,7 @@ public class LocalPaginatedStorageRestoreTx {
             if (random.nextBoolean()) {
               docTwo = new ODocument(classTwo);
 
-              List<String> stringList = new ArrayList<String>();
+              List<String> stringList = new ArrayList<>();
 
               for (int n = 0; n < 5; n++) {
                 stringList.add("strnd" + random.nextInt());
@@ -243,7 +256,7 @@ public class LocalPaginatedStorageRestoreTx {
               int startIndex = random.nextInt(secondDocs.size());
               int endIndex = random.nextInt(secondDocs.size() - startIndex) + startIndex;
 
-              Map<String, ORID> linkMap = new HashMap<String, ORID>();
+              Map<String, ORID> linkMap = new HashMap<>();
 
               for (int n = startIndex; n < endIndex; n++) {
                 ORID docTwoRid = secondDocs.get(n);

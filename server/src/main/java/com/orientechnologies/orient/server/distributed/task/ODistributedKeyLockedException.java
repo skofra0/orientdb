@@ -1,7 +1,6 @@
 package com.orientechnologies.orient.server.distributed.task;
 
 import com.orientechnologies.common.concur.ONeedRetryException;
-import com.orientechnologies.orient.server.distributed.ODistributedRequestId;
 
 public class ODistributedKeyLockedException extends ONeedRetryException {
 

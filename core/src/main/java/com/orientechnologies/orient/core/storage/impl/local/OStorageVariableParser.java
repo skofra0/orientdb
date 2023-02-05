@@ -19,10 +19,9 @@
   */
 package com.orientechnologies.orient.core.storage.impl.local;
 
+import java.nio.file.Path;
 import com.orientechnologies.common.parser.OVariableParser;
 import com.orientechnologies.common.parser.OVariableParserListener;
-
-import java.nio.file.Path;
 
 public class OStorageVariableParser implements OVariableParserListener {
   private static final String STORAGE_PATH = "STORAGE_PATH";

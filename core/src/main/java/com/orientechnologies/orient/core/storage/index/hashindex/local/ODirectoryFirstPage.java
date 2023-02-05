@@ -20,11 +20,10 @@
 
 package com.orientechnologies.orient.core.storage.index.hashindex.local;
 
+import java.io.IOException;
 import com.orientechnologies.common.serialization.types.OIntegerSerializer;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.storage.cache.OCacheEntry;
-
-import java.io.IOException;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)

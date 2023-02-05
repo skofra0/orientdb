@@ -44,7 +44,7 @@ public class OStringParser {
       final boolean iIncludeStringSep) {
     iText = iText.trim();
 
-    final ArrayList<String> fields = new ArrayList<String>();
+    final ArrayList<String> fields = new ArrayList<>();
     final StringBuilder buffer = new StringBuilder(64);
     char stringBeginChar = ' ';
     char c;
@@ -167,7 +167,7 @@ public class OStringParser {
   public static String[] split(String iText, final char iSplitChar, String iJumpChars) {
     iText = iText.trim();
 
-    ArrayList<String> fields = new ArrayList<String>();
+    ArrayList<String> fields = new ArrayList<>();
     StringBuilder buffer = new StringBuilder(256);
     char c;
     char stringChar = ' ';

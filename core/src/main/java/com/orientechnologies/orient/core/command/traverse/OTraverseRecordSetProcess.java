@@ -21,7 +21,6 @@ package com.orientechnologies.orient.core.command.traverse;
 
 import java.util.Collection;
 import java.util.Iterator;
-
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.impl.ODocument;

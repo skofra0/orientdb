@@ -19,11 +19,10 @@
  */
 package com.orientechnologies.orient.core.id;
 
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.serialization.OSerializableStream;
-
 import java.io.IOException;
 import java.io.OutputStream;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.serialization.OSerializableStream;
 
 /**
  * RecordID interface that represents a recordid in database. RecordID are made of 2 numbers: cluster id (cluster number) and

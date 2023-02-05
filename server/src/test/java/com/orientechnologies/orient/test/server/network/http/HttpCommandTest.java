@@ -1,11 +1,10 @@
 package com.orientechnologies.orient.test.server.network.http;
 
-import com.orientechnologies.orient.core.record.impl.ODocument;
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.io.IOException;
 import java.io.InputStream;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
  * Test HTTP "command" command.

@@ -1,9 +1,8 @@
 package com.orientechnologies.orient.core.index;
 
+import org.junit.Assert;
+import org.junit.Test;
 import java.text.ParseException;
-
-import org.junit.Assert; import org.junit.Test;
-
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;

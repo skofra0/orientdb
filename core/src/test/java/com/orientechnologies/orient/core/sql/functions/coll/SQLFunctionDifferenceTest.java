@@ -15,16 +15,14 @@
  */
 package com.orientechnologies.orient.core.sql.functions.coll;
 
-import com.orientechnologies.orient.core.command.OBasicCommandContext;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import com.orientechnologies.orient.core.command.OBasicCommandContext;
 
 /**
  * @author edegtyarenko
@@ -40,7 +38,7 @@ public class SQLFunctionDifferenceTest {
         .asList(Arrays.<Object>asList(1, 2, 3, 4, 5, 1), Arrays.<Object>asList(3, 5, 6, 7, 0, 1, 3, 3, 6),
             Arrays.<Object>asList(2, 2, 8, 9));
 
-    Set<Object> expectedResult = new HashSet<Object>(Arrays.<Object>asList(4));
+    Set<Object> expectedResult = new HashSet<>(Arrays.<Object>asList(4));
 
     Set<Object> actualResult = (Set<Object>) function.execute(null, null, null, incomes.toArray(), new OBasicCommandContext());
 
@@ -48,7 +46,7 @@ public class SQLFunctionDifferenceTest {
 
     incomes = Arrays.asList(Arrays.<Object>asList(1, 2, 3, 4, 5, 1), Arrays.<Object>asList(3, 5, 6, 7, 0, 1, 3, 3, 6));
 
-    expectedResult = new HashSet<Object>(Arrays.<Object>asList(2, 4));
+    expectedResult = new HashSet<>(Arrays.<Object>asList(2, 4));
 
     actualResult = (Set<Object>) function.execute(null, null, null, incomes.toArray(), new OBasicCommandContext());
     assertSetEquals(actualResult, expectedResult);

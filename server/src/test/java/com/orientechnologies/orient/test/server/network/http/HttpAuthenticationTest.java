@@ -2,7 +2,6 @@ package com.orientechnologies.orient.test.server.network.http;
 
 
 import org.junit.Assert;
-
 import java.io.IOException;
 import java.net.URLEncoder;
 

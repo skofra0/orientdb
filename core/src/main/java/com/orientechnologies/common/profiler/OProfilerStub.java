@@ -20,16 +20,14 @@
 
 package com.orientechnologies.common.profiler;
 
-import com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap;
-
+import static com.orientechnologies.orient.core.config.OGlobalConfiguration.PROFILER_MAXVALUES;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import static com.orientechnologies.orient.core.config.OGlobalConfiguration.PROFILER_MAXVALUES;
+import com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap;
 
 public class OProfilerStub extends OAbstractProfiler {
 
@@ -147,7 +145,7 @@ public class OProfilerStub extends OAbstractProfiler {
     buffer.append(String.format("\n%100s | Value      |", "Name"));
     buffer.append(String.format("\n%100s +------------+", ""));
 
-    final List<String> names = new ArrayList<String>(tips.keySet());
+    final List<String> names = new ArrayList<>(tips.keySet());
     Collections.sort(names);
 
     for (String n : names) {
@@ -230,7 +228,7 @@ public class OProfilerStub extends OAbstractProfiler {
 
   @Override
   public String[] getCountersAsString() {
-    final List<String> keys = new ArrayList<String>(counters.keySet());
+    final List<String> keys = new ArrayList<>(counters.keySet());
     final String[] result = new String[keys.size()];
     return keys.toArray(result);
   }

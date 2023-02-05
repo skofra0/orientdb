@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-
 import com.orientechnologies.orient.client.remote.OBinaryResponse;
 import com.orientechnologies.orient.client.remote.OStorageRemoteSession;
 import com.orientechnologies.orient.core.serialization.serializer.record.ORecordSerializer;
@@ -33,7 +32,7 @@ public class OListGlobalConfigurationsResponse implements OBinaryResponse {
 
   @Override
   public void read(OChannelDataInput network, OStorageRemoteSession session) throws IOException {
-    configs = new HashMap<String, String>();
+    configs = new HashMap<>();
     final int num = network.readShort();
     for (int i = 0; i < num; ++i)
       configs.put(network.readString(), network.readString());

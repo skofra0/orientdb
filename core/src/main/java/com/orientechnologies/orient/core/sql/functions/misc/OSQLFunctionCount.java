@@ -19,11 +19,10 @@
   */
 package com.orientechnologies.orient.core.sql.functions.misc;
 
+import java.util.List;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.sql.functions.math.OSQLFunctionMathAbstract;
-
-import java.util.List;
 
 /**
  * Count the record that contains a field. Use * to indicate the record instead of the field. Uses the context to save the counter

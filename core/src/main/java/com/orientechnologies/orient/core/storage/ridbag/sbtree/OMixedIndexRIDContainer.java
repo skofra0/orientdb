@@ -1,5 +1,13 @@
 package com.orientechnologies.orient.core.storage.ridbag.sbtree;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicLong;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
@@ -8,9 +16,6 @@ import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperation;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperationsManager;
-
-import java.util.*;
-import java.util.concurrent.atomic.AtomicLong;
 
 public class OMixedIndexRIDContainer implements Set<OIdentifiable> {
   private static final String INDEX_FILE_EXTENSION = ".irs";
@@ -95,7 +100,7 @@ public class OMixedIndexRIDContainer implements Set<OIdentifiable> {
   @Override
   public Iterator<OIdentifiable> iterator() {
     if (tree == null) {
-      return new Iterator<OIdentifiable>() {
+      return new Iterator<>() {
         final Iterator<ORID> embeddedIterator = embeddedSet.iterator();
 
         @Override
@@ -110,7 +115,7 @@ public class OMixedIndexRIDContainer implements Set<OIdentifiable> {
       };
     }
 
-    return new Iterator<OIdentifiable>() {
+    return new Iterator<>() {
       private final Iterator<ORID> embeddedIterator = embeddedSet.iterator();
       private final Iterator<OIdentifiable> treeIterator = tree.iterator();
 

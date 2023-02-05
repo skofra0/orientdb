@@ -1,12 +1,11 @@
 package com.orientechnologies.orient.core.sql.functions;
 
-import com.orientechnologies.common.exception.OException;
-import com.orientechnologies.orient.core.exception.OCommandExecutionException;
-
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import com.orientechnologies.common.exception.OException;
+import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 
 /**
  * Created by frank on 25/05/2017.

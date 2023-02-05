@@ -1,13 +1,12 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.util.Map;
+import java.util.Optional;
 import com.orientechnologies.common.concur.OTimeoutException;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.record.OElement;
-
-import java.util.Map;
-import java.util.Optional;
 
 /**
  * Checks that all the records from the upstream are of a particular type (or subclasses). Throws OCommandExecutionException in case

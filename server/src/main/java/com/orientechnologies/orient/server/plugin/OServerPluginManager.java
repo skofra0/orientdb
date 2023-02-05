@@ -19,21 +19,6 @@
  */
 package com.orientechnologies.orient.server.plugin;
 
-import com.orientechnologies.common.log.OLogManager;
-import com.orientechnologies.common.parser.OSystemVariableResolver;
-import com.orientechnologies.common.util.OCallable;
-import com.orientechnologies.common.util.OService;
-import com.orientechnologies.orient.core.Orient;
-import com.orientechnologies.orient.core.exception.OConfigurationException;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.orient.server.OServer;
-import com.orientechnologies.orient.server.config.OServerEntryConfiguration;
-import com.orientechnologies.orient.server.config.OServerParameterConfiguration;
-import com.orientechnologies.orient.server.network.OServerNetworkListener;
-import com.orientechnologies.orient.server.network.protocol.http.ONetworkProtocolHttpAbstract;
-import com.orientechnologies.orient.server.network.protocol.http.command.get.OServerCommandGetStaticContent;
-import com.orientechnologies.orient.server.network.protocol.http.command.get.OServerCommandGetStaticContent.OStaticContent;
-
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.InputStream;
@@ -49,6 +34,20 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
+import com.orientechnologies.common.log.OLogManager;
+import com.orientechnologies.common.parser.OSystemVariableResolver;
+import com.orientechnologies.common.util.OCallable;
+import com.orientechnologies.common.util.OService;
+import com.orientechnologies.orient.core.Orient;
+import com.orientechnologies.orient.core.exception.OConfigurationException;
+import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.orientechnologies.orient.server.OServer;
+import com.orientechnologies.orient.server.config.OServerEntryConfiguration;
+import com.orientechnologies.orient.server.config.OServerParameterConfiguration;
+import com.orientechnologies.orient.server.network.OServerNetworkListener;
+import com.orientechnologies.orient.server.network.protocol.http.ONetworkProtocolHttpAbstract;
+import com.orientechnologies.orient.server.network.protocol.http.command.get.OServerCommandGetStaticContent;
+import com.orientechnologies.orient.server.network.protocol.http.command.get.OServerCommandGetStaticContent.OStaticContent;
 
 /**
  * Manages Server Extensions
@@ -58,12 +57,12 @@ import java.util.concurrent.ConcurrentHashMap;
 public class OServerPluginManager implements OService {
   private static final int                                          CHECK_DELAY   = 5000;
   private              OServer                                      server;
-  private              ConcurrentHashMap<String, OServerPluginInfo> activePlugins = new ConcurrentHashMap<String, OServerPluginInfo>();
-  private              ConcurrentHashMap<String, String>            loadedPlugins = new ConcurrentHashMap<String, String>();
+  private              ConcurrentHashMap<String, OServerPluginInfo> activePlugins = new ConcurrentHashMap<>();
+  private              ConcurrentHashMap<String, String>            loadedPlugins = new ConcurrentHashMap<>();
   private volatile     TimerTask                                    autoReloadTimerTask;
   private              String                                       directory;
 
-  protected List<OPluginLifecycleListener> pluginListeners = new ArrayList<OPluginLifecycleListener>();
+  protected List<OPluginLifecycleListener> pluginListeners = new ArrayList<>();
 
   public void config(OServer iServer) {
     server = iServer;
@@ -224,7 +223,7 @@ public class OServerPluginManager implements OService {
         callback = createStaticLinkCallback(iPluginData, wwwURL);
       else
         // LET TO THE COMMAND TO CONTROL IT
-        callback = new OCallable<Object, String>() {
+        callback = new OCallable<>() {
           @Override
           public Object call(final String iArgument) {
             return iPluginData.getInstance().getContent(iArgument);
@@ -236,7 +235,7 @@ public class OServerPluginManager implements OService {
   }
 
   protected OCallable<Object, String> createStaticLinkCallback(final OServerPluginInfo iPluginData, final URL wwwURL) {
-    return new OCallable<Object, String>() {
+    return new OCallable<>() {
       @Override
       public Object call(final String iArgument) {
         String fileName = "www/" + iArgument;
@@ -289,7 +288,7 @@ public class OServerPluginManager implements OService {
 
     final File[] plugins = pluginsDirectory.listFiles();
 
-    final Set<String> currentDynamicPlugins = new HashSet<String>();
+    final Set<String> currentDynamicPlugins = new HashSet<>();
     for (Entry<String, String> entry : loadedPlugins.entrySet()) {
       currentDynamicPlugins.add(entry.getKey());
     }
@@ -350,7 +349,7 @@ public class OServerPluginManager implements OService {
         if (pluginClass != null) {
           // CREATE PARAMETERS
           parameters = properties.field("parameters");
-          final List<OServerParameterConfiguration> params = new ArrayList<OServerParameterConfiguration>();
+          final List<OServerParameterConfiguration> params = new ArrayList<>();
           for (String paramName : parameters.keySet()) {
             params.add(new OServerParameterConfiguration(paramName, (String) parameters.get(paramName)));
           }

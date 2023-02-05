@@ -20,12 +20,11 @@
 package com.orientechnologies.orient.server.network.protocol.http.command.get;
 
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
- import com.orientechnologies.orient.core.exception.ORecordNotFoundException;
- import com.orientechnologies.orient.core.record.ORecord;
- import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
- import com.orientechnologies.orient.server.network.protocol.http.OHttpResponse;
- import com.orientechnologies.orient.server.network.protocol.http.command.OServerCommandAuthenticatedDbAbstract;
+import com.orientechnologies.orient.core.exception.ORecordNotFoundException;
+import com.orientechnologies.orient.core.record.ORecord;
+import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
+import com.orientechnologies.orient.server.network.protocol.http.OHttpResponse;
+import com.orientechnologies.orient.server.network.protocol.http.command.OServerCommandAuthenticatedDbAbstract;
 
 public class OServerCommandGetDictionary extends OServerCommandAuthenticatedDbAbstract {
    private static final String[] NAMES = { "GET|dictionary/*" };

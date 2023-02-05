@@ -16,14 +16,14 @@
 
 package com.orientechnologies.common.serialization.types;
 
+import org.junit.Assert;
+import org.junit.Before;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-
 import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALChanges;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALChangesTree;
-import org.junit.Assert;import org.junit.Before; import org.junit.Test;
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)
  * @since 04.04.12

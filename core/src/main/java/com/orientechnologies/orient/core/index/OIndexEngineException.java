@@ -18,9 +18,7 @@
 
 package com.orientechnologies.orient.core.index;
 
-import com.orientechnologies.common.exception.OErrorCode;
 import com.orientechnologies.orient.core.exception.OCoreException;
-import com.orientechnologies.orient.core.storage.impl.local.paginated.base.ODurableComponent;
 
 public class OIndexEngineException extends OCoreException {
 

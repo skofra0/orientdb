@@ -17,9 +17,6 @@
  */
 package com.orientechnologies.spatial.strategy;
 
-import com.orientechnologies.spatial.engine.OLuceneSpatialIndexContainer;
-import com.orientechnologies.spatial.query.OSpatialQueryContext;
-import com.orientechnologies.spatial.shape.OShapeBuilder;
 import org.apache.lucene.search.BooleanClause;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.MatchAllDocsQuery;
@@ -28,8 +25,10 @@ import org.apache.lucene.spatial.SpatialStrategy;
 import org.apache.lucene.spatial.query.SpatialArgs;
 import org.apache.lucene.spatial.query.SpatialOperation;
 import org.locationtech.spatial4j.shape.Shape;
-
 import java.util.Map;
+import com.orientechnologies.spatial.engine.OLuceneSpatialIndexContainer;
+import com.orientechnologies.spatial.query.OSpatialQueryContext;
+import com.orientechnologies.spatial.shape.OShapeBuilder;
 
 /**
  * Created by Enrico Risa on 11/08/15.

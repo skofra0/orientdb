@@ -118,7 +118,7 @@ public class OPair<K extends Comparable, V> implements Entry<K, V>, Comparable<O
   }
 
   public static <K extends Comparable<K>, V> Map<K, V> convertToMap(final List<OPair<K, V>> iValues) {
-    final HashMap<K, V> result = new HashMap<K, V>(iValues.size());
+    final HashMap<K, V> result = new HashMap<>(iValues.size());
     for (OPair<K, V> p : iValues)
       result.put(p.getKey(), p.getValue());
 
@@ -126,9 +126,9 @@ public class OPair<K extends Comparable, V> implements Entry<K, V>, Comparable<O
   }
 
   public static <K extends Comparable<K>, V> List<OPair<K, V>> convertFromMap(final Map<K, V> iValues) {
-    final List<OPair<K, V>> result = new ArrayList<OPair<K, V>>(iValues.size());
+    final List<OPair<K, V>> result = new ArrayList<>(iValues.size());
     for (Entry<K, V> p : iValues.entrySet())
-      result.add(new OPair<K, V>(p.getKey(), p.getValue()));
+      result.add(new OPair<>(p.getKey(), p.getValue()));
 
     return result;
   }

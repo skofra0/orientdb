@@ -213,7 +213,7 @@ public class ScalableRWLock implements ReadWriteLock, java.io.Serializable {
    */
   public ScalableRWLock() {
     // States of the Readers, one entry in the list per thread
-    readersStateList = new ConcurrentLinkedQueue<AtomicInteger>();
+    readersStateList = new ConcurrentLinkedQueue<>();
 
     stampedLock = new StampedLock();
 
@@ -221,9 +221,9 @@ public class ScalableRWLock implements ReadWriteLock, java.io.Serializable {
     // calling the constructor may never attempt to read-lock this
     // instance and, therefore, there is not point in allocating an
     // instance of ReadersEntry for it.
-    entry = new ThreadLocal<ReadersEntry>();
+    entry = new ThreadLocal<>();
 
-    readersStateArrayRef = new AtomicReference<AtomicInteger[]>(null);
+    readersStateArrayRef = new AtomicReference<>(null);
 
     readerLock = new ScalableRWLock.InnerReadLock();
     writerLock = new ScalableRWLock.InnerWriteLock();

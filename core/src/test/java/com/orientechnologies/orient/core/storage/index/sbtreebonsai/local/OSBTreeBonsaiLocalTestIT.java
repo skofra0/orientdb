@@ -1,5 +1,20 @@
 package com.orientechnologies.orient.core.storage.index.sbtreebonsai.local;
 
+import org.assertj.core.api.Assertions;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.NavigableMap;
+import java.util.NavigableSet;
+import java.util.Random;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 import com.orientechnologies.common.serialization.types.OIntegerSerializer;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
@@ -8,10 +23,6 @@ import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.serialization.serializer.binary.impl.OLinkSerializer;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperationsManager;
-import org.assertj.core.api.Assertions;
-import org.junit.*;
-
-import java.util.*;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)
@@ -92,7 +103,7 @@ public class OSBTreeBonsaiLocalTestIT {
   @Test
   public void testKeyPutRandomUniform() throws Exception {
     atomicOperationsManager.executeInsideAtomicOperation((atomicOperation) -> {
-      final NavigableSet<Integer> keys = new TreeSet<Integer>();
+      final NavigableSet<Integer> keys = new TreeSet<>();
       final Random random = new Random();
 
       while (keys.size() < KEYS_COUNT) {
@@ -117,7 +128,7 @@ public class OSBTreeBonsaiLocalTestIT {
       final double mx = Integer.MAX_VALUE / 2.;
       final double dx = Integer.MAX_VALUE / 8.;
 
-      NavigableSet<Integer> keys = new TreeSet<Integer>();
+      NavigableSet<Integer> keys = new TreeSet<>();
       long seed = System.currentTimeMillis();
 
       System.out.println("testKeyPutRandomGaussian seed : " + seed);
@@ -144,7 +155,7 @@ public class OSBTreeBonsaiLocalTestIT {
   @Test
   public void testKeyDeleteRandomUniform() throws Exception {
     atomicOperationsManager.executeInsideAtomicOperation((atomicOperation) -> {
-      NavigableSet<Integer> keys = new TreeSet<Integer>();
+      NavigableSet<Integer> keys = new TreeSet<>();
       for (int i = 0; i < KEYS_COUNT; i++) {
         sbTree.put(atomicOperation, i, new ORecordId(i % 32000, i));
         keys.add(i);
@@ -178,7 +189,7 @@ public class OSBTreeBonsaiLocalTestIT {
       final double mx = Integer.MAX_VALUE / 2.;
       final double dx = Integer.MAX_VALUE / 8.;
 
-      NavigableSet<Integer> keys = new TreeSet<Integer>();
+      NavigableSet<Integer> keys = new TreeSet<>();
 
       long seed = System.currentTimeMillis();
 
@@ -277,7 +288,7 @@ public class OSBTreeBonsaiLocalTestIT {
   @Test
   public void testValuesMajor() throws Exception {
     atomicOperationsManager.executeInsideAtomicOperation((atomicOperation) -> {
-      NavigableMap<Integer, ORID> keyValues = new TreeMap<Integer, ORID>();
+      NavigableMap<Integer, ORID> keyValues = new TreeMap<>();
       Random random = new Random();
 
       while (keyValues.size() < KEYS_COUNT) {
@@ -298,7 +309,7 @@ public class OSBTreeBonsaiLocalTestIT {
   @Test
   public void testValuesMinor() throws Exception {
     atomicOperationsManager.executeInsideAtomicOperation((atomicOperation) -> {
-      NavigableMap<Integer, ORID> keyValues = new TreeMap<Integer, ORID>();
+      NavigableMap<Integer, ORID> keyValues = new TreeMap<>();
       Random random = new Random();
 
       while (keyValues.size() < KEYS_COUNT) {
@@ -319,7 +330,7 @@ public class OSBTreeBonsaiLocalTestIT {
   @Test
   public void testValuesBetween() throws Exception {
     atomicOperationsManager.executeInsideAtomicOperation((atomicOperation) -> {
-      NavigableMap<Integer, ORID> keyValues = new TreeMap<Integer, ORID>();
+      NavigableMap<Integer, ORID> keyValues = new TreeMap<>();
       Random random = new Random();
 
       while (keyValues.size() < KEYS_COUNT) {
@@ -397,7 +408,7 @@ public class OSBTreeBonsaiLocalTestIT {
 
       Collection<OIdentifiable> result = sbTree.getValuesMinor(250, true, -1);
 
-      Set<OIdentifiable> identifiables = new HashSet<OIdentifiable>(result);
+      Set<OIdentifiable> identifiables = new HashSet<>(result);
       for (int i = 250; i >= 220; i--) {
         boolean removed = identifiables.remove(new ORecordId(i % 32000, i));
         Assert.assertTrue(removed);
@@ -411,7 +422,7 @@ public class OSBTreeBonsaiLocalTestIT {
       Assert.assertTrue(identifiables.isEmpty());
 
       result = sbTree.getValuesMajor(70, true, -1);
-      identifiables = new HashSet<OIdentifiable>(result);
+      identifiables = new HashSet<>(result);
 
       for (int i = 70; i < 100; i++) {
         boolean removed = identifiables.remove(new ORecordId(i % 32000, i));
@@ -426,7 +437,7 @@ public class OSBTreeBonsaiLocalTestIT {
       Assert.assertTrue(identifiables.isEmpty());
 
       result = sbTree.getValuesBetween(70, true, 250, true, -1);
-      identifiables = new HashSet<OIdentifiable>(result);
+      identifiables = new HashSet<>(result);
 
       for (int i = 70; i < 100; i++) {
         boolean removed = identifiables.remove(new ORecordId(i % 32000, i));
@@ -470,7 +481,7 @@ public class OSBTreeBonsaiLocalTestIT {
       int maxValuesToFetch = 10000;
       Collection<OIdentifiable> orids = sbTree.getValuesMajor(fromKey, keyInclusive, maxValuesToFetch);
 
-      Set<OIdentifiable> result = new HashSet<OIdentifiable>(orids);
+      Set<OIdentifiable> result = new HashSet<>(orids);
 
       Iterator<ORID> valuesIterator = keyValues.tailMap(fromKey, keyInclusive).values().iterator();
 
@@ -509,7 +520,7 @@ public class OSBTreeBonsaiLocalTestIT {
       int maxValuesToFetch = 10000;
       Collection<OIdentifiable> orids = sbTree.getValuesMinor(toKey, keyInclusive, maxValuesToFetch);
 
-      Set<OIdentifiable> result = new HashSet<OIdentifiable>(orids);
+      Set<OIdentifiable> result = new HashSet<>(orids);
 
       Iterator<ORID> valuesIterator = keyValues.headMap(toKey, keyInclusive).descendingMap().values().iterator();
 
@@ -564,7 +575,7 @@ public class OSBTreeBonsaiLocalTestIT {
       int maxValuesToFetch = 10000;
 
       Collection<OIdentifiable> orids = sbTree.getValuesBetween(fromKey, fromInclusive, toKey, toInclusive, maxValuesToFetch);
-      Set<OIdentifiable> result = new HashSet<OIdentifiable>(orids);
+      Set<OIdentifiable> result = new HashSet<>(orids);
 
       Iterator<ORID> valuesIterator = keyValues.subMap(fromKey, fromInclusive, toKey, toInclusive).values().iterator();
 

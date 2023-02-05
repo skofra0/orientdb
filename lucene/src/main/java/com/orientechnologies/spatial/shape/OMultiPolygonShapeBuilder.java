@@ -17,18 +17,17 @@
  */
 package com.orientechnologies.spatial.shape;
 
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.MultiPolygon;
+import org.locationtech.jts.geom.Polygon;
+import org.locationtech.spatial4j.shape.jts.JtsGeometry;
+import java.util.ArrayList;
+import java.util.List;
 import com.orientechnologies.orient.core.db.ODatabaseInternal;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import org.locationtech.jts.geom.Geometry;
-import org.locationtech.jts.geom.MultiPolygon;
-import org.locationtech.jts.geom.Polygon;
-import org.locationtech.spatial4j.shape.jts.JtsGeometry;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by enricorisa on 24/04/14.
@@ -71,7 +70,7 @@ public class OMultiPolygonShapeBuilder extends OPolygonShapeBuilder {
 
     ODocument doc = new ODocument(getName());
     MultiPolygon multiPolygon = (MultiPolygon) shape.getGeom();
-    List<List<List<List<Double>>>> polyCoordinates = new ArrayList<List<List<List<Double>>>>();
+    List<List<List<List<Double>>>> polyCoordinates = new ArrayList<>();
     int n = multiPolygon.getNumGeometries();
 
     for (int i = 0; i < n; i++) {

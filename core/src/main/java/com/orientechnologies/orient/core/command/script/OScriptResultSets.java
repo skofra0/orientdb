@@ -1,8 +1,7 @@
 package com.orientechnologies.orient.core.command.script;
 
-import com.orientechnologies.orient.core.command.script.transformer.OScriptTransformer;
-
 import java.util.Collections;
+import com.orientechnologies.orient.core.command.script.transformer.OScriptTransformer;
 
 /**
  * Static Factories of OScriptResultSet objects

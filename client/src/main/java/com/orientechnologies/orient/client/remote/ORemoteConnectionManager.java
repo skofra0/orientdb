@@ -19,17 +19,22 @@
  */
 package com.orientechnologies.orient.client.remote;
 
+import static com.orientechnologies.orient.core.config.OGlobalConfiguration.CLIENT_CHANNEL_IDLE_CLOSE;
+import static com.orientechnologies.orient.core.config.OGlobalConfiguration.CLIENT_CHANNEL_IDLE_TIMEOUT;
+import static com.orientechnologies.orient.core.config.OGlobalConfiguration.NETWORK_LOCK_TIMEOUT;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.TimeUnit;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.client.binary.OChannelBinaryAsynchClient;
 import com.orientechnologies.orient.core.config.OContextConfiguration;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
-
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.TimeUnit;
-
-import static com.orientechnologies.orient.core.config.OGlobalConfiguration.*;
 
 /**
  * Manages network connections against OrientDB servers. All the connection pools are managed in a Map<url,pool>, but in the future
@@ -46,7 +51,7 @@ public class ORemoteConnectionManager {
   private final   TimerTask                                    idleTask;
 
   public ORemoteConnectionManager(final OContextConfiguration clientConfiguration, Timer timer) {
-    connections = new ConcurrentHashMap<String, ORemoteConnectionPool>();
+    connections = new ConcurrentHashMap<>();
     timeout = clientConfiguration.getValueAsLong(NETWORK_LOCK_TIMEOUT);
     int idleSecs = clientConfiguration.getValueAsInteger(CLIENT_CHANNEL_IDLE_TIMEOUT);
     this.idleTimeout = TimeUnit.MILLISECONDS.convert(idleSecs, TimeUnit.SECONDS);
@@ -208,7 +213,7 @@ public class ORemoteConnectionManager {
   }
 
   protected void closePool(ORemoteConnectionPool pool) {
-    final List<OChannelBinaryAsynchClient> conns = new ArrayList<OChannelBinaryAsynchClient>(pool.getPool().getAllResources());
+    final List<OChannelBinaryAsynchClient> conns = new ArrayList<>(pool.getPool().getAllResources());
     for (OChannelBinaryAsynchClient c : conns)
       try {
         // Unregister the listener that make the connection return to the closing pool.

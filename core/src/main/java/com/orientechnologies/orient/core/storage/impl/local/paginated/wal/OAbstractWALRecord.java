@@ -20,12 +20,11 @@
 
 package com.orientechnologies.orient.core.storage.impl.local.paginated.wal;
 
-import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.cas.OWriteableWALRecord;
-import com.sun.jna.Native;
-
 import java.nio.ByteBuffer;
 import java.util.Objects;
 import java.util.Optional;
+import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.cas.OWriteableWALRecord;
+import com.sun.jna.Native;
 
 /**
  * Abstract WAL record.

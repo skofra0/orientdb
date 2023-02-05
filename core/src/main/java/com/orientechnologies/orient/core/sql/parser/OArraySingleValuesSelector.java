@@ -2,6 +2,13 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=true,TRACK_TOKENS=true,NODE_PREFIX=O,NODE_EXTENDS=,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package com.orientechnologies.orient.core.sql.parser;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
@@ -10,12 +17,9 @@ import com.orientechnologies.orient.core.record.OElement;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.sql.executor.OResultInternal;
 
-import java.util.*;
-import java.util.stream.Collectors;
-
 public class OArraySingleValuesSelector extends SimpleNode {
 
-  protected List<OArraySelector> items = new ArrayList<OArraySelector>();
+  protected List<OArraySelector> items = new ArrayList<>();
 
   public OArraySingleValuesSelector(int id) {
     super(id);
@@ -44,7 +48,7 @@ public class OArraySingleValuesSelector extends SimpleNode {
   }
 
   public Object execute(OIdentifiable iCurrentRecord, Object iResult, OCommandContext ctx) {
-    List<Object> result = new ArrayList<Object>();
+    List<Object> result = new ArrayList<>();
     for (OArraySelector item : items) {
       Object index = item.getValue(iCurrentRecord, iResult, ctx);
       if (index == null) {
@@ -76,7 +80,7 @@ public class OArraySingleValuesSelector extends SimpleNode {
   }
 
   public Object execute(OResult iCurrentRecord, Object iResult, OCommandContext ctx) {
-    List<Object> result = new ArrayList<Object>();
+    List<Object> result = new ArrayList<>();
     for (OArraySelector item : items) {
       Object index = item.getValue(iCurrentRecord, iResult, ctx);
       if (index == null) {

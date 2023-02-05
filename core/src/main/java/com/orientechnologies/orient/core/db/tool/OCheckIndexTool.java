@@ -19,6 +19,9 @@
  */
 package com.orientechnologies.orient.core.db.tool;
 
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.index.OIndex;
@@ -27,11 +30,6 @@ import com.orientechnologies.orient.core.iterator.ORecordIteratorCluster;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * @author Luigi Dell'Aquila (l.dellaquila -at- orientdb.com)

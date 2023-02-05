@@ -17,9 +17,9 @@
  */
 package com.orientechnologies.spatial.functions;
 
+import org.locationtech.spatial4j.shape.Shape;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunctionAbstract;
 import com.orientechnologies.spatial.shape.OShapeFactory;
-import org.locationtech.spatial4j.shape.Shape;
 
 /**
  * Created by Enrico Risa on 22/07/16.

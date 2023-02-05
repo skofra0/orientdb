@@ -1,12 +1,11 @@
 package com.orientechnologies.orient.core.sql.executor;
 
-import com.orientechnologies.common.concur.OTimeoutException;
-import com.orientechnologies.orient.core.command.OCommandContext;
-import com.orientechnologies.orient.core.sql.parser.OUpdateRemoveItem;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import com.orientechnologies.common.concur.OTimeoutException;
+import com.orientechnologies.orient.core.command.OCommandContext;
+import com.orientechnologies.orient.core.sql.parser.OUpdateRemoveItem;
 
 /**
  * Created by luigidellaquila on 09/08/16.

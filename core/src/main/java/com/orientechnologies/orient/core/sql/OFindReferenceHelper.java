@@ -19,6 +19,15 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
@@ -33,9 +42,6 @@ import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper;
 
-import java.util.*;
-import java.util.Map.Entry;
-
 /**
  * Helper class to find reference in records.
  * 
@@ -48,7 +54,7 @@ public class OFindReferenceHelper {
   public static List<ODocument> findReferences(final Set<ORID> iRecordIds, final String classList) {
     final ODatabaseDocument db = ODatabaseRecordThreadLocal.instance().get();
 
-    final Map<ORID, Set<ORID>> map = new HashMap<ORID, Set<ORID>>();
+    final Map<ORID, Set<ORID>> map = new HashMap<>();
     for (ORID rid : iRecordIds) {
       map.put(rid, new HashSet<ORID>());
     }
@@ -68,7 +74,7 @@ public class OFindReferenceHelper {
       }
     }
 
-    final List<ODocument> result = new ArrayList<ODocument>();
+    final List<ODocument> result = new ArrayList<>();
     for (Entry<ORID, Set<ORID>> entry : map.entrySet()) {
       final ODocument doc = new ODocument();
       result.add(doc);

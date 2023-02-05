@@ -18,16 +18,15 @@
 
 package com.orientechnologies.lucene;
 
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-
 import java.util.HashSet;
 import java.util.Set;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
 
 /**
  * Created by Enrico Risa on 09/12/14.
  */
 public class OLuceneTxOperations {
 
-  public final Set<OIdentifiable> removed = new HashSet<OIdentifiable>();
-  public final Set<OIdentifiable> added   = new HashSet<OIdentifiable>();
+  public final Set<OIdentifiable> removed = new HashSet<>();
+  public final Set<OIdentifiable> added   = new HashSet<>();
 }

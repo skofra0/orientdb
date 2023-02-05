@@ -19,12 +19,11 @@
  */
 package com.orientechnologies.orient.server.distributed.task;
 
+import java.util.List;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OLogSequenceNumber;
 import com.orientechnologies.orient.server.distributed.ODistributedRequest;
 import com.orientechnologies.orient.server.distributed.ODistributedRequestId;
 import com.orientechnologies.orient.server.distributed.ODistributedServerManager;
-
-import java.util.List;
 
 /**
  * Base class for Replicated tasks.

@@ -18,17 +18,16 @@
 
 package com.orientechnologies.lucene.tests;
 
+import org.assertj.core.api.Assertions;
+import org.junit.Before;
+import org.junit.Test;
+import java.util.List;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.OVertex;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.List;
 
 /**
  * Created by enricorisa on 03/09/14.

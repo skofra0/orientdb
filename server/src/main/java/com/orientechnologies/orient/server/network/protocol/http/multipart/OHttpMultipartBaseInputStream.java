@@ -32,7 +32,7 @@ public class OHttpMultipartBaseInputStream extends InputStream {
   public OHttpMultipartBaseInputStream(final InputStream in, final int iSkipInput, final int iContentLength) {
     wrappedInputStream = in;
     contentLength = iContentLength;
-    this.buffer = new ArrayList<Integer>();
+    this.buffer = new ArrayList<>();
     this.buffer.add(iSkipInput);
   }
 

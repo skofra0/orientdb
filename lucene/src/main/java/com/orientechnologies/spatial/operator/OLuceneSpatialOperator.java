@@ -17,6 +17,7 @@
  */
 package com.orientechnologies.spatial.operator;
 
+import java.util.List;
 import com.orientechnologies.lucene.operator.OLuceneOperatorUtil;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
@@ -32,8 +33,6 @@ import com.orientechnologies.orient.core.sql.operator.OIndexReuseType;
 import com.orientechnologies.orient.core.sql.operator.OQueryTargetOperator;
 import com.orientechnologies.spatial.shape.OShapeBuilder;
 import com.orientechnologies.spatial.shape.OShapeFactory;
-
-import java.util.List;
 
 /**
  * Created by Enrico Risa on 12/08/15.

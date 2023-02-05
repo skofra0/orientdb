@@ -15,9 +15,8 @@
  */
 package com.orientechnologies.orient.core.storage.impl.local.paginated.wal;
 
-import com.orientechnologies.common.serialization.types.OLongSerializer;
-
 import java.nio.ByteBuffer;
+import com.orientechnologies.common.serialization.types.OLongSerializer;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)

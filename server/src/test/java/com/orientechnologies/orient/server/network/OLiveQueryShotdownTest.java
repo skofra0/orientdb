@@ -1,16 +1,12 @@
 package com.orientechnologies.orient.server.network;
 
 import static org.junit.Assert.assertTrue;
-
+import org.junit.Test;
 import java.io.File;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-
-import com.orientechnologies.common.io.OFileUtils;
-import org.junit.Ignore;
-import org.junit.Test;
-
 import com.orientechnologies.common.exception.OException;
+import com.orientechnologies.common.io.OFileUtils;
 import com.orientechnologies.orient.client.remote.OServerAdmin;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;

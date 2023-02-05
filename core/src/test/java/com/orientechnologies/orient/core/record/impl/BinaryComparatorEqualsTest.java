@@ -1,18 +1,17 @@
 package com.orientechnologies.orient.core.record.impl;
 
+import org.junit.Assert;
+import org.junit.Test;
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import com.orientechnologies.orient.core.collate.OCaseInsensitiveCollate;
 import com.orientechnologies.orient.core.collate.ODefaultCollate;
 import com.orientechnologies.orient.core.config.OStorageConfiguration;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.serialization.serializer.record.binary.OBinaryField;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.math.BigDecimal;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class BinaryComparatorEqualsTest extends AbstractComparatorTest {
 

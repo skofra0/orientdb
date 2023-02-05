@@ -18,14 +18,12 @@
 
 package com.orientechnologies.orient.core.sql;
 
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+import java.util.List;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.junit.Test;
-
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
 
 public class OCommandExecutorSQLSelectTestIndex {
 
@@ -81,18 +79,18 @@ public class OCommandExecutorSQLSelectTestIndex {
       databaseDocumentTx.command(new OCommandSQL("CREATE PROPERTY Foo.name String")).execute();
       databaseDocumentTx.command(new OCommandSQL("INSERT INTO Foo SET name = 'foo'")).execute();
 
-      List<?> result = databaseDocumentTx.query(new OSQLSynchQuery<Object>("SELECT * FROM Foo WHERE ['foo', 'bar'] CONTAINS name"));
+      List<?> result = databaseDocumentTx.query(new OSQLSynchQuery<>("SELECT * FROM Foo WHERE ['foo', 'bar'] CONTAINS name"));
       assertEquals(result.size(), 1);
 
-      result = databaseDocumentTx.query(new OSQLSynchQuery<Object>("SELECT * FROM Foo WHERE name IN ['foo', 'bar']"));
+      result = databaseDocumentTx.query(new OSQLSynchQuery<>("SELECT * FROM Foo WHERE name IN ['foo', 'bar']"));
       assertEquals(result.size(), 1);
 
       databaseDocumentTx.command(new OCommandSQL("CREATE INDEX Foo.name UNIQUE_HASH_INDEX")).execute();
 
-      result = databaseDocumentTx.query(new OSQLSynchQuery<Object>("SELECT * FROM Foo WHERE ['foo', 'bar'] CONTAINS name"));
+      result = databaseDocumentTx.query(new OSQLSynchQuery<>("SELECT * FROM Foo WHERE ['foo', 'bar'] CONTAINS name"));
       assertEquals(result.size(), 1);
 
-      result = databaseDocumentTx.query(new OSQLSynchQuery<Object>("SELECT * FROM Foo WHERE name IN ['foo', 'bar']"));
+      result = databaseDocumentTx.query(new OSQLSynchQuery<>("SELECT * FROM Foo WHERE name IN ['foo', 'bar']"));
       assertEquals(result.size(), 1);
 
     } finally {

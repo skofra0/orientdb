@@ -1,14 +1,22 @@
 package com.orientechnologies.orient.core.storage.index.hashindex.local;
 
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import com.orientechnologies.common.serialization.types.OIntegerSerializer;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.serialization.serializer.binary.OBinarySerializerFactory;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperationsManager;
-import org.junit.*;
-
-import java.util.*;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)
@@ -36,7 +44,7 @@ public class LocalHashTableIterationTestIT {
 
     databaseDocumentTx.create();
 
-    OHashFunction<Integer> hashFunction = new OHashFunction<Integer>() {
+    OHashFunction<Integer> hashFunction = new OHashFunction<>() {
       @Override
       public long hashCode(Integer value) {
         return Long.MAX_VALUE / 2 + value;
@@ -46,7 +54,7 @@ public class LocalHashTableIterationTestIT {
     final OAbstractPaginatedStorage storage = (OAbstractPaginatedStorage) databaseDocumentTx.getStorage();
     atomicOperationsManager = storage.getAtomicOperationsManager();
     atomicOperationsManager.executeInsideAtomicOperation((atomicOperation) -> {
-      localHashTable = new OLocalHashTable<Integer, String>("localHashTableIterationTest", ".imc", ".tsc", ".obf", ".nbh", storage);
+      localHashTable = new OLocalHashTable<>("localHashTableIterationTest", ".imc", ".tsc", ".obf", ".nbh", storage);
 
       localHashTable.create(atomicOperation, OIntegerSerializer.INSTANCE,
           OBinarySerializerFactory.getInstance().<String>getObjectSerializer(OType.STRING), null, null, hashFunction, true);
@@ -72,7 +80,7 @@ public class LocalHashTableIterationTestIT {
   @Test
   public void testNextHaveRightOrder() throws Exception {
     atomicOperationsManager.executeInsideAtomicOperation((atomicOperation) -> {
-      SortedSet<Integer> keys = new TreeSet<Integer>();
+      SortedSet<Integer> keys = new TreeSet<>();
       keys.clear();
       final Random random = new Random();
 
@@ -103,7 +111,7 @@ public class LocalHashTableIterationTestIT {
 
   public void testNextSkipsRecordValid() throws Exception {
     atomicOperationsManager.executeInsideAtomicOperation((atomicOperation) -> {
-      List<Integer> keys = new ArrayList<Integer>();
+      List<Integer> keys = new ArrayList<>();
 
       final Random random = new Random();
       while (keys.size() < KEYS_COUNT) {
@@ -140,7 +148,7 @@ public class LocalHashTableIterationTestIT {
   @Ignore
   public void testNextHaveRightOrderUsingNextMethod() throws Exception {
     atomicOperationsManager.executeInsideAtomicOperation((atomicOperation) -> {
-      List<Integer> keys = new ArrayList<Integer>();
+      List<Integer> keys = new ArrayList<>();
       keys.clear();
       Random random = new Random();
 

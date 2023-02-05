@@ -19,6 +19,12 @@
   */
 package com.orientechnologies.orient.core.sql.operator;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
@@ -29,13 +35,6 @@ import com.orientechnologies.orient.core.query.OQueryRuntimeValueMulti;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.filter.OSQLFilterCondition;
 import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemFieldAny;
-
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * TRAVERSE operator.
@@ -78,7 +77,7 @@ public class OQueryOperatorTraverse extends OQueryOperatorEqualityNotNulls {
       target = iLeft;
     }
 
-    final Set<ORID> evaluatedRecords = new HashSet<ORID>();
+    final Set<ORID> evaluatedRecords = new HashSet<>();
     return traverse(target, condition, 0, evaluatedRecords, iContext);
   }
 

@@ -19,12 +19,15 @@
  */
 package com.orientechnologies.orient.core.db.tool;
 
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 import com.orientechnologies.orient.core.command.OCommandOutputListener;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.metadata.OMetadataDefault;
-
-import java.util.*;
 
 /**
  * Abstract class for import/export of database and data in general.
@@ -69,7 +72,7 @@ public abstract class ODatabaseImpExpAbstract extends ODatabaseTool {
       fileName += DEFAULT_EXT;
 
     listener = iListener;
-    excludeClusters = new LinkedHashSet<String>();
+    excludeClusters = new LinkedHashSet<>();
     excludeClusters.add(OMetadataDefault.CLUSTER_INDEX_NAME);
     excludeClusters.add(OMetadataDefault.CLUSTER_MANUAL_INDEX_NAME);
   }
@@ -205,24 +208,24 @@ public abstract class ODatabaseImpExpAbstract extends ODatabaseTool {
       includeManualIndexes = false;
 
     } else if (option.equalsIgnoreCase("-includeClass")) {
-      includeClasses = new HashSet<String>();
+      includeClasses = new HashSet<>();
       for (String item : items)
         includeClasses.add(item.toUpperCase(Locale.ENGLISH));
       includeRecords = true;
 
     } else if (option.equalsIgnoreCase("-excludeClass")) {
-      excludeClasses = new HashSet<String>(items);
+      excludeClasses = new HashSet<>(items);
       for (String item : items)
         excludeClasses.add(item.toUpperCase(Locale.ENGLISH));
 
     } else if (option.equalsIgnoreCase("-includeCluster")) {
-      includeClusters = new HashSet<String>(items);
+      includeClusters = new HashSet<>(items);
       for (String item : items)
         includeClusters.add(item.toUpperCase(Locale.ENGLISH));
       includeRecords = true;
 
     } else if (option.equalsIgnoreCase("-excludeCluster")) {
-      excludeClusters = new HashSet<String>(items);
+      excludeClusters = new HashSet<>(items);
       for (String item : items)
         excludeClusters.add(item.toUpperCase(Locale.ENGLISH));
 

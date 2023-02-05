@@ -20,7 +20,6 @@
 package com.orientechnologies.orient.core.serialization;
 
 import java.io.Serializable;
-
 import com.orientechnologies.orient.core.exception.OSerializationException;
 
 /**

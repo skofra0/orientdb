@@ -19,6 +19,14 @@
  */
 package com.orientechnologies.orient.core.metadata.function;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.regex.Pattern;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.util.OCallable;
@@ -38,11 +46,6 @@ import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
 import com.orientechnologies.orient.core.storage.ORecordDuplicatedException;
 
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.regex.Pattern;
-
 /**
  * Manages stored functions.
  *
@@ -50,7 +53,7 @@ import java.util.regex.Pattern;
  */
 public class OFunctionLibraryImpl {
   public static final String                 CLASSNAME  = "OFunction";
-  protected final     Map<String, OFunction> functions  = new ConcurrentHashMap<String, OFunction>();
+  protected final     Map<String, OFunction> functions  = new ConcurrentHashMap<>();
   private             AtomicBoolean          needReload = new AtomicBoolean(false);
 
   static {
@@ -70,7 +73,7 @@ public class OFunctionLibraryImpl {
 
   public void load(ODatabaseDocumentInternal db) {
     // COPY CALLBACK IN RAM
-    final Map<String, OCallable<Object, Map<Object, Object>>> callbacks = new HashMap<String, OCallable<Object, Map<Object, Object>>>();
+    final Map<String, OCallable<Object, Map<Object, Object>>> callbacks = new HashMap<>();
     for (Map.Entry<String, OFunction> entry : functions.entrySet()) {
       if (entry.getValue().getCallback() != null)
         callbacks.put(entry.getKey(), entry.getValue().getCallback());

@@ -1,16 +1,12 @@
 package com.orientechnologies.orient.server.network.protocol.http.command.get;
 
+import java.io.StringWriter;
 import com.orientechnologies.common.log.OLogManager;
-import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.serialization.serializer.OJSONWriter;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpResponse;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpUtils;
-
 import com.orientechnologies.orient.server.network.protocol.http.command.OServerCommandAbstract;
-
-import java.io.IOException;
-import java.io.StringWriter;
 
 public class OServerCommandGetSSO extends OServerCommandAbstract
 {

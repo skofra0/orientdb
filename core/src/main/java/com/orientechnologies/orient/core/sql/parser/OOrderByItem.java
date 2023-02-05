@@ -1,5 +1,7 @@
 package com.orientechnologies.orient.core.sql.parser;
 
+import java.util.Locale;
+import java.util.Map;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.collate.OCollate;
 import com.orientechnologies.orient.core.command.OCommandContext;
@@ -7,9 +9,6 @@ import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 import com.orientechnologies.orient.core.sql.OSQLEngine;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.sql.executor.OResultInternal;
-
-import java.util.Locale;
-import java.util.Map;
 
 /**
  * Created by luigidellaquila on 06/02/15.

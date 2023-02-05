@@ -1,5 +1,9 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 import com.orientechnologies.orient.core.command.OBasicCommandContext;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.ODatabase;
@@ -11,12 +15,21 @@ import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.index.OIndex;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.sql.OCommandExecutorSQLAbstract;
-import com.orientechnologies.orient.core.sql.parser.*;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.orientechnologies.orient.core.sql.parser.OCluster;
+import com.orientechnologies.orient.core.sql.parser.OFromClause;
+import com.orientechnologies.orient.core.sql.parser.OFromItem;
+import com.orientechnologies.orient.core.sql.parser.OIdentifier;
+import com.orientechnologies.orient.core.sql.parser.OIndexIdentifier;
+import com.orientechnologies.orient.core.sql.parser.OInputParameter;
+import com.orientechnologies.orient.core.sql.parser.OInteger;
+import com.orientechnologies.orient.core.sql.parser.OLimit;
+import com.orientechnologies.orient.core.sql.parser.OMetadataIdentifier;
+import com.orientechnologies.orient.core.sql.parser.ORid;
+import com.orientechnologies.orient.core.sql.parser.OSkip;
+import com.orientechnologies.orient.core.sql.parser.OStatement;
+import com.orientechnologies.orient.core.sql.parser.OTraverseProjectionItem;
+import com.orientechnologies.orient.core.sql.parser.OTraverseStatement;
+import com.orientechnologies.orient.core.sql.parser.OWhereClause;
 
 /**
  * @author Luigi Dell'Aquila (l.dellaquila-(at)-orientdb.com)

@@ -20,8 +20,8 @@
 package com.orientechnologies.orient.server.network.protocol.http.command;
 
 import com.orientechnologies.orient.server.OServer;
- import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
- import com.orientechnologies.orient.server.network.protocol.http.OHttpResponse;
+import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
+import com.orientechnologies.orient.server.network.protocol.http.OHttpResponse;
 
 /**
   * Generic interface for server-side commands.

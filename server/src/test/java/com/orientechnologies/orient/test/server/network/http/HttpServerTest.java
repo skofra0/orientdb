@@ -1,9 +1,9 @@
 package com.orientechnologies.orient.test.server.network.http;
 
-import com.orientechnologies.orient.core.record.impl.ODocument;
 import org.apache.http.HttpResponse;
 import org.junit.Assert;
 import org.junit.Test;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 public class HttpServerTest extends BaseHttpDatabaseTest {
   @Test

@@ -19,10 +19,6 @@
  */
 package com.orientechnologies.common.concur.lock;
 
-import com.orientechnologies.common.concur.OTimeoutException;
-import com.orientechnologies.common.exception.OException;
-import com.orientechnologies.common.log.OLogManager;
-
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.Field;
@@ -31,6 +27,9 @@ import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import com.orientechnologies.common.concur.OTimeoutException;
+import com.orientechnologies.common.exception.OException;
+import com.orientechnologies.common.log.OLogManager;
 
 /**
  * Adaptive class to handle shared resources. It's configurable specifying if it's running in a concurrent environment and allow o

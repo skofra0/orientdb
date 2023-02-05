@@ -2,6 +2,15 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=true,TRACK_TOKENS=true,NODE_PREFIX=O,NODE_EXTENDS=,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package com.orientechnologies.orient.core.sql.parser;
 
+import java.math.BigDecimal;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Deque;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.core.collate.OCollate;
 import com.orientechnologies.orient.core.command.OCommandContext;
@@ -12,16 +21,6 @@ import com.orientechnologies.orient.core.record.OElement;
 import com.orientechnologies.orient.core.sql.executor.AggregationContext;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.sql.executor.OResultInternal;
-
-import java.math.BigDecimal;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Deque;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class OMathExpression extends SimpleNode {
 
@@ -567,7 +566,7 @@ public class OMathExpression extends SimpleNode {
     }
   }
 
-  protected List<OMathExpression> childExpressions = new ArrayList<OMathExpression>();
+  protected List<OMathExpression> childExpressions = new ArrayList<>();
   protected List<Operator>        operators        = new ArrayList<>();
 
   public OMathExpression(int id) {
@@ -623,7 +622,7 @@ public class OMathExpression extends SimpleNode {
 
   private Object calculateWithOpPriority(OResult iCurrentRecord, OCommandContext ctx) {
     Deque valuesStack = new ArrayDeque<>();
-    Deque<Operator> operatorsStack = new ArrayDeque<Operator>();
+    Deque<Operator> operatorsStack = new ArrayDeque<>();
 
     OMathExpression nextExpression = childExpressions.get(0);
     Object val = nextExpression.execute(iCurrentRecord, ctx);
@@ -651,7 +650,7 @@ public class OMathExpression extends SimpleNode {
 
   private Object calculateWithOpPriority(OIdentifiable iCurrentRecord, OCommandContext ctx) {
     Deque valuesStack = new ArrayDeque<>();
-    Deque<Operator> operatorsStack = new ArrayDeque<Operator>();
+    Deque<Operator> operatorsStack = new ArrayDeque<>();
 
     OMathExpression nextExpression = childExpressions.get(0);
     Object val = nextExpression.execute(iCurrentRecord, ctx);
@@ -687,7 +686,7 @@ public class OMathExpression extends SimpleNode {
       }
 
       Deque valuesStack = new ArrayDeque<>();
-      Deque<OMathExpression.Operator> operatorsStack = new ArrayDeque<OMathExpression.Operator>();
+      Deque<OMathExpression.Operator> operatorsStack = new ArrayDeque<>();
 
       valuesStack.push(values.removeLast());
 
@@ -1021,7 +1020,7 @@ public class OMathExpression extends SimpleNode {
   }
 
   public List<String> getMatchPatternInvolvedAliases() {
-    List<String> result = new ArrayList<String>();
+    List<String> result = new ArrayList<>();
     for (OMathExpression exp : childExpressions) {
       List<String> x = exp.getMatchPatternInvolvedAliases();
       if (x != null) {

@@ -19,6 +19,7 @@
  */
 package com.orientechnologies.orient.core.record;
 
+import java.io.Serializable;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.db.record.ORecordElement;
@@ -26,8 +27,6 @@ import com.orientechnologies.orient.core.exception.ORecordNotFoundException;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.serialization.OSerializableStream;
 import com.orientechnologies.orient.core.tx.OTransactionOptimistic;
-
-import java.io.Serializable;
 
 /**
  * Generic record representation. The object can be reused across multiple calls to the database by using the {@link #reset()}

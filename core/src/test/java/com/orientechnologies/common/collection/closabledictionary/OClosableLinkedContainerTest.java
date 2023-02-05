@@ -3,20 +3,22 @@ package com.orientechnologies.common.collection.closabledictionary;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.LockSupport;
 
 public class OClosableLinkedContainerTest {
   @Test
   public void testSingleItemAddRemove() throws Exception {
     final OClosableItem closableItem = new CItem(10);
-    final OClosableLinkedContainer<Long, OClosableItem> dictionary = new OClosableLinkedContainer<Long, OClosableItem>(10);
+    final OClosableLinkedContainer<Long, OClosableItem> dictionary = new OClosableLinkedContainer<>(10);
 
     dictionary.add(1L, closableItem);
 
@@ -33,7 +35,7 @@ public class OClosableLinkedContainerTest {
 
   @Test
   public void testCloseHalfOfTheItems() throws Exception {
-    final OClosableLinkedContainer<Long, OClosableItem> dictionary = new OClosableLinkedContainer<Long, OClosableItem>(10);
+    final OClosableLinkedContainer<Long, OClosableItem> dictionary = new OClosableLinkedContainer<>(10);
 
     for (int i = 0; i < 10; i++) {
       final OClosableItem closableItem = new CItem(i);
@@ -80,12 +82,12 @@ public class OClosableLinkedContainerTest {
     CItem.maxDeltaLimit.set(0);
 
     ExecutorService executor = Executors.newCachedThreadPool();
-    List<Future<Void>> futures = new ArrayList<Future<Void>>();
+    List<Future<Void>> futures = new ArrayList<>();
     CountDownLatch latch = new CountDownLatch(1);
 
     int limit = 60000;
 
-    OClosableLinkedContainer<Long, CItem> dictionary = new OClosableLinkedContainer<Long, CItem>(16);
+    OClosableLinkedContainer<Long, CItem> dictionary = new OClosableLinkedContainer<>(16);
     futures.add(executor.submit(new Adder(dictionary, latch, 0, limit / 3)));
     futures.add(executor.submit(new Adder(dictionary, latch, limit / 3, 2 * limit / 3)));
 

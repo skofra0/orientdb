@@ -16,12 +16,11 @@
 
 package com.orientechnologies.orient.core.schedule;
 
+import java.util.Date;
+import java.util.Map;
 import com.orientechnologies.orient.core.metadata.function.OFunction;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.type.ODocumentWrapper;
-
-import java.util.Date;
-import java.util.Map;
 
 /**
  * Builds a OSchedulerEvent with a fluent interface

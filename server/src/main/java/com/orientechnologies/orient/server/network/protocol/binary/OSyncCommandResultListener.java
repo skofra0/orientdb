@@ -22,7 +22,6 @@ package com.orientechnologies.orient.server.network.protocol.binary;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import com.orientechnologies.orient.client.remote.OFetchPlanResults;
 import com.orientechnologies.orient.core.command.OCommandResultListener;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
@@ -42,8 +41,8 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
  *
  */
 public class OSyncCommandResultListener extends OAbstractCommandResultListener implements OFetchPlanResults {
-  private final Set<ORecord> fetchedRecordsToSend = new HashSet<ORecord>();
-  private final Set<ORecord> alreadySent          = new HashSet<ORecord>();
+  private final Set<ORecord> fetchedRecordsToSend = new HashSet<>();
+  private final Set<ORecord> alreadySent          = new HashSet<>();
 
   public OSyncCommandResultListener(final OCommandResultListener wrappedResultListener) {
     super(wrappedResultListener);

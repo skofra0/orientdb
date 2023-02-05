@@ -19,6 +19,7 @@
  */
 package com.orientechnologies.orient.server;
 
+import java.util.UUID;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.util.OCallable;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
@@ -32,8 +33,6 @@ import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import com.orientechnologies.orient.core.record.OElement;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
-
-import java.util.UUID;
 
 public class OSystemDatabase {
   public static final String SYSTEM_DB_NAME = "OSystem";

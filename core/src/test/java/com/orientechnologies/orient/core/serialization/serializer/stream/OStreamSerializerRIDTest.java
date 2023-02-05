@@ -1,13 +1,14 @@
 package com.orientechnologies.orient.core.serialization.serializer.stream;
 
+import org.junit.Assert;
+import org.junit.Before;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import com.orientechnologies.common.serialization.types.OLongSerializer;
 import com.orientechnologies.common.serialization.types.OShortSerializer;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALChanges;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALChangesTree;
-import org.junit.Assert;import org.junit.Before; import org.junit.Test;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 
 public class OStreamSerializerRIDTest {
   private static final int  FIELD_SIZE = OShortSerializer.SHORT_SIZE + OLongSerializer.LONG_SIZE;

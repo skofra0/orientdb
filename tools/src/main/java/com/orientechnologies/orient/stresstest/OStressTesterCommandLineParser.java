@@ -19,13 +19,17 @@
  */
 package com.orientechnologies.orient.stresstest;
 
-import com.orientechnologies.orient.client.remote.OStorageRemote;
-import com.orientechnologies.orient.stresstest.workload.OWorkload;
-
 import java.io.Console;
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import com.orientechnologies.orient.client.remote.OStorageRemote;
+import com.orientechnologies.orient.stresstest.workload.OWorkload;
 
 /**
  * This is the parser of the command line arguments passed with the invocation of OStressTester. It contains a static method that -
@@ -194,7 +198,7 @@ public class OStressTesterCommandLineParser {
     if (workloadConfig == null || workloadConfig.isEmpty())
       throw new IllegalArgumentException("Workload parameter is mandatory. Syntax: <workload-name:workload-params>");
 
-    final List<OWorkload> result = new ArrayList<OWorkload>();
+    final List<OWorkload> result = new ArrayList<>();
 
     final String[] parts = workloadConfig.split(",");
     for (String part : parts) {
@@ -269,7 +273,7 @@ public class OStressTesterCommandLineParser {
 
   private static Map<String, String> readOptions(final String[] args) throws IllegalArgumentException {
 
-    final Map<String, String> options = new HashMap<String, String>();
+    final Map<String, String> options = new HashMap<>();
 
     // reads arguments from command line
     for (int i = 0; i < args.length; i++) {

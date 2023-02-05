@@ -16,6 +16,11 @@
  */
 package com.orientechnologies.orient.core.fetch.json;
 
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.Set;
+import java.util.Stack;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.db.record.ORecordLazySet;
@@ -31,12 +36,6 @@ import com.orientechnologies.orient.core.serialization.serializer.OJSONWriter;
 import com.orientechnologies.orient.core.serialization.serializer.record.string.ORecordSerializerJSON;
 import com.orientechnologies.orient.core.serialization.serializer.record.string.ORecordSerializerJSON.FormatSettings;
 
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.Set;
-import java.util.Stack;
-
 /**
  * @author Luca Molino (molino.luca--at--gmail.com)
  * 
@@ -45,8 +44,8 @@ public class OJSONFetchContext implements OFetchContext {
 
   protected final OJSONWriter          jsonWriter;
   protected final FormatSettings       settings;
-  protected final Stack<StringBuilder> typesStack      = new Stack<StringBuilder>();
-  protected final Stack<ODocument>     collectionStack = new Stack<ODocument>();
+  protected final Stack<StringBuilder> typesStack      = new Stack<>();
+  protected final Stack<ODocument>     collectionStack = new Stack<>();
 
   public OJSONFetchContext(final OJSONWriter iJsonWriter, final FormatSettings iSettings) {
     jsonWriter = iJsonWriter;

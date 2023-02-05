@@ -19,13 +19,12 @@
  */
 package com.orientechnologies.orient.core.serialization.serializer.string;
 
+import java.util.Base64;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.exception.OSerializationException;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.serialization.OSerializableStream;
-
-import java.util.Base64;
 
 public class OStringSerializerAnyStreamable implements OStringSerializer {
   public static final OStringSerializerAnyStreamable INSTANCE = new OStringSerializerAnyStreamable();

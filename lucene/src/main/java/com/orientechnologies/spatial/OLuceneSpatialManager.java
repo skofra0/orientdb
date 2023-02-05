@@ -14,10 +14,9 @@
  */
 package com.orientechnologies.spatial;
 
+import static com.orientechnologies.spatial.shape.OShapeBuilder.BASE_CLASS;
 import com.orientechnologies.orient.core.db.ODatabaseInternal;
 import com.orientechnologies.spatial.shape.OShapeBuilder;
-
-import static com.orientechnologies.spatial.shape.OShapeBuilder.BASE_CLASS;
 
 /**
  * Created by Enrico Risa on 06/08/15.

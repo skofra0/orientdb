@@ -20,6 +20,9 @@
 
 package com.orientechnologies.orient.core.encryption;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.encryption.impl.OAESEncryption;
@@ -27,10 +30,6 @@ import com.orientechnologies.orient.core.encryption.impl.OAESGCMEncryption;
 import com.orientechnologies.orient.core.encryption.impl.ODESEncryption;
 import com.orientechnologies.orient.core.encryption.impl.ONothingEncryption;
 import com.orientechnologies.orient.core.exception.OSecurityException;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Factory of encryption algorithms.
@@ -40,8 +39,8 @@ import java.util.Set;
 public class OEncryptionFactory {
   public static final OEncryptionFactory                  INSTANCE  = new OEncryptionFactory();
 
-  private final Map<String, OEncryption>                  instances = new HashMap<String, OEncryption>();
-  private final Map<String, Class<? extends OEncryption>> classes   = new HashMap<String, Class<? extends OEncryption>>();
+  private final Map<String, OEncryption>                  instances = new HashMap<>();
+  private final Map<String, Class<? extends OEncryption>> classes   = new HashMap<>();
 
   /**
    * Install default encryption algorithms.

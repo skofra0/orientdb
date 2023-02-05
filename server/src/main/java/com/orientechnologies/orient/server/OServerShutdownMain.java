@@ -19,6 +19,8 @@
  */
 package com.orientechnologies.orient.server;
 
+import java.io.IOException;
+import java.util.Arrays;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.client.binary.OChannelBinaryAsynchClient;
 import com.orientechnologies.orient.client.remote.message.OShutdownRequest;
@@ -27,9 +29,6 @@ import com.orientechnologies.orient.enterprise.channel.binary.OChannelBinaryProt
 import com.orientechnologies.orient.enterprise.channel.binary.ONetworkProtocolException;
 import com.orientechnologies.orient.server.config.OServerConfiguration;
 import com.orientechnologies.orient.server.network.OServerNetworkListener;
-
-import java.io.IOException;
-import java.util.Arrays;
 
 /**
  * Sends a shutdown command to the server.

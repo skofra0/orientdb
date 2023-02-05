@@ -19,6 +19,11 @@
  */
 package com.orientechnologies.orient.core.query.live;
 
+import static com.orientechnologies.orient.core.config.OGlobalConfiguration.QUERY_LIVE_SUPPORT;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import com.orientechnologies.common.concur.resource.OCloseable;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.db.ODatabase;
@@ -28,13 +33,6 @@ import com.orientechnologies.orient.core.db.record.ORecordOperation;
 import com.orientechnologies.orient.core.exception.ODatabaseException;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
-import static com.orientechnologies.orient.core.config.OGlobalConfiguration.QUERY_LIVE_SUPPORT;
-
 /**
  * Created by luigidellaquila on 16/03/15.
  */
@@ -42,7 +40,7 @@ public class OLiveQueryHook {
 
   public static class OLiveQueryOps implements OCloseable {
 
-    protected Map<ODatabaseDocument, List<ORecordOperation>> pendingOps  = new ConcurrentHashMap<ODatabaseDocument, List<ORecordOperation>>();
+    protected Map<ODatabaseDocument, List<ORecordOperation>> pendingOps  = new ConcurrentHashMap<>();
     private   OLiveQueryQueueThread                          queueThread = new OLiveQueryQueueThread();
     private   Object                                         threadLock  = new Object();
 
@@ -143,7 +141,7 @@ public class OLiveQueryHook {
     synchronized (ops.pendingOps) {
       List<ORecordOperation> list = ops.pendingOps.get(db);
       if (list == null) {
-        list = new ArrayList<ORecordOperation>();
+        list = new ArrayList<>();
         ops.pendingOps.put(db, list);
       }
       list.add(result);

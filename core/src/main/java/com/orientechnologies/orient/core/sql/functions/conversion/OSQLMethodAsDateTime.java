@@ -16,14 +16,13 @@
  */
 package com.orientechnologies.orient.core.sql.functions.conversion;
 
+import java.text.ParseException;
+import java.util.Date;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.sql.method.misc.OAbstractSQLMethod;
-
-import java.text.ParseException;
-import java.util.Date;
 
 /**
  * Transforms a value to datetime. If the conversion is not possible, null is returned.

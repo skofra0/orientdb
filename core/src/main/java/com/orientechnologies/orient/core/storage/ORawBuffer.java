@@ -19,13 +19,12 @@
   */
 package com.orientechnologies.orient.core.storage;
 
-import com.orientechnologies.orient.core.record.ORecord;
-import com.orientechnologies.orient.core.record.ORecordInternal;
-import com.orientechnologies.orient.core.type.OBuffer;
-
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
+import com.orientechnologies.orient.core.record.ORecord;
+import com.orientechnologies.orient.core.record.ORecordInternal;
+import com.orientechnologies.orient.core.type.OBuffer;
 
 public class ORawBuffer extends OBuffer {
   public int  version;

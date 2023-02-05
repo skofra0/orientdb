@@ -17,6 +17,12 @@
  */
 package com.orientechnologies.spatial;
 
+import static com.orientechnologies.lucene.OLuceneIndexFactory.LUCENE_ALGORITHM;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.orient.core.Orient;
@@ -35,14 +41,6 @@ import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedSt
 import com.orientechnologies.spatial.engine.OLuceneSpatialIndexEngineDelegator;
 import com.orientechnologies.spatial.index.OLuceneSpatialIndex;
 import com.orientechnologies.spatial.shape.OShapeFactory;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
-
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
-import static com.orientechnologies.lucene.OLuceneIndexFactory.LUCENE_ALGORITHM;
 
 public class OLuceneSpatialIndexFactory implements OIndexFactory, ODatabaseLifecycleListener {
 
@@ -50,13 +48,13 @@ public class OLuceneSpatialIndexFactory implements OIndexFactory, ODatabaseLifec
   private static final Set<String> ALGORITHMS;
 
   static {
-    final Set<String> types = new HashSet<String>();
+    final Set<String> types = new HashSet<>();
     types.add(OClass.INDEX_TYPE.SPATIAL.toString());
     TYPES = Collections.unmodifiableSet(types);
   }
 
   static {
-    final Set<String> algorithms = new HashSet<String>();
+    final Set<String> algorithms = new HashSet<>();
     algorithms.add(LUCENE_ALGORITHM);
     ALGORITHMS = Collections.unmodifiableSet(algorithms);
   }

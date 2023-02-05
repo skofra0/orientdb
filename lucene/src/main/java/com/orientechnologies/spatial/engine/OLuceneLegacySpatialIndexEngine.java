@@ -17,6 +17,30 @@
  */
 package com.orientechnologies.spatial.engine;
 
+import static com.orientechnologies.lucene.builder.OLuceneQueryBuilder.EMPTY_METADATA;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.search.BooleanClause;
+import org.apache.lucene.search.BooleanQuery;
+import org.apache.lucene.search.DoubleValuesSource;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.MatchAllDocsQuery;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.Sort;
+import org.apache.lucene.spatial.SpatialStrategy;
+import org.apache.lucene.spatial.prefix.RecursivePrefixTreeStrategy;
+import org.apache.lucene.spatial.prefix.tree.GeohashPrefixTree;
+import org.apache.lucene.spatial.query.SpatialArgs;
+import org.apache.lucene.spatial.query.SpatialOperation;
+import org.locationtech.spatial4j.distance.DistanceUtils;
+import org.locationtech.spatial4j.shape.Point;
+import org.locationtech.spatial4j.shape.Shape;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 import com.orientechnologies.lucene.collections.OLuceneResultSet;
 import com.orientechnologies.lucene.query.OLuceneQueryContext;
 import com.orientechnologies.lucene.tx.OLuceneTxChanges;
@@ -37,21 +61,6 @@ import com.orientechnologies.spatial.query.OSpatialQueryContext;
 import com.orientechnologies.spatial.shape.OShapeBuilder;
 import com.orientechnologies.spatial.shape.legacy.OShapeBuilderLegacy;
 import com.orientechnologies.spatial.shape.legacy.OShapeBuilderLegacyImpl;
-import org.apache.lucene.document.Document;
-import org.apache.lucene.search.*;
-import org.apache.lucene.spatial.SpatialStrategy;
-import org.apache.lucene.spatial.prefix.RecursivePrefixTreeStrategy;
-import org.apache.lucene.spatial.prefix.tree.GeohashPrefixTree;
-import org.apache.lucene.spatial.query.SpatialArgs;
-import org.apache.lucene.spatial.query.SpatialOperation;
-import org.locationtech.spatial4j.distance.DistanceUtils;
-import org.locationtech.spatial4j.shape.Point;
-import org.locationtech.spatial4j.shape.Shape;
-
-import java.io.IOException;
-import java.util.*;
-
-import static com.orientechnologies.lucene.builder.OLuceneQueryBuilder.EMPTY_METADATA;
 
 /**
  * Created by Enrico Risa on 26/09/15.
@@ -109,7 +118,7 @@ public class OLuceneLegacySpatialIndexEngine extends OLuceneSpatialIndexEngineAb
   public Set<OIdentifiable> searchWithin(OSpatialCompositeKey key, OCommandContext context, OLuceneTxChanges changes)
       throws IOException {
 
-    Set<OIdentifiable> result = new HashSet<OIdentifiable>();
+    Set<OIdentifiable> result = new HashSet<>();
 
     Shape shape = legacyBuilder.makeShape(key, ctx);
     if (shape == null)

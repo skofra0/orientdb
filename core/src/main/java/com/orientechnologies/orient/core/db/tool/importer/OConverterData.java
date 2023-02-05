@@ -1,10 +1,9 @@
 package com.orientechnologies.orient.core.db.tool.importer;
 
+import java.util.Set;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.index.OIndex;
-
-import java.util.Set;
 
 /**
  * Created by tglman on 28/07/17.

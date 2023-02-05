@@ -20,6 +20,11 @@
 
 package com.orientechnologies.orient.core.serialization.serializer.binary.impl;
 
+import static com.orientechnologies.orient.core.serialization.OBinaryProtocol.bytes2long;
+import static com.orientechnologies.orient.core.serialization.OBinaryProtocol.bytes2short;
+import static com.orientechnologies.orient.core.serialization.OBinaryProtocol.long2bytes;
+import static com.orientechnologies.orient.core.serialization.OBinaryProtocol.short2bytes;
+import java.nio.ByteBuffer;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.common.serialization.types.OLongSerializer;
 import com.orientechnologies.common.serialization.types.OShortSerializer;
@@ -27,13 +32,6 @@ import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALChanges;
-
-import java.nio.ByteBuffer;
-
-import static com.orientechnologies.orient.core.serialization.OBinaryProtocol.bytes2long;
-import static com.orientechnologies.orient.core.serialization.OBinaryProtocol.bytes2short;
-import static com.orientechnologies.orient.core.serialization.OBinaryProtocol.long2bytes;
-import static com.orientechnologies.orient.core.serialization.OBinaryProtocol.short2bytes;
 
 /**
  * Serializer for {@link com.orientechnologies.orient.core.metadata.schema.OType#LINK}

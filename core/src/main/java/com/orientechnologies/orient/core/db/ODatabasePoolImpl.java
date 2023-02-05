@@ -19,12 +19,12 @@
  */
 package com.orientechnologies.orient.core.db;
 
+import static com.orientechnologies.orient.core.config.OGlobalConfiguration.DB_POOL_ACQUIRE_TIMEOUT;
+import static com.orientechnologies.orient.core.config.OGlobalConfiguration.DB_POOL_MAX;
+import static com.orientechnologies.orient.core.config.OGlobalConfiguration.DB_POOL_MIN;
 import com.orientechnologies.common.concur.resource.OResourcePool;
 import com.orientechnologies.common.concur.resource.OResourcePoolListener;
-import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.exception.ODatabaseException;
-
-import static com.orientechnologies.orient.core.config.OGlobalConfiguration.*;
 
 /**
  * Created by tglman on 07/07/16.

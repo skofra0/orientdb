@@ -19,12 +19,11 @@
  */
 package com.orientechnologies.orient.core.index;
 
-import com.orientechnologies.common.util.OSizeable;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
+import com.orientechnologies.common.util.OSizeable;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
 
 /**
  * Implementation of index cursor in case of collection of values which belongs to single key should be returned.
@@ -72,7 +71,7 @@ public class OIndexCursorCollectionValue extends OIndexAbstractCursor implements
     }
 
     final OIdentifiable value = iterator.next();
-    return new Map.Entry<Object, OIdentifiable>() {
+    return new Map.Entry<>() {
       @Override
       public Object getKey() {
         return key;

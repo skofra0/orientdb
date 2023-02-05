@@ -19,6 +19,8 @@
   */
 package com.orientechnologies.orient.core.sql.operator.math;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.id.ORID;
@@ -27,9 +29,6 @@ import com.orientechnologies.orient.core.serialization.serializer.record.binary.
 import com.orientechnologies.orient.core.sql.filter.OSQLFilterCondition;
 import com.orientechnologies.orient.core.sql.operator.OIndexReuseType;
 import com.orientechnologies.orient.core.sql.operator.OQueryOperator;
-
-import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * MULTIPLY "*" operator.

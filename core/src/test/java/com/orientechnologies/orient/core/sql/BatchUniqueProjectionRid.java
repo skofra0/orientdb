@@ -1,13 +1,10 @@
 package com.orientechnologies.orient.core.sql;
 
 import static org.junit.Assert.assertFalse;
-
-import java.util.List;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+import java.util.List;
 import com.orientechnologies.orient.core.command.script.OCommandScript;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;

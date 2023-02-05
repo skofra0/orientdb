@@ -20,12 +20,11 @@
 
 package com.orientechnologies.common.serialization.types;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import com.orientechnologies.common.serialization.OBinaryConverter;
 import com.orientechnologies.common.serialization.OBinaryConverterFactory;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALChanges;
-
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 
 /**
  * Serializer for {@link Double}

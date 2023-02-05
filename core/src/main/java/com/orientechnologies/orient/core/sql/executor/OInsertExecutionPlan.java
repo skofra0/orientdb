@@ -1,14 +1,14 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by luigidellaquila on 08/08/16.
  */
 
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Luigi Dell'Aquila (l.dellaquila-(at)-orientdb.com)

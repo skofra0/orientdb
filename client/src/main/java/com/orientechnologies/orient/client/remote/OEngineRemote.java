@@ -19,11 +19,10 @@
  */
 package com.orientechnologies.orient.client.remote;
 
+import java.util.Map;
 import com.orientechnologies.orient.core.engine.OEngineAbstract;
 import com.orientechnologies.orient.core.exception.OStorageException;
 import com.orientechnologies.orient.core.storage.OStorage;
-
-import java.util.Map;
 
 /**
  * Remote engine implementation.

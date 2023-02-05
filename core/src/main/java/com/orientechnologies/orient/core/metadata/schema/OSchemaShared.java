@@ -19,6 +19,16 @@
  */
 package com.orientechnologies.orient.core.metadata.schema;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.Callable;
 import com.orientechnologies.common.concur.lock.OReadersWriterSpinLock;
 import com.orientechnologies.common.concur.resource.OCloseable;
 import com.orientechnologies.common.log.OLogManager;
@@ -28,7 +38,6 @@ import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.OMetadataUpdateListener;
 import com.orientechnologies.orient.core.db.OScenarioThreadLocal;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.record.ORecordElement;
 import com.orientechnologies.orient.core.exception.OConcurrentModificationException;
 import com.orientechnologies.orient.core.exception.OConfigurationException;
@@ -47,9 +56,6 @@ import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedSt
 import com.orientechnologies.orient.core.type.ODocumentWrapper;
 import com.orientechnologies.orient.core.type.ODocumentWrapperNoClass;
 
-import java.util.*;
-import java.util.concurrent.Callable;
-
 /**
  * Shared schema class. It's shared by all the database instances that point to the same storage.
  *
@@ -66,20 +72,20 @@ public abstract class OSchemaShared extends ODocumentWrapperNoClass implements O
 
   private final OReadersWriterSpinLock rwSpinLock = new OReadersWriterSpinLock();
 
-  protected final Map<String, OClass>  classes           = new HashMap<String, OClass>();
-  protected final Map<Integer, OClass> clustersToClasses = new HashMap<Integer, OClass>();
+  protected final Map<String, OClass>  classes           = new HashMap<>();
+  protected final Map<Integer, OClass> clustersToClasses = new HashMap<>();
 
   private final OClusterSelectionFactory clusterSelectionFactory = new OClusterSelectionFactory();
 
   private final      OModifiableInteger           modificationCounter  = new OModifiableInteger();
-  private final      List<OGlobalProperty>        properties           = new ArrayList<OGlobalProperty>();
-  private final      Map<String, OGlobalProperty> propertiesByNameType = new HashMap<String, OGlobalProperty>();
-  private            Set<Integer>                 blobClusters         = new HashSet<Integer>();
+  private final      List<OGlobalProperty>        properties           = new ArrayList<>();
+  private final      Map<String, OGlobalProperty> propertiesByNameType = new HashMap<>();
+  private            Set<Integer>                 blobClusters         = new HashSet<>();
   private volatile   int                          version              = 0;
   private volatile   boolean                      acquiredDistributed  = false;
   protected volatile OImmutableSchema             snapshot;
 
-  protected static Set<String> internalClasses = new HashSet<String>();
+  protected static Set<String> internalClasses = new HashSet<>();
 
   static {
     internalClasses.add("ouser");
@@ -439,7 +445,7 @@ public abstract class OSchemaShared extends ODocumentWrapperNoClass implements O
       // REGISTER ALL THE CLASSES
       clustersToClasses.clear();
 
-      final Map<String, OClass> newClasses = new HashMap<String, OClass>();
+      final Map<String, OClass> newClasses = new HashMap<>();
 
       OClassImpl cls;
       Collection<ODocument> storedClasses = document.field("classes");
@@ -476,7 +482,7 @@ public abstract class OSchemaShared extends ODocumentWrapperNoClass implements O
         superClassNames = c.field("superClasses");
         legacySuperClassName = c.field("superClass");
         if (superClassNames == null)
-          superClassNames = new ArrayList<String>();
+          superClassNames = new ArrayList<>();
 //        else
 //          superClassNames = new HashSet<String>(superClassNames);
 
@@ -486,7 +492,7 @@ public abstract class OSchemaShared extends ODocumentWrapperNoClass implements O
         if (!superClassNames.isEmpty()) {
           // HAS A SUPER CLASS or CLASSES
           cls = (OClassImpl) classes.get(((String) c.field("name")).toLowerCase(Locale.ENGLISH));
-          superClasses = new ArrayList<OClass>(superClassNames.size());
+          superClasses = new ArrayList<>(superClassNames.size());
           for (String superClassName : superClassNames) {
 
             superClass = classes.get(superClassName.toLowerCase(Locale.ENGLISH));
@@ -527,13 +533,13 @@ public abstract class OSchemaShared extends ODocumentWrapperNoClass implements O
       try {
         document.field("schemaVersion", CURRENT_VERSION_NUMBER);
 
-        Set<ODocument> cc = new HashSet<ODocument>();
+        Set<ODocument> cc = new HashSet<>();
         for (OClass c : classes.values())
           cc.add(((OClassImpl) c).toNetworkStream());
 
         document.field("classes", cc, OType.EMBEDDEDSET);
 
-        List<ODocument> globalProperties = new ArrayList<ODocument>();
+        List<ODocument> globalProperties = new ArrayList<>();
         for (OGlobalProperty globalProperty : properties) {
           if (globalProperty != null)
             globalProperties.add(((OGlobalPropertyImpl) globalProperty).toDocument());
@@ -563,13 +569,13 @@ public abstract class OSchemaShared extends ODocumentWrapperNoClass implements O
       try {
         document.field("schemaVersion", CURRENT_VERSION_NUMBER);
 
-        Set<ODocument> cc = new HashSet<ODocument>();
+        Set<ODocument> cc = new HashSet<>();
         for (OClass c : classes.values())
           cc.add(((OClassImpl) c).toStream());
 
         document.field("classes", cc, OType.EMBEDDEDSET);
 
-        List<ODocument> globalProperties = new ArrayList<ODocument>();
+        List<ODocument> globalProperties = new ArrayList<>();
         for (OGlobalProperty globalProperty : properties) {
           if (globalProperty != null)
             globalProperties.add(((OGlobalPropertyImpl) globalProperty).toDocument());
@@ -590,7 +596,7 @@ public abstract class OSchemaShared extends ODocumentWrapperNoClass implements O
     database.checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_READ);
     acquireSchemaReadLock();
     try {
-      return new HashSet<OClass>(classes.values());
+      return new HashSet<>(classes.values());
     } finally {
       releaseSchemaReadLock();
     }
@@ -602,7 +608,7 @@ public abstract class OSchemaShared extends ODocumentWrapperNoClass implements O
     acquireSchemaReadLock();
     try {
       final int clusterId = database.getClusterIdByName(clusterName);
-      final Set<OClass> result = new HashSet<OClass>();
+      final Set<OClass> result = new HashSet<>();
       for (OClass c : classes.values()) {
         if (OArrays.contains(c.getPolymorphicClusterIds(), clusterId))
           result.add(c);

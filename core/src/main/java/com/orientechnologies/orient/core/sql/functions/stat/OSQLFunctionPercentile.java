@@ -19,15 +19,14 @@
  */
 package com.orientechnologies.orient.core.sql.functions.stat;
 
-import com.orientechnologies.common.collection.OMultiValue;
-import com.orientechnologies.orient.core.command.OCommandContext;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.sql.functions.OSQLFunctionAbstract;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import com.orientechnologies.common.collection.OMultiValue;
+import com.orientechnologies.orient.core.command.OCommandContext;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.sql.functions.OSQLFunctionAbstract;
 
 /**
  * Computes the percentile for a field. Nulls are ignored in the calculation.
@@ -38,8 +37,8 @@ public class OSQLFunctionPercentile extends OSQLFunctionAbstract {
 
   public static final String NAME      = "percentile";
 
-  protected List<Double>     quantiles = new ArrayList<Double>();
-  private List<Number>       values    = new ArrayList<Number>();
+  protected List<Double>     quantiles = new ArrayList<>();
+  private List<Number>       values    = new ArrayList<>();
 
   public OSQLFunctionPercentile() {
     this(NAME, 2, -1);
@@ -87,7 +86,7 @@ public class OSQLFunctionPercentile extends OSQLFunctionAbstract {
   @Override
   public Object mergeDistributedResult(List<Object> resultsToMerge) {
     if (returnDistributedResult()) {
-      List<Number> dValues = new ArrayList<Number>();
+      List<Number> dValues = new ArrayList<>();
       for (Object iParameter : resultsToMerge) {
         dValues.addAll((List<Number>) iParameter);
       }
@@ -116,7 +115,7 @@ public class OSQLFunctionPercentile extends OSQLFunctionAbstract {
       return null;
     }
     if (quantiles.size() > 1) {
-      List<Number> results = new ArrayList<Number>();
+      List<Number> results = new ArrayList<>();
       for (Double q : this.quantiles) {
         results.add(this.evaluate(iValues, q));
       }

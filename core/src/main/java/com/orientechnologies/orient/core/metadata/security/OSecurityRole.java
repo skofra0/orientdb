@@ -1,10 +1,9 @@
 package com.orientechnologies.orient.core.metadata.security;
 
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-
 import java.io.Serializable;
 import java.util.Set;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)

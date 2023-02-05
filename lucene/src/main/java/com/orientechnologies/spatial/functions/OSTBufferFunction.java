@@ -17,13 +17,12 @@
  */
 package com.orientechnologies.spatial.functions;
 
+import org.locationtech.spatial4j.shape.Shape;
+import java.util.Map;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunctionAbstract;
 import com.orientechnologies.spatial.shape.OShapeFactory;
-import org.locationtech.spatial4j.shape.Shape;
-
-import java.util.Map;
 
 /**
  * Created by Enrico Risa on 06/08/15.

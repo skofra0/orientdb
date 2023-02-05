@@ -18,11 +18,6 @@
 
 package com.orientechnologies.lucene.query;
 
-import com.orientechnologies.common.exception.OException;
-import com.orientechnologies.lucene.exception.OLuceneIndexException;
-import com.orientechnologies.lucene.tx.OLuceneTxChanges;
-import com.orientechnologies.orient.core.command.OCommandContext;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.MultiReader;
 import org.apache.lucene.search.IndexSearcher;
@@ -30,12 +25,16 @@ import org.apache.lucene.search.Query;
 import org.apache.lucene.search.Sort;
 import org.apache.lucene.search.SortField;
 import org.apache.lucene.search.highlight.TextFragment;
-
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+import com.orientechnologies.common.exception.OException;
+import com.orientechnologies.lucene.exception.OLuceneIndexException;
+import com.orientechnologies.lucene.tx.OLuceneTxChanges;
+import com.orientechnologies.orient.core.command.OCommandContext;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
 
 /**
  * Created by Enrico Risa on 08/01/15.

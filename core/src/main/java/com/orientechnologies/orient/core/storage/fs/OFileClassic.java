@@ -19,18 +19,6 @@
  */
 package com.orientechnologies.orient.core.storage.fs;
 
-import com.orientechnologies.common.collection.closabledictionary.OClosableItem;
-import com.orientechnologies.common.exception.OException;
-import com.orientechnologies.common.io.OIOException;
-import com.orientechnologies.common.io.OIOUtils;
-import com.orientechnologies.common.jna.ONative;
-import com.orientechnologies.common.log.OLogManager;
-import com.orientechnologies.orient.core.config.OGlobalConfiguration;
-import com.orientechnologies.orient.core.serialization.OBinaryProtocol;
-import com.sun.jna.LastErrorException;
-import com.sun.jna.Native;
-import com.sun.jna.Platform;
-import com.sun.jna.Pointer;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -45,6 +33,18 @@ import java.util.Arrays;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+import com.orientechnologies.common.collection.closabledictionary.OClosableItem;
+import com.orientechnologies.common.exception.OException;
+import com.orientechnologies.common.io.OIOException;
+import com.orientechnologies.common.io.OIOUtils;
+import com.orientechnologies.common.jna.ONative;
+import com.orientechnologies.common.log.OLogManager;
+import com.orientechnologies.orient.core.config.OGlobalConfiguration;
+import com.orientechnologies.orient.core.serialization.OBinaryProtocol;
+import com.sun.jna.LastErrorException;
+import com.sun.jna.Native;
+import com.sun.jna.Platform;
+import com.sun.jna.Pointer;
 
 public final class OFileClassic implements OClosableItem {
   public final static  String NAME            = "classic";

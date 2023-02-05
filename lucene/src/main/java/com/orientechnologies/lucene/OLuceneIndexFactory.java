@@ -16,6 +16,12 @@
 
 package com.orientechnologies.lucene;
 
+import static com.orientechnologies.orient.core.metadata.schema.OClass.INDEX_TYPE.FULLTEXT;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.lucene.engine.OLuceneFullTextIndexEngine;
 import com.orientechnologies.lucene.index.OLuceneFullTextIndex;
@@ -29,14 +35,6 @@ import com.orientechnologies.orient.core.index.engine.OBaseIndexEngine;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.storage.OStorage;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
-
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
-import static com.orientechnologies.orient.core.metadata.schema.OClass.INDEX_TYPE.FULLTEXT;
 
 public class OLuceneIndexFactory implements OIndexFactory, ODatabaseLifecycleListener {
 
@@ -46,13 +44,13 @@ public class OLuceneIndexFactory implements OIndexFactory, ODatabaseLifecycleLis
   private static final Set<String> ALGORITHMS;
 
   static {
-    final Set<String> types = new HashSet<String>();
+    final Set<String> types = new HashSet<>();
     types.add(FULLTEXT.toString());
     TYPES = Collections.unmodifiableSet(types);
   }
 
   static {
-    final Set<String> algorithms = new HashSet<String>();
+    final Set<String> algorithms = new HashSet<>();
     algorithms.add(LUCENE_ALGORITHM);
     ALGORITHMS = Collections.unmodifiableSet(algorithms);
   }

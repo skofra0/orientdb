@@ -14,11 +14,13 @@
  */
 package com.orientechnologies.orient.jdbc;
 
-import org.junit.Test;
-
-import java.sql.*;
-
 import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.Test;
+import java.sql.Array;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
+import java.sql.Types;
 
 public class OrientJdbcResultSetTest extends OrientJdbcDbPerMethodTemplateTest {
 

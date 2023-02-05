@@ -14,16 +14,15 @@
  */
 package com.orientechnologies.spatial.functions;
 
+import org.junit.Assert;
+import org.junit.Test;
+import org.locationtech.spatial4j.distance.DistanceUtils;
+import java.util.List;
+import java.util.stream.Collectors;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.spatial.BaseSpatialLuceneTest;
-import org.junit.Assert;
-import org.junit.Test;
-import org.locationtech.spatial4j.distance.DistanceUtils;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by Enrico Risa on 28/09/15.

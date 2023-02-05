@@ -19,6 +19,10 @@
  */
 package com.orientechnologies.orient.core.command.traverse;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.db.record.ORecordLazyMultiValue;
@@ -30,11 +34,6 @@ import com.orientechnologies.orient.core.serialization.serializer.OStringSeriali
 import com.orientechnologies.orient.core.sql.filter.OSQLFilterItem;
 import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemFieldAll;
 import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemFieldAny;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
 
 public class OTraverseRecordProcess extends OTraverseAbstractProcess<OIdentifiable> {
   private final OTraversePath path;
@@ -76,7 +75,7 @@ public class OTraverseRecordProcess extends OTraverseAbstractProcess<OIdentifiab
       final ODocument targetDoc = (ODocument) targetRec;
 
       // MATCH!
-      final List<Object> fields = new ArrayList<Object>();
+      final List<Object> fields = new ArrayList<>();
 
       // TRAVERSE THE DOCUMENT ITSELF
       for (Object cfgFieldObject : command.getFields()) {

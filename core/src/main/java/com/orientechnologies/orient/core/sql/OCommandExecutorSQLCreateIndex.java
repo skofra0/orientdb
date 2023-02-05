@@ -19,6 +19,12 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.util.OPatternConst;
 import com.orientechnologies.orient.core.collate.OCollate;
@@ -41,13 +47,6 @@ import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OClassImpl;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 /**
  * SQL CREATE INDEX command: Create a new index against a property.
@@ -131,7 +130,7 @@ public class OCommandExecutorSQLCreateIndex extends OCommandExecutorSQLAbstract 
 
         final String props = parserText.substring(oldPos, pos).trim().substring(1);
 
-        List<String> propList = new ArrayList<String>();
+        List<String> propList = new ArrayList<>();
         Collections.addAll(propList, OPatternConst.PATTERN_COMMA_SEPARATED.split(props.trim()));
 
         fields = new String[propList.size()];
@@ -214,7 +213,7 @@ public class OCommandExecutorSQLCreateIndex extends OCommandExecutorSQLAbstract 
 
           serializerKeyId = Byte.parseByte(word.toString());
         } else {
-          ArrayList<OType> keyTypeList = new ArrayList<OType>();
+          ArrayList<OType> keyTypeList = new ArrayList<>();
           for (String typeName : OPatternConst.PATTERN_COMMA_SEPARATED.split(typesString)) {
             keyTypeList.add(OType.valueOf(typeName));
           }
@@ -250,7 +249,7 @@ public class OCommandExecutorSQLCreateIndex extends OCommandExecutorSQLAbstract 
     List<OCollate> collatesList = null;
 
     if (collates != null) {
-      collatesList = new ArrayList<OCollate>();
+      collatesList = new ArrayList<>();
 
       for (String collate : collates) {
         if (collate != null) {

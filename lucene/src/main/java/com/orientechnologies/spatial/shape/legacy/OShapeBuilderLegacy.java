@@ -17,9 +17,9 @@
  */
 package com.orientechnologies.spatial.shape.legacy;
 
-import com.orientechnologies.orient.core.index.OCompositeKey;
 import org.locationtech.spatial4j.context.SpatialContext;
 import org.locationtech.spatial4j.shape.Shape;
+import com.orientechnologies.orient.core.index.OCompositeKey;
 
 /**
  * Created by Enrico Risa on 23/10/15.

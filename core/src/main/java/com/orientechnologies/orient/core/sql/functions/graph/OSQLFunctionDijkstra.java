@@ -19,13 +19,12 @@
  */
 package com.orientechnologies.orient.core.sql.functions.graph;
 
-import com.orientechnologies.orient.core.command.OCommandContext;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.record.OVertex;
-
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import com.orientechnologies.orient.core.command.OCommandContext;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.record.OVertex;
 
 /**
  * Dijkstra's algorithm describes how to find the cheapest path from one node to another node in a directed weighted graph.
@@ -56,7 +55,7 @@ public class OSQLFunctionDijkstra extends OSQLFunctionPathFinder {
     result[0] = iParams[0];
     result[1] = iParams[1];
     result[2] = iParams[2];
-    Map<String, Object> options = new HashMap<String, Object>();
+    Map<String, Object> options = new HashMap<>();
     options.put("emptyIfMaxDepth", true);
     if(iParams.length > 3) {
       options.put("direction", iParams[3]);

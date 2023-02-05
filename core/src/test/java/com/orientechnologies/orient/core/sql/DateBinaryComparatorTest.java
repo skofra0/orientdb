@@ -1,22 +1,20 @@
 package com.orientechnologies.orient.core.sql;
 
+import static org.junit.Assert.assertTrue;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static org.junit.Assert.assertTrue;
 
 public class DateBinaryComparatorTest {
 
@@ -59,7 +57,7 @@ public class DateBinaryComparatorTest {
   public void testDateJavaClassPreparedStatement() throws ParseException {
     String str = "SELECT FROM Test WHERE date = :dateParam";
     OSQLSynchQuery query = new OSQLSynchQuery(str);
-    Map<String, Object> params = new HashMap<String, Object>();
+    Map<String, Object> params = new HashMap<>();
     params.put("dateParam", new SimpleDateFormat(dateFormat).parse(dateValue));
 
     List<?> result = db.query(query, params);

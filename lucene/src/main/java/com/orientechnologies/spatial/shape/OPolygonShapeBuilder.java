@@ -17,19 +17,18 @@
  */
 package com.orientechnologies.spatial.shape;
 
-import com.orientechnologies.orient.core.db.ODatabaseInternal;
-import com.orientechnologies.orient.core.metadata.schema.OClass;
-import com.orientechnologies.orient.core.metadata.schema.OSchema;
-import com.orientechnologies.orient.core.metadata.schema.OType;
-import com.orientechnologies.orient.core.record.impl.ODocument;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.LineString;
 import org.locationtech.jts.geom.LinearRing;
 import org.locationtech.jts.geom.Polygon;
 import org.locationtech.spatial4j.shape.jts.JtsGeometry;
-
 import java.util.ArrayList;
 import java.util.List;
+import com.orientechnologies.orient.core.db.ODatabaseInternal;
+import com.orientechnologies.orient.core.metadata.schema.OClass;
+import com.orientechnologies.orient.core.metadata.schema.OSchema;
+import com.orientechnologies.orient.core.metadata.schema.OType;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
  * Created by enricorisa on 24/04/14.
@@ -106,7 +105,7 @@ public class OPolygonShapeBuilder extends OComplexShapeBuilder<JtsGeometry> {
   }
 
   protected List<List<List<Double>>> coordinatesFromPolygon(Polygon polygon) {
-    List<List<List<Double>>> polyCoordinates = new ArrayList<List<List<Double>>>();
+    List<List<List<Double>>> polyCoordinates = new ArrayList<>();
     LineString exteriorRing = polygon.getExteriorRing();
     polyCoordinates.add(coordinatesFromLineString(exteriorRing));
     int i = polygon.getNumInteriorRing();

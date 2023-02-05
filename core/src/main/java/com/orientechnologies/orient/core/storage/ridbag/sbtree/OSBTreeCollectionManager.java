@@ -20,14 +20,13 @@
 
 package com.orientechnologies.orient.core.storage.ridbag.sbtree;
 
+import java.io.IOException;
+import java.util.Map;
+import java.util.UUID;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.db.record.ridbag.ORidBag;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperation;
 import com.orientechnologies.orient.core.storage.index.sbtreebonsai.local.OSBTreeBonsai;
-
-import java.io.IOException;
-import java.util.Map;
-import java.util.UUID;
 
 public interface OSBTreeCollectionManager {
   OSBTreeBonsai<OIdentifiable, Integer> createAndLoadTree(OAtomicOperation atomicOperation, int clusterId) throws IOException;

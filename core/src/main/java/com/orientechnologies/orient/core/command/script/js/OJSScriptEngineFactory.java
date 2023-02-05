@@ -1,9 +1,9 @@
 package com.orientechnologies.orient.core.command.script.js;
 
-import javax.script.ScriptEngineFactory;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import javax.script.ScriptEngineFactory;
 
 public class OJSScriptEngineFactory {
 

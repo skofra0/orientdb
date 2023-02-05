@@ -19,13 +19,12 @@
  */
 package com.orientechnologies.orient.core.sql;
 
-import com.orientechnologies.common.exception.OException;
-import com.orientechnologies.orient.core.exception.OCommandExecutionException;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import com.orientechnologies.common.exception.OException;
+import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 
 /**
  * Live Query command operator executor factory.
@@ -34,7 +33,7 @@ import java.util.Set;
  */
 public class OLiveCommandExecutorSQLFactory implements OCommandExecutorSQLFactory {
 
-  private static Map<String, Class<? extends OCommandExecutorSQLAbstract>> COMMANDS = new HashMap<String, Class<? extends OCommandExecutorSQLAbstract>>();
+  private static Map<String, Class<? extends OCommandExecutorSQLAbstract>> COMMANDS = new HashMap<>();
 
   static {
     init();
@@ -44,7 +43,7 @@ public class OLiveCommandExecutorSQLFactory implements OCommandExecutorSQLFactor
     if (COMMANDS.size() == 0) {
       synchronized (OLiveCommandExecutorSQLFactory.class) {
         if (COMMANDS.size() == 0) {
-          final Map<String, Class<? extends OCommandExecutorSQLAbstract>> commands = new HashMap<String, Class<? extends OCommandExecutorSQLAbstract>>();
+          final Map<String, Class<? extends OCommandExecutorSQLAbstract>> commands = new HashMap<>();
           commands.put(OCommandExecutorSQLLiveSelect.KEYWORD_LIVE_SELECT, OCommandExecutorSQLLiveSelect.class);
           commands.put(OCommandExecutorSQLLiveUnsubscribe.KEYWORD_LIVE_UNSUBSCRIBE, OCommandExecutorSQLLiveUnsubscribe.class);
 

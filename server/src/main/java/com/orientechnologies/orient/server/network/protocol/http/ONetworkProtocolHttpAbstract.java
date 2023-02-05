@@ -19,6 +19,25 @@
  */
 package com.orientechnologies.orient.server.network.protocol.http;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
+import java.net.URLDecoder;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.IllegalFormatException;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.zip.GZIPInputStream;
 import com.orientechnologies.common.concur.lock.OLockException;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.Orient;
@@ -91,26 +110,6 @@ import com.orientechnologies.orient.server.network.protocol.http.command.put.OSe
 import com.orientechnologies.orient.server.network.protocol.http.command.put.OServerCommandPutIndex;
 import com.orientechnologies.orient.server.network.protocol.http.multipart.OHttpMultipartBaseInputStream;
 import com.orientechnologies.orient.server.plugin.OServerPluginHelper;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.net.Socket;
-import java.net.SocketException;
-import java.net.SocketTimeoutException;
-import java.net.URLDecoder;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.IllegalFormatException;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.zip.GZIPInputStream;
 
 public abstract class ONetworkProtocolHttpAbstract extends ONetworkProtocol {
   private static final String                     COMMAND_SEPARATOR = "|";
@@ -215,7 +214,7 @@ public abstract class ONetworkProtocolHttpAbstract extends ONetworkProtocol {
       Map<String, String> requestParams = cmdManager.extractUrlTokens(commandString);
       if (requestParams != null) {
         if (request.parameters == null) {
-          request.parameters = new HashMap<String, String>();
+          request.parameters = new HashMap<>();
         }
         for (Map.Entry<String, String> entry : requestParams.entrySet()) {
           request.parameters.put(entry.getKey(), URLDecoder.decode(entry.getValue(), "UTF-8"));
@@ -471,7 +470,7 @@ public abstract class ONetworkProtocolHttpAbstract extends ONetworkProtocol {
     error.field("reason", iCode);
     error.field("content", iContent);
 
-    List<ODocument> errors = new ArrayList<ODocument>();
+    List<ODocument> errors = new ArrayList<>();
     errors.add(error);
 
     response.field("errors", errors);

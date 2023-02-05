@@ -1,16 +1,15 @@
 package com.orientechnologies.orient.core.metadata.security;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.exception.OSecurityAccessException;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.security.OSecurityManager;
-
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)
@@ -23,7 +22,7 @@ public class OImmutableUser implements OSecurityUser {
   private final String              name;
   private final String              password;
 
-  private final Set<OImmutableRole> roles            = new HashSet<OImmutableRole>();
+  private final Set<OImmutableRole> roles            = new HashSet<>();
 
   private final STATUSES            status;
   private final ORID                rid;

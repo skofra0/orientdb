@@ -1,5 +1,7 @@
 package com.orientechnologies.orient.test;
 
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -9,8 +11,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
-
-import static org.junit.Assert.*;
 
 /**
  * @param <T> see {@link TestFactory}
@@ -47,7 +47,7 @@ public class ConcurrentTestHelper<T> {
   }
 
   public static <T> TestBuilder<T> build() {
-    return new TestBuilder<T>();
+    return new TestBuilder<>();
   }
 
   private Collection<T> assertSuccess() {
@@ -55,7 +55,7 @@ public class ConcurrentTestHelper<T> {
       executor.shutdown();
       assertTrue("Test threads hanged", executor.awaitTermination(30, TimeUnit.MINUTES));
 
-      List<T> results = new ArrayList<T>(futures.size());
+      List<T> results = new ArrayList<>(futures.size());
       List<Exception> exceptions = new ArrayList<>();
       for (Future<T> future : futures) {
         try {

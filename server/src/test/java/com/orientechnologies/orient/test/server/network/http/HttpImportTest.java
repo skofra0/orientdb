@@ -1,16 +1,14 @@
 package com.orientechnologies.orient.test.server.network.http;
 
+import static org.junit.Assert.assertEquals;
 import org.apache.http.HttpResponse;
 import org.junit.Test;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * Created by tglman on 16/03/16.

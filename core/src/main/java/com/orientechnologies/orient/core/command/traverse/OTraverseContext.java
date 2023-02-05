@@ -19,6 +19,15 @@
  */
 package com.orientechnologies.orient.core.command.traverse;
 
+import java.util.ArrayDeque;
+import java.util.Collection;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Set;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.command.OBasicCommandContext;
 import com.orientechnologies.orient.core.db.ODatabase;
@@ -27,11 +36,9 @@ import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.record.impl.ODocumentHelper;
 
-import java.util.*;
-
 public class OTraverseContext extends OBasicCommandContext {
   private Memory    memory  = new StackMemory();
-  private Set<ORID> history = new HashSet<ORID>();
+  private Set<ORID> history = new HashSet<>();
 
   private OTraverseAbstractProcess<?> currentProcess;
 
@@ -40,7 +47,7 @@ public class OTraverseContext extends OBasicCommandContext {
   }
 
   public Map<String, Object> getVariables() {
-    final HashMap<String, Object> map = new HashMap<String, Object>();
+    final HashMap<String, Object> map = new HashMap<>();
     map.put("depth", getDepth());
     map.put("path", getPath());
     map.put("stack", memory.getUnderlying());
@@ -172,11 +179,11 @@ public class OTraverseContext extends OBasicCommandContext {
     protected final Deque<OTraverseAbstractProcess<?>> deque;
 
     public AbstractMemory() {
-      deque = new ArrayDeque<OTraverseAbstractProcess<?>>();
+      deque = new ArrayDeque<>();
     }
 
     public AbstractMemory(final Memory memory) {
-      deque = new ArrayDeque<OTraverseAbstractProcess<?>>(memory.getUnderlying());
+      deque = new ArrayDeque<>(memory.getUnderlying());
     }
 
     @Override public OTraverseAbstractProcess<?> next() {

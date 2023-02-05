@@ -22,7 +22,11 @@ package com.orientechnologies.common.io;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystemException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)

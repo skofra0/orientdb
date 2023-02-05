@@ -19,17 +19,30 @@
  */
 package com.orientechnologies.common.jna;
 
-import com.orientechnologies.common.log.OLogManager;
-import com.orientechnologies.common.util.OMemory;
-import com.sun.jna.*;
-import com.sun.jna.ptr.PointerByReference;
-
-import javax.management.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.nio.ByteBuffer;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import javax.management.AttributeNotFoundException;
+import javax.management.InstanceNotFoundException;
+import javax.management.MBeanException;
+import javax.management.MBeanServer;
+import javax.management.MalformedObjectNameException;
+import javax.management.ObjectName;
+import javax.management.ReflectionException;
+import com.orientechnologies.common.log.OLogManager;
+import com.orientechnologies.common.util.OMemory;
+import com.sun.jna.LastErrorException;
+import com.sun.jna.Native;
+import com.sun.jna.NativeLong;
+import com.sun.jna.Platform;
+import com.sun.jna.Pointer;
+import com.sun.jna.ptr.PointerByReference;
 
 public class ONative {
   private static volatile OCLibrary C_LIBRARY;

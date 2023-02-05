@@ -19,13 +19,12 @@
  */
 package com.orientechnologies.orient.core.sql.functions.coll;
 
-import com.orientechnologies.orient.core.command.OCommandContext;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.orientechnologies.orient.core.command.OCommandContext;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
 
 /**
  * This operator add an entry in a map. The entry is composed by a key and a value.
@@ -46,7 +45,7 @@ public class OSQLFunctionMap extends OSQLFunctionMultiValueAbstract<Map<Object, 
 
     if (iParams.length > 2)
       // IN LINE MODE
-      context = new HashMap<Object, Object>();
+      context = new HashMap<>();
 
     if (iParams.length == 1) {
       if (iParams[0] == null)
@@ -55,7 +54,7 @@ public class OSQLFunctionMap extends OSQLFunctionMultiValueAbstract<Map<Object, 
       if (iParams[0] instanceof Map<?, ?>) {
         if (context == null)
           // AGGREGATION MODE (STATEFULL)
-          context = new HashMap<Object, Object>();
+          context = new HashMap<>();
 
         // INSERT EVERY SINGLE COLLECTION ITEM
         context.putAll((Map<Object, Object>) iParams[0]);
@@ -71,7 +70,7 @@ public class OSQLFunctionMap extends OSQLFunctionMultiValueAbstract<Map<Object, 
         if (value != null) {
           if (iParams.length <= 2 && context == null)
             // AGGREGATION MODE (STATEFULL)
-            context = new HashMap<Object, Object>();
+            context = new HashMap<>();
 
           context.put(key, value);
         }
@@ -102,7 +101,7 @@ public class OSQLFunctionMap extends OSQLFunctionMultiValueAbstract<Map<Object, 
 
   protected Map<Object, Object> prepareResult(final Map<Object, Object> res) {
     if (returnDistributedResult()) {
-      final Map<String, Object> doc = new HashMap<String, Object>();
+      final Map<String, Object> doc = new HashMap<>();
       doc.put("node", getDistributedStorageId());
       doc.put("context", res);
       return Collections.<Object, Object> singletonMap("doc", doc);
@@ -115,7 +114,7 @@ public class OSQLFunctionMap extends OSQLFunctionMultiValueAbstract<Map<Object, 
   @Override
   public Object mergeDistributedResult(final List<Object> resultsToMerge) {
     if (returnDistributedResult()) {
-      final Map<Object, Object> result = new HashMap<Object, Object>();
+      final Map<Object, Object> result = new HashMap<>();
       for (Object iParameter : resultsToMerge) {
         final Map<String, Object> container = (Map<String, Object>) ((Map<Object, Object>) iParameter).get("doc");
         result.putAll((Map<Object, Object>) container.get("context"));

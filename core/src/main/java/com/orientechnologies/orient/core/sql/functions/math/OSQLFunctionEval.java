@@ -19,13 +19,12 @@
   */
 package com.orientechnologies.orient.core.sql.functions.math;
 
+import java.util.List;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.filter.OSQLPredicate;
-
-import java.util.List;
 
 /**
  * Evaluates a complex expression.

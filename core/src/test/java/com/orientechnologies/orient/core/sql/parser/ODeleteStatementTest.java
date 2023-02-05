@@ -1,5 +1,12 @@
 package com.orientechnologies.orient.core.sql.parser;
 
+import static org.junit.Assert.fail;
+import org.junit.Assert;
+import org.junit.Test;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.index.OIndex;
@@ -8,15 +15,6 @@ import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.fail;
 
 public class ODeleteStatementTest {
 
@@ -100,7 +98,7 @@ public class ODeleteStatementTest {
       doc2.save();
       doc3.save();
 
-      List<ODocument> list = new ArrayList<ODocument>();
+      List<ODocument> list = new ArrayList<>();
       list.add(doc1);
       list.add(doc2);
       list.add(doc3);

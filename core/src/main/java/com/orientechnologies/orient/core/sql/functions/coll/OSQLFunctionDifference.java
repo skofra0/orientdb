@@ -19,12 +19,11 @@
  */
 package com.orientechnologies.orient.core.sql.functions.coll;
 
-import com.orientechnologies.orient.core.command.OCommandContext;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import com.orientechnologies.orient.core.command.OCommandContext;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
 
 /**
  * This operator can work inline. Returns the DIFFERENCE between the collections received as parameters. Works also with no
@@ -47,7 +46,7 @@ public class OSQLFunctionDifference extends OSQLFunctionMultiValueAbstract<Set<O
       return null;
 
     // IN-LINE MODE (STATELESS)
-    final Set<Object> result = new HashSet<Object>();
+    final Set<Object> result = new HashSet<>();
 
     boolean first = true;
     for (Object iParameter : iParams) {

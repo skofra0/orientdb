@@ -19,6 +19,9 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.common.comparator.OCaseInsentiveComparator;
 import com.orientechnologies.common.util.OCollections;
 import com.orientechnologies.orient.core.command.OCommandDistributedReplicateRequest;
@@ -29,10 +32,6 @@ import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 import com.orientechnologies.orient.core.index.OIndex;
 import com.orientechnologies.orient.core.metadata.schema.OClassImpl;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * SQL CREATE PROPERTY command: Creates a new property in the target class.
@@ -169,7 +168,7 @@ public class OCommandExecutorSQLDropProperty extends OCommandExecutorSQLAbstract
   }
 
   private List<OIndex<?>> relatedIndexes(final String fieldName) {
-    final List<OIndex<?>> result = new ArrayList<OIndex<?>>();
+    final List<OIndex<?>> result = new ArrayList<>();
 
     final ODatabaseDocument database = getDatabase();
     for (final OIndex<?> oIndex : database.getMetadata().getIndexManager().getClassIndexes(className)) {

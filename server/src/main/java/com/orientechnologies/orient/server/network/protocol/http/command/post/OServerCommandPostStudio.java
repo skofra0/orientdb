@@ -19,9 +19,14 @@
    */
 package com.orientechnologies.orient.server.network.protocol.http.command.post;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 import com.orientechnologies.common.util.OPatternConst;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.index.OIndex;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
@@ -34,13 +39,6 @@ import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpResponse;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpUtils;
 import com.orientechnologies.orient.server.network.protocol.http.command.OServerCommandAuthenticatedDbAbstract;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
 
 @SuppressWarnings("unchecked")
  public class OServerCommandPostStudio extends OServerCommandAuthenticatedDbAbstract {
@@ -61,7 +59,7 @@ import java.util.Map.Entry;
        String rid = null;
        String className = null;
 
-       final Map<String, String> fields = new HashMap<String, String>();
+       final Map<String, String> fields = new HashMap<>();
 
        final String[] params = req.split("&");
        String value;
@@ -239,7 +237,7 @@ import java.util.Map.Entry;
 
            if (newValue != null) {
              if (newValue instanceof Collection) {
-               final ArrayList<Object> array = new ArrayList<Object>();
+               final ArrayList<Object> array = new ArrayList<>();
                for (String s : (Collection<String>) newValue) {
                  Object v = ORecordSerializerStringAbstract.getTypeValue(s);
                  array.add(v);

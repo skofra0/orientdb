@@ -19,12 +19,11 @@
       */
 package com.orientechnologies.orient.server.distributed;
 
-import com.orientechnologies.orient.core.id.ORecordId;
-import com.orientechnologies.orient.server.distributed.task.ORemoteTask;
-
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import com.orientechnologies.orient.core.id.ORecordId;
+import com.orientechnologies.orient.server.distributed.task.ORemoteTask;
 
 /**
  *

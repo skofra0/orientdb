@@ -2,7 +2,6 @@ package com.orientechnologies.common.collection.closabledictionary;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -10,8 +9,8 @@ import java.util.List;
 public class OClosableLRUListTest {
   @Test
   public void tesMoveToTail() {
-    OClosableLRUList<Long, CIItem> lruList = new OClosableLRUList<Long, CIItem>();
-    OClosableEntry<Long, CIItem> firstEntry = new OClosableEntry<Long, CIItem>(new CIItem());
+    OClosableLRUList<Long, CIItem> lruList = new OClosableLRUList<>();
+    OClosableEntry<Long, CIItem> firstEntry = new OClosableEntry<>(new CIItem());
 
     Assert.assertTrue(!lruList.contains(firstEntry));
     Assert.assertEquals(lruList.size(), 0);
@@ -24,7 +23,7 @@ public class OClosableLRUListTest {
     Assert.assertTrue(lruList.assertBackwardStructure());
     Assert.assertTrue(lruList.assertForwardStructure());
 
-    OClosableEntry<Long, CIItem> secondEntry = new OClosableEntry<Long, CIItem>(new CIItem());
+    OClosableEntry<Long, CIItem> secondEntry = new OClosableEntry<>(new CIItem());
 
     lruList.moveToTheTail(secondEntry);
 
@@ -36,7 +35,7 @@ public class OClosableLRUListTest {
     Assert.assertTrue(lruList.assertBackwardStructure());
     Assert.assertTrue(lruList.assertForwardStructure());
 
-    OClosableEntry<Long, CIItem> thirdEntry = new OClosableEntry<Long, CIItem>(new CIItem());
+    OClosableEntry<Long, CIItem> thirdEntry = new OClosableEntry<>(new CIItem());
     lruList.moveToTheTail(thirdEntry);
 
     Assert.assertEquals(lruList.size(), 3);
@@ -81,11 +80,11 @@ public class OClosableLRUListTest {
 
   @Test
   public void tesRemove() {
-    OClosableLRUList<Long, CIItem> lruList = new OClosableLRUList<Long, CIItem>();
+    OClosableLRUList<Long, CIItem> lruList = new OClosableLRUList<>();
 
-    OClosableEntry<Long, CIItem> firstEntry = new OClosableEntry<Long, CIItem>(new CIItem());
-    OClosableEntry<Long, CIItem> secondEntry = new OClosableEntry<Long, CIItem>(new CIItem());
-    OClosableEntry<Long, CIItem> thirdEntry = new OClosableEntry<Long, CIItem>(new CIItem());
+    OClosableEntry<Long, CIItem> firstEntry = new OClosableEntry<>(new CIItem());
+    OClosableEntry<Long, CIItem> secondEntry = new OClosableEntry<>(new CIItem());
+    OClosableEntry<Long, CIItem> thirdEntry = new OClosableEntry<>(new CIItem());
 
     lruList.moveToTheTail(firstEntry);
     lruList.moveToTheTail(secondEntry);
@@ -168,11 +167,11 @@ public class OClosableLRUListTest {
 
   @Test
   public void testPool() {
-    OClosableLRUList<Long, CIItem> lruList = new OClosableLRUList<Long, CIItem>();
+    OClosableLRUList<Long, CIItem> lruList = new OClosableLRUList<>();
 
-    OClosableEntry<Long, CIItem> firstEntry = new OClosableEntry<Long, CIItem>(new CIItem());
-    OClosableEntry<Long, CIItem> secondEntry = new OClosableEntry<Long, CIItem>(new CIItem());
-    OClosableEntry<Long, CIItem> thirdEntry = new OClosableEntry<Long, CIItem>(new CIItem());
+    OClosableEntry<Long, CIItem> firstEntry = new OClosableEntry<>(new CIItem());
+    OClosableEntry<Long, CIItem> secondEntry = new OClosableEntry<>(new CIItem());
+    OClosableEntry<Long, CIItem> thirdEntry = new OClosableEntry<>(new CIItem());
 
     lruList.moveToTheTail(firstEntry);
     lruList.moveToTheTail(secondEntry);

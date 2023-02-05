@@ -19,6 +19,18 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.command.OCommandDistributedReplicateRequest;
 import com.orientechnologies.orient.core.command.OCommandRequest;
@@ -40,7 +52,11 @@ import com.orientechnologies.orient.core.record.ORecord;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.record.impl.ODocumentInternal;
 import com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper;
-import com.orientechnologies.orient.core.sql.filter.*;
+import com.orientechnologies.orient.core.sql.filter.OSQLFilter;
+import com.orientechnologies.orient.core.sql.filter.OSQLFilterCondition;
+import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemField;
+import com.orientechnologies.orient.core.sql.filter.OSQLPredicate;
+import com.orientechnologies.orient.core.sql.filter.OSQLTarget;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunctionRuntime;
 import com.orientechnologies.orient.core.sql.operator.OQueryOperator;
 import com.orientechnologies.orient.core.sql.operator.OQueryOperatorEquals;
@@ -48,9 +64,6 @@ import com.orientechnologies.orient.core.sql.operator.OQueryOperatorNotEquals;
 import com.orientechnologies.orient.core.sql.query.OLegacyResultSet;
 import com.orientechnologies.orient.core.sql.query.OSQLAsynchQuery;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-
-import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Executes a TRAVERSE crossing records. Returns a List<OIdentifiable> containing all the traversed records that match the WHERE
@@ -148,7 +161,7 @@ public abstract class OCommandExecutorSQLResultsetAbstract extends OCommandExecu
       request = (OSQLAsynchQuery<ODocument>) iRequest;
     else {
       // BUILD A QUERY OBJECT FROM THE COMMAND REQUEST
-      request = new OSQLSynchQuery<ODocument>(textRequest.getText());
+      request = new OSQLSynchQuery<>(textRequest.getText());
       if (textRequest.getResultListener() != null)
         request.setResultListener(textRequest.getResultListener());
     }
@@ -216,7 +229,7 @@ public abstract class OCommandExecutorSQLResultsetAbstract extends OCommandExecu
           target = Collections.EMPTY_LIST.iterator();
           return true;
         } else if (var instanceof OIdentifiable) {
-          final ArrayList<OIdentifiable> list = new ArrayList<OIdentifiable>();
+          final ArrayList<OIdentifiable> list = new ArrayList<>();
           list.add((OIdentifiable) var);
           target = list.iterator();
         } else if (var instanceof Iterable<?>)
@@ -295,7 +308,7 @@ public abstract class OCommandExecutorSQLResultsetAbstract extends OCommandExecu
   }
 
   protected void parseLet() {
-    let = new LinkedHashMap<String, Object>();
+    let = new LinkedHashMap<>();
 
     boolean stop = false;
     while (!stop) {
@@ -315,7 +328,7 @@ public abstract class OCommandExecutorSQLResultsetAbstract extends OCommandExecu
       if (func != null)
         letValue = func;
       else if (letValueAsString.startsWith("(")) {
-        letValue = new OSQLSynchQuery<Object>(letValueAsString.substring(1, letValueAsString.length() - 1));
+        letValue = new OSQLSynchQuery<>(letValueAsString.substring(1, letValueAsString.length() - 1));
       } else
         letValue = letValueAsString;
 
@@ -467,10 +480,10 @@ public abstract class OCommandExecutorSQLResultsetAbstract extends OCommandExecu
 
     final ORID[] range = getRange();
     if (iAscendentOrder)
-      return new ORecordIteratorClass<ORecord>(database, iCls.getName(), iPolymorphic, false).setRange(range[0],
+      return new ORecordIteratorClass<>(database, iCls.getName(), iPolymorphic, false).setRange(range[0],
           range[1]);
     else
-      return new ORecordIteratorClassDescendentOrder<ORecord>(database, database, iCls.getName(), iPolymorphic).setRange(range[0],
+      return new ORecordIteratorClassDescendentOrder<>(database, database, iCls.getName(), iPolymorphic).setRange(range[0],
           range[1]);
   }
 
@@ -481,7 +494,7 @@ public abstract class OCommandExecutorSQLResultsetAbstract extends OCommandExecu
   protected void searchInClusters() {
     final ODatabaseDocumentInternal database = getDatabase();
 
-    final Set<Integer> clusterIds = new HashSet<Integer>();
+    final Set<Integer> clusterIds = new HashSet<>();
     for (String clusterName : parsedTarget.getTargetClusters().keySet()) {
       if (clusterName == null || clusterName.length() == 0)
         throw new OCommandExecutionException("No cluster or schema class selected in query");
@@ -514,12 +527,12 @@ public abstract class OCommandExecutorSQLResultsetAbstract extends OCommandExecu
 
     final ORID[] range = getRange();
 
-    target = new ORecordIteratorClusters<ORecord>(database, clIds).setRange(range[0], range[1]);
+    target = new ORecordIteratorClusters<>(database, clIds).setRange(range[0], range[1]);
   }
 
   protected void applyLimitAndSkip() {
     if (tempResult != null && (limit > 0 || skip > 0)) {
-      final List<OIdentifiable> newList = new ArrayList<OIdentifiable>();
+      final List<OIdentifiable> newList = new ArrayList<>();
 
       // APPLY LIMIT
       if (tempResult instanceof List<?>) {
@@ -694,7 +707,7 @@ public abstract class OCommandExecutorSQLResultsetAbstract extends OCommandExecu
       return null;
 
     // TODO: DELEGATE MERGE AT EVERY COMMAND
-    final ArrayList<Object> mergedResult = new ArrayList<Object>();
+    final ArrayList<Object> mergedResult = new ArrayList<>();
 
     final Object firstResult = results.values().iterator().next();
 
@@ -719,7 +732,7 @@ public abstract class OCommandExecutorSQLResultsetAbstract extends OCommandExecu
       ((OLegacyResultSet) firstResult).addAll(mergedResult);
       result = firstResult;
     } else
-      result = new ArrayList<Object>(mergedResult);
+      result = new ArrayList<>(mergedResult);
 
     return result;
   }

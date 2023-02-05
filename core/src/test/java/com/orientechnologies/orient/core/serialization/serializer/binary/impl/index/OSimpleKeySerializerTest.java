@@ -1,10 +1,11 @@
 package com.orientechnologies.orient.core.serialization.serializer.binary.impl.index;
 
-import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALChanges;
-import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALChangesTree;
-import org.junit.Assert;import org.junit.Before; import org.junit.Test;
+import org.junit.Assert;
+import org.junit.Before;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALChanges;
+import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALChangesTree;
 
 public class OSimpleKeySerializerTest {
   private static final int    FIELD_SIZE = 9;
@@ -14,7 +15,7 @@ public class OSimpleKeySerializerTest {
 
   @Before
   public void beforeClass() {
-    simpleKeySerializer = new OSimpleKeySerializer<Double>();
+    simpleKeySerializer = new OSimpleKeySerializer<>();
   }
 
   public void testFieldSize() {

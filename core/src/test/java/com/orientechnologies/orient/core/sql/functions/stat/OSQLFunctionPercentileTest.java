@@ -1,12 +1,10 @@
 package com.orientechnologies.orient.core.sql.functions.stat;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import org.junit.Before;
+import org.junit.Test;
+import java.util.List;
 
 public class OSQLFunctionPercentileTest {
 

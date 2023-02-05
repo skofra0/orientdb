@@ -1,18 +1,19 @@
 package com.orientechnologies.orient.core.metadata.schema;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.atomic.AtomicBoolean;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.ODatabaseLifecycleListener;
 import com.orientechnologies.orient.core.db.ODatabaseListener;
 import com.orientechnologies.orient.core.exception.OSchemaException;
-import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.metadata.security.ORole;
 import com.orientechnologies.orient.core.metadata.security.ORule;
-import com.orientechnologies.orient.core.record.ORecordInternal;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-
-import java.util.*;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Created by tglman on 13/06/17.
@@ -87,7 +88,7 @@ public class OSchemaRemote extends OSchemaShared {
       cmd.append(className);
       cmd.append('`');
 
-      List<OClass> superClassesList = new ArrayList<OClass>();
+      List<OClass> superClassesList = new ArrayList<>();
       if (superClasses != null && superClasses.length > 0) {
         boolean first = true;
         for (OClass superClass : superClasses) {
@@ -162,7 +163,7 @@ public class OSchemaRemote extends OSchemaShared {
       cmd.append(className);
       cmd.append('`');
 
-      List<OClass> superClassesList = new ArrayList<OClass>();
+      List<OClass> superClassesList = new ArrayList<>();
       if (superClasses != null && superClasses.length > 0) {
         boolean first = true;
         for (OClass superClass : superClasses) {

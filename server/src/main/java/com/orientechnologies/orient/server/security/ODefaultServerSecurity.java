@@ -19,6 +19,11 @@
  */
 package com.orientechnologies.orient.server.security;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 import com.orientechnologies.common.io.OIOUtils;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.parser.OSystemVariableResolver;
@@ -48,12 +53,6 @@ import com.orientechnologies.orient.server.config.OServerUserConfiguration;
 import com.orientechnologies.orient.server.network.OServerNetworkListener;
 import com.orientechnologies.orient.server.network.protocol.http.ONetworkProtocolHttpAbstract;
 import com.orientechnologies.orient.server.plugin.OServerPluginInfo;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Provides an implementation of OServerSecurity.
@@ -100,9 +99,9 @@ public class ODefaultServerSecurity implements OSecurityFactory, OServerLifecycl
   private OServerUserConfiguration superUserCfg;
 
   // We use a list because the order indicates priority of method.
-  private final List<OSecurityAuthenticator> authenticatorsList = new ArrayList<OSecurityAuthenticator>();
+  private final List<OSecurityAuthenticator> authenticatorsList = new ArrayList<>();
 
-  private ConcurrentHashMap<String, Class<?>> securityClassMap = new ConcurrentHashMap<String, Class<?>>();
+  private ConcurrentHashMap<String, Class<?>> securityClassMap = new ConcurrentHashMap<>();
   private OSyslog sysLog;
 
   public ODefaultServerSecurity(final OServer oServer, final OServerConfigurationManager serverCfg) {

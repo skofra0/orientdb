@@ -1,7 +1,7 @@
 package com.orientechnologies.orient.core.command.script.js;
 
-import com.orientechnologies.orient.core.command.script.OSecuredScriptFactory;
 import org.openjdk.nashorn.api.scripting.ClassFilter;
+import com.orientechnologies.orient.core.command.script.OSecuredScriptFactory;
 
 public class ONashornClassFilter implements ClassFilter {
 

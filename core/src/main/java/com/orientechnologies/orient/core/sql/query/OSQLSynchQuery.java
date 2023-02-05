@@ -19,17 +19,16 @@
  */
 package com.orientechnologies.orient.core.sql.query;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.orient.core.command.OCommandResultListener;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.serialization.OMemoryStream;
 import com.orientechnologies.orient.core.serialization.serializer.record.ORecordSerializer;
-
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 /**
  * SQL synchronous query. When executed the caller wait for the result.
@@ -41,9 +40,9 @@ import java.util.Map;
  */
 @SuppressWarnings({ "unchecked", "serial" })
 public class OSQLSynchQuery<T extends Object> extends OSQLAsynchQuery<T> implements OCommandResultListener, Iterable<T> {
-  private final OLegacyResultSet<T> result = new OConcurrentLegacyResultSet<T>();
+  private final OLegacyResultSet<T> result = new OConcurrentLegacyResultSet<>();
   private ORID                nextPageRID;
-  private Map<Object, Object> previousQueryParams = new HashMap<Object, Object>();
+  private Map<Object, Object> previousQueryParams = new HashMap<>();
 
   public OSQLSynchQuery() {
     resultListener = this;
@@ -96,7 +95,7 @@ public class OSQLSynchQuery<T extends Object> extends OSQLAsynchQuery<T> impleme
     ((OLegacyResultSet) result).setCompleted();
 
     if (!result.isEmpty()) {
-      previousQueryParams = new HashMap<Object, Object>(queryParams);
+      previousQueryParams = new HashMap<>(queryParams);
       final ORID lastRid = ((OIdentifiable) result.get(result.size() - 1)).getIdentity();
       nextPageRID = new ORecordId(lastRid.next());
     }
@@ -172,7 +171,7 @@ public class OSQLSynchQuery<T extends Object> extends OSQLAsynchQuery<T> impleme
 
     Map<Object, Object> queryParams = getParameters();
     if (queryParams == null)
-      queryParams = new HashMap<Object, Object>();
+      queryParams = new HashMap<>();
     return queryParams;
   }
 

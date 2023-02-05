@@ -19,12 +19,11 @@
  */
 package com.orientechnologies.orient.server.security;
 
+import javax.security.auth.Subject;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.server.OServer;
 import com.orientechnologies.orient.server.config.OServerConfigurationManager;
 import com.orientechnologies.orient.server.config.OServerUserConfiguration;
-
-import javax.security.auth.Subject;
 
 /**
  * Provides an abstract implementation of OSecurityAuthenticator.

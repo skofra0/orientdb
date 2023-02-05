@@ -1,16 +1,18 @@
 package com.orientechnologies.orient.client.remote.message;
 
-import com.orientechnologies.orient.client.remote.message.push.OStorageConfigurationPayload;
-import com.orientechnologies.orient.core.config.OStorageConfiguration;
-import com.orientechnologies.orient.core.db.*;
-import com.orientechnologies.orient.enterprise.channel.binary.OChannelBinaryProtocol;
+import static org.junit.Assert.assertEquals;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.io.IOException;
-
-import static org.junit.Assert.assertEquals;
+import com.orientechnologies.orient.client.remote.message.push.OStorageConfigurationPayload;
+import com.orientechnologies.orient.core.config.OStorageConfiguration;
+import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
+import com.orientechnologies.orient.core.db.ODatabaseSession;
+import com.orientechnologies.orient.core.db.ODatabaseType;
+import com.orientechnologies.orient.core.db.OrientDB;
+import com.orientechnologies.orient.core.db.OrientDBConfig;
+import com.orientechnologies.orient.enterprise.channel.binary.OChannelBinaryProtocol;
 
 public class OReloadMessageTest {
 

@@ -1,12 +1,10 @@
 package com.orientechnologies.orient.core.metadata.security;
 
+import org.junit.Assert;
+import org.junit.Test;
 import java.util.HashSet;
 import java.util.Set;
-
-import com.orientechnologies.common.directmemory.OByteBufferPool;
 import com.orientechnologies.common.directmemory.ODirectMemoryAllocator;
-import org.junit.Assert; import org.junit.Test;
-
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
@@ -30,7 +28,7 @@ public class ORestricetedUserCleanUpTest {
       OUser auser = security.createUser("auser", "wherever", new String[] {});
       OUser reader = security.getUser("admin");
       ODocument doc = new ODocument("TestRecord");
-      Set<OIdentifiable> users = new HashSet<OIdentifiable>();
+      Set<OIdentifiable> users = new HashSet<>();
       users.add(auser.getIdentity());
       users.add(reader.getIdentity());
       doc.field(OSecurityShared.ALLOW_READ_FIELD, users);

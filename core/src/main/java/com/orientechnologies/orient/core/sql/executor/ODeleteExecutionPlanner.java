@@ -1,5 +1,6 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.util.List;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 import com.orientechnologies.orient.core.index.OIndex;
@@ -11,7 +12,6 @@ import com.orientechnologies.orient.core.sql.parser.OIndexIdentifier;
 import com.orientechnologies.orient.core.sql.parser.OLimit;
 import com.orientechnologies.orient.core.sql.parser.OSelectStatement;
 import com.orientechnologies.orient.core.sql.parser.OWhereClause;
-import java.util.List;
 
 /**
  * Created by luigidellaquila on 08/08/16.

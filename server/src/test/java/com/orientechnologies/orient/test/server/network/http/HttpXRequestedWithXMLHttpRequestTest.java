@@ -5,7 +5,6 @@ import org.apache.http.HttpResponse;
 import org.apache.http.message.BasicHeader;
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.io.IOException;
 
 /**

@@ -1,11 +1,10 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.util.ArrayList;
+import java.util.List;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.sql.parser.OCreateVertexStatement;
 import com.orientechnologies.orient.core.sql.parser.OIdentifier;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Luigi Dell'Aquila (l.dellaquila-(at)-orientdb.com)

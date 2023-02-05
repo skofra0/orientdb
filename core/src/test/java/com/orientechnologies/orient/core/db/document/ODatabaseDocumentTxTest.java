@@ -1,5 +1,15 @@
 package com.orientechnologies.orient.core.db.document;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 import com.orientechnologies.orient.core.db.ODatabase;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.exception.ODatabaseException;
@@ -16,18 +26,6 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 public class ODatabaseDocumentTxTest {
 
@@ -164,10 +162,10 @@ public class ODatabaseDocumentTxTest {
 
     db.save(doc);
 
-    List<ODocument> result = db.query(new OSQLSynchQuery<Object>("select from testDocFromJsonEmbedded_Class0"));
+    List<ODocument> result = db.query(new OSQLSynchQuery<>("select from testDocFromJsonEmbedded_Class0"));
     Assert.assertEquals(result.size(), 0);
 
-    result = db.query(new OSQLSynchQuery<Object>("select from testDocFromJsonEmbedded_Class1"));
+    result = db.query(new OSQLSynchQuery<>("select from testDocFromJsonEmbedded_Class1"));
     Assert.assertEquals(result.size(), 1);
     ODocument item = result.get(0);
     ODocument meta = item.field("meta");
@@ -467,7 +465,7 @@ public class ODatabaseDocumentTxTest {
 
     ODocument document = new ODocument(className);
     document.save();
-    ORecordIteratorClassDescendentOrder<ODocument> reverseIterator = new ORecordIteratorClassDescendentOrder<ODocument>(db, db,
+    ORecordIteratorClassDescendentOrder<ODocument> reverseIterator = new ORecordIteratorClassDescendentOrder<>(db, db,
         className, true);
     Assert.assertTrue(reverseIterator.hasNext());
     Assert.assertEquals(document, reverseIterator.next());

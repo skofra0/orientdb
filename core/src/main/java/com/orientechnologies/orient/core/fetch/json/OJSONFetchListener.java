@@ -16,6 +16,7 @@
  */
 package com.orientechnologies.orient.core.fetch.json;
 
+import java.io.IOException;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
@@ -25,8 +26,6 @@ import com.orientechnologies.orient.core.fetch.OFetchListener;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.serialization.serializer.OJSONWriter;
-
-import java.io.IOException;
 
 /**
  * @author Luca Molino (molino.luca--at--gmail.com)

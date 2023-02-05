@@ -2,6 +2,11 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=true,TRACK_TOKENS=true,NODE_PREFIX=O,NODE_EXTENDS=,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package com.orientechnologies.orient.core.sql.parser;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
@@ -9,14 +14,8 @@ import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 public class OOrBlock extends OBooleanExpression {
-  List<OBooleanExpression> subBlocks = new ArrayList<OBooleanExpression>();
+  List<OBooleanExpression> subBlocks = new ArrayList<>();
 
   public OOrBlock(int id) {
     super(id);
@@ -115,7 +114,7 @@ public class OOrBlock extends OBooleanExpression {
 
   @Override
   protected List<Object> getExternalCalculationConditions() {
-    List<Object> result = new ArrayList<Object>();
+    List<Object> result = new ArrayList<>();
     for (OBooleanExpression expr : subBlocks) {
       result.addAll(expr.getExternalCalculationConditions());
     }
@@ -126,7 +125,7 @@ public class OOrBlock extends OBooleanExpression {
     if (subBlocks == null || subBlocks.size() > 1) {
       return null;
     }
-    List<OBinaryCondition> result = new ArrayList<OBinaryCondition>();
+    List<OBinaryCondition> result = new ArrayList<>();
     for (OBooleanExpression exp : subBlocks) {
       List<OBinaryCondition> sub = exp.getIndexedFunctionConditions(iSchemaClass, database);
       if (sub != null && sub.size() > 0) {
@@ -137,7 +136,7 @@ public class OOrBlock extends OBooleanExpression {
   }
 
   public List<OAndBlock> flatten() {
-    List<OAndBlock> result = new ArrayList<OAndBlock>();
+    List<OAndBlock> result = new ArrayList<>();
     for (OBooleanExpression sub : subBlocks) {
       List<OAndBlock> childFlattened = sub.flatten();
       for (OAndBlock child : childFlattened) {
@@ -216,7 +215,7 @@ public class OOrBlock extends OBooleanExpression {
 
   @Override
   public List<String> getMatchPatternInvolvedAliases() {
-    List<String> result = new ArrayList<String>();
+    List<String> result = new ArrayList<>();
     for (OBooleanExpression exp : subBlocks) {
       List<String> x = exp.getMatchPatternInvolvedAliases();
       if (x != null) {

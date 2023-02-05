@@ -16,6 +16,11 @@
  */
 package com.orientechnologies.orient.core.sql.method.misc;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.command.OCommandContext;
@@ -24,8 +29,6 @@ import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.record.impl.ODocumentHelper;
 import com.orientechnologies.orient.core.sql.executor.OResult;
-
-import java.util.*;
 
 /**
  * 
@@ -66,7 +69,7 @@ public class OSQLMethodField extends OAbstractSQLMethod {
         ioResult = ((OIdentifiable) ioResult).getRecord();
       } else if (ioResult instanceof Collection<?> || ioResult instanceof Iterator<?>
           || ioResult.getClass().isArray()) {
-        final List<Object> result = new ArrayList<Object>(OMultiValue.getSize(ioResult));
+        final List<Object> result = new ArrayList<>(OMultiValue.getSize(ioResult));
         for (Object o : OMultiValue.getMultiValueIterable(ioResult, false)) {
           Object newlyAdded = ODocumentHelper.getFieldValue(o, paramAsString);
           if (OMultiValue.isMultiValue(newlyAdded)) {

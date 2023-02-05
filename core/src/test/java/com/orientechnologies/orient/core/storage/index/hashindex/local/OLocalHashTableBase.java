@@ -1,13 +1,12 @@
 package com.orientechnologies.orient.core.storage.index.hashindex.local;
 
-import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperationsManager;
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
+import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperationsManager;
 
 /**
  * Created by frank on 24/04/2016.
@@ -38,7 +37,7 @@ public abstract class OLocalHashTableBase {
   @Test
   public void testKeyPutRandomUniform() throws IOException {
     atomicOperationsManager.executeInsideAtomicOperation((atomicOperation) -> {
-      final Set<Integer> keys = new HashSet<Integer>();
+      final Set<Integer> keys = new HashSet<>();
       final Random random = new Random();
 
       while (keys.size() < KEYS_COUNT) {
@@ -57,7 +56,7 @@ public abstract class OLocalHashTableBase {
   @Test
   public void testKeyPutRandomGaussian() throws IOException {
     atomicOperationsManager.executeInsideAtomicOperation((atomicOperation) -> {
-      Set<Integer> keys = new HashSet<Integer>();
+      Set<Integer> keys = new HashSet<>();
       Random random = new Random();
       keys.clear();
 
@@ -77,7 +76,7 @@ public abstract class OLocalHashTableBase {
   @Test
   public void testKeyDeleteRandomUniform() throws IOException {
     atomicOperationsManager.executeInsideAtomicOperation((atomicOperation) -> {
-      final Set<Integer> keys = new HashSet<Integer>();
+      final Set<Integer> keys = new HashSet<>();
       long ms = System.currentTimeMillis();
       System.out.println("testKeyDelete : " + ms);
       final Random random = new Random(ms);
@@ -188,7 +187,7 @@ public abstract class OLocalHashTableBase {
   @Test
   public void testKeyDeleteRandomGaussian() throws IOException {
     atomicOperationsManager.executeInsideAtomicOperation((atomicOperation) -> {
-      HashSet<Integer> keys = new HashSet<Integer>();
+      HashSet<Integer> keys = new HashSet<>();
 
       Random random = new Random();
       while (keys.size() < KEYS_COUNT) {

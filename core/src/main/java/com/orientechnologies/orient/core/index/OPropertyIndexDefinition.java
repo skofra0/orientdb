@@ -19,15 +19,14 @@
  */
 package com.orientechnologies.orient.core.index;
 
+import java.util.Collections;
+import java.util.List;
 import com.orientechnologies.orient.core.collate.ODefaultCollate;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.db.record.ORecordElement;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandExecutorSQLCreateIndex;
-
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Index implementation bound to one schema class property.

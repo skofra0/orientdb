@@ -22,7 +22,13 @@ package com.orientechnologies.common.concur.executors;
 
 import java.util.ArrayList;
 import java.util.Set;
-import java.util.concurrent.*;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Delayed;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Scheduled version of {@link SubExecutorService}. Supports delegation to {@link ScheduledThreadPoolExecutor} only.
@@ -133,7 +139,7 @@ public class SubScheduledExecutorService extends SubExecutorService implements S
     final boolean abortPeriodic = !executorService.getContinueExistingPeriodicTasksAfterShutdownPolicy();
     final boolean abortDelayed = !executorService.getExecuteExistingDelayedTasksAfterShutdownPolicy();
 
-    for (Task task : new ArrayList<Task>(tasks))
+    for (Task task : new ArrayList<>(tasks))
       if (task instanceof ScheduledTask) {
         final ScheduledTask scheduledTask = (ScheduledTask) task;
         final boolean cancelled = task.isCancelled();

@@ -19,8 +19,18 @@
  */
 package com.orientechnologies.orient.core.storage.index.hashindex.local;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.orient.core.exception.OConfigurationException;
-import com.orientechnologies.orient.core.index.*;
+import com.orientechnologies.orient.core.index.ODefaultIndexFactory;
+import com.orientechnologies.orient.core.index.OIndexDictionary;
+import com.orientechnologies.orient.core.index.OIndexException;
+import com.orientechnologies.orient.core.index.OIndexFactory;
+import com.orientechnologies.orient.core.index.OIndexInternal;
+import com.orientechnologies.orient.core.index.OIndexNotUnique;
+import com.orientechnologies.orient.core.index.OIndexUnique;
 import com.orientechnologies.orient.core.index.engine.OBaseIndexEngine;
 import com.orientechnologies.orient.core.index.engine.OIndexEngine;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
@@ -29,11 +39,6 @@ import com.orientechnologies.orient.core.storage.OStorage;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
 import com.orientechnologies.orient.core.storage.index.engine.OHashTableIndexEngine;
 import com.orientechnologies.orient.core.storage.index.engine.ORemoteIndexEngine;
-
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * @author Artem Orobets (enisher-at-gmail.com)
@@ -45,7 +50,7 @@ public class OHashIndexFactory implements OIndexFactory {
   private static final Set<String> ALGORITHMS;
 
   static {
-    final Set<String> types = new HashSet<String>();
+    final Set<String> types = new HashSet<>();
     types.add(OClass.INDEX_TYPE.UNIQUE_HASH_INDEX.toString());
     types.add(OClass.INDEX_TYPE.NOTUNIQUE_HASH_INDEX.toString());
     types.add(OClass.INDEX_TYPE.DICTIONARY_HASH_INDEX.toString());
@@ -53,7 +58,7 @@ public class OHashIndexFactory implements OIndexFactory {
   }
 
   static {
-    final Set<String> algorithms = new HashSet<String>();
+    final Set<String> algorithms = new HashSet<>();
     algorithms.add(HASH_INDEX_ALGORITHM);
 
     ALGORITHMS = Collections.unmodifiableSet(algorithms);

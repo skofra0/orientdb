@@ -1,11 +1,11 @@
 package com.orientechnologies.distribution.integration;
 
+import org.junit.After;
+import org.junit.Before;
 import com.orientechnologies.orient.core.db.ODatabasePool;
 import com.orientechnologies.orient.core.db.OrientDB;
 import com.orientechnologies.orient.core.db.OrientDBConfig;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
-import org.junit.After;
-import org.junit.Before;
 
 /**
  * This abstract class is a template to be extended to implements integration tests.

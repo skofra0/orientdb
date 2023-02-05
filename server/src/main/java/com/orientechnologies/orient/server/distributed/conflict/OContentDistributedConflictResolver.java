@@ -20,15 +20,14 @@
 
 package com.orientechnologies.orient.server.distributed.conflict;
 
-import com.orientechnologies.common.log.OLogManager;
-import com.orientechnologies.orient.core.id.ORecordId;
-import com.orientechnologies.orient.core.storage.ORawBuffer;
-import com.orientechnologies.orient.server.distributed.ODistributedServerManager;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.orientechnologies.common.log.OLogManager;
+import com.orientechnologies.orient.core.id.ORecordId;
+import com.orientechnologies.orient.core.storage.ORawBuffer;
+import com.orientechnologies.orient.server.distributed.ODistributedServerManager;
 
 /**
  * Conflict resolver implementation based on the checking for the record content: if it is the same, the major version wins.
@@ -47,7 +46,7 @@ public class OContentDistributedConflictResolver extends OAbstractDistributedCon
     if (!candidates.isEmpty()) {
 
       // REGROUP THE CANDIDATES BY STRICT CONTENT ONLY (byte[])
-      final Map<ORawBuffer, List<String>> candidatesGroupedByContent = new HashMap<ORawBuffer, List<String>>();
+      final Map<ORawBuffer, List<String>> candidatesGroupedByContent = new HashMap<>();
       for (Map.Entry<Object, List<String>> entry : candidates.entrySet()) {
         final Object key = entry.getKey();
 
@@ -81,7 +80,7 @@ public class OContentDistributedConflictResolver extends OAbstractDistributedCon
         }
 
         // COLLECT THE WINNER(S) THEN
-        final List<ORawBuffer> winners = new ArrayList<ORawBuffer>();
+        final List<ORawBuffer> winners = new ArrayList<>();
         for (Map.Entry<ORawBuffer, List<String>> matchEntry : candidatesGroupedByContent.entrySet()) {
           final List<String> servers = matchEntry.getValue();
           if (servers.size() == maxServerList)

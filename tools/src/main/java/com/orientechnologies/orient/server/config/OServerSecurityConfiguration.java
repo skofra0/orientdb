@@ -21,7 +21,6 @@ package com.orientechnologies.orient.server.config;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlElementWrapper;
@@ -43,7 +42,7 @@ public class OServerSecurityConfiguration {
   }
 
   public OServerSecurityConfiguration(Object iObject) {
-    users = new ArrayList<OServerUserConfiguration>();
-    resources = new ArrayList<OServerResourceConfiguration>();
+    users = new ArrayList<>();
+    resources = new ArrayList<>();
   }
 }

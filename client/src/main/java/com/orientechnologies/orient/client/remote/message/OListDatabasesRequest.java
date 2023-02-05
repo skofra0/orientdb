@@ -1,7 +1,6 @@
 package com.orientechnologies.orient.client.remote.message;
 
 import java.io.IOException;
-
 import com.orientechnologies.orient.client.binary.OBinaryRequestExecutor;
 import com.orientechnologies.orient.client.remote.OBinaryRequest;
 import com.orientechnologies.orient.client.remote.OBinaryResponse;

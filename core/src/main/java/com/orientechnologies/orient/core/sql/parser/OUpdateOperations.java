@@ -18,15 +18,15 @@ public class OUpdateOperations extends SimpleNode {
 
   protected int type;
 
-  protected List<OUpdateItem> updateItems = new ArrayList<OUpdateItem>();
+  protected List<OUpdateItem> updateItems = new ArrayList<>();
 
-  protected List<OUpdatePutItem> updatePutItems = new ArrayList<OUpdatePutItem>();
+  protected List<OUpdatePutItem> updatePutItems = new ArrayList<>();
 
   protected OJson json;
 
-  protected List<OUpdateIncrementItem> updateIncrementItems = new ArrayList<OUpdateIncrementItem>();
+  protected List<OUpdateIncrementItem> updateIncrementItems = new ArrayList<>();
 
-  protected List<OUpdateRemoveItem> updateRemoveItems = new ArrayList<OUpdateRemoveItem>();
+  protected List<OUpdateRemoveItem> updateRemoveItems = new ArrayList<>();
 
   public OUpdateOperations(int id) {
     super(id);

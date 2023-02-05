@@ -1,5 +1,11 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
@@ -7,13 +13,6 @@ import com.orientechnologies.orient.core.record.OElement;
 import com.orientechnologies.orient.core.sql.parser.OMatchPathItem;
 import com.orientechnologies.orient.core.sql.parser.ORid;
 import com.orientechnologies.orient.core.sql.parser.OWhereClause;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
 
 /**
  * Created by luigidellaquila on 23/09/16.
@@ -340,7 +339,7 @@ public class MatchEdgeTraverser {
     }
     if (qR instanceof Iterable) {
       final Iterator<Object> iter = ((Iterable) qR).iterator();
-      Iterable<OResultInternal> result = () -> new Iterator<OResultInternal>() {
+      return () -> new Iterator<OResultInternal>() {
         private OResultInternal nextElement;
 
         @Override
@@ -381,10 +380,8 @@ public class MatchEdgeTraverser {
           }
         }
       };
-
-      return result;
     }
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
 }

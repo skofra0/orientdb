@@ -1,14 +1,13 @@
 package com.orientechnologies.common.concur.resource;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 import com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap;
 import com.googlecode.concurrentlinkedhashmap.EvictionListener;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.OOrientListenerAbstract;
 import com.orientechnologies.orient.core.Orient;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
 
 /**
  * This is internal API, do not use it.
@@ -24,7 +23,7 @@ public class OPartitionedObjectPoolFactory<K, T> extends OOrientListenerAbstract
   private final ConcurrentLinkedHashMap<K, OPartitionedObjectPool<T>> poolStore;
   private final ObjectFactoryFactory<K, T>                            objectFactoryFactory;
 
-  private final EvictionListener<K, OPartitionedObjectPool<T>>        evictionListener = new EvictionListener<K, OPartitionedObjectPool<T>>() {
+  private final EvictionListener<K, OPartitionedObjectPool<T>>        evictionListener = new EvictionListener<>() {
                                                                                          @Override
                                                                                          public void onEviction(
                                                                                              K key,
@@ -63,7 +62,7 @@ public class OPartitionedObjectPoolFactory<K, T> extends OOrientListenerAbstract
     if (pool != null)
       return pool;
 
-    pool = new OPartitionedObjectPool<T>(objectFactoryFactory.create(key), maxPoolSize, maxPartitions);
+    pool = new OPartitionedObjectPool<>(objectFactoryFactory.create(key), maxPoolSize, maxPartitions);
 
     final OPartitionedObjectPool<T> oldPool = poolStore.putIfAbsent(key, pool);
     if (oldPool != null) {

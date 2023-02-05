@@ -1,16 +1,15 @@
 package com.orientechnologies.orient.core.sql.parser;
 
-import com.orientechnologies.common.log.OLogManager;
-import com.orientechnologies.orient.core.config.OGlobalConfiguration;
-import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
-import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
-import com.orientechnologies.orient.core.sql.OCommandSQLParsingException;
-
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import com.orientechnologies.common.log.OLogManager;
+import com.orientechnologies.orient.core.config.OGlobalConfiguration;
+import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
+import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
+import com.orientechnologies.orient.core.sql.OCommandSQLParsingException;
 
 /**
  * This class is an LRU cache for already parsed SQL statement executors. It stores itself in the storage as a resource. It also
@@ -28,7 +27,7 @@ public class OStatementCache {
    */
   public OStatementCache(int size) {
     this.mapSize = size;
-    map = new LinkedHashMap<String, OStatement>(size) {
+    map = new LinkedHashMap<>(size) {
       protected boolean removeEldestEntry(final Map.Entry<String, OStatement> eldest) {
         return super.size() > mapSize;
       }

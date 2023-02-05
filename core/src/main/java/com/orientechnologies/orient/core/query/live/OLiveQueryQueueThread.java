@@ -19,13 +19,12 @@
  */
 package com.orientechnologies.orient.core.query.live;
 
-import com.orientechnologies.common.log.OLogManager;
-import com.orientechnologies.orient.core.db.record.ORecordOperation;
-
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.LinkedBlockingQueue;
+import com.orientechnologies.common.log.OLogManager;
+import com.orientechnologies.orient.core.db.record.ORecordOperation;
 
 /**
  * @author Luigi Dell'Aquila (l.dellaquila-(at)-orientdb.com)

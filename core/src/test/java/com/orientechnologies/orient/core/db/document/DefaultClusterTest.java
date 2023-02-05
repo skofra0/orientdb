@@ -1,13 +1,13 @@
 package com.orientechnologies.orient.core.db.document;
 
+import org.junit.Assert;
+import org.junit.Test;
 import com.orientechnologies.orient.core.db.ODatabaseSession;
 import com.orientechnologies.orient.core.db.ODatabaseType;
 import com.orientechnologies.orient.core.db.OrientDB;
 import com.orientechnologies.orient.core.db.OrientDBConfig;
 import com.orientechnologies.orient.core.record.OVertex;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import org.junit.Assert;
-import org.junit.Test;
 
 public class DefaultClusterTest {
   @Test

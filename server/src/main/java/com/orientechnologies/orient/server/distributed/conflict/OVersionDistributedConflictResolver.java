@@ -20,14 +20,13 @@
 
 package com.orientechnologies.orient.server.distributed.conflict;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.storage.ORawBuffer;
 import com.orientechnologies.orient.server.distributed.ODistributedServerManager;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Conflict resolver implementation based on the record version: the highest version wins.
@@ -57,7 +56,7 @@ public class OVersionDistributedConflictResolver extends OAbstractDistributedCon
       }
 
       // COLLECT THE WINNERS THEN
-      final List<Object> winners = new ArrayList<Object>();
+      final List<Object> winners = new ArrayList<>();
       for (Object v : candidates.keySet()) {
         if (v instanceof ORawBuffer) {
           if (((ORawBuffer) v).version == maxVersion) {

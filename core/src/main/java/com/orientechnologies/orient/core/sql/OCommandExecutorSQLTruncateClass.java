@@ -19,6 +19,10 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.io.IOException;
+import java.util.Collection;
+import java.util.Locale;
+import java.util.Map;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.core.cache.OCommandCache;
 import com.orientechnologies.orient.core.command.OCommandDistributedReplicateRequest;
@@ -28,11 +32,6 @@ import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
-
-import java.io.IOException;
-import java.util.Collection;
-import java.util.Locale;
-import java.util.Map;
 
 /**
  * SQL TRUNCATE CLASS command: Truncates an entire class deleting all configured clusters where the class relies on.

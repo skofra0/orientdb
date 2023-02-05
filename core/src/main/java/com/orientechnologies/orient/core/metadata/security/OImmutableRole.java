@@ -1,13 +1,12 @@
 package com.orientechnologies.orient.core.metadata.security;
 
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.id.ORID;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.id.ORID;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)
@@ -18,7 +17,7 @@ public class OImmutableRole implements OSecurityRole {
   private final ALLOW_MODES                       mode;
   private final OSecurityRole                     parentRole;
 
-  private final Map<ORule.ResourceGeneric, ORule> rules            = new HashMap<ORule.ResourceGeneric, ORule>();
+  private final Map<ORule.ResourceGeneric, ORule> rules            = new HashMap<>();
   private final String                            name;
   private final ORID                              rid;
   private final ORole                             role;
@@ -138,7 +137,7 @@ public class OImmutableRole implements OSecurityRole {
   }
 
   public Set<ORule> getRuleSet() {
-    return new HashSet<ORule>(rules.values());
+    return new HashSet<>(rules.values());
   }
 
   @Override

@@ -20,6 +20,9 @@
 
 package com.orientechnologies.orient.core.compression;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.compression.impl.OGZIPCompression;
@@ -27,10 +30,6 @@ import com.orientechnologies.orient.core.compression.impl.OHighZIPCompression;
 import com.orientechnologies.orient.core.compression.impl.OLowZIPCompression;
 import com.orientechnologies.orient.core.compression.impl.ONothingCompression;
 import com.orientechnologies.orient.core.exception.OSecurityException;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Factory of compression algorithms.
@@ -41,8 +40,8 @@ import java.util.Set;
 public class OCompressionFactory {
   public static final OCompressionFactory INSTANCE = new OCompressionFactory();
 
-  private final Map<String, OCompression>                  compressions       = new HashMap<String, OCompression>();
-  private final Map<String, Class<? extends OCompression>> compressionClasses = new HashMap<String, Class<? extends OCompression>>();
+  private final Map<String, OCompression>                  compressions       = new HashMap<>();
+  private final Map<String, Class<? extends OCompression>> compressionClasses = new HashMap<>();
 
   /**
    * Install default compression algorithms.

@@ -20,14 +20,25 @@
 
 package com.orientechnologies.orient.core.sql;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Set;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.index.OIndex;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.sql.filter.OSQLFilterCondition;
 import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemField;
-import com.orientechnologies.orient.core.sql.operator.*;
-
-import java.util.*;
+import com.orientechnologies.orient.core.sql.operator.OIndexReuseType;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperator;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperatorBetween;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperatorContains;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperatorIn;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperatorMajor;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperatorMajorEquals;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperatorMinor;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperatorMinorEquals;
 
 /**
  * @author Artem Orobets (enisher-at-gmail.com)
@@ -37,7 +48,7 @@ public class OFilterAnalyzer {
   public List<OIndex<?>> getInvolvedIndexes(OClass iSchemaClass, OIndexSearchResult searchResultFields) {
     final Set<OIndex<?>> involvedIndexes = iSchemaClass.getInvolvedIndexes(searchResultFields.fields());
 
-    final List<OIndex<?>> result = new ArrayList<OIndex<?>>(involvedIndexes.size());
+    final List<OIndex<?>> result = new ArrayList<>(involvedIndexes.size());
 
     if (searchResultFields.lastField.isLong()) {
       result.addAll(OChainedIndexProxy.createProxies(iSchemaClass, searchResultFields.lastField));
@@ -77,7 +88,7 @@ public class OFilterAnalyzer {
       return analyzeUnion(iSchemaClass, condition, iContext);
     }
 
-    List<List<OIndexSearchResult>> result = new ArrayList<List<OIndexSearchResult>>();
+    List<List<OIndexSearchResult>> result = new ArrayList<>();
     List<OIndexSearchResult> sub = analyzeCondition(condition, iSchemaClass, iContext);
     //    analyzeFilterBranch(iSchemaClass, condition, sub, iContext);
     result.add(sub);
@@ -97,7 +108,7 @@ public class OFilterAnalyzer {
   public List<OIndexSearchResult> analyzeCondition(OSQLFilterCondition condition, final OClass schemaClass,
       OCommandContext context) {
 
-    final List<OIndexSearchResult> indexSearchResults = new ArrayList<OIndexSearchResult>();
+    final List<OIndexSearchResult> indexSearchResults = new ArrayList<>();
     OIndexSearchResult lastCondition = analyzeFilterBranch(schemaClass, condition, indexSearchResults, context);
 
     if (indexSearchResults.isEmpty() && lastCondition != null) {
@@ -188,7 +199,7 @@ public class OFilterAnalyzer {
 
   private List<List<OIndexSearchResult>> analyzeUnion(OClass iSchemaClass, OSQLFilterCondition condition,
       OCommandContext iContext) {
-    List<List<OIndexSearchResult>> result = new ArrayList<List<OIndexSearchResult>>();
+    List<List<OIndexSearchResult>> result = new ArrayList<>();
 
     result.addAll(analyzeOrFilterBranch(iSchemaClass, (OSQLFilterCondition) condition.getLeft(), iContext));
     result.addAll(analyzeOrFilterBranch(iSchemaClass, (OSQLFilterCondition) condition.getRight(), iContext));

@@ -1,5 +1,13 @@
 package com.orientechnologies.lucene.functions;
 
+import org.apache.lucene.index.IndexableField;
+import org.apache.lucene.index.memory.MemoryIndex;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.lucene.builder.OLuceneQueryBuilder;
 import com.orientechnologies.lucene.collections.OLuceneCompositeKey;
@@ -11,12 +19,12 @@ import com.orientechnologies.orient.core.index.OIndex;
 import com.orientechnologies.orient.core.record.OElement;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.executor.OResult;
-import com.orientechnologies.orient.core.sql.parser.*;
-import org.apache.lucene.index.IndexableField;
-import org.apache.lucene.index.memory.MemoryIndex;
-
-import java.util.*;
-import java.util.stream.Collectors;
+import com.orientechnologies.orient.core.sql.parser.OBinaryCompareOperator;
+import com.orientechnologies.orient.core.sql.parser.OExpression;
+import com.orientechnologies.orient.core.sql.parser.OFromClause;
+import com.orientechnologies.orient.core.sql.parser.OFromItem;
+import com.orientechnologies.orient.core.sql.parser.OIdentifier;
+import com.orientechnologies.orient.core.sql.parser.ParseException;
 
 /**
  * Created by frank on 15/01/2017.

@@ -1,11 +1,10 @@
 package com.orientechnologies.orient.core.sql.executor;
 
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Optional;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
 
 /**
  * Created by luigidellaquila on 07/07/16.

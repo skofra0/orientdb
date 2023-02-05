@@ -1,5 +1,17 @@
 package com.orientechnologies.orient.core.storage.ridbag.sbtree;
 
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 import com.orientechnologies.DatabaseAbstractTest;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
@@ -8,9 +20,6 @@ import com.orientechnologies.orient.core.exception.OConcurrentModificationExcept
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.intent.OIntentMassiveInsert;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import org.junit.*;
-
-import java.util.*;
 
 public class ORidBagAtomicUpdateTest extends DatabaseAbstractTest {
   private int topThreshold;
@@ -152,7 +161,7 @@ public class ORidBagAtomicUpdateTest extends DatabaseAbstractTest {
     Assert.assertEquals(ridBag.size(), 2);
 
     Iterator<OIdentifiable> iterator = ridBag.iterator();
-    List<OIdentifiable> addedDocs = new ArrayList<OIdentifiable>(Arrays.asList(docOne, docTwo));
+    List<OIdentifiable> addedDocs = new ArrayList<>(Arrays.asList(docOne, docTwo));
 
     Assert.assertTrue(addedDocs.remove(iterator.next()));
     Assert.assertTrue(addedDocs.remove(iterator.next()));
@@ -282,7 +291,7 @@ public class ORidBagAtomicUpdateTest extends DatabaseAbstractTest {
     Assert.assertEquals(ridBag.size(), 2);
 
     Iterator<OIdentifiable> iterator = ridBag.iterator();
-    List<OIdentifiable> addedDocs = new ArrayList<OIdentifiable>(Arrays.asList(docOne, docTwo));
+    List<OIdentifiable> addedDocs = new ArrayList<>(Arrays.asList(docOne, docTwo));
 
     Assert.assertTrue(addedDocs.remove(iterator.next()));
     Assert.assertTrue(addedDocs.remove(iterator.next()));

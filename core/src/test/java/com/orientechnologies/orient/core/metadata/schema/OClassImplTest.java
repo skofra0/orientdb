@@ -1,18 +1,29 @@
 package com.orientechnologies.orient.core.metadata.schema;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.exception.OSchemaException;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.math.BigDecimal;
-import java.util.*;
-import java.util.concurrent.*;
-
-import static org.junit.Assert.*;
 
 public class OClassImplTest {
 
@@ -105,7 +116,7 @@ public class OClassImplTest {
     OClass oClass = oSchema.createClass("Test4");
 
     ODocument document = new ODocument("Test4");
-    ArrayList<ODocument> list = new ArrayList<ODocument>();
+    ArrayList<ODocument> list = new ArrayList<>();
     list.add(new ODocument("Test4"));
     document.field("some", list);
     db.save(document);
@@ -120,7 +131,7 @@ public class OClassImplTest {
     OClass oClass = oSchema.createClass("Test5");
 
     ODocument document = new ODocument("Test5");
-    Set<ODocument> list = new HashSet<ODocument>();
+    Set<ODocument> list = new HashSet<>();
     list.add(new ODocument("Test5"));
     document.field("somelinkset", list);
     db.save(document);
@@ -135,7 +146,7 @@ public class OClassImplTest {
     OClass oClass = oSchema.createClass("Test6");
 
     ODocument document = new ODocument("Test6");
-    Set<ODocument> list = new HashSet<ODocument>();
+    Set<ODocument> list = new HashSet<>();
     list.add(new ODocument("Test6"));
     document.field("someembededset", list, OType.EMBEDDEDSET);
     db.save(document);
@@ -150,7 +161,7 @@ public class OClassImplTest {
     OClass oClass = oSchema.createClass("Test7");
 
     ODocument document = new ODocument("Test7");
-    List<ODocument> list = new ArrayList<ODocument>();
+    List<ODocument> list = new ArrayList<>();
     list.add(new ODocument("Test7"));
     document.field("someembeddedlist", list, OType.EMBEDDEDLIST);
     db.save(document);
@@ -165,7 +176,7 @@ public class OClassImplTest {
     OClass oClass = oSchema.createClass("Test8");
 
     ODocument document = new ODocument("Test8");
-    Map<String, ODocument> map = new HashMap<String, ODocument>();
+    Map<String, ODocument> map = new HashMap<>();
     map.put("test", new ODocument("Test8"));
     document.field("someembededmap", map, OType.EMBEDDEDMAP);
     db.save(document);
@@ -180,7 +191,7 @@ public class OClassImplTest {
     OClass oClass = oSchema.createClass("Test9");
 
     ODocument document = new ODocument("Test9");
-    Map<String, ODocument> map = new HashMap<String, ODocument>();
+    Map<String, ODocument> map = new HashMap<>();
     map.put("test", new ODocument("Test8"));
     document.field("somelinkmap", map, OType.LINKMAP);
     db.save(document);
@@ -510,7 +521,7 @@ public class OClassImplTest {
 
     oClass.createProperty("name", OType.ANY);
 
-    List<?> result = db.query(new OSQLSynchQuery<Object>("select from " + className + " where name = 'foo'"));
+    List<?> result = db.query(new OSQLSynchQuery<>("select from " + className + " where name = 'foo'"));
     assertEquals(result.size(), 1);
   }
 

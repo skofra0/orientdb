@@ -14,9 +14,9 @@ public class ORule implements Serializable {
 
   public static abstract class ResourceGeneric implements Serializable {
     private static final long                             serialVersionUID     = 1L;
-    private static final TreeMap<String, ResourceGeneric> nameToGenericMap     = new TreeMap<String, ResourceGeneric>();
-    private static final TreeMap<String, ResourceGeneric> legacyToGenericMap   = new TreeMap<String, ResourceGeneric>();
-    private static final Map<ResourceGeneric, String>     genericToLegacyMap   = new HashMap<ResourceGeneric, String>();
+    private static final TreeMap<String, ResourceGeneric> nameToGenericMap     = new TreeMap<>();
+    private static final TreeMap<String, ResourceGeneric> legacyToGenericMap   = new TreeMap<>();
+    private static final Map<ResourceGeneric, String>     genericToLegacyMap   = new HashMap<>();
 
     public static final ResourceGeneric                   FUNCTION             = new ResourceGeneric("FUNCTION",
         ODatabaseSecurityResources.FUNCTION) {
@@ -147,7 +147,7 @@ public class ORule implements Serializable {
   private static final long       serialVersionUID  = 1L;
 
   private final ResourceGeneric   resourceGeneric;
-  private final Map<String, Byte> specificResources = new HashMap<String, Byte>();
+  private final Map<String, Byte> specificResources = new HashMap<>();
 
   private Byte                    access            = null;
 

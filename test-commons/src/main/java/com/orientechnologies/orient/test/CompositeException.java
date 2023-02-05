@@ -27,7 +27,7 @@ import java.util.List;
  */
 public class CompositeException extends RuntimeException {
   private static final long serialVersionUID = 1L;
-  private final List<Throwable> causes = new ArrayList<Throwable>();
+  private final List<Throwable> causes = new ArrayList<>();
 
   public CompositeException(Collection<? extends Throwable> causes) {
     this.causes.addAll(causes);

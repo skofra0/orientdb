@@ -19,14 +19,13 @@
  */
 package com.orientechnologies.orient.core.exception;
 
+import java.util.Locale;
+import java.util.Objects;
 import com.orientechnologies.common.concur.ONeedRetryException;
 import com.orientechnologies.common.exception.OErrorCode;
 import com.orientechnologies.common.exception.OHighLevelException;
 import com.orientechnologies.orient.core.db.record.ORecordOperation;
 import com.orientechnologies.orient.core.id.ORID;
-
-import java.util.Locale;
-import java.util.Objects;
 
 /**
  * Exception thrown when MVCC is enabled and a record cannot be updated or deleted because versions don't match.

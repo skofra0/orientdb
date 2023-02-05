@@ -19,6 +19,21 @@
  */
 package com.orientechnologies.orient.server;
 
+import java.io.IOException;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.TimerTask;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.atomic.AtomicInteger;
+import javax.net.ssl.SSLSocket;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.profiler.OAbstractProfiler.OProfilerHookValue;
@@ -36,28 +51,13 @@ import com.orientechnologies.orient.enterprise.channel.binary.OTokenSecurityExce
 import com.orientechnologies.orient.server.network.protocol.ONetworkProtocol;
 import com.orientechnologies.orient.server.network.protocol.binary.ONetworkProtocolBinary;
 import com.orientechnologies.orient.server.plugin.OServerPluginHelper;
-import java.io.IOException;
-import java.net.Socket;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.TimerTask;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.atomic.AtomicInteger;
-import javax.net.ssl.SSLSocket;
 
 public class OClientConnectionManager {
   private static final long TIMEOUT_PUSH = 3000;
 
-  protected final ConcurrentMap<Integer, OClientConnection>  connections      = new ConcurrentHashMap<Integer, OClientConnection>();
+  protected final ConcurrentMap<Integer, OClientConnection>  connections      = new ConcurrentHashMap<>();
   protected       AtomicInteger                              connectionSerial = new AtomicInteger(0);
-  protected final ConcurrentMap<OHashToken, OClientSessions> sessions         = new ConcurrentHashMap<OHashToken, OClientSessions>();
+  protected final ConcurrentMap<OHashToken, OClientSessions> sessions         = new ConcurrentHashMap<>();
   protected final TimerTask                                  timerTask;
   private         OServer                                    server;
 
@@ -341,7 +341,7 @@ public class OClientConnectionManager {
     iConnection.close();
 
     int totalRemoved = 0;
-    for (Entry<Integer, OClientConnection> entry : new HashMap<Integer, OClientConnection>(connections).entrySet()) {
+    for (Entry<Integer, OClientConnection> entry : new HashMap<>(connections).entrySet()) {
       final OClientConnection conn = entry.getValue();
       if (conn != null && conn.equals(iConnection)) {
         connections.remove(entry.getKey());
@@ -354,7 +354,7 @@ public class OClientConnectionManager {
   }
 
   public List<OClientConnection> getConnections() {
-    return new ArrayList<OClientConnection>(connections.values());
+    return new ArrayList<>(connections.values());
   }
 
   public int getTotal() {
@@ -368,7 +368,7 @@ public class OClientConnectionManager {
     if (iConfig == null)
       return;
 
-    final Set<String> pushed = new HashSet<String>();
+    final Set<String> pushed = new HashSet<>();
     for (OClientConnection c : connections.values()) {
       if (!c.getData().supportsLegacyPushMessages)
         continue;
@@ -425,7 +425,7 @@ public class OClientConnectionManager {
   public void shutdown() {
     timerTask.cancel();
 
-    List<ONetworkProtocol> toWait = new ArrayList<ONetworkProtocol>();
+    List<ONetworkProtocol> toWait = new ArrayList<>();
 
     final Iterator<Entry<Integer, OClientConnection>> iterator = connections.entrySet().iterator();
     while (iterator.hasNext()) {

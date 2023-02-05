@@ -1,5 +1,8 @@
 package com.orientechnologies.orient.core.db.tool;
 
+import org.junit.Assert;
+import org.junit.Test;
+import java.util.List;
 import com.orientechnologies.orient.core.command.OCommandOutputListener;
 import com.orientechnologies.orient.core.db.ODatabaseSession;
 import com.orientechnologies.orient.core.db.ODatabaseType;
@@ -11,10 +14,6 @@ import com.orientechnologies.orient.core.index.OIndex;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.util.List;
 
 /**
  * Created by luigidellaquila on 14/09/17.
@@ -47,7 +46,7 @@ public class OCheckIndexToolTest {
       Object key = idx.getDefinition().createValue("a");
       boolean a = idx.remove(key, rid);
 
-      List result = db.query(new OSQLSynchQuery<Object>("SELECT FROM Foo"));
+      List result = db.query(new OSQLSynchQuery<>("SELECT FROM Foo"));
       Assert.assertEquals(N_RECORDS + 1, result.size());
 
       OCheckIndexTool tool = new OCheckIndexTool();

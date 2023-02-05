@@ -19,10 +19,9 @@
  */
 package com.orientechnologies.orient.core.metadata.security;
 
+import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.exception.OSecurityAccessException;
 import com.orientechnologies.orient.core.storage.OStorageProxy;
-
-import com.orientechnologies.orient.core.Orient;
 
 /**
  * OSecurity implementation that extends OSecurityShared but uses an external security plugin.

@@ -1,10 +1,9 @@
 package com.orientechnologies;
 
-import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import org.junit.After;
 import org.junit.Before;
-
 import java.util.Locale;
+import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)

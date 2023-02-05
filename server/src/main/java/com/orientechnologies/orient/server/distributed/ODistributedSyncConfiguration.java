@@ -19,12 +19,16 @@
  */
 package com.orientechnologies.orient.server.distributed;
 
-import com.orientechnologies.orient.core.exception.OSerializationException;
-import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OLogSequenceNumber;
-
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import com.orientechnologies.orient.core.exception.OSerializationException;
+import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OLogSequenceNumber;
 
 /**
  * Immutable class to store and handle information about synchronization between nodes.
@@ -33,7 +37,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ODistributedSyncConfiguration {
   private final ODistributedServerManager dManager;
-  private final Map<String, OLogSequenceNumber> lastLSN = new ConcurrentHashMap<String, OLogSequenceNumber>();
+  private final Map<String, OLogSequenceNumber> lastLSN = new ConcurrentHashMap<>();
   private final String databaseName;
 
   private final ODistributedMomentum momentum;

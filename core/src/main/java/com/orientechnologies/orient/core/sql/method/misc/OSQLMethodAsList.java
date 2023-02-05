@@ -16,16 +16,15 @@
  */
 package com.orientechnologies.orient.core.sql.method.misc;
 
-import com.orientechnologies.common.util.OSizeable;
-import com.orientechnologies.orient.core.command.OCommandContext;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import com.orientechnologies.common.util.OSizeable;
+import com.orientechnologies.orient.core.command.OCommandContext;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
  * Transforms current value in a List.
@@ -56,14 +55,14 @@ public class OSQLMethodAsList extends OAbstractSQLMethod {
     }
 
     if (ioResult instanceof Collection<?>) {
-      return new ArrayList<Object>((Collection<Object>) ioResult);
+      return new ArrayList<>((Collection<Object>) ioResult);
     } else if (!(ioResult instanceof ODocument) && ioResult instanceof Iterable<?>) {
       ioResult = ((Iterable<?>) ioResult).iterator();
     }
 
     if (ioResult instanceof Iterator<?>) {
-      final List<Object> list = ioResult instanceof OSizeable ? new ArrayList<Object>(((OSizeable) ioResult).size())
-          : new ArrayList<Object>();
+      final List<Object> list = ioResult instanceof OSizeable ? new ArrayList<>(((OSizeable) ioResult).size())
+          : new ArrayList<>();
 
       for (Iterator<Object> iter = (Iterator<Object>) ioResult; iter.hasNext();) {
         list.add(iter.next());

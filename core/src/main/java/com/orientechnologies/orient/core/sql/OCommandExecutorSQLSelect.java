@@ -19,6 +19,24 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 import com.orientechnologies.common.collection.OMultiCollectionIterator;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.common.collection.OSortedMultiIterator;
@@ -48,7 +66,18 @@ import com.orientechnologies.orient.core.exception.OQueryParsingException;
 import com.orientechnologies.orient.core.id.OContextualRecordId;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
-import com.orientechnologies.orient.core.index.*;
+import com.orientechnologies.orient.core.index.OCompositeIndexCursor;
+import com.orientechnologies.orient.core.index.OCompositeIndexDefinition;
+import com.orientechnologies.orient.core.index.OCompositeKey;
+import com.orientechnologies.orient.core.index.OIndex;
+import com.orientechnologies.orient.core.index.OIndexChangesWrapper;
+import com.orientechnologies.orient.core.index.OIndexCursor;
+import com.orientechnologies.orient.core.index.OIndexCursorCollectionValue;
+import com.orientechnologies.orient.core.index.OIndexCursorSingleValue;
+import com.orientechnologies.orient.core.index.OIndexDefinition;
+import com.orientechnologies.orient.core.index.OIndexDefinitionMultiValue;
+import com.orientechnologies.orient.core.index.OIndexEngineException;
+import com.orientechnologies.orient.core.index.OIndexInternal;
 import com.orientechnologies.orient.core.iterator.OIdentifiableIterator;
 import com.orientechnologies.orient.core.iterator.ORecordIteratorClass;
 import com.orientechnologies.orient.core.iterator.ORecordIteratorCluster;
@@ -67,24 +96,31 @@ import com.orientechnologies.orient.core.record.ORecordInternal;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.record.impl.ODocumentHelper;
 import com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper;
-import com.orientechnologies.orient.core.sql.filter.*;
+import com.orientechnologies.orient.core.sql.filter.OFilterOptimizer;
+import com.orientechnologies.orient.core.sql.filter.OSQLFilter;
+import com.orientechnologies.orient.core.sql.filter.OSQLFilterCondition;
+import com.orientechnologies.orient.core.sql.filter.OSQLFilterItem;
+import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemField;
+import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemVariable;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunctionRuntime;
 import com.orientechnologies.orient.core.sql.functions.coll.OSQLFunctionDistinct;
 import com.orientechnologies.orient.core.sql.functions.misc.OSQLFunctionCount;
-import com.orientechnologies.orient.core.sql.operator.*;
-import com.orientechnologies.orient.core.sql.parser.*;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperator;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperatorAnd;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperatorBetween;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperatorIn;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperatorMajor;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperatorMajorEquals;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperatorMinor;
+import com.orientechnologies.orient.core.sql.operator.OQueryOperatorMinorEquals;
+import com.orientechnologies.orient.core.sql.parser.OBinaryCondition;
+import com.orientechnologies.orient.core.sql.parser.OOrderBy;
+import com.orientechnologies.orient.core.sql.parser.OOrderByItem;
+import com.orientechnologies.orient.core.sql.parser.OSelectStatement;
+import com.orientechnologies.orient.core.sql.parser.OWhereClause;
 import com.orientechnologies.orient.core.sql.query.OLegacyResultSet;
 import com.orientechnologies.orient.core.sql.query.OSQLQuery;
 import com.orientechnologies.orient.core.storage.OStorage.LOCKING_STRATEGY;
-
-import java.util.*;
-import java.util.Map.Entry;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Executes the SQL SELECT statement. the parse() method compiles the query and builds the meta information needed by the execute().
@@ -127,9 +163,9 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
   private       Map<String, String>         projectionDefinition = null;
   // THIS HAS BEEN KEPT FOR COMPATIBILITY; BUT IT'S USED THE PROJECTIONS IN GROUPED-RESULTS
   private       Map<String, Object>         projections          = null;
-  private       List<OPair<String, String>> orderedFields        = new ArrayList<OPair<String, String>>();
+  private       List<OPair<String, String>> orderedFields        = new ArrayList<>();
   private List<String> groupByFields;
-  private ConcurrentHashMap<Object, ORuntimeResult> groupedResult = new ConcurrentHashMap<Object, ORuntimeResult>();
+  private ConcurrentHashMap<Object, ORuntimeResult> groupedResult = new ConcurrentHashMap<>();
   private boolean                                   aggregate     = false;
   private List<String> unwindFields;
   private Object       expandTarget;
@@ -154,7 +190,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
 
   public OCommandExecutorSQLSelect() {
     OContextConfiguration conf = getDatabase().getConfiguration();
-    resultQueue = new ArrayBlockingQueue<AsyncResult>(
+    resultQueue = new ArrayBlockingQueue<>(
         conf.getValueAsInteger(OGlobalConfiguration.QUERY_PARALLEL_RESULT_QUEUE_SIZE));
     tipLimitThreshold = conf.getValueAsInteger(OGlobalConfiguration.QUERY_LIMIT_THRESHOLD_TIP);
   }
@@ -201,7 +237,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
     if (indexDefinition instanceof OCompositeIndexDefinition || indexDefinition.getParamCount() > 1) {
       if (value instanceof List) {
         final List<?> values = (List<?>) value;
-        List<Object> keyParams = new ArrayList<Object>(values.size());
+        List<Object> keyParams = new ArrayList<>(values.size());
 
         for (Object o : values) {
           keyParams.add(OSQLHelper.getValue(o, null, context));
@@ -359,7 +395,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
   @Override
   public Set<String> getInvolvedClusters() {
 
-    final Set<String> clusters = new HashSet<String>();
+    final Set<String> clusters = new HashSet<>();
 
     if (parsedTarget != null) {
       final ODatabaseDocument db = getDatabase();
@@ -438,7 +474,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
       handleGroupBy(context);
       applyOrderBy(true);
 
-      subIterator = new ArrayList<OIdentifiable>((List<OIdentifiable>) getResult()).iterator();
+      subIterator = new ArrayList<>((List<OIdentifiable>) getResult()).iterator();
       lastRecord = null;
       tempResult = null;
       groupedResult.clear();
@@ -712,7 +748,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
       tipLimitThreshold = 0;
     }
 
-    List<OIdentifiable> allResults = new ArrayList<OIdentifiable>();
+    List<OIdentifiable> allResults = new ArrayList<>();
     if (unwindFields != null) {
       Collection<OIdentifiable> partial = unwind(iRecord, this.unwindFields, iContext);
 
@@ -733,7 +769,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
 
       // COLLECT ALL THE RECORDS AND ORDER THEM AT THE END
       if (tempResult == null)
-        tempResult = new ArrayList<OIdentifiable>();
+        tempResult = new ArrayList<>();
 
       applyPartialOrderBy();
 
@@ -807,7 +843,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
 
   private Collection<OIdentifiable> unwind(final OIdentifiable iRecord, final List<String> unwindFields,
       final OCommandContext iContext) {
-    final List<OIdentifiable> result = new ArrayList<OIdentifiable>();
+    final List<OIdentifiable> result = new ArrayList<>();
     ODocument doc;
     if (iRecord instanceof ODocument) {
       doc = (ODocument) iRecord;
@@ -852,7 +888,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
     Orient.instance().getProfiler().reportTip(iMessage);
     List<String> tips = (List<String>) context.getVariable("tips");
     if (tips == null) {
-      tips = new ArrayList<String>(3);
+      tips = new ArrayList<>(3);
       context.setVariable("tips", tips);
     }
     tips.add(iMessage);
@@ -911,7 +947,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
   protected void parseGroupBy() {
     parserRequiredKeyword(KEYWORD_BY);
 
-    groupByFields = new ArrayList<String>();
+    groupByFields = new ArrayList<>();
     while (!parserIsEnded() && (groupByFields.size() == 0 || parserGetLastSeparator() == ',' || parserGetCurrentChar() == ',')) {
       final String fieldName = parserRequiredWord(false, "Field name expected");
       groupByFields.add(fieldName);
@@ -928,7 +964,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
   }
 
   protected void parseUnwind() {
-    unwindFields = new ArrayList<String>();
+    unwindFields = new ArrayList<>();
     while (!parserIsEnded() && (unwindFields.size() == 0 || parserGetLastSeparator() == ',' || parserGetCurrentChar() == ',')) {
       final String fieldName = parserRequiredWord(false, "Field name expected");
       unwindFields.add(fieldName);
@@ -945,7 +981,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
 
     String fieldOrdering = null;
 
-    orderedFields = new ArrayList<OPair<String, String>>();
+    orderedFields = new ArrayList<>();
     while (!parserIsEnded() && (orderedFields.size() == 0 || parserGetLastSeparator() == ',' || parserGetCurrentChar() == ',')) {
       final String fieldName = parserRequiredWord(false, "Field name expected");
 
@@ -971,7 +1007,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
         }
       }
 
-      orderedFields.add(new OPair<String, String>(fieldName, fieldOrdering));
+      orderedFields.add(new OPair<>(fieldName, fieldOrdering));
       parserSkipWhiteSpaces();
     }
 
@@ -1016,8 +1052,8 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
     final String projectionString = parserText.substring(currPos, upperBound);
     if (projectionString.trim().length() > 0) {
       // EXTRACT PROJECTIONS
-      projections = new LinkedHashMap<String, Object>();
-      projectionDefinition = new LinkedHashMap<String, String>();
+      projections = new LinkedHashMap<>();
+      projectionDefinition = new LinkedHashMap<>();
 
       final List<String> items = OStringSerializerHelper.smartSplit(projectionString, ',');
 
@@ -1128,10 +1164,10 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
 
   protected Map<String, Object> createProjectionFromDefinition() {
     if (projectionDefinition == null) {
-      return new LinkedHashMap<String, Object>();
+      return new LinkedHashMap<>();
     }
 
-    final Map<String, Object> projections = new LinkedHashMap<String, Object>(projectionDefinition.size());
+    final Map<String, Object> projections = new LinkedHashMap<>(projectionDefinition.size());
     for (Entry<String, String> p : projectionDefinition.entrySet()) {
       final Object projectionValue = OSQLHelper.parseValue(this, p.getValue(), context);
       projections.put(p.getKey(), projectionValue);
@@ -1252,7 +1288,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
               }
 
               if (tempResult == null)
-                tempResult = new ArrayList<OIdentifiable>();
+                tempResult = new ArrayList<>();
               ((Collection<OIdentifiable>) tempResult).add(new ODocument().field(entry.getKey(), count));
               return true;
             }
@@ -1412,7 +1448,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
       return null;
     }
 
-    final List<Object> betweenBoundaries = new ArrayList<Object>();
+    final List<Object> betweenBoundaries = new ArrayList<>();
 
     if (rightCondition.getLeft() instanceof OSQLFilterItemField) {
       final OSQLFilterItemField itemField = (OSQLFilterItemField) rightCondition.getLeft();
@@ -1641,7 +1677,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
 
     // CREATE ONE THREAD PER CLUSTER
     final int jobNumbers = clusterIds.length;
-    final List<Future<?>> jobs = new ArrayList<Future<?>>();
+    final List<Future<?>> jobs = new ArrayList<>();
 
     OLogManager.instance()
         .debug(this, "Executing parallel query with strategy executors. clusterIds=%d, jobs=%d", clusterIds.length, jobNumbers);
@@ -1851,7 +1887,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
         order.getItems().add(item);
       }
     }
-    OSortedMultiIterator<OIdentifiable> cursor = new OSortedMultiIterator<OIdentifiable>(order);
+    OSortedMultiIterator<OIdentifiable> cursor = new OSortedMultiIterator<>(order);
     boolean fullySorted = true;
 
     if (!iSchemaClass.isAbstract()) {
@@ -1887,7 +1923,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
     }
     fullySortedByIndex = fullySorted;
 
-    uniqueResult = new ConcurrentHashMap<ORID, ORID>();
+    uniqueResult = new ConcurrentHashMap<>();
 
     fetchFromTarget(cursor);
 
@@ -1916,7 +1952,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
       if (cursor == null) {
         return null;
       }
-      List<OIndexCursor> result = new ArrayList<OIndexCursor>();
+      List<OIndexCursor> result = new ArrayList<>();
       result.add(cursor);
       return result;
 
@@ -1928,10 +1964,10 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
     if (conditionHierarchy == null)
       return null;
 
-    List<OIndexCursor> cursors = new ArrayList<OIndexCursor>();
+    List<OIndexCursor> cursors = new ArrayList<>();
 
     boolean indexIsUsedInOrderBy = false;
-    List<IndexUsageLog> indexUseAttempts = new ArrayList<IndexUsageLog>();
+    List<IndexUsageLog> indexUseAttempts = new ArrayList<>();
     // try {
 
     OIndexSearchResult lastSearchResult = null;
@@ -1971,7 +2007,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
           }
 
           final int searchResultFieldsCount = searchResult.fields().size();
-          final List<Object> keyParams = new ArrayList<Object>(searchResultFieldsCount);
+          final List<Object> keyParams = new ArrayList<>(searchResultFieldsCount);
           // We get only subset contained in processed sub query.
           for (final String fieldName : indexDefinition.getFields().subList(0, searchResultFieldsCount)) {
             final Object fieldValue = searchResult.fieldValuePairs.get(fieldName);
@@ -2039,7 +2075,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
         if (cursor == null) {
           return null;
         }
-        List<OIndexCursor> result = new ArrayList<OIndexCursor>();
+        List<OIndexCursor> result = new ArrayList<>();
         result.add(cursor);
         return result;
       }
@@ -2082,10 +2118,10 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
     if (conditionHierarchy == null)
       return false;
 
-    List<OIndexCursor> cursors = new ArrayList<OIndexCursor>();
+    List<OIndexCursor> cursors = new ArrayList<>();
 
     boolean indexIsUsedInOrderBy = false;
-    List<IndexUsageLog> indexUseAttempts = new ArrayList<IndexUsageLog>();
+    List<IndexUsageLog> indexUseAttempts = new ArrayList<>();
     try {
 
       OIndexSearchResult lastSearchResult = null;
@@ -2125,7 +2161,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
             }
 
             final int searchResultFieldsCount = searchResult.fields().size();
-            final List<Object> keyParams = new ArrayList<Object>(searchResultFieldsCount);
+            final List<Object> keyParams = new ArrayList<>(searchResultFieldsCount);
             // We get only subset contained in processed sub query.
             for (final String fieldName : indexDefinition.getFields().subList(0, searchResultFieldsCount)) {
               final Object fieldValue = searchResult.fieldValuePairs.get(fieldName);
@@ -2202,7 +2238,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
         filterOptimizer.optimize(compiledFilter, lastSearchResult);
       }
 
-      uniqueResult = new ConcurrentHashMap<ORID, ORID>();
+      uniqueResult = new ConcurrentHashMap<>();
 
       if (cursors.size() == 1 && (compiledFilter == null || compiledFilter.getRootCondition() == null) && groupByFields == null
           && projections != null && projections.size() == 1) {
@@ -2234,7 +2270,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
                     .updateCounter(profiler.getDatabaseMetric(database.getName(), "query.indexUsed"), "Used index in query", +1);
               }
               if (tempResult == null)
-                tempResult = new ArrayList<OIdentifiable>();
+                tempResult = new ArrayList<>();
               ((Collection<OIdentifiable>) tempResult).add(new ODocument().field(entry.getKey(), count));
               return true;
             }
@@ -2325,7 +2361,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
   }
 
   private OIndexCursor getOptimizedSortCursor(OClass iSchemaClass) {
-    final List<String> fieldNames = new ArrayList<String>();
+    final List<String> fieldNames = new ArrayList<>();
 
     for (OPair<String, String> pair : orderedFields) {
       fieldNames.add(pair.getKey());
@@ -2353,7 +2389,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
           return null;
         }
 
-        final List<OIndexCursor> cursors = new ArrayList<OIndexCursor>();
+        final List<OIndexCursor> cursors = new ArrayList<>();
 
         OIndexCursor cursor = null;
 
@@ -2389,7 +2425,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
 
             Set<String> idxNames = (Set<String>) context.getVariable("involvedIndexes");
             if (idxNames == null) {
-              idxNames = new HashSet<String>();
+              idxNames = new HashSet<>();
               context.setVariable("involvedIndexes", idxNames);
             }
 
@@ -2474,7 +2510,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
     final long startOrderBy = System.currentTimeMillis();
     try {
       if (tempResult instanceof OMultiCollectionIterator) {
-        final List<OIdentifiable> list = new ArrayList<OIdentifiable>();
+        final List<OIdentifiable> list = new ArrayList<>();
         for (OIdentifiable o : tempResult) {
           list.add(o);
         }
@@ -2508,7 +2544,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
     try {
 
       if (tempResult == null) {
-        tempResult = new ArrayList<OIdentifiable>();
+        tempResult = new ArrayList<>();
         if (expandTarget instanceof OSQLFilterItemVariable) {
           Object r = ((OSQLFilterItemVariable) expandTarget).getValue(null, null, context);
           if (r != null) {
@@ -2536,9 +2572,9 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
         }
       } else {
         if (tempResult == null) {
-          tempResult = new ArrayList<OIdentifiable>();
+          tempResult = new ArrayList<>();
         }
-        final OMultiCollectionIterator<OIdentifiable> finalResult = new OMultiCollectionIterator<OIdentifiable>();
+        final OMultiCollectionIterator<OIdentifiable> finalResult = new OMultiCollectionIterator<>();
 
         if (orderedFields == null || orderedFields.size() == 0) {
           // expand is applied before sorting, so limiting the result set here would give wrong results
@@ -2567,7 +2603,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
               fieldValue = ((Iterable) fieldValue).iterator();
             }
             if (fieldValue instanceof ODocument) {
-              ArrayList<ODocument> partial = new ArrayList<ODocument>();
+              ArrayList<ODocument> partial = new ArrayList<>();
               partial.add((ODocument) fieldValue);
               finalResult.add(partial);
             } else if (fieldValue instanceof Collection<?> || fieldValue.getClass().isArray() || fieldValue instanceof Iterator<?>
@@ -2662,7 +2698,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
         fetchEntriesFromIndexCursor(cursor);
       } else if (indexOperator instanceof OQueryOperatorIn) {
         final List<Object> origValues = (List<Object>) compiledFilter.getRootCondition().getRight();
-        final List<Object> values = new ArrayList<Object>(origValues.size());
+        final List<Object> values = new ArrayList<>(origValues.size());
         for (Object val : origValues) {
           if (index.getDefinition() instanceof OCompositeIndexDefinition) {
             throw new OCommandExecutionException("Operator IN not supported yet.");
@@ -2858,7 +2894,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
       final long startGroupBy = System.currentTimeMillis();
       try {
 
-        tempResult = new ArrayList<OIdentifiable>();
+        tempResult = new ArrayList<>();
 
         for (Entry<Object, ORuntimeResult> g : groupedResult.entrySet()) {
           if (g.getKey() != null || (groupedResult.size() == 1 && groupByFields == null)) {

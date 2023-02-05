@@ -14,23 +14,21 @@
  */
 package com.orientechnologies.spatial.functions;
 
-import com.orientechnologies.orient.core.record.OElement;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.orient.core.sql.OCommandSQL;
-import com.orientechnologies.spatial.BaseSpatialLuceneTest;
-import com.orientechnologies.spatial.shape.OShapeFactory;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.locationtech.jts.geom.Polygon;
 import org.locationtech.spatial4j.shape.Shape;
 import org.locationtech.spatial4j.shape.jts.JtsGeometry;
-
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import com.orientechnologies.orient.core.record.OElement;
+import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.orientechnologies.orient.core.sql.OCommandSQL;
+import com.orientechnologies.spatial.BaseSpatialLuceneTest;
+import com.orientechnologies.spatial.shape.OShapeFactory;
 
 /**
  * Created by Enrico Risa on 28/09/15.

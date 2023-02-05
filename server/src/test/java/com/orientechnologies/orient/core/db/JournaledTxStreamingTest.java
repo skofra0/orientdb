@@ -20,15 +20,10 @@
 
 package com.orientechnologies.orient.core.db;
 
-import com.orientechnologies.common.io.OFileUtils;
-import com.orientechnologies.orient.client.remote.OServerAdmin;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
-import com.orientechnologies.orient.server.OServer;
-import com.orientechnologies.orient.server.OServerMain;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -38,8 +33,11 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayDeque;
 import java.util.Deque;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import com.orientechnologies.common.io.OFileUtils;
+import com.orientechnologies.orient.client.remote.OServerAdmin;
+import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
+import com.orientechnologies.orient.server.OServer;
+import com.orientechnologies.orient.server.OServerMain;
 
 public class JournaledTxStreamingTest {
 

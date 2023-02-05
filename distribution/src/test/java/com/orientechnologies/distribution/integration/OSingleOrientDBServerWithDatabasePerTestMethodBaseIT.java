@@ -1,11 +1,11 @@
 package com.orientechnologies.distribution.integration;
 
+import org.junit.After;
+import org.junit.Before;
 import com.orientechnologies.orient.core.db.ODatabasePool;
 import com.orientechnologies.orient.core.db.ODatabaseType;
 import com.orientechnologies.orient.core.db.OrientDB;
 import com.orientechnologies.orient.core.db.OrientDBConfig;
-import org.junit.After;
-import org.junit.Before;
 
 public abstract class OSingleOrientDBServerWithDatabasePerTestMethodBaseIT extends OSingleOrientDBServerBaseIT {
 

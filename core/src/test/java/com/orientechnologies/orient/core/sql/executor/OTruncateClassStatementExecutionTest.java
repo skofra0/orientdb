@@ -1,5 +1,16 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
@@ -11,12 +22,6 @@ import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import java.util.*;
 
 /**
  * @author Luigi Dell'Aquila (l.dellaquila-(at)-orientdb.com)
@@ -58,7 +63,7 @@ public class OTruncateClassStatementExecutionTest {
     OResultSet result = database.query("select from test_class");
     //    Assert.assertEquals(result.size(), 2);
 
-    Set<Integer> set = new HashSet<Integer>();
+    Set<Integer> set = new HashSet<>();
     while (result.hasNext()) {
       set.addAll((Collection<Integer>) result.next().getProperty("data"));
     }

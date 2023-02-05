@@ -19,12 +19,6 @@
  */
 package com.orientechnologies.common.console;
 
-import com.orientechnologies.common.console.annotation.ConsoleCommand;
-import com.orientechnologies.common.console.annotation.ConsoleParameter;
-import com.orientechnologies.common.log.OLogManager;
-import com.orientechnologies.common.parser.OStringParser;
-import com.orientechnologies.common.util.OArrays;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -49,6 +43,11 @@ import java.util.ServiceLoader;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import com.orientechnologies.common.console.annotation.ConsoleCommand;
+import com.orientechnologies.common.console.annotation.ConsoleParameter;
+import com.orientechnologies.common.log.OLogManager;
+import com.orientechnologies.common.parser.OStringParser;
+import com.orientechnologies.common.util.OArrays;
 
 public class OConsoleApplication {
 
@@ -64,7 +63,7 @@ public class OConsoleApplication {
   protected              String                  wordSeparator      = " ";
   protected              String[]                helpCommands       = { "help", "?" };
   protected              String[]                exitCommands       = { "exit", "bye", "quit" };
-  protected              Map<String, String>     properties         = new HashMap<String, String>();
+  protected              Map<String, String>     properties         = new HashMap<>();
   protected              OConsoleReader          reader             = new ODefaultConsoleReader();
   protected              boolean                 interactiveMode;
   protected              String[]                args;
@@ -617,7 +616,7 @@ public class OConsoleApplication {
 
     // search for declared command collections
     final Iterator<OConsoleCommandCollection> ite = ServiceLoader.load(OConsoleCommandCollection.class).iterator();
-    final Collection<Object> candidates = new ArrayList<Object>();
+    final Collection<Object> candidates = new ArrayList<>();
     candidates.add(this);
     while (ite.hasNext()) {
       try {
@@ -632,7 +631,7 @@ public class OConsoleApplication {
       }
     }
 
-    methods = new TreeMap<Method, Object>(new Comparator<Method>() {
+    methods = new TreeMap<>(new Comparator<Method>() {
       public int compare(Method o1, Method o2) {
         final ConsoleCommand ann1 = o1.getAnnotation(ConsoleCommand.class);
         final ConsoleCommand ann2 = o2.getAnnotation(ConsoleCommand.class);

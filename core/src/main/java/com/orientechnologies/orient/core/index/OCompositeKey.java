@@ -19,12 +19,17 @@
  */
 package com.orientechnologies.orient.core.index;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import com.orientechnologies.common.comparator.ODefaultComparator;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.serialization.ODocumentSerializable;
-
-import java.io.Serializable;
-import java.util.*;
 
 /**
  * Container for the list of heterogeneous values that are going to be stored in in index as composite keys.
@@ -40,7 +45,7 @@ public class OCompositeKey implements Comparable<OCompositeKey>, Serializable, O
   private final transient Comparator<Object> comparator;
 
   public OCompositeKey(final List<?> keys) {
-    this.keys = new ArrayList<Object>(keys.size());
+    this.keys = new ArrayList<>(keys.size());
     this.comparator = ODefaultComparator.INSTANCE;
 
     for (final Object key : keys)
@@ -48,7 +53,7 @@ public class OCompositeKey implements Comparable<OCompositeKey>, Serializable, O
   }
 
   public OCompositeKey(final Object... keys) {
-    this.keys = new ArrayList<Object>(keys.length);
+    this.keys = new ArrayList<>(keys.length);
     this.comparator = ODefaultComparator.INSTANCE;
 
     for (final Object key : keys)
@@ -56,7 +61,7 @@ public class OCompositeKey implements Comparable<OCompositeKey>, Serializable, O
   }
 
   public OCompositeKey() {
-    this.keys = new ArrayList<Object>();
+    this.keys = new ArrayList<>();
     this.comparator = ODefaultComparator.INSTANCE;
   }
 
@@ -179,7 +184,7 @@ public class OCompositeKey implements Comparable<OCompositeKey>, Serializable, O
 
     final String[] fieldNames = document.fieldNames();
 
-    final SortedMap<Integer, Object> keyMap = new TreeMap<Integer, Object>();
+    final SortedMap<Integer, Object> keyMap = new TreeMap<>();
 
     for (String fieldName : fieldNames) {
       if (fieldName.startsWith("key")) {

@@ -19,14 +19,13 @@
  */
 package com.orientechnologies.orient.server.distributed;
 
+import java.util.List;
+import java.util.Set;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.tx.OTransactionInternal;
 import com.orientechnologies.orient.server.distributed.task.ORemoteTask;
-
-import java.util.List;
-import java.util.Set;
 
 /**
  * Represent a distributed transaction context.

@@ -19,6 +19,12 @@
  */
 package com.orientechnologies.orient.core.serialization.serializer.record.string;
 
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import com.orientechnologies.common.collection.OLazyIterator;
 import com.orientechnologies.common.collection.OMultiCollectionIterator;
 import com.orientechnologies.common.collection.OMultiValue;
@@ -27,8 +33,16 @@ import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.db.ODatabase;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
-import com.orientechnologies.orient.core.db.record.*;
+import com.orientechnologies.orient.core.db.record.OAutoConvertToRecord;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.db.record.ORecordElement;
 import com.orientechnologies.orient.core.db.record.ORecordElement.STATUS;
+import com.orientechnologies.orient.core.db.record.ORecordLazyList;
+import com.orientechnologies.orient.core.db.record.ORecordLazyMap;
+import com.orientechnologies.orient.core.db.record.ORecordLazySet;
+import com.orientechnologies.orient.core.db.record.OTrackedList;
+import com.orientechnologies.orient.core.db.record.OTrackedMap;
+import com.orientechnologies.orient.core.db.record.OTrackedSet;
 import com.orientechnologies.orient.core.db.record.ridbag.ORidBag;
 import com.orientechnologies.orient.core.exception.OSerializationException;
 import com.orientechnologies.orient.core.id.ORID;
@@ -44,9 +58,6 @@ import com.orientechnologies.orient.core.serialization.serializer.OStringSeriali
 import com.orientechnologies.orient.core.serialization.serializer.string.OStringBuilderSerializable;
 import com.orientechnologies.orient.core.serialization.serializer.string.OStringSerializerEmbedded;
 import com.orientechnologies.orient.core.storage.OStorageProxy;
-
-import java.util.*;
-import java.util.Map.Entry;
 
 @SuppressWarnings({ "unchecked", "serial" })
 public abstract class ORecordSerializerCSVAbstract extends ORecordSerializerStringAbstract {
@@ -222,7 +233,7 @@ public abstract class ORecordSerializerCSVAbstract extends ORecordSerializerStri
     if (iLinkedType == OType.LINK || iLinkedType == OType.EMBEDDED)
       map = new ORecordLazyMap(iSourceDocument, ODocument.RECORD_TYPE);
     else
-      map = new OTrackedMap<Object>(iSourceDocument);
+      map = new OTrackedMap<>(iSourceDocument);
 
     if (value.length() == 0)
       return map;
@@ -253,7 +264,7 @@ public abstract class ORecordSerializerCSVAbstract extends ORecordSerializerStri
                   map = new ORecordLazyMap(iSourceDocument, ODocument.RECORD_TYPE);
                   ((ORecordElement) map).setInternalStatus(STATUS.UNMARSHALLING);
                 } else if (map instanceof ORecordLazyMap && linkedType != OType.LINK) {
-                  map = new OTrackedMap<Object>(iSourceDocument, map, null);
+                  map = new OTrackedMap<>(iSourceDocument, map, null);
                 }
               } else
                 linkedType = OType.EMBEDDED;
@@ -571,7 +582,7 @@ public abstract class ORecordSerializerCSVAbstract extends ORecordSerializerStri
         }
       }
     } else
-      coll = iType == OType.EMBEDDEDLIST ? new OTrackedList<Object>(iDocument) : new OTrackedSet<Object>(iDocument);
+      coll = iType == OType.EMBEDDEDLIST ? new OTrackedList<>(iDocument) : new OTrackedSet<>(iDocument);
 
     if (value.length() == 0)
       return coll;

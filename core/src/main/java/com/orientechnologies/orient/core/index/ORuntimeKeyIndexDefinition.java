@@ -19,6 +19,9 @@
  */
 package com.orientechnologies.orient.core.index;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.orient.core.collate.ODefaultCollate;
 import com.orientechnologies.orient.core.db.record.ORecordElement;
@@ -26,10 +29,6 @@ import com.orientechnologies.orient.core.exception.OConfigurationException;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.serialization.serializer.binary.OBinarySerializerFactory;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Index definition that use the serializer specified at run-time not based on type. This is useful to have custom type keys for

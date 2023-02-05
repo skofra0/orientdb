@@ -19,11 +19,10 @@
   */
 package com.orientechnologies.orient.core.db;
 
+import java.util.Map;
 import com.orientechnologies.common.concur.resource.OReentrantResourcePool;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.exception.OSecurityAccessException;
-
-import java.util.Map;
 
 /**
  * Database pool base class.

@@ -19,12 +19,11 @@
  */
 package com.orientechnologies.orient.core.sql.parser.operators;
 
-import com.orientechnologies.orient.core.sql.parser.OContainsCondition;
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.List;
+import com.orientechnologies.orient.core.sql.parser.OContainsCondition;
 
 /**
  * @author Luigi Dell'Aquila (l.dellaquila-(at)-orientdb.com)
@@ -37,7 +36,7 @@ public class OContainsConditionTest {
     Assert.assertFalse(op.execute(null, null));
     Assert.assertFalse(op.execute(null, "foo"));
 
-    List<Object> left = new ArrayList<Object>();
+    List<Object> left = new ArrayList<>();
     Assert.assertFalse(op.execute(left, "foo"));
     Assert.assertFalse(op.execute(left, null));
 

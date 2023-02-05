@@ -19,12 +19,11 @@
   */
 package com.orientechnologies.orient.core.sql.functions.math;
 
+import java.util.List;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.metadata.schema.OType;
-
-import java.util.List;
 
 /**
  * Computes the sum of field. Uses the context to save the last sum number. When different Number class are used, take the class

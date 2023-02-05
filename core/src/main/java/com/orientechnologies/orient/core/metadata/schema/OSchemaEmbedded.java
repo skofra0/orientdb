@@ -1,5 +1,10 @@
 package com.orientechnologies.orient.core.metadata.schema;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
@@ -15,8 +20,6 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.storage.OAutoshardedStorage;
 import com.orientechnologies.orient.core.storage.OStorage;
-
-import java.util.*;
 
 /**
  * Created by tglman on 13/06/17.
@@ -79,7 +82,7 @@ public class OSchemaEmbedded extends OSchemaShared {
         cmd.append(className);
         cmd.append('`');
 
-        List<OClass> superClassesList = new ArrayList<OClass>();
+        List<OClass> superClassesList = new ArrayList<>();
         if (superClasses != null && superClasses.length > 0) {
           boolean first = true;
           for (OClass superClass : superClasses) {
@@ -120,7 +123,7 @@ public class OSchemaEmbedded extends OSchemaShared {
 
       } else {
 
-        List<OClass> superClassesList = new ArrayList<OClass>();
+        List<OClass> superClassesList = new ArrayList<>();
         if (superClasses != null && superClasses.length > 0) {
           for (OClass superClass : superClasses) {
             // Filtering for null
@@ -276,7 +279,7 @@ public class OSchemaEmbedded extends OSchemaShared {
         cmd.append(className);
         cmd.append('`');
 
-        List<OClass> superClassesList = new ArrayList<OClass>();
+        List<OClass> superClassesList = new ArrayList<>();
         if (superClasses != null && superClasses.length > 0) {
           boolean first = true;
           for (OClass superClass : superClasses) {
@@ -317,7 +320,7 @@ public class OSchemaEmbedded extends OSchemaShared {
 
         final Object res = database.command(commandSQL).execute();
       } else {
-        List<OClass> superClassesList = new ArrayList<OClass>();
+        List<OClass> superClassesList = new ArrayList<>();
         if (superClasses != null && superClasses.length > 0) {
           for (OClass superClass : superClasses) {
             if (superClass != null) {

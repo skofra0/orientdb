@@ -20,6 +20,13 @@
 
 package com.orientechnologies.orient.core.db.document;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.concurrent.Callable;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.util.OCommonConst;
@@ -59,8 +66,16 @@ import com.orientechnologies.orient.core.metadata.security.ORole;
 import com.orientechnologies.orient.core.metadata.security.ORule;
 import com.orientechnologies.orient.core.metadata.security.OToken;
 import com.orientechnologies.orient.core.metadata.security.OUser;
-import com.orientechnologies.orient.core.record.*;
-import com.orientechnologies.orient.core.record.impl.*;
+import com.orientechnologies.orient.core.record.OEdge;
+import com.orientechnologies.orient.core.record.OElement;
+import com.orientechnologies.orient.core.record.ORecord;
+import com.orientechnologies.orient.core.record.ORecordInternal;
+import com.orientechnologies.orient.core.record.OVertex;
+import com.orientechnologies.orient.core.record.impl.ODirtyManager;
+import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.orientechnologies.orient.core.record.impl.ODocumentInternal;
+import com.orientechnologies.orient.core.record.impl.OEdgeDelegate;
+import com.orientechnologies.orient.core.record.impl.OVertexDelegate;
 import com.orientechnologies.orient.core.serialization.serializer.record.ORecordSaveThreadLocal;
 import com.orientechnologies.orient.core.serialization.serializer.record.ORecordSerializerFactory;
 import com.orientechnologies.orient.core.serialization.serializer.record.binary.ORecordSerializerNetworkV37;
@@ -76,14 +91,6 @@ import com.orientechnologies.orient.core.storage.impl.local.paginated.ORecordSer
 import com.orientechnologies.orient.core.tx.OTransaction;
 import com.orientechnologies.orient.core.tx.OTransactionIndexChanges;
 import com.orientechnologies.orient.core.tx.OTransactionOptimistic;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.concurrent.Callable;
 
 /**
  * Created by tglman on 30/06/16.
@@ -604,7 +611,7 @@ public class ODatabaseDocumentRemote extends ODatabaseDocumentAbstract {
             // CREATE
             final OStorageOperationResult<OPhysicalPosition> ppos = getStorage()
                 .createRecord(rid, content, ver, recordType, modeIndex, (ORecordCallback<Long>) recordCreatedCallback);
-            operationResult = new OStorageOperationResult<Integer>(ppos.getResult().recordVersion, ppos.isMoved());
+            operationResult = new OStorageOperationResult<>(ppos.getResult().recordVersion, ppos.isMoved());
 
           } else {
             // UPDATE
@@ -703,12 +710,12 @@ public class ODatabaseDocumentRemote extends ODatabaseDocumentAbstract {
             final boolean result = getStorage().cleanOutRecord(rid, iVersion, iMode.ordinal(), null);
             if (!result && iRequired)
               throw new ORecordNotFoundException(rid);
-            operationResult = new OStorageOperationResult<Boolean>(result);
+            operationResult = new OStorageOperationResult<>(result);
           } else {
             final OStorageOperationResult<Boolean> result = getStorage().deleteRecord(rid, iVersion, iMode.ordinal(), null);
             if (!result.getResult() && iRequired)
               throw new ORecordNotFoundException(rid);
-            operationResult = new OStorageOperationResult<Boolean>(result.getResult());
+            operationResult = new OStorageOperationResult<>(result.getResult());
           }
 
           if (!operationResult.isMoved() && rec != null)

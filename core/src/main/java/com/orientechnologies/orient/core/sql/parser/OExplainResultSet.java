@@ -1,14 +1,13 @@
 package com.orientechnologies.orient.core.sql.parser;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 import com.orientechnologies.orient.core.db.ODatabaseStats;
 import com.orientechnologies.orient.core.sql.executor.OExecutionPlan;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.sql.executor.OResultInternal;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
 
 /**
  * Created by luigidellaquila on 08/07/16.

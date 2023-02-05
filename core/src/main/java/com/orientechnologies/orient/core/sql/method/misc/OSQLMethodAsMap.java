@@ -20,7 +20,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.record.impl.ODocument;
@@ -68,7 +67,7 @@ public class OSQLMethodAsMap extends OAbstractSQLMethod {
       return null;
     }
 
-    final HashMap<Object, Object> map = new HashMap<Object, Object>();
+    final HashMap<Object, Object> map = new HashMap<>();
     while (iter.hasNext()) {
       final Object key = iter.next();
       if (iter.hasNext()) {

@@ -1,13 +1,11 @@
 package com.orientechnologies.lucene.analyzer;
 
+import static com.orientechnologies.lucene.engine.OLuceneIndexEngineAbstract.RID;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.DelegatingAnalyzerWrapper;
 import org.apache.lucene.analysis.core.KeywordAnalyzer;
-
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.orientechnologies.lucene.engine.OLuceneIndexEngineAbstract.RID;
 
 /**
  * Created by frank on 10/12/15.

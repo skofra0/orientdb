@@ -1,14 +1,14 @@
 package com.orientechnologies.orient.core.sql.functions.sql;
 
+import org.junit.Assert;
+import org.junit.Test;
+import java.util.ArrayList;
 import com.orientechnologies.orient.core.command.OBasicCommandContext;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.metadata.function.OFunction;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.query.OLegacyResultSet;
-import org.junit.Assert; import org.junit.Test;
-
-import java.util.ArrayList;
 
 /**
  * Created by Enrico Risa on 07/04/15.

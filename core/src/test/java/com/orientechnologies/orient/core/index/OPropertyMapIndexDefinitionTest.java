@@ -1,21 +1,26 @@
 package com.orientechnologies.orient.core.index;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.db.record.OMultiValueChangeEvent;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.*;
 
 /**
  * @author LomakiA <a href="mailto:a.lomakin@orientechnologies.com">Andrey Lomakin</a>
  * @since 20.12.11
  */
 public class OPropertyMapIndexDefinitionTest {
-  private final Map<String, Integer> mapToTest = new HashMap<String, Integer>();
+  private final Map<String, Integer> mapToTest = new HashMap<>();
   private OPropertyMapIndexDefinition propertyIndexByKey;
   private OPropertyMapIndexDefinition propertyIndexByValue;
   private OPropertyMapIndexDefinition propertyIndexByIntegerKey;
@@ -272,17 +277,17 @@ public class OPropertyMapIndexDefinitionTest {
 
   @Test
   public void testProcessChangeEventAddKey() {
-    final Map<Object, Integer> keysToAdd = new HashMap<Object, Integer>();
-    final Map<Object, Integer> keysToRemove = new HashMap<Object, Integer>();
-    final OMultiValueChangeEvent<String, String> multiValueChangeEvent = new OMultiValueChangeEvent<String, String>(
+    final Map<Object, Integer> keysToAdd = new HashMap<>();
+    final Map<Object, Integer> keysToRemove = new HashMap<>();
+    final OMultiValueChangeEvent<String, String> multiValueChangeEvent = new OMultiValueChangeEvent<>(
         OMultiValueChangeEvent.OChangeType.ADD, "key1", "value1");
 
     propertyIndexByKey.processChangeEvent(multiValueChangeEvent, keysToAdd, keysToRemove);
 
-    final Map<Object, Integer> addedKeys = new HashMap<Object, Integer>();
+    final Map<Object, Integer> addedKeys = new HashMap<>();
     addedKeys.put("key1", 1);
 
-    final Map<Object, Integer> removedKeys = new HashMap<Object, Integer>();
+    final Map<Object, Integer> removedKeys = new HashMap<>();
 
     Assert.assertEquals(keysToAdd, addedKeys);
     Assert.assertEquals(keysToRemove, removedKeys);
@@ -290,17 +295,17 @@ public class OPropertyMapIndexDefinitionTest {
 
   @Test
   public void testProcessChangeEventAddKeyWithConversion() {
-    final Map<Object, Integer> keysToAdd = new HashMap<Object, Integer>();
-    final Map<Object, Integer> keysToRemove = new HashMap<Object, Integer>();
-    final OMultiValueChangeEvent<String, String> multiValueChangeEvent = new OMultiValueChangeEvent<String, String>(
+    final Map<Object, Integer> keysToAdd = new HashMap<>();
+    final Map<Object, Integer> keysToRemove = new HashMap<>();
+    final OMultiValueChangeEvent<String, String> multiValueChangeEvent = new OMultiValueChangeEvent<>(
         OMultiValueChangeEvent.OChangeType.ADD, "12", "value1");
 
     propertyIndexByIntegerKey.processChangeEvent(multiValueChangeEvent, keysToAdd, keysToRemove);
 
-    final Map<Object, Integer> addedKeys = new HashMap<Object, Integer>();
+    final Map<Object, Integer> addedKeys = new HashMap<>();
     addedKeys.put(12, 1);
 
-    final Map<Object, Integer> removedKeys = new HashMap<Object, Integer>();
+    final Map<Object, Integer> removedKeys = new HashMap<>();
 
     Assert.assertEquals(keysToAdd, addedKeys);
     Assert.assertEquals(keysToRemove, removedKeys);
@@ -308,17 +313,17 @@ public class OPropertyMapIndexDefinitionTest {
 
   @Test
   public void testProcessChangeEventAddValue() {
-    final Map<Object, Integer> keysToAdd = new HashMap<Object, Integer>();
-    final Map<Object, Integer> keysToRemove = new HashMap<Object, Integer>();
-    final OMultiValueChangeEvent<String, Integer> multiValueChangeEvent = new OMultiValueChangeEvent<String, Integer>(
+    final Map<Object, Integer> keysToAdd = new HashMap<>();
+    final Map<Object, Integer> keysToRemove = new HashMap<>();
+    final OMultiValueChangeEvent<String, Integer> multiValueChangeEvent = new OMultiValueChangeEvent<>(
         OMultiValueChangeEvent.OChangeType.ADD, "key1", 42);
 
     propertyIndexByValue.processChangeEvent(multiValueChangeEvent, keysToAdd, keysToRemove);
 
-    final Map<Object, Integer> addedKeys = new HashMap<Object, Integer>();
+    final Map<Object, Integer> addedKeys = new HashMap<>();
     addedKeys.put(42, 1);
 
-    final Map<Object, Integer> removedKeys = new HashMap<Object, Integer>();
+    final Map<Object, Integer> removedKeys = new HashMap<>();
 
     Assert.assertEquals(keysToAdd, addedKeys);
     Assert.assertEquals(keysToRemove, removedKeys);
@@ -326,17 +331,17 @@ public class OPropertyMapIndexDefinitionTest {
 
   @Test
   public void testProcessChangeEventAddValueWithConversion() {
-    final Map<Object, Integer> keysToAdd = new HashMap<Object, Integer>();
-    final Map<Object, Integer> keysToRemove = new HashMap<Object, Integer>();
-    final OMultiValueChangeEvent<String, String> multiValueChangeEvent = new OMultiValueChangeEvent<String, String>(
+    final Map<Object, Integer> keysToAdd = new HashMap<>();
+    final Map<Object, Integer> keysToRemove = new HashMap<>();
+    final OMultiValueChangeEvent<String, String> multiValueChangeEvent = new OMultiValueChangeEvent<>(
         OMultiValueChangeEvent.OChangeType.ADD, "12", "42");
 
     propertyIndexByValue.processChangeEvent(multiValueChangeEvent, keysToAdd, keysToRemove);
 
-    final Map<Object, Integer> addedKeys = new HashMap<Object, Integer>();
+    final Map<Object, Integer> addedKeys = new HashMap<>();
     addedKeys.put(42, 1);
 
-    final Map<Object, Integer> removedKeys = new HashMap<Object, Integer>();
+    final Map<Object, Integer> removedKeys = new HashMap<>();
 
     Assert.assertEquals(keysToAdd, addedKeys);
     Assert.assertEquals(keysToRemove, removedKeys);
@@ -344,15 +349,15 @@ public class OPropertyMapIndexDefinitionTest {
 
   @Test
   public void testProcessChangeEventRemoveKey() {
-    final Map<Object, Integer> keysToAdd = new HashMap<Object, Integer>();
-    final Map<Object, Integer> keysToRemove = new HashMap<Object, Integer>();
-    final OMultiValueChangeEvent<String, String> multiValueChangeEvent = new OMultiValueChangeEvent<String, String>(
+    final Map<Object, Integer> keysToAdd = new HashMap<>();
+    final Map<Object, Integer> keysToRemove = new HashMap<>();
+    final OMultiValueChangeEvent<String, String> multiValueChangeEvent = new OMultiValueChangeEvent<>(
         OMultiValueChangeEvent.OChangeType.REMOVE, "key1", "value1");
 
     propertyIndexByKey.processChangeEvent(multiValueChangeEvent, keysToAdd, keysToRemove);
 
-    final Map<Object, Integer> addedKeys = new HashMap<Object, Integer>();
-    final Map<Object, Integer> removedKeys = new HashMap<Object, Integer>();
+    final Map<Object, Integer> addedKeys = new HashMap<>();
+    final Map<Object, Integer> removedKeys = new HashMap<>();
     removedKeys.put("key1", 1);
 
     Assert.assertEquals(keysToAdd, addedKeys);
@@ -361,16 +366,16 @@ public class OPropertyMapIndexDefinitionTest {
 
   @Test
   public void testProcessChangeEventRemoveKeyWithConversion() {
-    final Map<Object, Integer> keysToAdd = new HashMap<Object, Integer>();
-    final Map<Object, Integer> keysToRemove = new HashMap<Object, Integer>();
-    final OMultiValueChangeEvent<String, String> multiValueChangeEvent = new OMultiValueChangeEvent<String, String>(
+    final Map<Object, Integer> keysToAdd = new HashMap<>();
+    final Map<Object, Integer> keysToRemove = new HashMap<>();
+    final OMultiValueChangeEvent<String, String> multiValueChangeEvent = new OMultiValueChangeEvent<>(
         OMultiValueChangeEvent.OChangeType.REMOVE, "12", "value1");
 
     propertyIndexByIntegerKey.processChangeEvent(multiValueChangeEvent, keysToAdd, keysToRemove);
 
-    final Map<Object, Integer> addedKeys = new HashMap<Object, Integer>();
+    final Map<Object, Integer> addedKeys = new HashMap<>();
 
-    final Map<Object, Integer> removedKeys = new HashMap<Object, Integer>();
+    final Map<Object, Integer> removedKeys = new HashMap<>();
     removedKeys.put(12, 1);
 
     Assert.assertEquals(keysToAdd, addedKeys);
@@ -379,15 +384,15 @@ public class OPropertyMapIndexDefinitionTest {
 
   @Test
   public void testProcessChangeEventRemoveValue() {
-    final Map<Object, Integer> keysToAdd = new HashMap<Object, Integer>();
-    final Map<Object, Integer> keysToRemove = new HashMap<Object, Integer>();
-    final OMultiValueChangeEvent<String, Integer> multiValueChangeEvent = new OMultiValueChangeEvent<String, Integer>(
+    final Map<Object, Integer> keysToAdd = new HashMap<>();
+    final Map<Object, Integer> keysToRemove = new HashMap<>();
+    final OMultiValueChangeEvent<String, Integer> multiValueChangeEvent = new OMultiValueChangeEvent<>(
         OMultiValueChangeEvent.OChangeType.REMOVE, "key1", null, 42);
 
     propertyIndexByValue.processChangeEvent(multiValueChangeEvent, keysToAdd, keysToRemove);
 
-    final Map<Object, Integer> addedKeys = new HashMap<Object, Integer>();
-    final Map<Object, Integer> removedKeys = new HashMap<Object, Integer>();
+    final Map<Object, Integer> addedKeys = new HashMap<>();
+    final Map<Object, Integer> removedKeys = new HashMap<>();
     removedKeys.put(42, 1);
 
     Assert.assertEquals(keysToAdd, addedKeys);
@@ -396,15 +401,15 @@ public class OPropertyMapIndexDefinitionTest {
 
   @Test
   public void testProcessChangeEventRemoveValueWithConversion() {
-    final Map<Object, Integer> keysToAdd = new HashMap<Object, Integer>();
-    final Map<Object, Integer> keysToRemove = new HashMap<Object, Integer>();
-    final OMultiValueChangeEvent<String, String> multiValueChangeEvent = new OMultiValueChangeEvent<String, String>(
+    final Map<Object, Integer> keysToAdd = new HashMap<>();
+    final Map<Object, Integer> keysToRemove = new HashMap<>();
+    final OMultiValueChangeEvent<String, String> multiValueChangeEvent = new OMultiValueChangeEvent<>(
         OMultiValueChangeEvent.OChangeType.REMOVE, "12", null, "42");
 
     propertyIndexByValue.processChangeEvent(multiValueChangeEvent, keysToAdd, keysToRemove);
 
-    final Map<Object, Integer> addedKeys = new HashMap<Object, Integer>();
-    final Map<Object, Integer> removedKeys = new HashMap<Object, Integer>();
+    final Map<Object, Integer> addedKeys = new HashMap<>();
+    final Map<Object, Integer> removedKeys = new HashMap<>();
     removedKeys.put(42, 1);
 
     Assert.assertEquals(keysToAdd, addedKeys);
@@ -413,9 +418,9 @@ public class OPropertyMapIndexDefinitionTest {
 
   @Test
   public void testProcessChangeEventUpdateKey() {
-    final Map<Object, Integer> keysToAdd = new HashMap<Object, Integer>();
-    final Map<Object, Integer> keysToRemove = new HashMap<Object, Integer>();
-    final OMultiValueChangeEvent<String, Integer> multiValueChangeEvent = new OMultiValueChangeEvent<String, Integer>(
+    final Map<Object, Integer> keysToAdd = new HashMap<>();
+    final Map<Object, Integer> keysToRemove = new HashMap<>();
+    final OMultiValueChangeEvent<String, Integer> multiValueChangeEvent = new OMultiValueChangeEvent<>(
         OMultiValueChangeEvent.OChangeType.UPDATE, "key1", 42);
 
     propertyIndexByKey.processChangeEvent(multiValueChangeEvent, keysToAdd, keysToRemove);
@@ -425,17 +430,17 @@ public class OPropertyMapIndexDefinitionTest {
 
   @Test
   public void testProcessChangeEventUpdateValue() {
-    final Map<Object, Integer> keysToAdd = new HashMap<Object, Integer>();
-    final Map<Object, Integer> keysToRemove = new HashMap<Object, Integer>();
-    final OMultiValueChangeEvent<String, Integer> multiValueChangeEvent = new OMultiValueChangeEvent<String, Integer>(
+    final Map<Object, Integer> keysToAdd = new HashMap<>();
+    final Map<Object, Integer> keysToRemove = new HashMap<>();
+    final OMultiValueChangeEvent<String, Integer> multiValueChangeEvent = new OMultiValueChangeEvent<>(
         OMultiValueChangeEvent.OChangeType.UPDATE, "key1", 41, 42);
 
     propertyIndexByValue.processChangeEvent(multiValueChangeEvent, keysToAdd, keysToRemove);
 
-    final Map<Object, Integer> addedKeys = new HashMap<Object, Integer>();
+    final Map<Object, Integer> addedKeys = new HashMap<>();
     addedKeys.put(41, 1);
 
-    final Map<Object, Integer> removedKeys = new HashMap<Object, Integer>();
+    final Map<Object, Integer> removedKeys = new HashMap<>();
     removedKeys.put(42, 1);
 
     Assert.assertEquals(keysToAdd, addedKeys);
@@ -444,17 +449,17 @@ public class OPropertyMapIndexDefinitionTest {
 
   @Test
   public void testProcessChangeEventUpdateValueWithConversion() {
-    final Map<Object, Integer> keysToAdd = new HashMap<Object, Integer>();
-    final Map<Object, Integer> keysToRemove = new HashMap<Object, Integer>();
-    final OMultiValueChangeEvent<String, String> multiValueChangeEvent = new OMultiValueChangeEvent<String, String>(
+    final Map<Object, Integer> keysToAdd = new HashMap<>();
+    final Map<Object, Integer> keysToRemove = new HashMap<>();
+    final OMultiValueChangeEvent<String, String> multiValueChangeEvent = new OMultiValueChangeEvent<>(
         OMultiValueChangeEvent.OChangeType.UPDATE, "12", "42", "41");
 
     propertyIndexByValue.processChangeEvent(multiValueChangeEvent, keysToAdd, keysToRemove);
 
-    final Map<Object, Integer> addedKeys = new HashMap<Object, Integer>();
+    final Map<Object, Integer> addedKeys = new HashMap<>();
     addedKeys.put(42, 1);
 
-    final Map<Object, Integer> removedKeys = new HashMap<Object, Integer>();
+    final Map<Object, Integer> removedKeys = new HashMap<>();
     removedKeys.put(41, 1);
 
     Assert.assertEquals(keysToAdd, addedKeys);

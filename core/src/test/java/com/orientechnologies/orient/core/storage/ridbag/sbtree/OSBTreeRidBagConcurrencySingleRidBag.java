@@ -1,5 +1,20 @@
 package com.orientechnologies.orient.core.storage.ridbag.sbtree;
 
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.atomic.AtomicInteger;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
@@ -9,22 +24,11 @@ import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.intent.OIntentMassiveInsert;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class OSBTreeRidBagConcurrencySingleRidBag {
   public static final String                      URL             = "plocal:target/testdb/OSBTreeRidBagConcurrencySingleRidBag";
   private final       AtomicInteger               positionCounter = new AtomicInteger();
-  private final       ConcurrentSkipListSet<ORID> ridTree         = new ConcurrentSkipListSet<ORID>();
+  private final       ConcurrentSkipListSet<ORID> ridTree         = new ConcurrentSkipListSet<>();
   private final       CountDownLatch              latch           = new CountDownLatch(1);
   private ORID docContainerRid;
   private          ExecutorService threadExecutor = Executors.newCachedThreadPool();
@@ -74,7 +78,7 @@ public class OSBTreeRidBagConcurrencySingleRidBag {
 
     docContainerRid = document.getIdentity();
 
-    List<Future<Void>> futures = new ArrayList<Future<Void>>();
+    List<Future<Void>> futures = new ArrayList<>();
 
     for (int i = 0; i < 5; i++)
       futures.add(threadExecutor.submit(new RidAdder(i)));
@@ -123,7 +127,7 @@ public class OSBTreeRidBagConcurrencySingleRidBag {
 
       try {
         while (cont) {
-          List<ORID> ridsToAdd = new ArrayList<ORID>();
+          List<ORID> ridsToAdd = new ArrayList<>();
           for (int i = 0; i < 10; i++) {
             ridsToAdd.add(new ORecordId(0, positionCounter.incrementAndGet()));
           }
@@ -183,7 +187,7 @@ public class OSBTreeRidBagConcurrencySingleRidBag {
             ORidBag ridBag = document.field("ridBag");
             Iterator<OIdentifiable> iterator = ridBag.iterator();
 
-            List<ORID> ridsToDelete = new ArrayList<ORID>();
+            List<ORID> ridsToDelete = new ArrayList<>();
             int counter = 0;
             while (iterator.hasNext()) {
               OIdentifiable identifiable = iterator.next();

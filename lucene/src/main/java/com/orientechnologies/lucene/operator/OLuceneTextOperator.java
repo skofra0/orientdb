@@ -16,6 +16,15 @@
 
 package com.orientechnologies.lucene.operator;
 
+import org.apache.lucene.index.IndexableField;
+import org.apache.lucene.index.memory.MemoryIndex;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.lucene.collections.OLuceneCompositeKey;
 import com.orientechnologies.lucene.index.OLuceneFullTextIndex;
@@ -39,11 +48,6 @@ import com.orientechnologies.orient.core.sql.filter.OSQLFilterItemField;
 import com.orientechnologies.orient.core.sql.operator.OIndexReuseType;
 import com.orientechnologies.orient.core.sql.operator.OQueryTargetOperator;
 import com.orientechnologies.orient.core.sql.parser.ParseException;
-import org.apache.lucene.index.IndexableField;
-import org.apache.lucene.index.memory.MemoryIndex;
-
-import java.io.IOException;
-import java.util.*;
 
 public class OLuceneTextOperator extends OQueryTargetOperator {
 
@@ -179,9 +183,9 @@ public class OLuceneTextOperator extends OQueryTargetOperator {
     if (iLeft.size() == 1) {
       return new ArrayList<Object>(collection);
     }
-    List<Object> transformed = new ArrayList<Object>(collection.size());
+    List<Object> transformed = new ArrayList<>(collection.size());
     for (Object o : collection) {
-      List<Object> objects = new ArrayList<Object>();
+      List<Object> objects = new ArrayList<>();
       //  [[],val]
       if (collectionIndex == 0) {
         objects.add(o);
@@ -258,7 +262,7 @@ public class OLuceneTextOperator extends OQueryTargetOperator {
     if (left instanceof Collection) {
       Collection<OSQLFilterItemField> f = (Collection<OSQLFilterItemField>) left;
 
-      List<String> fields = new ArrayList<String>();
+      List<String> fields = new ArrayList<>();
       for (OSQLFilterItemField field : f) {
         fields.add(field.toString());
       }

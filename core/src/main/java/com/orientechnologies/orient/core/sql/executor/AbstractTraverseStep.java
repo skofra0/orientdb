@@ -1,14 +1,17 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 import com.orientechnologies.common.concur.OTimeoutException;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.sql.parser.OInteger;
 import com.orientechnologies.orient.core.sql.parser.OTraverseProjectionItem;
 import com.orientechnologies.orient.core.sql.parser.OWhereClause;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Created by luigidellaquila on 26/10/16.
@@ -91,7 +94,7 @@ public abstract class AbstractTraverseStep extends AbstractExecutionStep {
 
   private void fetchNextBlock(OCommandContext ctx, int nRecords) {
     if (this.entryPoints == null) {
-      this.entryPoints = new ArrayList<OResult>();
+      this.entryPoints = new ArrayList<>();
     }
     if (!this.results.isEmpty()) {
       return;

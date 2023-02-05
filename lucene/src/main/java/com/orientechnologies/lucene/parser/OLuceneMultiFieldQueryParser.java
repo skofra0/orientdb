@@ -1,8 +1,5 @@
 package com.orientechnologies.lucene.parser;
 
-import com.orientechnologies.common.log.OLogManager;
-import com.orientechnologies.lucene.builder.OLuceneDateTools;
-import com.orientechnologies.orient.core.metadata.schema.OType;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.DoublePoint;
 import org.apache.lucene.document.FloatPoint;
@@ -12,10 +9,11 @@ import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.search.BoostQuery;
 import org.apache.lucene.search.Query;
-import org.apache.lucene.search.TermQuery;
-
 import java.util.Map;
 import java.util.Optional;
+import com.orientechnologies.common.log.OLogManager;
+import com.orientechnologies.lucene.builder.OLuceneDateTools;
+import com.orientechnologies.orient.core.metadata.schema.OType;
 
 /**
  * Created by frank on 13/12/2016.

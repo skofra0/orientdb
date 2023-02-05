@@ -20,20 +20,6 @@
 
 package com.orientechnologies.common.profiler;
 
-import com.orientechnologies.common.concur.resource.OSharedResourceAbstract;
-import com.orientechnologies.common.io.OFileUtils;
-import com.orientechnologies.common.log.OLogManager;
-import com.orientechnologies.common.util.OPair;
-import com.orientechnologies.orient.core.OOrientStartupListener;
-import com.orientechnologies.orient.core.Orient;
-import com.orientechnologies.orient.core.config.OGlobalConfiguration;
-import com.orientechnologies.orient.core.storage.OStorage;
-import com.orientechnologies.orient.core.storage.cache.OReadCache;
-import com.orientechnologies.orient.core.storage.cache.OWriteCache;
-import com.orientechnologies.orient.core.storage.disk.OLocalPaginatedStorage;
-
-import javax.management.MBeanServer;
-import javax.management.ObjectName;
 import java.io.File;
 import java.io.PrintStream;
 import java.lang.management.ManagementFactory;
@@ -48,16 +34,29 @@ import java.util.Map.Entry;
 import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
+import javax.management.MBeanServer;
+import javax.management.ObjectName;
+import com.orientechnologies.common.concur.resource.OSharedResourceAbstract;
+import com.orientechnologies.common.io.OFileUtils;
+import com.orientechnologies.common.log.OLogManager;
+import com.orientechnologies.common.util.OPair;
+import com.orientechnologies.orient.core.OOrientStartupListener;
+import com.orientechnologies.orient.core.Orient;
+import com.orientechnologies.orient.core.config.OGlobalConfiguration;
+import com.orientechnologies.orient.core.storage.OStorage;
+import com.orientechnologies.orient.core.storage.cache.OReadCache;
+import com.orientechnologies.orient.core.storage.cache.OWriteCache;
+import com.orientechnologies.orient.core.storage.disk.OLocalPaginatedStorage;
 
 public abstract class OAbstractProfiler extends OSharedResourceAbstract
     implements OProfiler, OOrientStartupListener, OProfilerMXBean {
 
-  protected final Map<String, OProfilerHookRuntime>      hooks         = new ConcurrentHashMap<String, OProfilerHookRuntime>();
-  protected final ConcurrentHashMap<String, String>      dictionary    = new ConcurrentHashMap<String, String>();
-  protected final ConcurrentHashMap<String, METRIC_TYPE> types         = new ConcurrentHashMap<String, METRIC_TYPE>();
+  protected final Map<String, OProfilerHookRuntime>      hooks         = new ConcurrentHashMap<>();
+  protected final ConcurrentHashMap<String, String>      dictionary    = new ConcurrentHashMap<>();
+  protected final ConcurrentHashMap<String, METRIC_TYPE> types         = new ConcurrentHashMap<>();
   protected       long                                   recordingFrom = -1;
   protected       TimerTask                              autoDumpTask;
-  protected       List<OProfilerListener>                listeners     = new ArrayList<OProfilerListener>();
+  protected       List<OProfilerListener>                listeners     = new ArrayList<>();
 
   private static long statsCreateRecords = 0;
   private static long statsReadRecords   = 0;
@@ -440,15 +439,15 @@ public abstract class OAbstractProfiler extends OSharedResourceAbstract
 
   @Override
   public Map<String, OPair<String, METRIC_TYPE>> getMetadata() {
-    final Map<String, OPair<String, METRIC_TYPE>> metadata = new HashMap<String, OPair<String, METRIC_TYPE>>();
+    final Map<String, OPair<String, METRIC_TYPE>> metadata = new HashMap<>();
     for (Entry<String, String> entry : dictionary.entrySet())
-      metadata.put(entry.getKey(), new OPair<String, METRIC_TYPE>(entry.getValue(), types.get(entry.getKey())));
+      metadata.put(entry.getKey(), new OPair<>(entry.getValue(), types.get(entry.getKey())));
     return metadata;
   }
 
   @Override
   public String[] getHookAsString() {
-    final List<String> keys = new ArrayList<String>(hooks.keySet());
+    final List<String> keys = new ArrayList<>(hooks.keySet());
     final String[] array = new String[keys.size()];
     return keys.toArray(array);
   }

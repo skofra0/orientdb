@@ -19,6 +19,9 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.common.io.OIOUtils;
 import com.orientechnologies.orient.core.command.OCommandRequest;
 import com.orientechnologies.orient.core.command.OCommandRequestText;
@@ -27,10 +30,6 @@ import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 import com.orientechnologies.orient.core.metadata.function.OFunction;
 import com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * SQL CREATE FUNCTION command.
@@ -74,7 +73,7 @@ public class OCommandExecutorSQLCreateFunction extends OCommandExecutorSQLAbstra
           language = parserGetLastWord();
         } else if (temp.equals("PARAMETERS")) {
           parserNextWord(false);
-          parameters = new ArrayList<String>();
+          parameters = new ArrayList<>();
           OStringSerializerHelper.getCollection(parserGetLastWord(), 0, parameters);
           if (parameters.size() == 0)
             throw new OCommandExecutionException("Syntax Error. Missing function parameter(s): " + getSyntax());

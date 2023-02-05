@@ -17,13 +17,12 @@
  */
 package com.orientechnologies.spatial.functions;
 
+import org.junit.Assert;
+import org.junit.Test;
+import java.util.List;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.spatial.BaseSpatialLuceneTest;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.util.List;
 
 /**
  * Created by Enrico Risa on 28/09/15.

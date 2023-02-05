@@ -19,13 +19,11 @@
  */
 package com.orientechnologies.common.concur.resource;
 
-import com.orientechnologies.common.exception.OException;
-import com.orientechnologies.orient.core.exception.OStorageException;
-import com.orientechnologies.orient.core.exception.ODatabaseException;
-
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
+import com.orientechnologies.common.exception.OException;
+import com.orientechnologies.orient.core.exception.ODatabaseException;
 
 /**
  * Shared container that works with callbacks like closures. If the resource implements the {@link OSharedResource} interface then
@@ -36,7 +34,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @SuppressWarnings("unchecked")
 public class OSharedContainerImpl implements OSharedContainer {
-  protected Map<String, Object> sharedResources = new ConcurrentHashMap<String, Object>();
+  protected Map<String, Object> sharedResources = new ConcurrentHashMap<>();
 
   public boolean existsResource(final String iName) {
     // BYPASS THE SYNCHRONIZED BLOCK BECAUSE THE MAP IS ALREADY SYNCHRONIZED

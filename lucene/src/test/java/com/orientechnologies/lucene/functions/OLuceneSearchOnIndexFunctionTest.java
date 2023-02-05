@@ -1,14 +1,12 @@
 package com.orientechnologies.lucene.functions;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.Before;
+import org.junit.Test;
+import java.io.InputStream;
 import com.orientechnologies.lucene.test.BaseLuceneTest;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.io.InputStream;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Created by frank on 15/01/2017.

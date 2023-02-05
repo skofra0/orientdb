@@ -1,5 +1,15 @@
 package com.orientechnologies.orient.core.sql.executor;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import com.orientechnologies.common.util.OPair;
 import com.orientechnologies.orient.core.command.OBasicCommandContext;
 import com.orientechnologies.orient.core.command.OCommandContext;
@@ -30,16 +40,6 @@ import com.orientechnologies.orient.core.sql.parser.OSkip;
 import com.orientechnologies.orient.core.sql.parser.OUnwind;
 import com.orientechnologies.orient.core.sql.parser.OWhereClause;
 import com.orientechnologies.orient.core.sql.parser.Pattern;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Created by luigidellaquila on 20/09/16.
@@ -316,7 +316,7 @@ public class OMatchExecutionPlanner {
     Collections.sort(rootWeights);
 
     // Add the starting vertices, in the correct order, to an ordered set.
-    Set<String> remainingStarts = new LinkedHashSet<String>();
+    Set<String> remainingStarts = new LinkedHashSet<>();
     for (OPair<Long, String> item : rootWeights) {
       remainingStarts.add(item.getValue());
     }
@@ -331,7 +331,7 @@ public class OMatchExecutionPlanner {
       // Start a new depth-first pass, adding all nodes with satisfied dependencies.
       // 1. Find a starting vertex for the depth-first pass.
       PatternNode startingNode = null;
-      List<String> startsToRemove = new ArrayList<String>();
+      List<String> startsToRemove = new ArrayList<>();
       for (String currentAlias : remainingStarts) {
         PatternNode currentNode = pattern.aliasToNode.get(currentAlias);
 
@@ -406,7 +406,7 @@ public class OMatchExecutionPlanner {
       dependencies.remove(startNode.alias);
     }
 
-    Map<PatternEdge, Boolean> edges = new LinkedHashMap<PatternEdge, Boolean>();
+    Map<PatternEdge, Boolean> edges = new LinkedHashMap<>();
     for (PatternEdge outEdge : startNode.out) {
       edges.put(outEdge, true);
     }
@@ -497,10 +497,10 @@ public class OMatchExecutionPlanner {
    * @return map of alias to the set of aliases it depends on
    */
   private Map<String, Set<String>> getDependencies(Pattern pattern) {
-    Map<String, Set<String>> result = new HashMap<String, Set<String>>();
+    Map<String, Set<String>> result = new HashMap<>();
 
     for (PatternNode node : pattern.aliasToNode.values()) {
-      Set<String> currentDependencies = new HashSet<String>();
+      Set<String> currentDependencies = new HashSet<>();
 
       OWhereClause filter = aliasFilters.get(node.alias);
       if (filter != null && filter.getBaseExpression() != null) {
@@ -736,7 +736,7 @@ public class OMatchExecutionPlanner {
 
   private Map<String, Long> estimateRootEntries(Map<String, String> aliasClasses, Map<String, String> aliasClusters,
                                                 Map<String, ORid> aliasRids, Map<String, OWhereClause> aliasFilters, OCommandContext ctx) {
-    Set<String> allAliases = new LinkedHashSet<String>();
+    Set<String> allAliases = new LinkedHashSet<>();
     allAliases.addAll(aliasClasses.keySet());
     allAliases.addAll(aliasFilters.keySet());
     allAliases.addAll(aliasClusters.keySet());
@@ -744,7 +744,7 @@ public class OMatchExecutionPlanner {
 
     OSchema schema = ctx.getDatabase().getMetadata().getSchema();
 
-    Map<String, Long> result = new LinkedHashMap<String, Long>();
+    Map<String, Long> result = new LinkedHashMap<>();
     for (String alias : allAliases) {
       ORid rid = aliasRids.get(alias);
       if (rid != null) {

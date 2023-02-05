@@ -19,13 +19,12 @@
  */
 package com.orientechnologies.orient.core.metadata.schema;
 
-import com.orientechnologies.orient.core.id.ORID;
-import com.orientechnologies.orient.core.metadata.schema.clusterselection.OClusterSelectionFactory;
-import com.orientechnologies.orient.core.type.ODocumentWrapper;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
+import com.orientechnologies.orient.core.id.ORID;
+import com.orientechnologies.orient.core.metadata.schema.clusterselection.OClusterSelectionFactory;
+import com.orientechnologies.orient.core.type.ODocumentWrapper;
 
 public interface OSchema {
 

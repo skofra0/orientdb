@@ -1,12 +1,16 @@
 package com.orientechnologies.orient.core.metadata.schema;
 
-import org.junit.Test;
-
-import java.math.BigDecimal;
-import java.util.*;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import org.junit.Test;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Test the covert method of the OType class.
@@ -21,7 +25,7 @@ public class OTypeConvertTest {
 
   @Test
   public void testSameType() {
-    ArrayList<Object> aList = new ArrayList<Object>();
+    ArrayList<Object> aList = new ArrayList<>();
     aList.add(1);
     aList.add("2");
     Object result = OType.convert(aList, ArrayList.class);
@@ -31,7 +35,7 @@ public class OTypeConvertTest {
 
   @Test
   public void testAssignableType() {
-    ArrayList<Object> aList = new ArrayList<Object>();
+    ArrayList<Object> aList = new ArrayList<>();
     aList.add(1);
     aList.add("2");
     Object result = OType.convert(aList, List.class);
@@ -347,7 +351,7 @@ public class OTypeConvertTest {
 
   @Test
   public void testToSetFromSet() {
-    HashSet<Object> set = new HashSet<Object>();
+    HashSet<Object> set = new HashSet<>();
     set.add(1);
     set.add("2");
     Object result = OType.convert(set, Set.class);
@@ -356,13 +360,13 @@ public class OTypeConvertTest {
 
   @Test
   public void testToSetFromCollection() {
-    ArrayList<Object> list = new ArrayList<Object>();
+    ArrayList<Object> list = new ArrayList<>();
     list.add(1);
     list.add("2");
 
     Object result = OType.convert(list, Set.class);
 
-    HashSet<Object> expected = new HashSet<Object>();
+    HashSet<Object> expected = new HashSet<>();
     expected.add(1);
     expected.add("2");
     assertEquals(result, expected);
@@ -370,7 +374,7 @@ public class OTypeConvertTest {
 
   @Test
   public void testToSetFromNonCollection() {
-    HashSet<Object> set = new HashSet<Object>();
+    HashSet<Object> set = new HashSet<>();
     set.add(1);
     Object result = OType.convert(1, Set.class);
     assertEquals(result, set);
@@ -382,7 +386,7 @@ public class OTypeConvertTest {
 
   @Test
   public void testToListFromList() {
-    ArrayList<Object> list = new ArrayList<Object>();
+    ArrayList<Object> list = new ArrayList<>();
     list.add(1);
     list.add("2");
     Object result = OType.convert(list, List.class);
@@ -391,7 +395,7 @@ public class OTypeConvertTest {
 
   @Test
   public void testToListFromCollection() {
-    HashSet<Object> set = new HashSet<Object>();
+    HashSet<Object> set = new HashSet<>();
     set.add(1);
     set.add("2");
 
@@ -404,7 +408,7 @@ public class OTypeConvertTest {
 
   @Test
   public void testToListFromNonCollection() {
-    ArrayList<Object> expected = new ArrayList<Object>();
+    ArrayList<Object> expected = new ArrayList<>();
     expected.add(1);
     Object result = OType.convert(1, List.class);
     assertEquals(result, expected);
@@ -416,7 +420,7 @@ public class OTypeConvertTest {
 
   @Test
   public void testToCollectionFromList() {
-    ArrayList<Object> list = new ArrayList<Object>();
+    ArrayList<Object> list = new ArrayList<>();
     list.add(1);
     list.add("2");
     Object result = OType.convert(list, Collection.class);
@@ -425,7 +429,7 @@ public class OTypeConvertTest {
 
   @Test
   public void testToCollectionFromCollection() {
-    HashSet<Object> set = new HashSet<Object>();
+    HashSet<Object> set = new HashSet<>();
     set.add(1);
     set.add("2");
 

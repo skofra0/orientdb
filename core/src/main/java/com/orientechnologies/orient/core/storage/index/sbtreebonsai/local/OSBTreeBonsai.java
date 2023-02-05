@@ -20,6 +20,9 @@
 
 package com.orientechnologies.orient.core.storage.index.sbtreebonsai.local;
 
+import java.io.IOException;
+import java.util.Collection;
+import java.util.Map;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.orient.core.storage.cache.OReadCache;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperation;
@@ -27,10 +30,6 @@ import com.orientechnologies.orient.core.storage.index.sbtree.OTreeInternal;
 import com.orientechnologies.orient.core.storage.index.sbtree.local.OSBTree;
 import com.orientechnologies.orient.core.storage.ridbag.sbtree.Change;
 import com.orientechnologies.orient.core.storage.ridbag.sbtree.OBonsaiCollectionPointer;
-
-import java.io.IOException;
-import java.util.Collection;
-import java.util.Map;
 
 /**
  * The tree that have similar structure to {@link OSBTree} and designed to store small entries. <br>

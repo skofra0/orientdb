@@ -19,18 +19,16 @@
  */
 package com.orientechnologies.orient.core.command.traverse;
 
-import com.orientechnologies.common.concur.lock.OInterruptedException;
-import com.orientechnologies.orient.core.command.OCommand;
-import com.orientechnologies.orient.core.command.OCommandExecutorAbstract;
-import com.orientechnologies.orient.core.command.OCommandPredicate;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.exception.OCommandExecutionException;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import com.orientechnologies.common.concur.lock.OInterruptedException;
+import com.orientechnologies.orient.core.command.OCommand;
+import com.orientechnologies.orient.core.command.OCommandExecutorAbstract;
+import com.orientechnologies.orient.core.command.OCommandPredicate;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
 
 /**
  * Base class for traversing.
@@ -40,7 +38,7 @@ import java.util.List;
 public class OTraverse implements OCommand, Iterable<OIdentifiable>, Iterator<OIdentifiable> {
   private OCommandPredicate                 predicate;
   private Iterator<? extends OIdentifiable> target;
-  private List<Object>                      fields      = new ArrayList<Object>();
+  private List<Object>                      fields      = new ArrayList<>();
   private long                              resultCount = 0;
   private long                              limit       = 0;
   private OIdentifiable                     lastTraversed;
@@ -59,7 +57,7 @@ public class OTraverse implements OCommand, Iterable<OIdentifiable>, Iterator<OI
    * @see com.orientechnologies.orient.core.command.OCommand#execute()
    */
   public List<OIdentifiable> execute() {
-    final List<OIdentifiable> result = new ArrayList<OIdentifiable>();
+    final List<OIdentifiable> result = new ArrayList<>();
     while (hasNext())
       result.add(next());
     return result;
@@ -133,7 +131,7 @@ public class OTraverse implements OCommand, Iterable<OIdentifiable>, Iterator<OI
   }
 
   public OTraverse target(final OIdentifiable... iRecords) {
-    final List<OIdentifiable> list = new ArrayList<OIdentifiable>();
+    final List<OIdentifiable> list = new ArrayList<>();
     Collections.addAll(list, iRecords);
     return target(list.iterator());
   }

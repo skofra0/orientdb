@@ -21,10 +21,7 @@ package com.orientechnologies.orient.core.serialization.serializer.record;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import com.orientechnologies.orient.core.OOrientListenerAbstract;
-import com.orientechnologies.orient.core.OOrientShutdownListener;
-import com.orientechnologies.orient.core.OOrientStartupListener;
 import com.orientechnologies.orient.core.Orient;
 
 public class OSerializationThreadLocal extends ThreadLocal<Set<Integer>> {
@@ -47,6 +44,6 @@ public class OSerializationThreadLocal extends ThreadLocal<Set<Integer>> {
 
   @Override
   protected Set<Integer> initialValue() {
-    return new HashSet<Integer>();
+    return new HashSet<>();
   }
 }

@@ -2,7 +2,6 @@ package com.orientechnologies.orient.core.sql.executor;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.util.Optional;
 
 /**

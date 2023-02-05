@@ -19,6 +19,8 @@
  */
 package com.orientechnologies.orient.core.metadata.sequence;
 
+import java.util.Random;
+import java.util.concurrent.Callable;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.util.OApi;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
@@ -31,9 +33,6 @@ import com.orientechnologies.orient.core.exception.OStorageException;
 import com.orientechnologies.orient.core.metadata.schema.OClassImpl;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-
-import java.util.Random;
-import java.util.concurrent.Callable;
 
 /**
  * @author Matan Shukry (matanshukry@gmail.com)
@@ -55,7 +54,7 @@ public abstract class OSequence {
   private static final String FIELD_TYPE = "type";
 
   private ODocument document;
-  private ThreadLocal<ODocument> tlDocument = new ThreadLocal<ODocument>();
+  private ThreadLocal<ODocument> tlDocument = new ThreadLocal<>();
 
   public static class CreateParams {
     public Long    start     = DEFAULT_START;

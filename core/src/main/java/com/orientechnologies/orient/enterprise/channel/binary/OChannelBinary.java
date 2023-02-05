@@ -19,7 +19,12 @@
  */
 package com.orientechnologies.orient.enterprise.channel.binary;
 
-import com.orientechnologies.common.exception.OException;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.SocketException;
+import java.util.Arrays;
 import com.orientechnologies.common.exception.OInvalidBinaryChunkException;
 import com.orientechnologies.common.io.OIOException;
 import com.orientechnologies.common.log.OLogManager;
@@ -29,13 +34,6 @@ import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.serialization.OBinaryProtocol;
 import com.orientechnologies.orient.enterprise.channel.OChannel;
-
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.net.Socket;
-import java.net.SocketException;
-import java.util.Arrays;
 
 /**
  * Abstract representation of a channel.

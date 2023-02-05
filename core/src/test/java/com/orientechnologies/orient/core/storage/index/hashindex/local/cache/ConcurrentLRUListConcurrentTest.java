@@ -1,20 +1,20 @@
 package com.orientechnologies.orient.core.storage.index.hashindex.local.cache;
 
-import com.orientechnologies.orient.core.storage.cache.OCacheEntry;
-import com.orientechnologies.orient.core.storage.cache.OCacheEntryImpl;
-import com.orientechnologies.orient.core.storage.cache.local.twoq.ConcurrentLRUList;
-import com.orientechnologies.orient.core.storage.cache.local.twoq.LRUList;
-import com.orientechnologies.orient.test.ConcurrentTestHelper;
-import com.orientechnologies.orient.test.TestFactory;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Callable;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import com.orientechnologies.orient.core.storage.cache.OCacheEntry;
+import com.orientechnologies.orient.core.storage.cache.OCacheEntryImpl;
+import com.orientechnologies.orient.core.storage.cache.local.twoq.ConcurrentLRUList;
+import com.orientechnologies.orient.core.storage.cache.local.twoq.LRUList;
+import com.orientechnologies.orient.test.ConcurrentTestHelper;
+import com.orientechnologies.orient.test.TestFactory;
 
 /**
  * Concurrent test for {@link ConcurrentLRUList}.
@@ -72,7 +72,7 @@ public class ConcurrentLRUListConcurrentTest {
   private void assertListConsistency(int expectedSize) {
     Assert.assertEquals(list.size(), expectedSize);
     int count = 0;
-    List<OCacheEntry> items = new ArrayList<OCacheEntry>();
+    List<OCacheEntry> items = new ArrayList<>();
     for (OCacheEntry entry : list) {
       items.add(entry);
       count++;
@@ -91,7 +91,7 @@ public class ConcurrentLRUListConcurrentTest {
   private void assertListConsistency() {
     int expectedSize = list.size();
     int count = 0;
-    List<OCacheEntry> items = new ArrayList<OCacheEntry>();
+    List<OCacheEntry> items = new ArrayList<>();
     for (OCacheEntry entry : list) {
       items.add(entry);
       count++;
@@ -120,7 +120,7 @@ public class ConcurrentLRUListConcurrentTest {
 
     @Override
     public Callable<Integer> createWorker() {
-      return new Callable<Integer>() {
+      return new Callable<>() {
         private int threadNumber = ++j;
 
         @Override
@@ -137,7 +137,7 @@ public class ConcurrentLRUListConcurrentTest {
   private class RemoveLRUFactory implements TestFactory<Integer> {
     @Override
     public Callable<Integer> createWorker() {
-      return new Callable<Integer>() {
+      return new Callable<>() {
         @Override
         public Integer call() throws Exception {
           int actualRemoves = 0;
@@ -159,7 +159,7 @@ public class ConcurrentLRUListConcurrentTest {
 
     @Override
     public Callable<Integer> createWorker() {
-      return new Callable<Integer>() {
+      return new Callable<>() {
 
         @Override
         public Integer call() throws Exception {
@@ -178,7 +178,7 @@ public class ConcurrentLRUListConcurrentTest {
 
     @Override
     public Callable<Integer> createWorker() {
-      return new Callable<Integer>() {
+      return new Callable<>() {
 
         @Override
         public Integer call() throws Exception {
@@ -196,7 +196,7 @@ public class ConcurrentLRUListConcurrentTest {
   private class RandomRemoveFactory implements TestFactory<Integer> {
     @Override
     public Callable<Integer> createWorker() {
-      return new Callable<Integer>() {
+      return new Callable<>() {
         @Override
         public Integer call() throws Exception {
           Random r = new Random();

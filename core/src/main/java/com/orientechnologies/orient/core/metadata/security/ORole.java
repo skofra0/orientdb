@@ -19,15 +19,14 @@
  */
 package com.orientechnologies.orient.core.metadata.security;
 
-import com.orientechnologies.common.log.OLogManager;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import com.orientechnologies.common.log.OLogManager;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
  * Contains the user settings about security and permissions roles.<br>
@@ -60,7 +59,7 @@ public class ORole extends OIdentity implements OSecurityRole {
   protected ALLOW_MODES                     mode               = ALLOW_MODES.DENY_ALL_BUT;
   protected ORole                           parentRole;
 
-  private Map<ORule.ResourceGeneric, ORule> rules              = new HashMap<ORule.ResourceGeneric, ORule>();
+  private Map<ORule.ResourceGeneric, ORule> rules              = new HashMap<>();
 
   /**
    * Constructor used in unmarshalling.
@@ -120,7 +119,7 @@ public class ORole extends OIdentity implements OSecurityRole {
 
     final int value = 1 << iBitNo;
     if (PERMISSION_BIT_NAMES == null)
-      PERMISSION_BIT_NAMES = new HashMap<Integer, String>();
+      PERMISSION_BIT_NAMES = new HashMap<>();
 
     if (PERMISSION_BIT_NAMES.containsKey(value))
       throw new IndexOutOfBoundsException("Permission bit number " + String.valueOf(iBitNo) + " already in use");
@@ -357,12 +356,12 @@ public class ORole extends OIdentity implements OSecurityRole {
   }
 
   public Set<ORule> getRuleSet() {
-    return new HashSet<ORule>(rules.values());
+    return new HashSet<>(rules.values());
   }
 
   @Deprecated
   public Map<String, Byte> getRules() {
-    final Map<String, Byte> result = new HashMap<String, Byte>();
+    final Map<String, Byte> result = new HashMap<>();
 
     for (ORule rule : rules.values()) {
       String name = ORule.mapResourceGenericToLegacyResource(rule.getResourceGeneric());

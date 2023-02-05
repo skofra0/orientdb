@@ -19,14 +19,13 @@
   */
 package com.orientechnologies.orient.core.cache;
 
+import java.util.HashSet;
+import java.util.Set;
 import com.orientechnologies.common.profiler.OAbstractProfiler.OProfilerHookValue;
 import com.orientechnologies.common.profiler.OProfiler.METRIC_TYPE;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.record.ORecord;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Cache of documents. Delegates real work on storing to {@link ORecordCache} implementation passed at creation time leaving only DB
@@ -91,9 +90,9 @@ public abstract class OAbstractRecordCache {
    *          identifier of cluster
    */
   public void freeCluster(final int cid) {
-    final Set<ORID> toRemove = new HashSet<ORID>(underlying.size() / 2);
+    final Set<ORID> toRemove = new HashSet<>(underlying.size() / 2);
 
-    final Set<ORID> keys = new HashSet<ORID>(underlying.keys());
+    final Set<ORID> keys = new HashSet<>(underlying.keys());
     for (final ORID id : keys)
       if (id.getClusterId() == cid)
         toRemove.add(id);

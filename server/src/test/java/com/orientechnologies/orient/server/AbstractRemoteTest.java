@@ -1,16 +1,15 @@
 package com.orientechnologies.orient.server;
 
-import com.orientechnologies.common.io.OFileUtils;
-import com.orientechnologies.orient.core.Orient;
-import com.orientechnologies.orient.core.db.ODatabaseType;
-import com.orientechnologies.orient.core.db.OrientDBConfig;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.TestName;
-
 import java.io.File;
 import java.io.InputStream;
+import com.orientechnologies.common.io.OFileUtils;
+import com.orientechnologies.orient.core.Orient;
+import com.orientechnologies.orient.core.db.ODatabaseType;
+import com.orientechnologies.orient.core.db.OrientDBConfig;
 
 /**
  * Created by Enrico Risa on 14/03/17.

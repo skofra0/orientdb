@@ -1,5 +1,8 @@
 package com.orientechnologies.orient.client.remote.message;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import com.orientechnologies.common.exception.OErrorCode;
 import com.orientechnologies.orient.client.remote.ORemotePushHandler;
 import com.orientechnologies.orient.client.remote.message.live.OLiveQueryResult;
@@ -8,10 +11,6 @@ import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.enterprise.channel.binary.OChannelBinaryProtocol;
 import com.orientechnologies.orient.enterprise.channel.binary.OChannelDataInput;
 import com.orientechnologies.orient.enterprise.channel.binary.OChannelDataOutput;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by tglman on 17/05/17.

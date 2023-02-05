@@ -1,15 +1,18 @@
 package com.orientechnologies.common.concur.lock;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicLong;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)
@@ -33,7 +36,7 @@ public class ReadersWriterSpinLockTst {
   @Test
   @Ignore
   public void testCompetingAccess() throws Exception {
-    List<Future> futures = new ArrayList<Future>();
+    List<Future> futures = new ArrayList<>();
     int threads = 8;
 
     for (int i = 0; i < threads; i++)
@@ -57,7 +60,7 @@ public class ReadersWriterSpinLockTst {
   @Test
   @Ignore
   public void testCompetingAccessWithTry() throws Exception {
-    List<Future> futures = new ArrayList<Future>();
+    List<Future> futures = new ArrayList<>();
     int threads = 8;
 
     for (int i = 0; i < threads; i++)

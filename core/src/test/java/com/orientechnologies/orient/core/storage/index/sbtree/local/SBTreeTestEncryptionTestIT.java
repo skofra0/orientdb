@@ -1,5 +1,6 @@
 package com.orientechnologies.orient.core.storage.index.sbtree.local;
 
+import java.io.File;
 import com.orientechnologies.common.io.OFileUtils;
 import com.orientechnologies.common.serialization.types.OIntegerSerializer;
 import com.orientechnologies.orient.core.db.ODatabaseInternal;
@@ -11,8 +12,6 @@ import com.orientechnologies.orient.core.encryption.OEncryptionFactory;
 import com.orientechnologies.orient.core.serialization.serializer.binary.impl.OLinkSerializer;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperationsManager;
-
-import java.io.File;
 
 public class SBTreeTestEncryptionTestIT extends SBTreeTestIT {
   @Override

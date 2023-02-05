@@ -20,11 +20,10 @@
 
 package com.orientechnologies.orient.core.storage.index.sbtreebonsai.local;
 
+import java.io.IOException;
 import com.orientechnologies.common.serialization.types.OByteSerializer;
 import com.orientechnologies.common.serialization.types.OLongSerializer;
 import com.orientechnologies.orient.core.storage.cache.OCacheEntry;
-
-import java.io.IOException;
 
 /**
  * <p>

@@ -1,5 +1,9 @@
 package com.orientechnologies.orient.core.db.tool;
 
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import com.orientechnologies.common.util.OPair;
 import com.orientechnologies.orient.core.command.OCommandOutputListener;
 import com.orientechnologies.orient.core.config.OGlobalConfiguration;
@@ -20,11 +24,6 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.record.impl.ODocumentInternal;
 import com.orientechnologies.orient.core.record.impl.OVertexDocument;
 import com.orientechnologies.orient.core.storage.impl.local.OStorageRecoverEventListener;
-
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Repairs a graph. Current implementation scan the entire graph. In the future the WAL will be used to make this repair task much
@@ -385,14 +384,14 @@ public class OGraphRepair {
       if (iFieldName.startsWith("out_")) {
         String connClass = getConnectionClass(ODirection.OUT, iFieldName);
         if (iClassNames == null || iClassNames.length == 0)
-          return new OPair<ODirection, String>(ODirection.OUT, connClass);
+          return new OPair<>(ODirection.OUT, connClass);
 
         // CHECK AGAINST ALL THE CLASS NAMES
         OClass edgeType = graph.getClass(connClass);
         if (edgeType != null) {
           for (String clsName : iClassNames) {
             if (edgeType.isSubClassOf(clsName))
-              return new OPair<ODirection, String>(ODirection.OUT, connClass);
+              return new OPair<>(ODirection.OUT, connClass);
           }
         }
       }
@@ -404,14 +403,14 @@ public class OGraphRepair {
       if (iFieldName.startsWith("in_")) {
         String connClass = getConnectionClass(ODirection.IN, iFieldName);
         if (iClassNames == null || iClassNames.length == 0)
-          return new OPair<ODirection, String>(ODirection.IN, connClass);
+          return new OPair<>(ODirection.IN, connClass);
 
         // CHECK AGAINST ALL THE CLASS NAMES
         OClass edgeType = graph.getClass(connClass);
         if (edgeType != null) {
           for (String clsName : iClassNames) {
             if (edgeType.isSubClassOf(clsName))
-              return new OPair<ODirection, String>(ODirection.IN, connClass);
+              return new OPair<>(ODirection.IN, connClass);
           }
         }
       }

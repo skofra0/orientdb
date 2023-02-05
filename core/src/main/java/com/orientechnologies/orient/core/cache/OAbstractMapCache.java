@@ -20,11 +20,10 @@
 
 package com.orientechnologies.orient.core.cache;
 
-import com.orientechnologies.orient.core.id.ORID;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
+import com.orientechnologies.orient.core.id.ORID;
 
 /**
  * @author Artem Orobets (enisher-at-gmail.com)
@@ -74,6 +73,6 @@ public abstract class OAbstractMapCache<T extends Map<ORID, ?>> implements OReco
 
   @Override
   public Collection<ORID> keys() {
-    return new ArrayList<ORID>(cache.keySet());
+    return new ArrayList<>(cache.keySet());
   }
 }

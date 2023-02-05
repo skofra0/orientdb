@@ -2,7 +2,18 @@ package com.orientechnologies.orient.core.sql.executor;
 
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
-import com.orientechnologies.orient.core.sql.parser.*;
+import com.orientechnologies.orient.core.sql.parser.OBatch;
+import com.orientechnologies.orient.core.sql.parser.OCluster;
+import com.orientechnologies.orient.core.sql.parser.OFromClause;
+import com.orientechnologies.orient.core.sql.parser.OFromItem;
+import com.orientechnologies.orient.core.sql.parser.OIdentifier;
+import com.orientechnologies.orient.core.sql.parser.OLimit;
+import com.orientechnologies.orient.core.sql.parser.OMoveVertexStatement;
+import com.orientechnologies.orient.core.sql.parser.OProjection;
+import com.orientechnologies.orient.core.sql.parser.OSelectStatement;
+import com.orientechnologies.orient.core.sql.parser.OTimeout;
+import com.orientechnologies.orient.core.sql.parser.OUpdateOperations;
+import com.orientechnologies.orient.core.sql.parser.OWhereClause;
 import com.orientechnologies.orient.core.storage.OStorage;
 
 /**

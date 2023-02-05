@@ -19,11 +19,10 @@
  */
 package com.orientechnologies.orient.core.record;
 
-import com.orientechnologies.orient.core.metadata.schema.OClass;
-
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import com.orientechnologies.orient.core.metadata.schema.OClass;
 
 /**
  * @author Luigi Dell'Aquila

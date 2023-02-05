@@ -19,9 +19,14 @@
  */
 package com.orientechnologies.orient.client.remote;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.WeakHashMap;
 import com.orientechnologies.orient.enterprise.channel.binary.OChannelBinary;
-
-import java.util.*;
 
 /**
  * Created by tglman on 31/03/16.
@@ -31,7 +36,7 @@ public class OStorageRemoteSession {
   int                                    serverURLIndex         = -1;
   String                                 connectionUserName     = null;
   String                                 connectionUserPassword = null;
-  Map<String, OStorageRemoteNodeSession> sessions               = new HashMap<String, OStorageRemoteNodeSession>();
+  Map<String, OStorageRemoteNodeSession> sessions               = new HashMap<>();
 
   private Set<OChannelBinary> connections = Collections.newSetFromMap(new WeakHashMap<OChannelBinary, Boolean>());
   private final int uniqueClientSessionId;
@@ -72,8 +77,8 @@ public class OStorageRemoteSession {
   public void close() {
     commandExecuting = false;
     serverURLIndex = -1;
-    connections = new HashSet<OChannelBinary>();
-    sessions = new HashMap<String, OStorageRemoteNodeSession>();
+    connections = new HashSet<>();
+    sessions = new HashMap<>();
     closed = true;
   }
 

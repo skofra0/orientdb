@@ -1,16 +1,14 @@
 package com.orientechnologies.orient.core.sql;
 
+import static org.junit.Assert.assertTrue;
+import org.junit.Assert;
+import org.junit.Test;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 import com.orientechnologies.orient.core.command.OCommandResultListener;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.sql.query.OSQLNonBlockingQuery;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by luigidellaquila on 13/04/15.
@@ -60,7 +58,7 @@ public class ONonBlockingQueryTest {
     try {
       db.command(new OCommandSQL("insert into test set name = 'foo', surname = 'bar'")).execute();
 
-      db.query(new OSQLNonBlockingQuery<Object>("select from test bla blu", listener));
+      db.query(new OSQLNonBlockingQuery<>("select from test bla blu", listener));
       try {
         listener.latch.await(1, TimeUnit.MINUTES);
       } catch (InterruptedException e) {
@@ -68,7 +66,7 @@ public class ONonBlockingQueryTest {
       } Assert.assertEquals(listener.finished, true);
 
       listener = new MyResultListener(new CountDownLatch(2));
-      db.query(new OSQLNonBlockingQuery<Object>("select from test", listener));
+      db.query(new OSQLNonBlockingQuery<>("select from test", listener));
 
     } finally {
       db.close();

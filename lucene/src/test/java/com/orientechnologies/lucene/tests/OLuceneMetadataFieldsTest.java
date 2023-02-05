@@ -1,13 +1,11 @@
 package com.orientechnologies.lucene.tests;
 
-import com.orientechnologies.orient.core.sql.executor.OResultSet;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.io.InputStream;
-
 import static com.orientechnologies.lucene.functions.OLuceneFunctionsUtils.doubleEscape;
 import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.Before;
+import org.junit.Test;
+import java.io.InputStream;
+import com.orientechnologies.orient.core.sql.executor.OResultSet;
 
 /**
  * Created by frank on 09/05/2017.

@@ -20,13 +20,12 @@
 
 package com.orientechnologies.orient.core.serialization.serializer.binary.impl.index;
 
+import java.nio.ByteBuffer;
 import com.orientechnologies.common.serialization.types.OBinarySerializer;
 import com.orientechnologies.common.util.OCommonConst;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.serialization.serializer.binary.OBinarySerializerFactory;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALChanges;
-
-import java.nio.ByteBuffer;
 
 /**
  * Serializer that is used for serialization of non {@link com.orientechnologies.orient.core.index.OCompositeKey} keys in index.

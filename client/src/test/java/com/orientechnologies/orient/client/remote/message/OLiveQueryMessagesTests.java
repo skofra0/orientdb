@@ -1,18 +1,16 @@
 package com.orientechnologies.orient.client.remote.message;
 
-import com.orientechnologies.common.exception.OErrorCode;
-import com.orientechnologies.orient.client.remote.message.live.OLiveQueryResult;
-import com.orientechnologies.orient.core.serialization.serializer.record.binary.ORecordSerializerNetworkV37;
-import com.orientechnologies.orient.core.sql.executor.OResultInternal;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static org.junit.Assert.assertEquals;
+import com.orientechnologies.common.exception.OErrorCode;
+import com.orientechnologies.orient.client.remote.message.live.OLiveQueryResult;
+import com.orientechnologies.orient.core.serialization.serializer.record.binary.ORecordSerializerNetworkV37;
+import com.orientechnologies.orient.core.sql.executor.OResultInternal;
 
 /**
  * Created by tglman on 17/05/17.

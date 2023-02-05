@@ -19,15 +19,13 @@
  */
 package com.orientechnologies.orient.core.command.script;
 
+import javax.script.CompiledScript;
 import com.orientechnologies.orient.core.command.OCommandDistributedReplicateRequest;
 import com.orientechnologies.orient.core.command.OCommandRequestText;
 import com.orientechnologies.orient.core.command.OCommandRequestTextAbstract;
 import com.orientechnologies.orient.core.exception.OSerializationException;
 import com.orientechnologies.orient.core.serialization.OMemoryStream;
-import com.orientechnologies.orient.core.serialization.OSerializableStream;
 import com.orientechnologies.orient.core.serialization.serializer.record.ORecordSerializer;
-
-import javax.script.CompiledScript;
 
 /**
  * Script command request implementation. It just stores the request and delegated the execution to the configured OCommandExecutor.

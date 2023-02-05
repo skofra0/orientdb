@@ -1,9 +1,8 @@
 package com.orientechnologies.orient.core.sql.parser;
 
+import static org.junit.Assert.fail;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-
-import static org.junit.Assert.fail;
 
 public abstract class OParserTestAbstract {
 

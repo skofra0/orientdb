@@ -1,11 +1,11 @@
 package com.orientechnologies.orient.core.sql.parser;
 
+import org.junit.Assert;
+import org.junit.Test;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OProperty;
 import com.orientechnologies.orient.core.metadata.schema.OType;
-import org.junit.Assert;
-import org.junit.Test;
 
 public class OExecutionPlanCacheTest {
 

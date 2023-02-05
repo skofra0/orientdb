@@ -20,11 +20,6 @@
 
 package com.orientechnologies.common.console;
 
-import com.orientechnologies.common.exception.OSystemException;
-import com.orientechnologies.common.log.OLogManager;
-import sun.misc.Signal;
-import sun.misc.SignalHandler;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -43,6 +38,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import com.orientechnologies.common.exception.OSystemException;
+import com.orientechnologies.common.log.OLogManager;
+import sun.misc.Signal;
+import sun.misc.SignalHandler;
 
 /**
  * Custom implementation of TTY reader. Supports arrow keys + history.
@@ -82,7 +81,7 @@ public class TTYConsoleReader implements OConsoleReader {
     });
   }
 
-  protected final List<String> history           = new ArrayList<String>();
+  protected final List<String> history           = new ArrayList<>();
   private final   boolean      historyEnabled;
   protected       int          cursorPosition    = 0;
   protected       int          oldPromptLength   = 0;
@@ -347,7 +346,7 @@ public class TTYConsoleReader implements OConsoleReader {
   }
 
   private StringBuffer writeHint(StringBuffer buffer) {
-    List<String> suggestions = new ArrayList<String>();
+    List<String> suggestions = new ArrayList<>();
     for (Method method : console.getConsoleMethods().keySet()) {
       String command = OConsoleApplication.getClearName(method.getName());
       if (command.startsWith(buffer.toString())) {
@@ -358,7 +357,7 @@ public class TTYConsoleReader implements OConsoleReader {
       StringBuffer hintBuffer = new StringBuffer();
       String[] bufferComponents = buffer.toString().split(" ");
       String[] suggestionComponents;
-      Set<String> bufferPart = new HashSet<String>();
+      Set<String> bufferPart = new HashSet<>();
       StringBuilder suggestionPart = null;
       boolean appendSpace = true;
       for (String suggestion : suggestions) {

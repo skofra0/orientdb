@@ -30,7 +30,7 @@ import java.util.Set;
  *          Instance type
  */
 public class OConfigurableStatelessFactory<K, V> {
-  private final Map<K, V> registry = new HashMap<K, V>();
+  private final Map<K, V> registry = new HashMap<>();
   private V               defaultImplementation;
 
   public V getImplementation(final K iKey) {

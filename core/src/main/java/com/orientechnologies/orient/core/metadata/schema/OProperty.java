@@ -19,12 +19,11 @@
   */
 package com.orientechnologies.orient.core.metadata.schema;
 
+import java.util.Collection;
+import java.util.Set;
 import com.orientechnologies.orient.core.collate.OCollate;
 import com.orientechnologies.orient.core.index.OIndex;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-
-import java.util.Collection;
-import java.util.Set;
 
 /**
  * Contains the description of a persistent class property.

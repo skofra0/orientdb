@@ -14,6 +14,13 @@
  */
 package com.orientechnologies.spatial.index;
 
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.spatial4j.shape.Shape;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.lucene.index.OLuceneIndexNotUnique;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.exception.OInvalidIndexEngineIdException;
@@ -25,10 +32,6 @@ import com.orientechnologies.orient.core.tx.OTransactionIndexChanges;
 import com.orientechnologies.orient.core.tx.OTransactionIndexChangesPerKey;
 import com.orientechnologies.spatial.engine.OLuceneSpatialIndexContainer;
 import com.orientechnologies.spatial.shape.OShapeFactory;
-import org.locationtech.jts.geom.Geometry;
-import org.locationtech.spatial4j.shape.Shape;
-
-import java.util.*;
 
 public class OLuceneSpatialIndex extends OLuceneIndexNotUnique {
 
@@ -95,9 +98,9 @@ public class OLuceneSpatialIndex extends OLuceneIndexNotUnique {
       List<OTransactionIndexChangesPerKey.OTransactionIndexEntry> entries) {
     // 1. Handle common fast paths.
 
-    List<OTransactionIndexChangesPerKey.OTransactionIndexEntry> newChanges = new ArrayList<OTransactionIndexChangesPerKey.OTransactionIndexEntry>();
+    List<OTransactionIndexChangesPerKey.OTransactionIndexEntry> newChanges = new ArrayList<>();
 
-    Map<OIdentifiable, Integer> counters = new LinkedHashMap<OIdentifiable, Integer>();
+    Map<OIdentifiable, Integer> counters = new LinkedHashMap<>();
 
     for (OTransactionIndexChangesPerKey.OTransactionIndexEntry entry : entries) {
 

@@ -1,14 +1,13 @@
 package com.orientechnologies.orient.core.metadata.schema;
 
+import java.util.ArrayList;
+import java.util.List;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.exception.ODatabaseException;
 import com.orientechnologies.orient.core.exception.OSchemaException;
 import com.orientechnologies.orient.core.metadata.security.ORole;
 import com.orientechnologies.orient.core.metadata.security.ORule;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by tglman on 14/06/17.
@@ -149,7 +148,7 @@ public class OClassRemote extends OClassImpl {
   public OClass setSuperClasses(final List<? extends OClass> classes) {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_UPDATE);
     if (classes != null) {
-      List<OClass> toCheck = new ArrayList<OClass>(classes);
+      List<OClass> toCheck = new ArrayList<>(classes);
       toCheck.add(this);
       checkParametersConflict(toCheck);
     }
@@ -432,7 +431,7 @@ public class OClassRemote extends OClassImpl {
   }
 
   protected void setSuperClassesInternal(final List<? extends OClass> classes) {
-    List<OClassImpl> newSuperClasses = new ArrayList<OClassImpl>();
+    List<OClassImpl> newSuperClasses = new ArrayList<>();
     OClassImpl cls;
     for (OClass superClass : classes) {
       if (superClass instanceof OClassAbstractDelegate)
@@ -447,9 +446,9 @@ public class OClassRemote extends OClassImpl {
       newSuperClasses.add(cls);
     }
 
-    List<OClassImpl> toAddList = new ArrayList<OClassImpl>(newSuperClasses);
+    List<OClassImpl> toAddList = new ArrayList<>(newSuperClasses);
     toAddList.removeAll(superClasses);
-    List<OClassImpl> toRemoveList = new ArrayList<OClassImpl>(superClasses);
+    List<OClassImpl> toRemoveList = new ArrayList<>(superClasses);
     toRemoveList.removeAll(newSuperClasses);
 
     for (OClassImpl toRemove : toRemoveList) {

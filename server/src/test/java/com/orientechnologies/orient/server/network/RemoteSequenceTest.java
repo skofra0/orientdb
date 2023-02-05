@@ -1,5 +1,10 @@
 package com.orientechnologies.orient.server.network;
 
+import static org.junit.Assert.assertNotEquals;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import java.io.File;
 import com.orientechnologies.common.io.OFileUtils;
 import com.orientechnologies.orient.client.remote.OServerAdmin;
 import com.orientechnologies.orient.core.Orient;
@@ -8,14 +13,6 @@ import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.server.OServer;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.io.File;
-
-import static org.junit.Assert.assertNotEquals;
 
 /**
  * Created by tglman on 19/07/17.

@@ -35,14 +35,14 @@ public class OCommandParameters implements Iterable<Map.Entry<Object, Object>> {
   private int                       counter = 0;
 
   public OCommandParameters() {
-    parameters = new HashMap<Object, Object>();
+    parameters = new HashMap<>();
   }
 
   public OCommandParameters(final Map<Object, Object> iArgs) {
     if (iArgs != null)
       parameters = iArgs;
     else
-      parameters = new HashMap<Object, Object>();
+      parameters = new HashMap<>();
   }
 
   public void set(final Object k, final Object v) {

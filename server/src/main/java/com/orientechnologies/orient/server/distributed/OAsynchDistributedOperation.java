@@ -19,12 +19,11 @@
  */
 package com.orientechnologies.orient.server.distributed;
 
+import java.util.Collection;
+import java.util.Set;
 import com.orientechnologies.common.util.OCallable;
 import com.orientechnologies.common.util.OPair;
 import com.orientechnologies.orient.server.distributed.task.ORemoteTask;
-
-import java.util.Collection;
-import java.util.Set;
 
 /**
  * Asynchronous distributed operation.

@@ -1,6 +1,24 @@
 package com.orientechnologies.orient.core.metadata.schema;
 
-import com.orientechnologies.orient.core.db.record.*;
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.db.record.ORecordLazyList;
+import com.orientechnologies.orient.core.db.record.ORecordLazyMap;
+import com.orientechnologies.orient.core.db.record.ORecordLazySet;
+import com.orientechnologies.orient.core.db.record.OTrackedList;
+import com.orientechnologies.orient.core.db.record.OTrackedMap;
+import com.orientechnologies.orient.core.db.record.OTrackedSet;
 import com.orientechnologies.orient.core.db.record.ridbag.ORidBag;
 import com.orientechnologies.orient.core.exception.OSerializationException;
 import com.orientechnologies.orient.core.id.ORecordId;
@@ -9,14 +27,6 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.record.impl.ODocumentInternal;
 import com.orientechnologies.orient.core.serialization.ODocumentSerializable;
 import com.orientechnologies.orient.core.serialization.OSerializableStream;
-import org.junit.Test;
-
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.*;
-
-import static org.junit.Assert.assertEquals;
 
 public class TestOTypeDetection {
 
@@ -150,13 +160,13 @@ public class TestOTypeDetection {
 
     assertEquals(OType.LINK, OType.getTypeByValue(new ORecordId()));
 
-    assertEquals(OType.EMBEDDEDLIST, OType.getTypeByValue(new ArrayList<Object>()));
+    assertEquals(OType.EMBEDDEDLIST, OType.getTypeByValue(new ArrayList<>()));
 
-    assertEquals(OType.EMBEDDEDLIST, OType.getTypeByValue(new OTrackedList<Object>(new ODocument())));
+    assertEquals(OType.EMBEDDEDLIST, OType.getTypeByValue(new OTrackedList<>(new ODocument())));
 
-    assertEquals(OType.EMBEDDEDSET, OType.getTypeByValue(new HashSet<Object>()));
+    assertEquals(OType.EMBEDDEDSET, OType.getTypeByValue(new HashSet<>()));
 
-    assertEquals(OType.EMBEDDEDMAP, OType.getTypeByValue(new HashMap<Object, Object>()));
+    assertEquals(OType.EMBEDDEDMAP, OType.getTypeByValue(new HashMap<>()));
 
     assertEquals(OType.LINKSET, OType.getTypeByValue(new ORecordLazySet(new ODocument())));
 
@@ -179,27 +189,27 @@ public class TestOTypeDetection {
 
   @Test
   public void testOTypeFromValueInternal() {
-    Map<String, ORecordId> linkmap = new HashMap<String, ORecordId>();
+    Map<String, ORecordId> linkmap = new HashMap<>();
     linkmap.put("some", new ORecordId());
     assertEquals(OType.LINKMAP, OType.getTypeByValue(linkmap));
 
-    Map<String, ORecord> linkmap2 = new HashMap<String, ORecord>();
+    Map<String, ORecord> linkmap2 = new HashMap<>();
     linkmap2.put("some", new ODocument());
     assertEquals(OType.LINKMAP, OType.getTypeByValue(linkmap2));
 
-    List<ORecordId> linkList = new ArrayList<ORecordId>();
+    List<ORecordId> linkList = new ArrayList<>();
     linkList.add(new ORecordId());
     assertEquals(OType.LINKLIST, OType.getTypeByValue(linkList));
 
-    List<ORecord> linkList2 = new ArrayList<ORecord>();
+    List<ORecord> linkList2 = new ArrayList<>();
     linkList2.add(new ODocument());
     assertEquals(OType.LINKLIST, OType.getTypeByValue(linkList2));
 
-    Set<ORecordId> linkSet = new HashSet<ORecordId>();
+    Set<ORecordId> linkSet = new HashSet<>();
     linkSet.add(new ORecordId());
     assertEquals(OType.LINKSET, OType.getTypeByValue(linkSet));
 
-    Set<ORecord> linkSet2 = new HashSet<ORecord>();
+    Set<ORecord> linkSet2 = new HashSet<>();
     linkSet2.add(new ODocument());
     assertEquals(OType.LINKSET, OType.getTypeByValue(linkSet2));
 

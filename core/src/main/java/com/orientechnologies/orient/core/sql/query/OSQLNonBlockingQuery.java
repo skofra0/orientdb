@@ -28,7 +28,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.util.OUncaughtExceptionHandler;
 import com.orientechnologies.orient.core.command.OCommandRequestAsynch;
@@ -100,7 +99,7 @@ public class OSQLNonBlockingQuery<T extends Object> extends OSQLQuery<T> impleme
 
     @Override
     public Iterator<Future> iterator() {
-      return new Iterator<Future>() {
+      return new Iterator<>() {
 
         @Override
         public boolean hasNext() {
@@ -274,7 +273,7 @@ public class OSQLNonBlockingQuery<T extends Object> extends OSQLQuery<T> impleme
       Thread t = new Thread(() -> {
         db.activateOnCurrentThread();
         try {
-          OSQLAsynchQuery<T> query = new OSQLAsynchQuery<T>(OSQLNonBlockingQuery.this.getText(),
+          OSQLAsynchQuery<T> query = new OSQLAsynchQuery<>(OSQLNonBlockingQuery.this.getText(),
               OSQLNonBlockingQuery.this.getResultListener());
           query.setFetchPlan(OSQLNonBlockingQuery.this.getFetchPlan());
           query.setLimit(OSQLNonBlockingQuery.this.getLimit());

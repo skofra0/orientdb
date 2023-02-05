@@ -20,12 +20,11 @@
 
 package com.orientechnologies.common.log;
 
+import static java.util.logging.Level.SEVERE;
 import java.time.LocalDateTime;
 import java.util.IllegalFormatException;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
-
-import static java.util.logging.Level.SEVERE;
 
 /**
  * Log formatter that uses ANSI code if they are available and enabled.

@@ -1,11 +1,10 @@
 package com.orientechnologies.orient.core.sql.executor;
 
-import com.orientechnologies.orient.core.command.OCommandContext;
-import com.orientechnologies.orient.core.sql.parser.OWhereClause;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import com.orientechnologies.orient.core.command.OCommandContext;
+import com.orientechnologies.orient.core.sql.parser.OWhereClause;
 
 /**
  * Created by luigidellaquila on 13/10/16.

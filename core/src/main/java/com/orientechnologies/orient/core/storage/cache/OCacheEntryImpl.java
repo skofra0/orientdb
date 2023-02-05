@@ -1,9 +1,9 @@
 package com.orientechnologies.orient.core.storage.cache;
 
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import com.orientechnologies.orient.core.storage.cache.chm.LRUList;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OLogSequenceNumber;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.wal.OWALChanges;
-import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 
 /**
  * Created by tglman on 23/06/16.

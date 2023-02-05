@@ -1,5 +1,6 @@
 package com.orientechnologies.orient.core.metadata.schema;
 
+import java.util.ArrayList;
 import com.orientechnologies.common.comparator.OCaseInsentiveComparator;
 import com.orientechnologies.common.util.OCollections;
 import com.orientechnologies.orient.core.collate.ODefaultCollate;
@@ -11,12 +12,6 @@ import com.orientechnologies.orient.core.index.OPropertyIndexDefinition;
 import com.orientechnologies.orient.core.metadata.security.ORole;
 import com.orientechnologies.orient.core.metadata.security.ORule;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.orient.core.sql.OCommandSQL;
-import com.orientechnologies.orient.core.storage.OAutoshardedStorage;
-import com.orientechnologies.orient.core.storage.OStorage;
-import com.orientechnologies.orient.core.storage.OStorageProxy;
-
-import java.util.ArrayList;
 
 /**
  * Created by tglman on 14/06/17.
@@ -293,7 +288,7 @@ public class OPropertyRemote extends OPropertyImpl {
 
     final OIndexManager indexManager = getDatabase().getMetadata().getIndexManager();
 
-    final ArrayList<OIndex<?>> relatedIndexes = new ArrayList<OIndex<?>>();
+    final ArrayList<OIndex<?>> relatedIndexes = new ArrayList<>();
     for (final OIndex<?> index : indexManager.getClassIndexes(owner.getName())) {
       final OIndexDefinition definition = index.getDefinition();
 

@@ -20,6 +20,9 @@
 
 package com.orientechnologies.orient.core.storage.ridbag.sbtree;
 
+import java.io.IOException;
+import java.util.Map;
+import java.util.UUID;
 import com.orientechnologies.common.serialization.types.OIntegerSerializer;
 import com.orientechnologies.orient.core.OOrientShutdownListener;
 import com.orientechnologies.orient.core.OOrientStartupListener;
@@ -35,10 +38,6 @@ import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoper
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperationsManager;
 import com.orientechnologies.orient.core.storage.index.sbtreebonsai.local.OSBTreeBonsai;
 import com.orientechnologies.orient.core.storage.index.sbtreebonsai.local.OSBTreeBonsaiLocal;
-
-import java.io.IOException;
-import java.util.Map;
-import java.util.UUID;
 
 /**
  * @author Artem Orobets (enisher-at-gmail.com)

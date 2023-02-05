@@ -15,6 +15,10 @@
  */
 package com.orientechnologies.orient.core.sharding.auto;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.orient.core.exception.OConfigurationException;
 import com.orientechnologies.orient.core.index.OIndexException;
 import com.orientechnologies.orient.core.index.OIndexFactory;
@@ -28,11 +32,6 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.storage.OStorage;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
 import com.orientechnologies.orient.core.storage.index.engine.ORemoteIndexEngine;
-
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Auto-sharding index factory.<br>
@@ -53,14 +52,14 @@ public class OAutoShardingIndexFactory implements OIndexFactory {
   private static final Set<String> ALGORITHMS;
 
   static {
-    final Set<String> types = new HashSet<String>();
+    final Set<String> types = new HashSet<>();
     types.add(OClass.INDEX_TYPE.UNIQUE.toString());
     types.add(OClass.INDEX_TYPE.NOTUNIQUE.toString());
     TYPES = Collections.unmodifiableSet(types);
   }
 
   static {
-    final Set<String> algorithms = new HashSet<String>();
+    final Set<String> algorithms = new HashSet<>();
     algorithms.add(AUTOSHARDING_ALGORITHM);
     ALGORITHMS = Collections.unmodifiableSet(algorithms);
   }

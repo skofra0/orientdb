@@ -17,22 +17,20 @@
  */
 package com.orientechnologies.orient.jdbc;
 
-import com.orientechnologies.common.log.OLogManager;
-import com.orientechnologies.orient.core.db.OrientDB;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
+import static com.orientechnologies.orient.jdbc.OrientDbCreationHelper.createSchemaDB;
+import static com.orientechnologies.orient.jdbc.OrientDbCreationHelper.loadDB;
 import org.assertj.db.type.DataSourceWithLetterCase;
 import org.assertj.db.type.lettercase.LetterCase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.TestName;
-
-import javax.sql.DataSource;
 import java.io.File;
 import java.util.Properties;
-
-import static com.orientechnologies.orient.jdbc.OrientDbCreationHelper.createSchemaDB;
-import static com.orientechnologies.orient.jdbc.OrientDbCreationHelper.loadDB;
+import javax.sql.DataSource;
+import com.orientechnologies.common.log.OLogManager;
+import com.orientechnologies.orient.core.db.OrientDB;
+import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 
 public abstract class OrientJdbcDbPerMethodTemplateTest {
 

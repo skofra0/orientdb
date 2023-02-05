@@ -1,13 +1,18 @@
 package com.orientechnologies.orient.core.sql.parser;
 
+import java.util.List;
 import com.orientechnologies.common.concur.OTimeoutException;
 import com.orientechnologies.orient.core.command.OBasicCommandContext;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.OExecutionThreadLocal;
 import com.orientechnologies.orient.core.exception.OCommandInterruptedException;
-import com.orientechnologies.orient.core.sql.executor.*;
-
-import java.util.List;
+import com.orientechnologies.orient.core.sql.executor.AbstractExecutionStep;
+import com.orientechnologies.orient.core.sql.executor.EmptyStep;
+import com.orientechnologies.orient.core.sql.executor.OExecutionStepInternal;
+import com.orientechnologies.orient.core.sql.executor.OInternalExecutionPlan;
+import com.orientechnologies.orient.core.sql.executor.OResultInternal;
+import com.orientechnologies.orient.core.sql.executor.OResultSet;
+import com.orientechnologies.orient.core.sql.executor.OScriptExecutionPlan;
 
 public class WhileStep extends AbstractExecutionStep {
   private final OBooleanExpression condition;

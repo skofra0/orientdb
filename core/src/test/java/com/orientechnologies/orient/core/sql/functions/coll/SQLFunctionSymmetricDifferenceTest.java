@@ -15,13 +15,15 @@
  */
 package com.orientechnologies.orient.core.sql.functions.coll;
 
-import com.orientechnologies.orient.core.command.OBasicCommandContext;
-import org.junit.Test;
-
-import java.util.*;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import org.junit.Test;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import com.orientechnologies.orient.core.command.OBasicCommandContext;
 
 /**
  * @author edegtyarenko
@@ -39,7 +41,7 @@ public class SQLFunctionSymmetricDifferenceTest {
     };
 
     final List<Object> income = Arrays.<Object>asList(1, 2, 3, 1, 4, 5, 2, 2, 1, 1);
-    final Set<Object> expectedResult = new HashSet<Object>(Arrays.asList(3, 4, 5));
+    final Set<Object> expectedResult = new HashSet<>(Arrays.asList(3, 4, 5));
 
     for (Object i : income) {
       differenceFunction.execute(null, null, null, new Object[] { i }, null);
@@ -59,7 +61,7 @@ public class SQLFunctionSymmetricDifferenceTest {
       }
     };
 
-    final List<OSQLFunctionSymmetricDifference> differences = new ArrayList<OSQLFunctionSymmetricDifference>(3);
+    final List<OSQLFunctionSymmetricDifference> differences = new ArrayList<>(3);
     for (int i = 0; i < 3; i++) {
       differences.add(new OSQLFunctionSymmetricDifference() {
         @Override
@@ -73,7 +75,7 @@ public class SQLFunctionSymmetricDifferenceTest {
         .asList(Arrays.<Object>asList(1, 2, 3, 4, 5, 1), Arrays.<Object>asList(3, 5, 6, 7, 0, 1, 3, 3, 6),
             Arrays.<Object>asList(2, 2, 8, 9));
 
-    final Set<Object> expectedResult = new HashSet<Object>(Arrays.<Object>asList(4, 7, 8, 9, 0));
+    final Set<Object> expectedResult = new HashSet<>(Arrays.<Object>asList(4, 7, 8, 9, 0));
 
     for (int j = 0; j < 3; j++) {
       for (Object i : incomes.get(j)) {
@@ -95,7 +97,7 @@ public class SQLFunctionSymmetricDifferenceTest {
         .asList(Arrays.<Object>asList(1, 2, 3, 4, 5, 1), Arrays.<Object>asList(3, 5, 6, 7, 0, 1, 3, 3, 6),
             Arrays.<Object>asList(2, 2, 8, 9));
 
-    final Set<Object> expectedResult = new HashSet<Object>(Arrays.<Object>asList(4, 7, 8, 9, 0));
+    final Set<Object> expectedResult = new HashSet<>(Arrays.<Object>asList(4, 7, 8, 9, 0));
 
     final Set<Object> actualResult = (Set<Object>) function
         .execute(null, null, null, incomes.toArray(), new OBasicCommandContext());

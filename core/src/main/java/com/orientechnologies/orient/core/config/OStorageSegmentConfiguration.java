@@ -19,9 +19,8 @@
  */
 package com.orientechnologies.orient.core.config;
 
-import com.orientechnologies.common.util.OCommonConst;
-
 import java.io.Serializable;
+import com.orientechnologies.common.util.OCommonConst;
 
 @SuppressWarnings("serial")
 public class OStorageSegmentConfiguration implements Serializable {

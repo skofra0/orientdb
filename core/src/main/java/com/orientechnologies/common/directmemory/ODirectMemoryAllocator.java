@@ -20,6 +20,14 @@
 
 package com.orientechnologies.common.directmemory;
 
+import java.lang.ref.ReferenceQueue;
+import java.lang.ref.WeakReference;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.atomic.LongAdder;
 import com.orientechnologies.common.exception.ODirectMemoryAllocationFailedException;
 import com.orientechnologies.common.jna.ONative;
 import com.orientechnologies.common.log.OLogManager;
@@ -29,15 +37,6 @@ import com.sun.jna.NativeLong;
 import com.sun.jna.Platform;
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.PointerByReference;
-
-import java.lang.ref.ReferenceQueue;
-import java.lang.ref.WeakReference;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.concurrent.atomic.LongAdder;
 
 /**
  * Manages all allocations/deallocations from/to direct memory.

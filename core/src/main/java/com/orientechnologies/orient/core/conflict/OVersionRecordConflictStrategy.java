@@ -20,13 +20,12 @@
 
 package com.orientechnologies.orient.core.conflict;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import com.orientechnologies.orient.core.db.record.ORecordOperation;
 import com.orientechnologies.orient.core.exception.OConcurrentModificationException;
 import com.orientechnologies.orient.core.exception.OFastConcurrentModificationException;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.storage.OStorage;
-
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Default strategy that checks the record version number: if the current update has a version different than stored one, then a

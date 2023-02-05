@@ -8,7 +8,6 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
-
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.metadata.security.jwt.OJwtHeader;
@@ -42,7 +41,7 @@ public class OBinaryTokenSerializer {
   }
 
   public Map<String, Byte> createMap(String entries[]) {
-    Map<String, Byte> newMap = new HashMap<String, Byte>();
+    Map<String, Byte> newMap = new HashMap<>();
     for (int i = 0; i < entries.length; i++)
       newMap.put(entries[i], (byte) i);
     return newMap;

@@ -20,14 +20,18 @@
 
 package com.orientechnologies.common.concur.lock;
 
-import com.orientechnologies.orient.core.config.OGlobalConfiguration;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+import com.orientechnologies.orient.core.config.OGlobalConfiguration;
 
 /**
  * Lock manager implementation that uses multipel partitions to increase the level of concurrency without having to keep one entry
@@ -490,7 +494,7 @@ public class OPartitionedLockManager<T> implements OLockManager<T> {
       return values;
     }
 
-    final List<T> valCopy = new ArrayList<T>(values);
+    final List<T> valCopy = new ArrayList<>(values);
     Collections.sort(valCopy, comparator);
 
     return valCopy;

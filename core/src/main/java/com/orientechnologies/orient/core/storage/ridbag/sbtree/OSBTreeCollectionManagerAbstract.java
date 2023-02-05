@@ -20,6 +20,8 @@
 
 package com.orientechnologies.orient.core.storage.ridbag.sbtree;
 
+import java.io.IOException;
+import java.util.UUID;
 import com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap;
 import com.orientechnologies.common.concur.resource.OCloseable;
 import com.orientechnologies.orient.core.OOrientShutdownListener;
@@ -30,9 +32,6 @@ import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.storage.OStorage;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperation;
 import com.orientechnologies.orient.core.storage.index.sbtreebonsai.local.OSBTreeBonsai;
-
-import java.io.IOException;
-import java.util.UUID;
 
 /**
  * @author Artem Orobets (enisher-at-gmail.com)

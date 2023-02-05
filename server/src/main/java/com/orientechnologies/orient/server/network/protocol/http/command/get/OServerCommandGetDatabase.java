@@ -19,6 +19,14 @@
  */
 package com.orientechnologies.orient.server.network.protocol.http.command.get;
 
+import java.io.IOException;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.OConstants;
 import com.orientechnologies.orient.core.Orient;
@@ -43,10 +51,6 @@ import com.orientechnologies.orient.server.OServer;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpRequest;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpResponse;
 import com.orientechnologies.orient.server.network.protocol.http.OHttpUtils;
-
-import java.io.IOException;
-import java.io.StringWriter;
-import java.util.*;
 
 public class OServerCommandGetDatabase extends OServerCommandGetConnect {
   private static final String[] NAMES = { "GET|database/*" };
@@ -203,7 +207,7 @@ public class OServerCommandGetDatabase extends OServerCommandGetConnect {
 
       if (((OMetadataInternal) db.getMetadata()).getImmutableSchemaSnapshot().getClasses() != null) {
         json.beginCollection("classes");
-        List<String> classNames = new ArrayList<String>();
+        List<String> classNames = new ArrayList<>();
 
         for (OClass cls : db.getMetadata().getSchema().getClasses())
           classNames.add(cls.getName());

@@ -15,6 +15,7 @@
  */
 package com.orientechnologies.orient.core.storage.cluster;
 
+import java.io.IOException;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.util.OCommonConst;
 import com.orientechnologies.orient.core.config.OStorageClusterConfiguration;
@@ -29,8 +30,6 @@ import com.orientechnologies.orient.core.storage.OStorage;
 import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedStorage;
 import com.orientechnologies.orient.core.storage.impl.local.OClusterBrowsePage;
 import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoperations.OAtomicOperation;
-
-import java.io.IOException;
 
 /**
  * Represents an offline cluster, created with the "alter cluster X status offline" command. To restore the original cluster assure

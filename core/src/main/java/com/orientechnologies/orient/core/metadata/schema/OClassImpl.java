@@ -19,6 +19,20 @@
  */
 package com.orientechnologies.orient.core.metadata.schema;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import com.orientechnologies.common.listener.OProgressListener;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.common.util.OArrays;
@@ -34,7 +48,11 @@ import com.orientechnologies.orient.core.exception.OSchemaException;
 import com.orientechnologies.orient.core.exception.OSecurityAccessException;
 import com.orientechnologies.orient.core.exception.OSecurityException;
 import com.orientechnologies.orient.core.id.ORID;
-import com.orientechnologies.orient.core.index.*;
+import com.orientechnologies.orient.core.index.OIndex;
+import com.orientechnologies.orient.core.index.OIndexDefinition;
+import com.orientechnologies.orient.core.index.OIndexDefinitionFactory;
+import com.orientechnologies.orient.core.index.OIndexException;
+import com.orientechnologies.orient.core.index.OIndexManager;
 import com.orientechnologies.orient.core.metadata.schema.clusterselection.OClusterSelectionStrategy;
 import com.orientechnologies.orient.core.metadata.security.ORole;
 import com.orientechnologies.orient.core.metadata.security.ORule;
@@ -52,9 +70,6 @@ import com.orientechnologies.orient.core.storage.impl.local.OAbstractPaginatedSt
 import com.orientechnologies.orient.core.type.ODocumentWrapper;
 import com.orientechnologies.orient.core.type.ODocumentWrapperNoClass;
 
-import java.io.IOException;
-import java.util.*;
-
 /**
  * Schema Class implementation.
  *
@@ -65,12 +80,12 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
   private static final long serialVersionUID = 1L;
   protected static final int NOT_EXISTENT_CLUSTER_ID = -1;
   protected final OSchemaShared owner;
-  protected final Map<String, OProperty> properties = new HashMap<String, OProperty>();
+  protected final Map<String, OProperty> properties = new HashMap<>();
   protected int defaultClusterId = NOT_EXISTENT_CLUSTER_ID;
   protected String name;
   protected String description;
   protected int[] clusterIds;
-  protected List<OClassImpl> superClasses = new ArrayList<OClassImpl>();
+  protected List<OClassImpl> superClasses = new ArrayList<>();
   protected int[] polymorphicClusterIds;
   protected List<OClass> subclasses;
   protected float overSize = 0f;
@@ -81,7 +96,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
   protected volatile OClusterSelectionStrategy clusterSelection;                                          // @SINCE 1.7
   protected volatile int hashCode;
 
-  private static Set<String> reserved = new HashSet<String>();
+  private static Set<String> reserved = new HashSet<>();
 
   static {
     // reserved.add("select");
@@ -128,7 +143,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
   }
 
   public static int[] readableClusters(final ODatabaseDocument db, final int[] iClusterIds) {
-    List<Integer> listOfReadableIds = new ArrayList<Integer>();
+    List<Integer> listOfReadableIds = new ArrayList<>();
 
     boolean all = true;
     for (int clusterId : iClusterIds) {
@@ -216,7 +231,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
     try {
       if (customFields != null)
         return Collections.unmodifiableSet(customFields.keySet());
-      return new HashSet<String>();
+      return new HashSet<>();
     } finally {
       releaseSchemaReadLock();
     }
@@ -283,7 +298,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
   public List<String> getSuperClassesNames() {
     acquireSchemaReadLock();
     try {
-      List<String> superClassesNames = new ArrayList<String>(superClasses.size());
+      List<String> superClassesNames = new ArrayList<>(superClasses.size());
       for (OClassImpl superClass : superClasses) {
         superClassesNames.add(superClass.getName());
       }
@@ -297,7 +312,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
     if (classNames == null)
       classNames = Collections.EMPTY_LIST;
 
-    final List<OClass> classes = new ArrayList<OClass>(classNames.size());
+    final List<OClass> classes = new ArrayList<>(classNames.size());
     final OSchema schema = getDatabase().getMetadata().getSchema();
     for (String className : classNames) {
       classes.add(schema.getClass(decodeClassName(className)));
@@ -361,7 +376,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
 
     acquireSchemaReadLock();
     try {
-      final Map<String, OProperty> props = new HashMap<String, OProperty>(20);
+      final Map<String, OProperty> props = new HashMap<>(20);
       propertiesMap(props);
       return props;
     } finally {
@@ -385,7 +400,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
 
     acquireSchemaReadLock();
     try {
-      final Collection<OProperty> props = new ArrayList<OProperty>();
+      final Collection<OProperty> props = new ArrayList<>();
       properties(props);
       return props;
     } finally {
@@ -415,7 +430,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
 
     acquireSchemaReadLock();
     try {
-      Collection<OProperty> indexedProps = new HashSet<OProperty>();
+      Collection<OProperty> indexedProps = new HashSet<>();
       getIndexedProperties(indexedProps);
       return indexedProps;
     } finally {
@@ -526,7 +541,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
     // READ PROPERTIES
     OPropertyImpl prop;
 
-    final Map<String, OProperty> newProperties = new HashMap<String, OProperty>();
+    final Map<String, OProperty> newProperties = new HashMap<>();
     final Collection<ODocument> storedProperties = document.field("properties");
 
     if (storedProperties != null)
@@ -569,7 +584,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
       document.field("strictMode", strictMode);
       document.field("abstract", abstractClass);
 
-      final Set<ODocument> props = new LinkedHashSet<ODocument>();
+      final Set<ODocument> props = new LinkedHashSet<>();
       for (final OProperty p : properties.values()) {
         props.add(((OPropertyImpl) p).toStream());
       }
@@ -582,7 +597,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
       } else {
         // Single super class is deprecated!
         document.field("superClass", superClasses.get(0).getName(), OType.STRING);
-        List<String> superClassesNames = new ArrayList<String>();
+        List<String> superClassesNames = new ArrayList<>();
         for (OClassImpl superClass : superClasses) {
           superClassesNames.add(superClass.getName());
         }
@@ -636,7 +651,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
   }
 
   private void setPolymorphicClusterIds(final int[] iClusterIds) {
-    Set<Integer> set = new TreeSet<Integer>();
+    Set<Integer> set = new TreeSet<>();
     for (int iClusterId : iClusterIds) {
       set.add(iClusterId);
     }
@@ -677,7 +692,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
   public Collection<OClass> getAllSubclasses() {
     acquireSchemaReadLock();
     try {
-      final Set<OClass> set = new HashSet<OClass>();
+      final Set<OClass> set = new HashSet<>();
       if (subclasses != null) {
         set.addAll(subclasses);
 
@@ -702,7 +717,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
 
   @Override
   public Collection<OClass> getAllSuperClasses() {
-    Set<OClass> ret = new HashSet<OClass>();
+    Set<OClass> ret = new HashSet<>();
     getAllSuperClasses(ret);
     return ret;
   }
@@ -865,7 +880,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
         index.clear();
       }
 
-      Set<OIndex<?>> superclassIndexes = new HashSet<OIndex<?>>(getIndexes());
+      Set<OIndex<?>> superclassIndexes = new HashSet<>(getIndexes());
       superclassIndexes.removeAll(getClassIndexes());
       for (OIndex index : superclassIndexes) {
         index.rebuild();
@@ -1148,7 +1163,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
   public Set<OIndex<?>> getInvolvedIndexes(final Collection<String> fields) {
     acquireSchemaReadLock();
     try {
-      final Set<OIndex<?>> result = new HashSet<OIndex<?>>(getClassInvolvedIndexes(fields));
+      final Set<OIndex<?>> result = new HashSet<>(getClassInvolvedIndexes(fields));
 
       for (OClassImpl superClass : superClasses) {
         result.addAll(superClass.getInvolvedIndexes(fields));
@@ -1190,7 +1205,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
     try {
       final OIndexManager idxManager = getDatabase().getMetadata().getIndexManager();
       if (idxManager == null)
-        return new HashSet<OIndex<?>>();
+        return new HashSet<>();
 
       return idxManager.getClassIndexes(name);
     } finally {
@@ -1265,7 +1280,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
   }
 
   public Set<OIndex<?>> getIndexes() {
-    final Set<OIndex<?>> indexes = new HashSet<OIndex<?>>();
+    final Set<OIndex<?>> indexes = new HashSet<>();
     getIndexes(indexes);
     return indexes;
   }
@@ -1310,7 +1325,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
   public void fireDatabaseMigration(final ODatabaseDocument database, final String propertyName, final OType type) {
     final boolean strictSQL = ((ODatabaseInternal) database).getStorage().getConfiguration().isStrictSql();
 
-    database.query(new OSQLAsynchQuery<Object>(
+    database.query(new OSQLAsynchQuery<>(
             "select from " + getEscapedName(name, strictSQL) + " where " + getEscapedName(propertyName, strictSQL) + ".type() <> \""
                     + type.name() + "\"", new OCommandResultListener() {
 
@@ -1337,7 +1352,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
                                         final OType type) {
     final boolean strictSQL = ((ODatabaseInternal) database).getStorage().getConfiguration().isStrictSql();
 
-    database.query(new OSQLAsynchQuery<Object>(
+    database.query(new OSQLAsynchQuery<>(
             "select from " + getEscapedName(name, strictSQL) + " where " + getEscapedName(propertyName, strictSQL) + " is not null ",
             new OCommandResultListener() {
 
@@ -1534,7 +1549,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
     ODatabaseDocumentInternal database = ODatabaseRecordThreadLocal.instance().getIfDefined();
     if (database != null && database.getStorage().getUnderlying() instanceof OAbstractPaginatedStorage) {
       final String clusterName = getDatabase().getClusterNameById(iId);
-      final List<String> indexesToAdd = new ArrayList<String>();
+      final List<String> indexesToAdd = new ArrayList<>();
 
       for (OIndex<?> index : getIndexes())
         indexesToAdd.add(index.getName());
@@ -1554,7 +1569,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
     checkRecursion(iBaseClass);
 
     if (subclasses == null)
-      subclasses = new ArrayList<OClass>();
+      subclasses = new ArrayList<>();
 
     if (subclasses.contains(iBaseClass))
       return this;
@@ -1577,8 +1592,8 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
   }
 
   protected static void checkParametersConflict(List<OClass> classes) {
-    final Map<String, OProperty> comulative = new HashMap<String, OProperty>();
-    final Map<String, OProperty> properties = new HashMap<String, OProperty>();
+    final Map<String, OProperty> comulative = new HashMap<>();
+    final Map<String, OProperty> properties = new HashMap<>();
 
     for (OClass superClass : classes) {
       if (superClass == null)
@@ -1635,7 +1650,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
   private void removeClusterFromIndexes(final int iId) {
     if (getDatabase().getStorage().getUnderlying() instanceof OAbstractPaginatedStorage) {
       final String clusterName = getDatabase().getClusterNameById(iId);
-      final List<String> indexesToRemove = new ArrayList<String>();
+      final List<String> indexesToRemove = new ArrayList<>();
 
       for (final OIndex<?> index : getIndexes())
         indexesToRemove.add(index.getName());
@@ -1654,7 +1669,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
    * Add different cluster id to the "polymorphic cluster ids" array.
    */
   protected void addPolymorphicClusterIds(final OClassImpl iBaseClass) {
-    Set<Integer> clusters = new TreeSet<Integer>();
+    Set<Integer> clusters = new TreeSet<>();
 
     for (int clusterId : polymorphicClusterIds) {
       clusters.add(clusterId);
@@ -1685,7 +1700,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
   }
 
   public List<OType> extractFieldTypes(final String[] fieldNames) {
-    final List<OType> types = new ArrayList<OType>(fieldNames.length);
+    final List<OType> types = new ArrayList<>(fieldNames.length);
 
     for (String fieldName : fieldNames) {
       if (!fieldName.equals("@rid"))
@@ -1729,7 +1744,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
       document.field("strictMode", strictMode);
       document.field("abstract", abstractClass);
 
-      final Set<ODocument> props = new LinkedHashSet<ODocument>();
+      final Set<ODocument> props = new LinkedHashSet<>();
       for (final OProperty p : properties.values()) {
         props.add(((OPropertyImpl) p).toNetworkStream());
       }
@@ -1742,7 +1757,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
       } else {
         // Single super class is deprecated!
         document.field("superClass", superClasses.get(0).getName(), OType.STRING);
-        List<String> superClassesNames = new ArrayList<String>();
+        List<String> superClassesNames = new ArrayList<>();
         for (OClassImpl superClass : superClasses) {
           superClassesNames.add(superClass.getName());
         }

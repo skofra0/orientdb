@@ -19,6 +19,19 @@
  */
 package com.orientechnologies.orient.core.serialization.serializer.record.string;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.StringWriter;
+import java.text.ParseException;
+import java.util.Base64;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import com.orientechnologies.common.collection.OMultiValue;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.common.io.OIOUtils;
@@ -28,7 +41,12 @@ import com.orientechnologies.common.util.OCommonConst;
 import com.orientechnologies.orient.core.Orient;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
-import com.orientechnologies.orient.core.db.record.*;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.db.record.ORecordLazyList;
+import com.orientechnologies.orient.core.db.record.ORecordLazyMultiValue;
+import com.orientechnologies.orient.core.db.record.ORecordLazySet;
+import com.orientechnologies.orient.core.db.record.OTrackedList;
+import com.orientechnologies.orient.core.db.record.OTrackedSet;
 import com.orientechnologies.orient.core.db.record.ridbag.ORidBag;
 import com.orientechnologies.orient.core.exception.OSerializationException;
 import com.orientechnologies.orient.core.fetch.OFetchHelper;
@@ -50,10 +68,6 @@ import com.orientechnologies.orient.core.record.impl.ODocumentInternal;
 import com.orientechnologies.orient.core.serialization.serializer.OJSONWriter;
 import com.orientechnologies.orient.core.serialization.serializer.OStringSerializerHelper;
 import com.orientechnologies.orient.core.util.ODateHelper;
-
-import java.io.*;
-import java.text.ParseException;
-import java.util.*;
 
 @SuppressWarnings("serial")
 public class ORecordSerializerJSON extends ORecordSerializerStringAbstract {
@@ -437,7 +451,7 @@ public class ORecordSerializerJSON extends ORecordSerializerStringAbstract {
     // LOAD THE FIELD TYPE MAP
     final String[] fieldTypesParts = fieldValueAsString.split(",");
     if (fieldTypesParts.length > 0) {
-      fieldTypes = new HashMap<String, Character>();
+      fieldTypes = new HashMap<>();
       String[] part;
       for (String f : fieldTypesParts) {
         part = f.split("=");
@@ -648,7 +662,7 @@ public class ORecordSerializerJSON extends ORecordSerializerStringAbstract {
     if (fields.length % 2 == 1)
       throw new OSerializationException("Bad JSON format on map. Expected pairs of field:value but received '" + iFieldValue + "'");
 
-    final Map<String, Object> embeddedMap = new LinkedHashMap<String, Object>();
+    final Map<String, Object> embeddedMap = new LinkedHashMap<>();
 
     for (int i = 0; i < fields.length; i += 2) {
       String iFieldName = fields[i];
@@ -707,10 +721,10 @@ public class ORecordSerializerJSON extends ORecordSerializerStringAbstract {
       return getValueAsLinkedCollection(new ORecordLazyList(iRecord), iRecord, iFieldValue, iType, iLinkedType, iFieldTypes, iNoMap,
               iOptions);
     } else if (iType == OType.EMBEDDEDSET) {
-      return getValueAsEmbeddedCollection(new OTrackedSet<Object>(iRecord), iRecord, iFieldValue, iType, iLinkedType, iFieldTypes,
+      return getValueAsEmbeddedCollection(new OTrackedSet<>(iRecord), iRecord, iFieldValue, iType, iLinkedType, iFieldTypes,
               iNoMap, iOptions);
     } else {
-      return getValueAsEmbeddedCollection(new OTrackedList<Object>(iRecord), iRecord, iFieldValue, iType, iLinkedType, iFieldTypes,
+      return getValueAsEmbeddedCollection(new OTrackedList<>(iRecord), iRecord, iFieldValue, iType, iLinkedType, iFieldTypes,
               iNoMap, iOptions);
     }
   }

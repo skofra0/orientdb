@@ -20,6 +20,8 @@
 
 package com.orientechnologies.orient.core.conflict;
 
+import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicInteger;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
 import com.orientechnologies.orient.core.id.ORecordId;
@@ -29,9 +31,6 @@ import com.orientechnologies.orient.core.record.impl.ODocumentHelper;
 import com.orientechnologies.orient.core.storage.ORawBuffer;
 import com.orientechnologies.orient.core.storage.OStorage;
 import com.orientechnologies.orient.core.storage.OStorageOperationResult;
-
-import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Record conflict strategy that check the records content: if content is the same, se the higher version number.

@@ -16,10 +16,9 @@
  */
 package com.orientechnologies.orient.core.sql.method.misc;
 
+import java.util.Locale;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
-
-import java.util.Locale;
 
 /**
  * @author Johann Sorel (Geomatys)

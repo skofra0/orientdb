@@ -1,6 +1,5 @@
 package com.orientechnologies.orient.core.sql.parser;
 
-import org.junit.Test;
 public class OSleepStatementTest extends OParserTestAbstract {
 
   public void testPlain() {

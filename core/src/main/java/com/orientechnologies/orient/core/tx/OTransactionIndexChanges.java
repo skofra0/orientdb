@@ -19,13 +19,12 @@
   */
 package com.orientechnologies.orient.core.tx;
 
+import java.util.NavigableMap;
+import java.util.TreeMap;
 import com.orientechnologies.common.comparator.ODefaultComparator;
 import com.orientechnologies.orient.core.index.OIndex;
 import com.orientechnologies.orient.core.index.OIndexInternal;
 import com.orientechnologies.orient.core.index.OIndexManager;
-
-import java.util.NavigableMap;
-import java.util.TreeMap;
 
 /**
  * Collects the changes to an index for a certain key
@@ -38,7 +37,7 @@ public class OTransactionIndexChanges {
     PUT, REMOVE, CLEAR
   }
 
-  public NavigableMap<Object, OTransactionIndexChangesPerKey> changesPerKey = new TreeMap<Object, OTransactionIndexChangesPerKey>(
+  public NavigableMap<Object, OTransactionIndexChangesPerKey> changesPerKey = new TreeMap<>(
       ODefaultComparator.INSTANCE);
 
   public OTransactionIndexChangesPerKey nullKeyChanges = new OTransactionIndexChangesPerKey(null);

@@ -2,19 +2,29 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=true,TRACK_TOKENS=true,NODE_PREFIX=O,NODE_EXTENDS=,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package com.orientechnologies.orient.core.sql.parser;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import com.orientechnologies.common.collection.OMultiCollectionIterator;
 import com.orientechnologies.common.util.OSizeable;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.index.*;
+import com.orientechnologies.orient.core.index.OCompositeIndexDefinition;
+import com.orientechnologies.orient.core.index.OCompositeKey;
+import com.orientechnologies.orient.core.index.OIndex;
+import com.orientechnologies.orient.core.index.OIndexDefinition;
+import com.orientechnologies.orient.core.index.OPropertyIndexDefinition;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.sql.executor.OResultInternal;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 public class OWhereClause extends SimpleNode {
   protected OBooleanExpression baseExpression;
@@ -181,8 +191,8 @@ public class OWhereClause extends SimpleNode {
       return null;
     }
     Set<OIndex<?>> indexes = oClass.getIndexes();
-    List<OIndex> bestIndexes = new ArrayList<OIndex>();
-    List<Map<String, Object>> indexConditions = new ArrayList<Map<String, Object>>();
+    List<OIndex> bestIndexes = new ArrayList<>();
+    List<Map<String, Object>> indexConditions = new ArrayList<>();
     for (OAndBlock condition : flattenedConditions) {
       Map<String, Object> conditions = getEqualityOperations(condition, ctx);
       long conditionEstimation = Long.MAX_VALUE;
@@ -267,7 +277,7 @@ public class OWhereClause extends SimpleNode {
   }
 
   private Map<String, Object> getEqualityOperations(OAndBlock condition, OCommandContext ctx) {
-    Map<String, Object> result = new HashMap<String, Object>();
+    Map<String, Object> result = new HashMap<>();
     for (OBooleanExpression expression : condition.subBlocks) {
       if (expression instanceof OBinaryCondition) {
         OBinaryCondition b = (OBinaryCondition) expression;

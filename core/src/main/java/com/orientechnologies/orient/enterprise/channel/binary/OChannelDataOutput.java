@@ -1,9 +1,8 @@
 package com.orientechnologies.orient.enterprise.channel.binary;
 
-import com.orientechnologies.orient.core.id.ORID;
-
 import java.io.IOException;
 import java.io.OutputStream;
+import com.orientechnologies.orient.core.id.ORID;
 
 /**
  * Created by luigidellaquila on 12/12/16.

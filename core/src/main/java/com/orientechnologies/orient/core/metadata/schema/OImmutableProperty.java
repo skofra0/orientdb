@@ -19,16 +19,6 @@
   */
 package com.orientechnologies.orient.core.metadata.schema;
 
-import com.orientechnologies.orient.core.collate.OCollate;
-import com.orientechnologies.orient.core.index.OIndex;
-import com.orientechnologies.orient.core.index.OIndexDefinition;
-import com.orientechnologies.orient.core.metadata.schema.validation.ValidationBinaryComparable;
-import com.orientechnologies.orient.core.metadata.schema.validation.ValidationCollectionComparable;
-import com.orientechnologies.orient.core.metadata.schema.validation.ValidationLinkbagComparable;
-import com.orientechnologies.orient.core.metadata.schema.validation.ValidationMapComparable;
-import com.orientechnologies.orient.core.metadata.schema.validation.ValidationStringComparable;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
@@ -38,6 +28,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import com.orientechnologies.orient.core.collate.OCollate;
+import com.orientechnologies.orient.core.index.OIndex;
+import com.orientechnologies.orient.core.index.OIndexDefinition;
+import com.orientechnologies.orient.core.metadata.schema.validation.ValidationBinaryComparable;
+import com.orientechnologies.orient.core.metadata.schema.validation.ValidationCollectionComparable;
+import com.orientechnologies.orient.core.metadata.schema.validation.ValidationLinkbagComparable;
+import com.orientechnologies.orient.core.metadata.schema.validation.ValidationMapComparable;
+import com.orientechnologies.orient.core.metadata.schema.validation.ValidationStringComparable;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 /**
  * @author Andrey Lomakin (a.lomakin-at-orientdb.com)
@@ -88,7 +87,7 @@ public class OImmutableProperty implements OProperty {
     max = property.getMax();
     defaultValue = property.getDefaultValue();
     regexp = property.getRegexp();
-    customProperties = new HashMap<String, String>();
+    customProperties = new HashMap<>();
 
     for (String key : property.getCustomKeys())
       customProperties.put(key, property.getCustom(key));
@@ -330,7 +329,7 @@ public class OImmutableProperty implements OProperty {
   @Override
   public Collection<OIndex<?>> getAllIndexes() {
     final Set<OIndex<?>> indexes = owner.getIndexes();
-    final List<OIndex<?>> indexList = new LinkedList<OIndex<?>>();
+    final List<OIndex<?>> indexList = new LinkedList<>();
     for (final OIndex<?> index : indexes) {
       final OIndexDefinition indexDefinition = index.getDefinition();
       if (indexDefinition.getFields().contains(name))

@@ -1,5 +1,10 @@
 package com.orientechnologies.orient.core.db.tool;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 import com.orientechnologies.orient.core.command.OCommandOutputListener;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
@@ -11,12 +16,6 @@ import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import com.orientechnologies.orient.core.record.ODirection;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.record.impl.OVertexDocument;
-
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Find and repair broken bonsai tree removing the double linked buckets and regenerating the whole tree with data from referring
@@ -33,7 +32,7 @@ public class OBonsaiTreeRepair {
     final OSchema schema = metadata.getSchema();
     final OClass edgeClass = schema.getClass("E");
     if (edgeClass != null) {
-      final HashMap<String, Set<ORID>> processedVertexes = new HashMap<String, Set<ORID>>();
+      final HashMap<String, Set<ORID>> processedVertexes = new HashMap<>();
       final long countEdges = db.countClass(edgeClass.getName());
 
       message(outputListener, countEdges + " will be processed.");
@@ -59,13 +58,13 @@ public class OBonsaiTreeRepair {
 
           Set<ORID> inVertexes = processedVertexes.get(inVertexName);
           if (inVertexes == null) {
-            inVertexes = new HashSet<ORID>();
+            inVertexes = new HashSet<>();
             processedVertexes.put(inVertexName, inVertexes);
           }
 
           Set<ORID> outVertexes = processedVertexes.get(outVertexName);
           if (outVertexes == null) {
-            outVertexes = new HashSet<ORID>();
+            outVertexes = new HashSet<>();
             processedVertexes.put(outVertexName, outVertexes);
           }
 

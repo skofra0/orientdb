@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
 import com.orientechnologies.orient.core.metadata.security.OToken;
 
 public class OClientSessions {

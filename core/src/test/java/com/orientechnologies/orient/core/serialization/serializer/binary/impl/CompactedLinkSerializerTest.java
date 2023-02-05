@@ -1,11 +1,10 @@
 package com.orientechnologies.orient.core.serialization.serializer.binary.impl;
 
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.id.ORecordId;
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.nio.ByteBuffer;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.id.ORecordId;
 
 public class CompactedLinkSerializerTest {
   @Test

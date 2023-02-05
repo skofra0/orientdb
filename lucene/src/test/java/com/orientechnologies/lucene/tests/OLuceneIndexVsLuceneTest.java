@@ -18,12 +18,7 @@
 
 package com.orientechnologies.lucene.tests;
 
-import com.orientechnologies.common.io.OFileUtils;
-import com.orientechnologies.lucene.analyzer.OLucenePerFieldAnalyzerWrapper;
-import com.orientechnologies.orient.core.metadata.schema.OSchema;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.orient.core.sql.OCommandSQL;
-import com.orientechnologies.orient.core.sql.executor.OResultSet;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
@@ -43,12 +38,15 @@ import org.apache.lucene.store.NIOFSDirectory;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import com.orientechnologies.common.io.OFileUtils;
+import com.orientechnologies.lucene.analyzer.OLucenePerFieldAnalyzerWrapper;
+import com.orientechnologies.orient.core.metadata.schema.OSchema;
+import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.orientechnologies.orient.core.sql.OCommandSQL;
+import com.orientechnologies.orient.core.sql.executor.OResultSet;
 
 /**
  * Created by enricorisa on 08/10/14.

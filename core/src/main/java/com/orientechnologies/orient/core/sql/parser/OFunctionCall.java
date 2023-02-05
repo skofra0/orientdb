@@ -2,6 +2,11 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=true,TRACK_TOKENS=true,NODE_PREFIX=O,NODE_EXTENDS=,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package com.orientechnologies.orient.core.sql.parser;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.ODatabaseRecordThreadLocal;
@@ -16,17 +21,11 @@ import com.orientechnologies.orient.core.sql.functions.OIndexableSQLFunction;
 import com.orientechnologies.orient.core.sql.functions.OSQLFunction;
 import com.orientechnologies.orient.core.sql.functions.graph.OSQLFunctionMove;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 public class OFunctionCall extends SimpleNode {
 
   protected OIdentifier name;
 
-  protected List<OExpression> params = new ArrayList<OExpression>();
+  protected List<OExpression> params = new ArrayList<>();
 
   public OFunctionCall(int id) {
     super(id);
@@ -91,7 +90,7 @@ public class OFunctionCall extends SimpleNode {
   }
 
   private Object execute(Object targetObjects, OCommandContext ctx, String name) {
-    List<Object> paramValues = new ArrayList<Object>();
+    List<Object> paramValues = new ArrayList<>();
 
     Object record = null;
 

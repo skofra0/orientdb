@@ -1,17 +1,22 @@
 package com.orientechnologies.orient.core.sql.parser;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.IdentityHashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import com.orientechnologies.orient.core.sql.OCommandSQLParsingException;
 import com.orientechnologies.orient.core.sql.executor.PatternEdge;
 import com.orientechnologies.orient.core.sql.executor.PatternNode;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Created by luigidellaquila on 28/07/15.
  */
 public class Pattern {
-  public Map<String, PatternNode> aliasToNode = new LinkedHashMap<String, PatternNode>();
+  public Map<String, PatternNode> aliasToNode = new LinkedHashMap<>();
   public int                      numOfEdges  = 0;
 
   public void addExpression(OMatchExpression expression) {

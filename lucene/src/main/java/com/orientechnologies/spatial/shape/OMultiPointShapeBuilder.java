@@ -17,18 +17,17 @@
  */
 package com.orientechnologies.spatial.shape;
 
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.MultiPoint;
+import org.locationtech.spatial4j.shape.jts.JtsGeometry;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import com.orientechnologies.orient.core.db.ODatabaseInternal;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.MultiPoint;
-import org.locationtech.spatial4j.shape.jts.JtsGeometry;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class OMultiPointShapeBuilder extends OComplexShapeBuilder<JtsGeometry> {
   @Override

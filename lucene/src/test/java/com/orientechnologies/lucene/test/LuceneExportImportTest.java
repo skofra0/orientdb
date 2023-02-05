@@ -18,6 +18,15 @@
 
 package com.orientechnologies.lucene.test;
 
+import static com.orientechnologies.orient.core.metadata.schema.OClass.INDEX_TYPE.FULLTEXT;
+import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.List;
+import java.util.zip.GZIPInputStream;
 import com.orientechnologies.lucene.OLuceneIndexFactory;
 import com.orientechnologies.orient.core.command.OCommandOutputListener;
 import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
@@ -30,17 +39,6 @@ import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.List;
-import java.util.zip.GZIPInputStream;
-
-import static com.orientechnologies.orient.core.metadata.schema.OClass.INDEX_TYPE.FULLTEXT;
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Created by Enrico Risa on 07/07/15.
@@ -66,7 +64,7 @@ public class LuceneExportImportTest extends BaseLuceneTest {
 
     String file = "./target/exportTest.json";
 
-    List<?> query = db.query(new OSQLSynchQuery<Object>("select from City where name lucene 'Rome'"));
+    List<?> query = db.query(new OSQLSynchQuery<>("select from City where name lucene 'Rome'"));
 
     Assert.assertEquals(query.size(), 1);
 
@@ -103,7 +101,7 @@ public class LuceneExportImportTest extends BaseLuceneTest {
     assertThat(index.getAlgorithm()).isEqualTo(OLuceneIndexFactory.LUCENE_ALGORITHM);
 
     //redo the query
-    query = db.query(new OSQLSynchQuery<Object>("select from City where name lucene 'Rome'"));
+    query = db.query(new OSQLSynchQuery<>("select from City where name lucene 'Rome'"));
 
     assertThat(query).hasSize(1);
   }

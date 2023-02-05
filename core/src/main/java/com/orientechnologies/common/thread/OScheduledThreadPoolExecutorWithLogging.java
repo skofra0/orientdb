@@ -1,13 +1,12 @@
 package com.orientechnologies.common.thread;
 
-import com.orientechnologies.common.log.OLogManager;
-
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadFactory;
+import com.orientechnologies.common.log.OLogManager;
 
 /**
  * The same as thread {@link ScheduledThreadPoolExecutor} but also logs all exceptions happened inside of the tasks which caused

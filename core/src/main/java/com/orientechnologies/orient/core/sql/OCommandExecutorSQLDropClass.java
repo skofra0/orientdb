@@ -19,6 +19,7 @@
  */
 package com.orientechnologies.orient.core.sql;
 
+import java.util.Map;
 import com.orientechnologies.common.log.OLogManager;
 import com.orientechnologies.orient.core.command.OCommandDistributedReplicateRequest;
 import com.orientechnologies.orient.core.command.OCommandRequest;
@@ -28,8 +29,6 @@ import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.exception.OCommandExecutionException;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.sql.parser.ODropClassStatement;
-
-import java.util.Map;
 
 /**
  * SQL DROP CLASS command: Drops a class from the database. Cluster associated are removed too if are used exclusively by the

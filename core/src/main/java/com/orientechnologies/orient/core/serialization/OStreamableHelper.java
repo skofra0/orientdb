@@ -19,10 +19,17 @@
  */
 package com.orientechnologies.orient.core.serialization;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInput;
+import java.io.DataOutput;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamClass;
+import java.io.Serializable;
 import com.orientechnologies.common.exception.OException;
 import com.orientechnologies.orient.core.exception.OSerializationException;
-
-import java.io.*;
 
 /**
  * Helper class to serialize OStreamable objects.
