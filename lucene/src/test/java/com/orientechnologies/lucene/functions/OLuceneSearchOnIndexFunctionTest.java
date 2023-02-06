@@ -59,7 +59,7 @@ public class OLuceneSearchOnIndexFunctionTest extends BaseLuceneTest {
         .query("SELECT from Song where SEARCH_INDEX('Song.title', '') = true");
 
 //    resultSet.getExecutionPlan().ifPresent(x -> System.out.println(x.prettyPrint(0, 2)));
-    assertThat(resultSet).hasSize(0);
+    assertThat(resultSet).isEmpty();
 
     resultSet.close();
 

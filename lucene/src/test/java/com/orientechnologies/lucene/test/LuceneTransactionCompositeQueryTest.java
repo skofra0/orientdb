@@ -65,7 +65,7 @@ public class LuceneTransactionCompositeQueryTest extends BaseLuceneTest {
 
     query = "select from Foo where name = 'Test' and bar lucene \"abc\" ";
     vertices = db.command(new OSQLSynchQuery<ODocument>(query)).execute();
-    assertThat(vertices).hasSize(0);
+    assertThat(vertices).isEmpty();
 
   }
 
@@ -92,7 +92,7 @@ public class LuceneTransactionCompositeQueryTest extends BaseLuceneTest {
 
     Collection coll = (Collection) index.get("abc");
 
-    assertThat(vertices).hasSize(0);
+    assertThat(vertices).isEmpty();
 
     Assert.assertEquals(coll.size(), 0);
 
@@ -141,7 +141,7 @@ public class LuceneTransactionCompositeQueryTest extends BaseLuceneTest {
     List<ODocument> vertices = db.command(new OSQLSynchQuery<ODocument>(query)).execute();
     Collection coll = (Collection) index.get("abc");
 
-    assertThat(vertices).hasSize(0);
+    assertThat(vertices).isEmpty();
     Assert.assertEquals(coll.size(), 0);
 
     Iterator iterator = coll.iterator();

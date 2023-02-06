@@ -81,34 +81,31 @@ import com.orientechnologies.orient.core.tx.OTransactionInternal;
 import com.orientechnologies.orient.core.util.OURLConnection;
 import com.orientechnologies.orient.core.util.OURLHelper;
 
-/**
- * Created by tglman on 20/07/16.
+/** Created by tglman on 20/07/16.
  *
- * @Deprecated use {@link OrientDB} instead.
- */
-@Deprecated
+ * @Deprecated use {@link OrientDB} instead. */
+// @Deprecated
 public class ODatabaseDocumentTx implements ODatabaseDocumentInternal {
 
   protected static ConcurrentMap<String, OrientDBInternal> embedded = new ConcurrentHashMap<>();
-  protected static ConcurrentMap<String, OrientDBInternal> remote   = new ConcurrentHashMap<>();
+  protected static ConcurrentMap<String, OrientDBInternal> remote = new ConcurrentHashMap<>();
 
-  protected       ODatabaseDocumentInternal internal;
-  private final   String                    url;
-  private         OrientDBInternal          factory;
-  private final   String                    type;
-  private final   String                    dbName;
-  private final   String                    baseUrl;
-  private final   Map<String, Object>       preopenProperties = new HashMap<>();
-  private final   Map<ATTRIBUTES, Object>   preopenAttributes = new HashMap<>();
-  // TODO review for the case of browseListener before open.
-  private final   Set<ODatabaseListener>    preopenListener   = new HashSet<>();
-  private         ODatabaseInternal<?>      databaseOwner;
-  private         OIntent                   intent;
-  private         OStorage                  delegateStorage;
-  private         ORecordConflictStrategy   conflictStrategy;
-  private         ORecordSerializer         serializer;
-  protected final AtomicReference<Thread>   owner             = new AtomicReference<>();
-  private final   boolean                   ownerProtection;
+  protected ODatabaseDocumentInternal internal;
+  private final String url;
+  private OrientDBInternal factory;
+  private final String type;
+  private final String dbName;
+  private final String baseUrl;
+  private final Map<String, Object> preopenProperties = new HashMap<>();
+  private final Map<ATTRIBUTES, Object> preopenAttributes = new HashMap<>();
+  private final Set<ODatabaseListener> preopenListener = new HashSet<>();
+  private ODatabaseInternal<?> databaseOwner;
+  private OIntent intent;
+  private OStorage delegateStorage;
+  private ORecordConflictStrategy conflictStrategy;
+  private ORecordSerializer serializer;
+  protected final AtomicReference<Thread> owner = new AtomicReference<>();
+  private final boolean ownerProtection;
 
   private static OShutdownHandler shutdownHandler = new OShutdownHandler() {
     @Override
@@ -172,9 +169,7 @@ public class ODatabaseDocumentTx implements ODatabaseDocumentInternal {
     return factory;
   }
 
-  /**
-   * @Deprecated use {{@link OrientDB}} instead.
-   */
+  /** @Deprecated use {{@link OrientDB}} instead. */
   @Deprecated
   public ODatabaseDocumentTx(String url) {
     this(url, true);
@@ -244,8 +239,7 @@ public class ODatabaseDocumentTx implements ODatabaseDocumentInternal {
   }
 
   @Override
-  public <RET extends ORecord> RET loadIfVersionIsNotLatest(ORID rid, int recordVersion, String fetchPlan, boolean ignoreCache)
-      throws ORecordNotFoundException {
+  public <RET extends ORecord> RET loadIfVersionIsNotLatest(ORID rid, int recordVersion, String fetchPlan, boolean ignoreCache) throws ORecordNotFoundException {
     checkOpenness();
     return (RET) internal.loadIfVersionIsNotLatest(rid, recordVersion, fetchPlan, ignoreCache);
   }
@@ -263,26 +257,19 @@ public class ODatabaseDocumentTx implements ODatabaseDocumentInternal {
   }
 
   @Override
-  public <RET extends ORecord> RET executeReadRecord(ORecordId rid, ORecord iRecord, int recordVersion, String fetchPlan,
-      boolean ignoreCache, boolean iUpdateCache, boolean loadTombstones, OStorage.LOCKING_STRATEGY lockingStrategy,
-      RecordReader recordReader) {
+  public <RET extends ORecord> RET executeReadRecord(ORecordId rid, ORecord iRecord, int recordVersion, String fetchPlan, boolean ignoreCache, boolean iUpdateCache, boolean loadTombstones, OStorage.LOCKING_STRATEGY lockingStrategy, RecordReader recordReader) {
     checkOpenness();
-    return internal
-        .executeReadRecord(rid, iRecord, recordVersion, fetchPlan, ignoreCache, iUpdateCache, loadTombstones, lockingStrategy,
-            recordReader);
+    return internal.executeReadRecord(rid, iRecord, recordVersion, fetchPlan, ignoreCache, iUpdateCache, loadTombstones, lockingStrategy, recordReader);
   }
 
   @Override
-  public <RET extends ORecord> RET executeSaveRecord(ORecord record, String clusterName, int ver, OPERATION_MODE mode,
-      boolean forceCreate, ORecordCallback<? extends Number> recordCreatedCallback,
-      ORecordCallback<Integer> recordUpdatedCallback) {
+  public <RET extends ORecord> RET executeSaveRecord(ORecord record, String clusterName, int ver, OPERATION_MODE mode, boolean forceCreate, ORecordCallback<? extends Number> recordCreatedCallback, ORecordCallback<Integer> recordUpdatedCallback) {
     checkOpenness();
     return internal.executeSaveRecord(record, clusterName, ver, mode, forceCreate, recordCreatedCallback, recordUpdatedCallback);
   }
 
   @Override
-  public void executeDeleteRecord(OIdentifiable record, int iVersion, boolean iRequired, OPERATION_MODE iMode,
-      boolean prohibitTombstones) {
+  public void executeDeleteRecord(OIdentifiable record, int iVersion, boolean iRequired, OPERATION_MODE iMode, boolean prohibitTombstones) {
     checkOpenness();
     internal.executeDeleteRecord(record, iVersion, iRequired, iMode, prohibitTombstones);
   }
@@ -585,15 +572,13 @@ public class ODatabaseDocumentTx implements ODatabaseDocumentInternal {
   }
 
   @Override
-  public <RET extends ORecord> RET load(ORecord iObject, String iFetchPlan, boolean iIgnoreCache, boolean loadTombstone,
-      OStorage.LOCKING_STRATEGY iLockingStrategy) {
+  public <RET extends ORecord> RET load(ORecord iObject, String iFetchPlan, boolean iIgnoreCache, boolean loadTombstone, OStorage.LOCKING_STRATEGY iLockingStrategy) {
     checkOpenness();
     return internal.load(iObject, iFetchPlan, iIgnoreCache, loadTombstone, iLockingStrategy);
   }
 
   @Override
-  public <RET extends ORecord> RET load(ORecord iObject, String iFetchPlan, boolean iIgnoreCache, boolean iUpdateCache,
-      boolean loadTombstone, OStorage.LOCKING_STRATEGY iLockingStrategy) {
+  public <RET extends ORecord> RET load(ORecord iObject, String iFetchPlan, boolean iIgnoreCache, boolean iUpdateCache, boolean loadTombstone, OStorage.LOCKING_STRATEGY iLockingStrategy) {
     checkOpenness();
     return internal.load(iObject, iFetchPlan, iIgnoreCache, iUpdateCache, loadTombstone, iLockingStrategy);
   }
@@ -635,15 +620,13 @@ public class ODatabaseDocumentTx implements ODatabaseDocumentInternal {
   }
 
   @Override
-  public <RET extends ORecord> RET load(ORID iRecordId, String iFetchPlan, boolean iIgnoreCache, boolean loadTombstone,
-      OStorage.LOCKING_STRATEGY iLockingStrategy) {
+  public <RET extends ORecord> RET load(ORID iRecordId, String iFetchPlan, boolean iIgnoreCache, boolean loadTombstone, OStorage.LOCKING_STRATEGY iLockingStrategy) {
     checkOpenness();
     return internal.load(iRecordId, iFetchPlan, iIgnoreCache, loadTombstone, iLockingStrategy);
   }
 
   @Override
-  public <RET extends ORecord> RET load(ORID iRecordId, String iFetchPlan, boolean iIgnoreCache, boolean iUpdateCache,
-      boolean loadTombstone, OStorage.LOCKING_STRATEGY iLockingStrategy) {
+  public <RET extends ORecord> RET load(ORID iRecordId, String iFetchPlan, boolean iIgnoreCache, boolean iUpdateCache, boolean loadTombstone, OStorage.LOCKING_STRATEGY iLockingStrategy) {
     checkOpenness();
     return internal.load(iRecordId, iFetchPlan, iIgnoreCache, iUpdateCache, loadTombstone, iLockingStrategy);
   }
@@ -655,8 +638,7 @@ public class ODatabaseDocumentTx implements ODatabaseDocumentInternal {
   }
 
   @Override
-  public <RET extends ORecord> RET save(ORecord iObject, OPERATION_MODE iMode, boolean iForceCreate,
-      ORecordCallback<? extends Number> iRecordCreatedCallback, ORecordCallback<Integer> iRecordUpdatedCallback) {
+  public <RET extends ORecord> RET save(ORecord iObject, OPERATION_MODE iMode, boolean iForceCreate, ORecordCallback<? extends Number> iRecordCreatedCallback, ORecordCallback<Integer> iRecordUpdatedCallback) {
     checkOpenness();
     return internal.save(iObject, iMode, iForceCreate, iRecordCreatedCallback, iRecordUpdatedCallback);
   }
@@ -668,8 +650,7 @@ public class ODatabaseDocumentTx implements ODatabaseDocumentInternal {
   }
 
   @Override
-  public <RET extends ORecord> RET save(ORecord iObject, String iClusterName, OPERATION_MODE iMode, boolean iForceCreate,
-      ORecordCallback<? extends Number> iRecordCreatedCallback, ORecordCallback<Integer> iRecordUpdatedCallback) {
+  public <RET extends ORecord> RET save(ORecord iObject, String iClusterName, OPERATION_MODE iMode, boolean iForceCreate, ORecordCallback<? extends Number> iRecordCreatedCallback, ORecordCallback<Integer> iRecordUpdatedCallback) {
     checkOpenness();
     return internal.save(iObject, iClusterName, iMode, iForceCreate, iRecordCreatedCallback, iRecordUpdatedCallback);
   }
@@ -787,8 +768,7 @@ public class ODatabaseDocumentTx implements ODatabaseDocumentInternal {
   }
 
   @Override
-  public ORecordIteratorCluster<ODocument> browseCluster(String iClusterName, long startClusterPosition, long endClusterPosition,
-      boolean loadTombstones) {
+  public ORecordIteratorCluster<ODocument> browseCluster(String iClusterName, long startClusterPosition, long endClusterPosition, boolean loadTombstones) {
     checkOpenness();
     return internal.browseCluster(iClusterName, startClusterPosition, endClusterPosition, loadTombstones);
   }
@@ -800,15 +780,13 @@ public class ODatabaseDocumentTx implements ODatabaseDocumentInternal {
   }
 
   @Override
-  public <REC extends ORecord> ORecordIteratorCluster<REC> browseCluster(String iClusterName, Class<REC> iRecordClass,
-      long startClusterPosition, long endClusterPosition) {
+  public <REC extends ORecord> ORecordIteratorCluster<REC> browseCluster(String iClusterName, Class<REC> iRecordClass, long startClusterPosition, long endClusterPosition) {
     checkOpenness();
     return internal.browseCluster(iClusterName, iRecordClass, startClusterPosition, endClusterPosition);
   }
 
   @Override
-  public <REC extends ORecord> ORecordIteratorCluster<REC> browseCluster(String iClusterName, Class<REC> iRecordClass,
-      long startClusterPosition, long endClusterPosition, boolean loadTombstones) {
+  public <REC extends ORecord> ORecordIteratorCluster<REC> browseCluster(String iClusterName, Class<REC> iRecordClass, long startClusterPosition, long endClusterPosition, boolean loadTombstones) {
     checkOpenness();
     return internal.browseCluster(iClusterName, iRecordClass, startClusterPosition, endClusterPosition, loadTombstones);
   }
@@ -838,24 +816,21 @@ public class ODatabaseDocumentTx implements ODatabaseDocumentInternal {
   }
 
   @Override
-  public <DB extends ODatabaseDocument> DB checkSecurity(ORule.ResourceGeneric resourceGeneric, String resourceSpecific,
-      int iOperation) {
+  public <DB extends ODatabaseDocument> DB checkSecurity(ORule.ResourceGeneric resourceGeneric, String resourceSpecific, int iOperation) {
     checkOpenness();
     internal.checkSecurity(resourceGeneric, resourceSpecific, iOperation);
     return (DB) this;
   }
 
   @Override
-  public <DB extends ODatabaseDocument> DB checkSecurity(ORule.ResourceGeneric iResourceGeneric, int iOperation,
-      Object iResourceSpecific) {
+  public <DB extends ODatabaseDocument> DB checkSecurity(ORule.ResourceGeneric iResourceGeneric, int iOperation, Object iResourceSpecific) {
     checkOpenness();
     internal.checkSecurity(iResourceGeneric, iOperation, iResourceSpecific);
     return (DB) this;
   }
 
   @Override
-  public <DB extends ODatabaseDocument> DB checkSecurity(ORule.ResourceGeneric iResourceGeneric, int iOperation,
-      Object... iResourcesSpecific) {
+  public <DB extends ODatabaseDocument> DB checkSecurity(ORule.ResourceGeneric iResourceGeneric, int iOperation, Object... iResourcesSpecific) {
     checkOpenness();
     internal.checkSecurity(iResourceGeneric, iOperation, iResourcesSpecific);
     return (DB) this;
@@ -907,12 +882,12 @@ public class ODatabaseDocumentTx implements ODatabaseDocumentInternal {
       if ("remote".equals(type)) {
         factory = getOrCreateRemoteFactory(baseUrl);
         OrientDBConfig config = buildConfig(null);
-        internal = (ODatabaseDocumentInternal) factory.open(dbName, iUserName, iUserPassword, config);
+        internal = factory.open(dbName, iUserName, iUserPassword, config);
 
       } else {
         factory = getOrCreateEmbeddedFactory(baseUrl, null);
         OrientDBConfig config = buildConfig(null);
-        internal = (ODatabaseDocumentInternal) factory.open(dbName, iUserName, iUserPassword, config);
+        internal = factory.open(dbName, iUserName, iUserPassword, config);
       }
       if (databaseOwner != null)
         internal.setDatabaseOwner(databaseOwner);
@@ -971,7 +946,7 @@ public class ODatabaseDocumentTx implements ODatabaseDocumentInternal {
         factory = getOrCreateEmbeddedFactory(baseUrl, null);
         factory.create(dbName, null, null, ODatabaseType.MEMORY, config);
         OrientDBConfig openConfig = OrientDBConfig.builder().fromContext(config.getConfigurations()).build();
-        internal = (ODatabaseDocumentInternal) factory.open(dbName, "admin", "admin", openConfig);
+        internal = factory.open(dbName, "admin", "admin", openConfig);
         for (Map.Entry<ATTRIBUTES, Object> attr : preopenAttributes.entrySet()) {
           internal.set(attr.getKey(), attr.getValue());
         }
@@ -984,7 +959,7 @@ public class ODatabaseDocumentTx implements ODatabaseDocumentInternal {
         factory = getOrCreateEmbeddedFactory(baseUrl, null);
         factory.create(dbName, null, null, ODatabaseType.PLOCAL, config);
         OrientDBConfig openConfig = OrientDBConfig.builder().fromContext(config.getConfigurations()).build();
-        internal = (ODatabaseDocumentInternal) factory.open(dbName, "admin", "admin", openConfig);
+        internal = factory.open(dbName, "admin", "admin", openConfig);
         for (Map.Entry<ATTRIBUTES, Object> attr : preopenAttributes.entrySet()) {
           internal.set(attr.getKey(), attr.getValue());
         }
@@ -1346,15 +1321,13 @@ public class ODatabaseDocumentTx implements ODatabaseDocumentInternal {
   }
 
   @Override
-  public List<String> backup(OutputStream out, Map<String, Object> options, Callable<Object> callable,
-      OCommandOutputListener iListener, int compressionLevel, int bufferSize) throws IOException {
+  public List<String> backup(OutputStream out, Map<String, Object> options, Callable<Object> callable, OCommandOutputListener iListener, int compressionLevel, int bufferSize) throws IOException {
     checkOpenness();
     return internal.backup(out, options, callable, iListener, compressionLevel, bufferSize);
   }
 
   @Override
-  public void restore(InputStream in, Map<String, Object> options, Callable<Object> callable, OCommandOutputListener iListener)
-      throws IOException {
+  public void restore(InputStream in, Map<String, Object> options, Callable<Object> callable, OCommandOutputListener iListener) throws IOException {
     checkOpenness();
     internal.restore(in, options, callable, iListener);
   }
@@ -1391,14 +1364,12 @@ public class ODatabaseDocumentTx implements ODatabaseDocumentInternal {
     if (connectionStrategy != null)
       builder.addConfig(OGlobalConfiguration.CLIENT_CONNECTION_STRATEGY, connectionStrategy);
 
-    final String compressionMethod =
-        pars != null ? (String) pars.get(OGlobalConfiguration.STORAGE_COMPRESSION_METHOD.getKey()) : null;
+    final String compressionMethod = pars != null ? (String) pars.get(OGlobalConfiguration.STORAGE_COMPRESSION_METHOD.getKey()) : null;
     if (compressionMethod != null)
       // SAVE COMPRESSION METHOD IN CONFIGURATION
       builder.addConfig(OGlobalConfiguration.STORAGE_COMPRESSION_METHOD, compressionMethod);
 
-    final String encryptionMethod =
-        pars != null ? (String) pars.get(OGlobalConfiguration.STORAGE_ENCRYPTION_METHOD.getKey()) : null;
+    final String encryptionMethod = pars != null ? (String) pars.get(OGlobalConfiguration.STORAGE_ENCRYPTION_METHOD.getKey()) : null;
     if (encryptionMethod != null)
       // SAVE ENCRYPTION METHOD IN CONFIGURATION
       builder.addConfig(OGlobalConfiguration.STORAGE_ENCRYPTION_METHOD, encryptionMethod);
@@ -1458,15 +1429,13 @@ public class ODatabaseDocumentTx implements ODatabaseDocumentInternal {
   }
 
   @Override
-  public OResultSet execute(String language, String script, Object... args)
-      throws OCommandExecutionException, OCommandScriptException {
+  public OResultSet execute(String language, String script, Object... args) throws OCommandExecutionException, OCommandScriptException {
     checkOpenness();
     return internal.execute(language, script, args);
   }
 
   @Override
-  public OResultSet execute(String language, String script, Map<String, ?> args)
-      throws OCommandExecutionException, OCommandScriptException {
+  public OResultSet execute(String language, String script, Map<String, ?> args) throws OCommandExecutionException, OCommandScriptException {
     checkOpenness();
     return internal.execute(language, script, args);
   }

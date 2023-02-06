@@ -44,7 +44,7 @@ public class OPartitionedDatabasePoolTest {
   @Test
   public void shouldAutoCreateDatabase() throws Exception {
 
-    ODatabaseDocumentTx db = pool.acquire();
+    ODatabaseDocumentInternal db = pool.acquire();
 
     assertThat(db.exists()).isTrue();
     assertThat(db.isClosed()).isFalse();
@@ -68,8 +68,8 @@ public class OPartitionedDatabasePoolTest {
   @Test
   public void shouldReturnSameDatabaseOnSameThread() throws Exception {
 
-    ODatabaseDocumentTx db1 = pool.acquire();
-    ODatabaseDocumentTx db2 = pool.acquire();
+    ODatabaseDocumentInternal db1 = pool.acquire();
+    ODatabaseDocumentInternal db2 = pool.acquire();
 
     assertThat(db1).isSameAs(db2);
 
@@ -92,7 +92,7 @@ public class OPartitionedDatabasePoolTest {
     //do a query and assert on other thread
     Runnable acquirer = () -> {
 
-      ODatabaseDocumentTx db = pool.acquire();
+      ODatabaseDocumentInternal db = pool.acquire();
 
       try {
         assertThat(db.isActiveOnCurrentThread()).isTrue();
@@ -122,7 +122,7 @@ public class OPartitionedDatabasePoolTest {
     pool.setProperty(STORAGE_ENCRYPTION_METHOD.getKey(), "aes");
     pool.setProperty(STORAGE_ENCRYPTION_KEY.getKey(), "T1JJRU5UREJfSVNfQ09PTA==");
 
-    ODatabaseDocumentTx dbFromPool = pool.acquire();
+    ODatabaseDocumentInternal dbFromPool = pool.acquire();
 
     assertThat(dbFromPool.getProperty(STORAGE_ENCRYPTION_METHOD.getKey())).isEqualTo("aes");
     assertThat(dbFromPool.getProperty(STORAGE_ENCRYPTION_KEY.getKey())).isEqualTo("T1JJRU5UREJfSVNfQ09PTA==");

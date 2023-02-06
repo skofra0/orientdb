@@ -71,7 +71,6 @@ public class OrientJdbcPreparedStatement extends OrientJdbcStatement implements 
     params = new HashMap<>();
   }
 
-  @SuppressWarnings("unchecked")
   public ResultSet executeQuery() throws SQLException {
 
     //    return super.executeQuery(sql);

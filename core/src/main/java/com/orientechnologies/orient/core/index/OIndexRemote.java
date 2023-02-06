@@ -42,7 +42,6 @@ import com.orientechnologies.orient.core.sql.executor.OResultSet;
  *
  * @author Luca Garulli (l.garulli--(at)--orientdb.com)
  */
-@SuppressWarnings("unchecked")
 public abstract class OIndexRemote<T> implements OIndex<T> {
   public static final    String QUERY_GET_VALUES_BEETWEN_SELECT                   = "select from index:`%s` where ";
   public static final    String QUERY_GET_VALUES_BEETWEN_INCLUSIVE_FROM_CONDITION = "key >= ?";

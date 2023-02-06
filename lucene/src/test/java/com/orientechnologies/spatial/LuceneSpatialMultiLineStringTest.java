@@ -41,7 +41,7 @@ public class LuceneSpatialMultiLineStringTest extends BaseSpatialLuceneTest {
     OSchema schema = db.getMetadata().getSchema();
     OClass v = schema.getClass("V");
     OClass oClass = schema.createClass("Place");
-    oClass.setSuperClass(v);
+    oClass.addSuperClass(v);
     oClass.createProperty("location", OType.EMBEDDED, schema.getClass("OMultiLineString"));
     oClass.createProperty("name", OType.STRING);
 

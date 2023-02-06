@@ -1010,7 +1010,7 @@ public class OServer {
 
     } finally {
       // REMOVE THE ENV VARIABLE FOR SECURITY REASONS
-      OSystemVariableResolver.setEnv(ROOT_PASSWORD_VAR, "");
+      // OSystemVariableResolver.setEnv(ROOT_PASSWORD_VAR, "");
     }
   }
 

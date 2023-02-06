@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import com.orientechnologies.orient.core.db.ODatabase;
+import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.exception.ODatabaseException;
 import com.orientechnologies.orient.core.exception.OSchemaException;
@@ -29,7 +30,7 @@ import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 
 public class ODatabaseDocumentTxTest {
 
-  private ODatabaseDocumentTx db;
+  private ODatabaseDocumentInternal db;
 
   @Before
   public void setUp() throws Exception {
@@ -275,7 +276,7 @@ public class ODatabaseDocumentTxTest {
       Thread thread = new Thread() {
         @Override
         public void run() {
-          ODatabaseDocumentTx dbCopy = db.copy();
+          ODatabaseDocumentInternal dbCopy = db.copy();
           dbCopy.activateOnCurrentThread();
           dbCopy.executeWithRetry(10, (db) -> {
             OElement vCopy = (OElement) db.load(v.getIdentity());
@@ -314,7 +315,7 @@ public class ODatabaseDocumentTxTest {
       Thread thread = new Thread() {
         @Override
         public void run() {
-          ODatabaseDocumentTx dbCopy = db.copy();
+          ODatabaseDocumentInternal dbCopy = db.copy();
           dbCopy.activateOnCurrentThread();
           dbCopy.begin();
           dbCopy.executeWithRetry(10, (db) -> {

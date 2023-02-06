@@ -74,7 +74,7 @@ public class LuceneInsertDeleteTest extends BaseLuceneTest {
     db.delete(doc);
 
     coll = (Collection<?>) idx.get("Rome");
-    assertThat(coll).hasSize(0);
+    assertThat(coll).isEmpty();
     assertThat(idx.getSize()).isEqualTo(1);
 
   }
@@ -99,6 +99,6 @@ public class LuceneInsertDeleteTest extends BaseLuceneTest {
     db.command(new OCommandSQL("delete vertex from Song where title lucene 'mountain'")).execute();
 
     docs = db.query(new OSQLSynchQuery<>("select from Song where  title lucene 'mountain'"));
-    assertThat(docs).hasSize(0);
+    assertThat(docs).isEmpty();
   }
 }

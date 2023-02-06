@@ -550,7 +550,6 @@ public class ORecordSerializerBinaryV1 extends ORecordSerializerBinaryV0 {
     serializeDocument(document, bytes, clazz);
   }
 
-  @SuppressWarnings("unchecked")
   @Override
   public void serialize(final ODocument document, final BytesContainer bytes, final boolean iClassOnly) {
     final OClass clazz = serializeClass(document, bytes, false);
@@ -742,7 +741,6 @@ public class ORecordSerializerBinaryV1 extends ORecordSerializerBinaryV0 {
     }
   }
 
-  @SuppressWarnings("unchecked")
   @Override
   protected int writeEmbeddedMap(BytesContainer bytes, Map<Object, Object> map) {
     final int fullPos = OVarIntSerializer.write(bytes, map.size());

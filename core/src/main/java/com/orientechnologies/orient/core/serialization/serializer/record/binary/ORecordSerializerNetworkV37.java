@@ -155,7 +155,6 @@ public class ORecordSerializerNetworkV37 implements ORecordSerializer {
 
   }
 
-  @SuppressWarnings("unchecked")
   public void serialize(final ODocument document, final BytesContainer bytes, final boolean iClassOnly) {
 
     serializeClass(document, bytes);
@@ -678,7 +677,6 @@ public class ORecordSerializerNetworkV37 implements ORecordSerializer {
     }
   }
 
-  @SuppressWarnings("unchecked")
   private int writeEmbeddedMap(BytesContainer bytes, Map<Object, Object> map) {
     final int fullPos = OVarIntSerializer.write(bytes, map.size());
     for (Entry<Object, Object> entry : map.entrySet()) {

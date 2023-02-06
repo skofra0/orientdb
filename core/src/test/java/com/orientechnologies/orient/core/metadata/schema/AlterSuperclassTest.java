@@ -83,7 +83,7 @@ public class AlterSuperclassTest {
     OClass classChild = schema.createClass("ChildClass1", classA);
     OClass classChild2 = schema.createClass("ChildClass2", classA);
 
-    classChild2.setSuperClass(classChild);
+    classChild2.addSuperClass(classChild);
 
     schema.dropClass("ChildClass2");
 

@@ -123,7 +123,7 @@ public class OInstanceofCondition extends OBooleanExpression {
     if (!left.supportsBasicCalculation()) {
       return (List) Collections.singletonList(left);
     }
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   @Override

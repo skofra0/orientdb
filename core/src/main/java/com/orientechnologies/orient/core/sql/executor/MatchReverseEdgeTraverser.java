@@ -68,7 +68,7 @@ public class MatchReverseEdgeTraverser extends MatchEdgeTraverser {
       }
       return result;
     }
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   @Override

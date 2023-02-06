@@ -40,11 +40,8 @@
         <module>core</module>
         <module>server</module>
         <module>tools</module>
-  <!--  <module>distributed</module> -->
-  <!--  <module>graphdb</module> -->
         <module>lucene</module>  
         <module>jdbc</module>
-  <!--  <module>etl</module> -->
         <module>distribution</module>
     </modules>
 
@@ -117,8 +114,6 @@
 		<asm.version>9.4</asm.version>
 		<jackson.version>2.14.2</jackson.version>
 		<jackson.databind.version>2.14.2</jackson.databind.version>
-		
-
     </properties>
 
     <build>

@@ -35,7 +35,6 @@ import com.orientechnologies.orient.core.sql.executor.OResultSet;
  *
  * @author Luca Garulli (l.garulli--(at)--orientdb.com)
  */
-@SuppressWarnings("unchecked")
 public class OIndexRemoteMultiValue extends OIndexRemote<Collection<OIdentifiable>> {
   protected final static String QUERY_GET = "select expand( rid ) from index:`%s` where key = ?";
 

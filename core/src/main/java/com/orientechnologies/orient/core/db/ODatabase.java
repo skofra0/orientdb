@@ -498,7 +498,7 @@ public interface ODatabase<T> extends OBackupable, Closeable {
    *
    * @return The new instance.
    */
-  <RET extends Object> RET newInstance();
+  <R extends Object> R newInstance();
 
   /**
    * Returns the Dictionary manual index.
@@ -569,7 +569,7 @@ public interface ODatabase<T> extends OBackupable, Closeable {
    *
    * @return
    */
-  <RET extends T> RET load(T iObject);
+  <R extends T> R load(T iObject);
 
   /**
    * Loads a record using a fetch plan.
@@ -579,7 +579,7 @@ public interface ODatabase<T> extends OBackupable, Closeable {
    *
    * @return The record received
    */
-  <RET extends T> RET load(T iObject, String iFetchPlan);
+  <R extends T> R load(T iObject, String iFetchPlan);
 
   /**
    * Loads a record using a fetch plan.
@@ -593,7 +593,7 @@ public interface ODatabase<T> extends OBackupable, Closeable {
    * @deprecated Usage of this method may lead to deadlocks.
    */
   @Deprecated
-  <RET extends T> RET load(T iObject, String iFetchPlan, boolean iIgnoreCache, boolean loadTombstone,
+  <R extends T> R load(T iObject, String iFetchPlan, boolean iIgnoreCache, boolean loadTombstone,
       OStorage.LOCKING_STRATEGY iLockingStrategy);
 
   /**
@@ -608,7 +608,7 @@ public interface ODatabase<T> extends OBackupable, Closeable {
    * @deprecated Usage of this method may lead to deadlocks.
    */
   @Deprecated
-  <RET extends T> RET load(T iObject, String iFetchPlan, boolean iIgnoreCache, boolean iUpdateCache, boolean loadTombstone,
+  <R extends T> R load(T iObject, String iFetchPlan, boolean iIgnoreCache, boolean iUpdateCache, boolean loadTombstone,
       OStorage.LOCKING_STRATEGY iLockingStrategy);
 
   /**
@@ -620,7 +620,7 @@ public interface ODatabase<T> extends OBackupable, Closeable {
    *
    * @return The record received
    */
-  <RET extends T> RET load(T iObject, String iFetchPlan, boolean iIgnoreCache);
+  <R extends T> R load(T iObject, String iFetchPlan, boolean iIgnoreCache);
 
   /**
    * Force the reloading of the entity.
@@ -631,7 +631,7 @@ public interface ODatabase<T> extends OBackupable, Closeable {
    *
    * @return The loaded entity
    */
-  <RET extends T> RET reload(final T iObject, String iFetchPlan, boolean iIgnoreCache);
+  <R extends T> R reload(final T iObject, String iFetchPlan, boolean iIgnoreCache);
 
   /**
    * Force the reloading of the entity.
@@ -644,7 +644,7 @@ public interface ODatabase<T> extends OBackupable, Closeable {
    *
    * @return The loaded entity
    */
-  <RET extends T> RET reload(final T iObject, String iFetchPlan, boolean iIgnoreCache, boolean force);
+  <R extends T> R reload(final T iObject, String iFetchPlan, boolean iIgnoreCache, boolean force);
 
   /**
    * Loads the entity by the Record ID.
@@ -653,7 +653,7 @@ public interface ODatabase<T> extends OBackupable, Closeable {
    *
    * @return The loaded entity
    */
-  <RET extends T> RET load(ORID recordId);
+  <R extends T> R load(ORID recordId);
 
   /**
    * Loads the entity by the Record ID using a fetch plan.
@@ -663,7 +663,7 @@ public interface ODatabase<T> extends OBackupable, Closeable {
    *
    * @return The loaded entity
    */
-  <RET extends T> RET load(ORID iRecordId, String iFetchPlan);
+  <R extends T> R load(ORID iRecordId, String iFetchPlan);
 
   /**
    * Loads the entity by the Record ID using a fetch plan and specifying if the cache must be ignored.
@@ -674,20 +674,20 @@ public interface ODatabase<T> extends OBackupable, Closeable {
    *
    * @return The loaded entity
    */
-  <RET extends T> RET load(ORID iRecordId, String iFetchPlan, boolean iIgnoreCache);
+  <R extends T> R load(ORID iRecordId, String iFetchPlan, boolean iIgnoreCache);
 
   @Deprecated
   /**
    * @deprecated Usage of this method may lead to deadlocks.
    */
-  <RET extends T> RET load(ORID iRecordId, String iFetchPlan, boolean iIgnoreCache, boolean loadTombstone,
+  <R extends T> R load(ORID iRecordId, String iFetchPlan, boolean iIgnoreCache, boolean loadTombstone,
       OStorage.LOCKING_STRATEGY iLockingStrategy);
 
   @Deprecated
   /**
    * @deprecated Usage of this method may lead to deadlocks.
    */
-  <RET extends T> RET load(ORID iRecordId, String iFetchPlan, boolean iIgnoreCache, boolean iUpdateCache, boolean loadTombstone,
+  <R extends T> R load(ORID iRecordId, String iFetchPlan, boolean iIgnoreCache, boolean iUpdateCache, boolean loadTombstone,
       OStorage.LOCKING_STRATEGY iLockingStrategy);
 
   /**
@@ -698,7 +698,7 @@ public interface ODatabase<T> extends OBackupable, Closeable {
    *
    * @return The saved entity.
    */
-  <RET extends T> RET save(T iObject);
+  <R extends T> R save(T iObject);
 
   /**
    * Saves an entity specifying the mode. If the entity is not dirty, then the operation will be ignored. For custom entity
@@ -711,7 +711,7 @@ public interface ODatabase<T> extends OBackupable, Closeable {
    * @param iRecordCreatedCallback
    * @param iRecordUpdatedCallback
    */
-  <RET extends T> RET save(T iObject, OPERATION_MODE iMode, boolean iForceCreate,
+  <R extends T> R save(T iObject, OPERATION_MODE iMode, boolean iForceCreate,
       ORecordCallback<? extends Number> iRecordCreatedCallback, ORecordCallback<Integer> iRecordUpdatedCallback);
 
   /**
@@ -723,7 +723,7 @@ public interface ODatabase<T> extends OBackupable, Closeable {
    *
    * @return The saved entity.
    */
-  <RET extends T> RET save(T iObject, String iClusterName);
+  <R extends T> R save(T iObject, String iClusterName);
 
   /**
    * Saves an entity in the specified cluster specifying the mode. If the entity is not dirty, then the operation will be ignored.
@@ -737,7 +737,7 @@ public interface ODatabase<T> extends OBackupable, Closeable {
    * @param iRecordCreatedCallback
    * @param iRecordUpdatedCallback
    */
-  <RET extends T> RET save(T iObject, String iClusterName, OPERATION_MODE iMode, boolean iForceCreate,
+  <R extends T> R save(T iObject, String iClusterName, OPERATION_MODE iMode, boolean iForceCreate,
       ORecordCallback<? extends Number> iRecordCreatedCallback, ORecordCallback<Integer> iRecordUpdatedCallback);
 
   /**
@@ -831,7 +831,7 @@ public interface ODatabase<T> extends OBackupable, Closeable {
    * @deprecated use {@link #query(String, Map)} or {@link #query(String, Object...)} instead
    */
   @Deprecated
-  <RET extends List<?>> RET query(final OQuery<?> iCommand, final Object... iArgs);
+  <R extends List<?>> R query(final OQuery<?> iCommand, final Object... iArgs);
 
   /**
    * Creates a command request to run a command against the database (you have to invoke .execute(parameters) to actually execute it).
@@ -846,7 +846,7 @@ public interface ODatabase<T> extends OBackupable, Closeable {
    * {@link #execute(String, String, Object...)} instead
    */
   @Deprecated
-  <RET extends OCommandRequest> RET command(OCommandRequest iCommand);
+  <R extends OCommandRequest> R command(OCommandRequest iCommand);
 
   /**
    * Executes an SQL query. The result set has to be closed after usage

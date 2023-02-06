@@ -43,7 +43,7 @@ public class MatchFieldTraverser extends MatchEdgeTraverser {
     }
 
     if (qR == null) {
-      return Collections.EMPTY_LIST;
+      return Collections.emptyList();
     }
     if (qR instanceof OIdentifiable) {
       return Collections.singleton(new OResultInternal((OIdentifiable) qR));
@@ -94,6 +94,6 @@ public class MatchFieldTraverser extends MatchEdgeTraverser {
 
       return result;
     }
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 }

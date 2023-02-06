@@ -579,6 +579,7 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy, O
             "Cannot check the existence of a database in a remote server. Please use the console or the OServerAdmin class.");
   }
 
+  @Override
   public void close(final boolean iForce, boolean onDelete) {
     if (status == STATUS.CLOSED)
       return;
@@ -626,6 +627,7 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy, O
 
   }
 
+  @Override
   public void shutdown() {
     if (status == STATUS.CLOSED || status == STATUS.CLOSING)
       return;
@@ -1391,7 +1393,6 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy, O
     return false;
   }
 
-  @SuppressWarnings("unchecked")
   public void updateDistributedNodes(List<String> hosts) {
     // TEMPORARY FIX: DISTRIBUTED MODE DOESN'T SUPPORT TREE BONSAI, KEEP ALWAYS EMBEDDED RIDS
     OGlobalConfiguration.RID_BAG_EMBEDDED_TO_SBTREEBONSAI_THRESHOLD.setValue(Integer.MAX_VALUE);

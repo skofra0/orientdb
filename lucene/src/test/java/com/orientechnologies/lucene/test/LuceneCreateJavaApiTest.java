@@ -38,7 +38,7 @@ public class LuceneCreateJavaApiTest extends BaseLuceneTest {
     OSchema schema = db.getMetadata().getSchema();
     OClass v = schema.getClass("V");
     OClass song = schema.createClass("Song");
-    song.setSuperClass(v);
+    song.addSuperClass(v);
     song.createProperty("title", OType.STRING);
     song.createProperty("author", OType.STRING);
     song.createProperty("description", OType.STRING);

@@ -51,7 +51,7 @@ public class OSQLMethodAsList extends OAbstractSQLMethod {
     if (ioResult == null)
     // NULL VALUE, RETURN AN EMPTY LIST
     {
-      return Collections.EMPTY_LIST;
+      return Collections.emptyList();
     }
 
     if (ioResult instanceof Collection<?>) {

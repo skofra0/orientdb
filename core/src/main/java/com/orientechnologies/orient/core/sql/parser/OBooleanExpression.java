@@ -42,7 +42,7 @@ public abstract class OBooleanExpression extends SimpleNode {
 
     @Override
     protected List<Object> getExternalCalculationConditions() {
-      return Collections.EMPTY_LIST;
+      return Collections.emptyList();
     }
 
     @Override
@@ -119,7 +119,7 @@ public abstract class OBooleanExpression extends SimpleNode {
 
     @Override
     protected List<Object> getExternalCalculationConditions() {
-      return Collections.EMPTY_LIST;
+      return Collections.emptyList();
     }
 
     @Override

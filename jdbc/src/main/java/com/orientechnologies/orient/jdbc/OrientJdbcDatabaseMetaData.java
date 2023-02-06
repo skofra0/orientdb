@@ -41,13 +41,8 @@ import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.sql.executor.OInternalResultSet;
 import com.orientechnologies.orient.core.sql.executor.OResultInternal;
 
-/**
- * @author Roberto Franchini (CELI srl - franchini--at--celi.it)
- * @author Salvatore Piccione (TXT e-solutions SpA - salvo.picci@gmail.com)
- * @author Luca Garulli (l.garulli--(at)--orientdb.com) (OrientDB - l.garulli--at--orientdb.com)
- */
 public class OrientJdbcDatabaseMetaData implements DatabaseMetaData {
-  protected final static List<String> TABLE_TYPES = Arrays.asList("TABLE", "SYSTEM TABLE");
+  protected static final List<String> TABLE_TYPES = Arrays.asList("TABLE", "SYSTEM TABLE");
   private final OrientJdbcConnection connection;
   private final ODatabaseDocument    database;
   private final OMetadata            metadata;
@@ -704,7 +699,7 @@ public class OrientJdbcDatabaseMetaData implements DatabaseMetaData {
 
     OInternalResultSet resultSet = new OInternalResultSet();
 
-    final List tableTypes = types != null ? Arrays.asList(types) : TABLE_TYPES;
+    final List<String> tableTypes = types != null ? Arrays.asList(types) : TABLE_TYPES;
     for (OClass cls : classes) {
       final String className = cls.getName();
       final String type;

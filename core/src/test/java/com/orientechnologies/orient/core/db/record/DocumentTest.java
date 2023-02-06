@@ -27,12 +27,13 @@ import org.junit.Test;
 import java.util.Map;
 import com.orientechnologies.orient.core.command.OBasicCommandContext;
 import com.orientechnologies.orient.core.command.OCommandContext;
+import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 
 public class DocumentTest {
-  private ODatabaseDocumentTx db;
+  private ODatabaseDocumentInternal db;
 
   @Before
   public void before() {

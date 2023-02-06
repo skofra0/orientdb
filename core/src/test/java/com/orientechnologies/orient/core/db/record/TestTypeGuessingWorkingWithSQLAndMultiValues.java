@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import java.util.Collection;
 import com.orientechnologies.orient.core.command.script.OCommandScript;
+import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
@@ -15,7 +16,7 @@ import com.orientechnologies.orient.core.sql.OCommandSQL;
  */
 public class TestTypeGuessingWorkingWithSQLAndMultiValues {
 
-  private ODatabaseDocumentTx db;
+  private ODatabaseDocumentInternal db;
 
   @Before
   public void create() {

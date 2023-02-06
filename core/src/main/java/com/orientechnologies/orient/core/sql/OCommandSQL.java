@@ -28,7 +28,6 @@ import com.orientechnologies.orient.core.replication.OAsyncReplicationOk;
  *
  * @author Luca Garulli (l.garulli--(at)--orientdb.com)
  */
-@SuppressWarnings("serial")
 public class OCommandSQL extends OCommandRequestTextAbstract {
   public OCommandSQL() {
   }

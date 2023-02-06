@@ -47,7 +47,7 @@ public class LuceneBooleanIndexTest extends BaseLuceneTest {
     OSchema schema = db.getMetadata().getSchema();
     OClass v = schema.getClass("V");
     OClass song = schema.createClass("Person");
-    song.setSuperClass(v);
+    song.addSuperClass(v);
     song.createProperty("isDeleted", OType.BOOLEAN);
 
     db.command(new OCommandSQL("create index Person.isDeleted on Person (isDeleted) FULLTEXT ENGINE LUCENE")).execute();

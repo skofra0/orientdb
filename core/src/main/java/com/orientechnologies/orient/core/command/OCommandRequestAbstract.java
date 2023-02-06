@@ -36,7 +36,6 @@ import com.orientechnologies.orient.core.replication.OAsyncReplicationOk;
  *
  * @author Luca Garulli (l.garulli--(at)--orientdb.com)
  */
-@SuppressWarnings("serial")
 public abstract class OCommandRequestAbstract implements OCommandRequestInternal, ODistributedCommand {
   protected OCommandResultListener resultListener;
   protected OProgressListener      progressListener;

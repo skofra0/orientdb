@@ -455,7 +455,7 @@ public class OCommandExecutorScript extends OCommandExecutorAbstract
 
   private List<String> splitBySemicolon(String lastLine) {
     if (lastLine == null) {
-      return Collections.EMPTY_LIST;
+      return Collections.emptyList();
     }
     List<String> result = new ArrayList<>();
     Character prev = null;

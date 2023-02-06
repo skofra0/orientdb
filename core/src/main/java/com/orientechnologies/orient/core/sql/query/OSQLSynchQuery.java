@@ -38,7 +38,7 @@ import com.orientechnologies.orient.core.serialization.serializer.record.ORecord
  * @param <T>
  * @see OSQLAsynchQuery
  */
-@SuppressWarnings({ "unchecked", "serial" })
+@SuppressWarnings("unchecked")
 public class OSQLSynchQuery<T extends Object> extends OSQLAsynchQuery<T> implements OCommandResultListener, Iterable<T> {
   private final OLegacyResultSet<T> result = new OConcurrentLegacyResultSet<>();
   private ORID                nextPageRID;

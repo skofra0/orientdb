@@ -48,7 +48,6 @@ public class OTruncateClassStatementExecutionTest {
     OClass testClass = getOrCreateClass(schema);
 
     final OIndex<?> index = getOrCreateIndex(testClass);
-    schema.save();
 
     database.command("truncate class test_class");
 
@@ -187,11 +186,9 @@ public class OTruncateClassStatementExecutionTest {
     } else {
       testClass = schema.createClass("test_class");
     }
-    schema.save();
     return testClass;
   }
 
-  @SuppressWarnings("unchecked")
   @Test
   public void testTruncateClassWithCommandCache() {
 

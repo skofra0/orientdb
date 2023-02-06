@@ -172,7 +172,7 @@ public class OPartitionedDatabasePool extends OOrientListenerAbstract {
     return result;
   }
 
-  public ODatabaseDocumentTx acquire() {
+  public ODatabaseDocumentInternal acquire() {
     checkForClose();
 
     final PoolData data = poolData.get();
@@ -181,7 +181,7 @@ public class OPartitionedDatabasePool extends OOrientListenerAbstract {
 
       assert data.acquiredDatabase != null;
 
-      final ODatabaseDocumentTx db = data.acquiredDatabase;
+      final var db = data.acquiredDatabase;
 
       db.activateOnCurrentThread();
 

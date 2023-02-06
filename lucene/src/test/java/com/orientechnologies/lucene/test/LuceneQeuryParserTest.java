@@ -52,7 +52,7 @@ public class LuceneQeuryParserTest extends BaseLuceneTest {
 
     docs = db.query(new OSQLSynchQuery<ODocument>("select * from Song where [author] LUCENE \"HUNTER\""));
 
-    assertThat(docs).hasSize(0);
+    assertThat(docs).isEmpty();
   }
 
 

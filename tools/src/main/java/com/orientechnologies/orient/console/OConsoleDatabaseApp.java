@@ -1004,7 +1004,6 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
       out.println("\n" + result);
   }
 
-  @SuppressWarnings("unchecked")
   @ConsoleCommand(splitInWords = false, description = "Execute a script containing multiple commands separated by ; or new line")
   public void script(@ConsoleParameter(name = "text", description = "Commands to execute, one per line") String iText) {
     final String language;
@@ -1019,7 +1018,6 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
     executeServerSideScript(language, iText);
   }
 
-  @SuppressWarnings("unchecked")
   @ConsoleCommand(splitInWords = false, description = "Execute javascript commands in the console")
   public void js(
       @ConsoleParameter(name = "text", description = "The javascript to execute. Use 'db' to reference to a document database, 'gdb' for a graph database") final String iText) {
@@ -1051,7 +1049,6 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
       message("\nClient side script executed in %f sec(s). Value returned is: %s", elapsedSeconds, currentResult);
   }
 
-  @SuppressWarnings("unchecked")
   @ConsoleCommand(splitInWords = false, description = "Execute javascript commands against a remote server")
   public void jss(
       @ConsoleParameter(name = "text", description = "The javascript to execute. Use 'db' to reference to a document database, 'gdb' for a graph database") final String iText) {
@@ -1061,7 +1058,6 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
 
   }
 
-  @SuppressWarnings("unchecked")
   @ConsoleCommand(description = "Set a server user. If the user already exists, the password and permissions are updated. For more information look at http://orientdb.com/docs/last/Security.html#orientdb-server-security", onlineHelp = "Console-Command-Set-Server-User")
   public void setServerUser(@ConsoleParameter(name = "user-name", description = "User name") String iServerUserName,
       @ConsoleParameter(name = "user-password", description = "User password") String iServerUserPasswd,
@@ -1094,7 +1090,6 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
     }
   }
 
-  @SuppressWarnings("unchecked")
   @ConsoleCommand(description = "Drop a server user. For more information look at http://orientdb.com/docs/last/Security.html#orientdb-server-security", onlineHelp = "Console-Command-Drop-Server-User")
   public void dropServerUser(@ConsoleParameter(name = "user-name", description = "User name") String iServerUserName) {
 
@@ -1123,7 +1118,6 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
     }
   }
 
-  @SuppressWarnings("unchecked")
   @ConsoleCommand(description = "Display all the server user names. For more information look at http://orientdb.com/docs/last/Security.html#orientdb-server-security", onlineHelp = "Console-Command-List-Server-User")
   public void listServerUsers() {
 

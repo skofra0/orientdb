@@ -404,7 +404,6 @@ public class ODatabaseImport extends ODatabaseImpExpAbstract {
       schema.dropClass("ORIDs");
     if (schema.existsClass(OClassTrigger.CLASSNAME))
       schema.dropClass(OClassTrigger.CLASSNAME);
-    schema.save();
 
     database.dropCluster(OStorage.CLUSTER_DEFAULT_NAME, true);
 
@@ -497,7 +496,6 @@ public class ODatabaseImport extends ODatabaseImpExpAbstract {
       }
     }
 
-    schema.save();
     schema.reload();
 
     listener.onMessage("\nRemoved " + removedClasses + " classes.");
@@ -775,8 +773,6 @@ public class ODatabaseImport extends ODatabaseImpExpAbstract {
       for (Map.Entry<OPropertyImpl, String> entry : linkedClasses.entrySet()) {
         entry.getKey().setLinkedClass(database.getMetadata().getSchema().getClass(entry.getValue()));
       }
-
-      database.getMetadata().getSchema().save();
 
       if (exporterVersion < 11) {
         OClass role = database.getMetadata().getSchema().getClass("ORole");

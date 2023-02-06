@@ -337,7 +337,7 @@ public class OChannelBinaryAsynchClient extends OChannelBinary {
         final Constructor<? extends OException> constructor;
         constructor = cls.getConstructor(cls);
         final OException proxyInstance = constructor.newInstance(throwable);
-        proxyInstance.addSuppressed((Exception) throwable);
+        proxyInstance.addSuppressed(throwable);
         throw proxyInstance;
 
       } catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
@@ -345,11 +345,11 @@ public class OChannelBinaryAsynchClient extends OChannelBinary {
       }
     }
 
-    if (throwable instanceof RuntimeException) {
-      throw (RuntimeException) throwable;
+    if (throwable instanceof RuntimeException runtimeException) {
+      throw runtimeException;
     }
     if (throwable instanceof Throwable) {
-      throw new OResponseProcessingException("Exception during response processing", (Throwable) throwable);
+      throw new OResponseProcessingException("Exception during response processing", throwable);
     } else {
       // WRAP IT
       OLogManager.instance().error(this,

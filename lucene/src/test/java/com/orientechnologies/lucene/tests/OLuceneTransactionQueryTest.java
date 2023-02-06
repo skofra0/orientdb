@@ -19,6 +19,8 @@
 package com.orientechnologies.lucene.tests;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import org.assertj.core.api.Assertions;
+import org.assertj.core.api.IterableAssert;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -60,12 +62,13 @@ public class OLuceneTransactionQueryTest extends OLuceneBaseTest {
     String query = "select from C1 where search_fields(['p1'], 'abc' )=true ";
 
     OResultSet vertices = db.command(query);
-    assertThat(vertices).hasSize(1);
+
+    Assertions.assertThat(vertices).hasSize(1);
 
     db.rollback();
 
     vertices = db.command(query);
-    assertThat(vertices).hasSize(0);
+    assertThat(vertices).isEmpty();
 
   }
 
@@ -106,8 +109,8 @@ public class OLuceneTransactionQueryTest extends OLuceneBaseTest {
 
     Collection coll = (Collection) index.get("abc");
 
-    assertThat(coll).hasSize(0);
-    assertThat(vertices).hasSize(0);
+    assertThat(coll).isEmpty();
+    assertThat(vertices).isEmpty();
 
     Iterator iterator = coll.iterator();
     int i = 0;
@@ -177,7 +180,7 @@ public class OLuceneTransactionQueryTest extends OLuceneBaseTest {
 
     vertices = db.command(query);
 
-    assertThat(vertices).hasSize(0);
+    assertThat(vertices).isEmpty();
     Assert.assertEquals(1, index.getSize());
 
     query = "select from C1 where search_fields(['p1'], \"removed\")=true ";

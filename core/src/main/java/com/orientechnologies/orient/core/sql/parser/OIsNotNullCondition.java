@@ -58,7 +58,7 @@ public class OIsNotNullCondition extends OBooleanExpression {
     if (!expression.supportsBasicCalculation()) {
       return (List) Collections.singletonList(expression);
     }
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   @Override public boolean needsAliases(Set<String> aliases) {

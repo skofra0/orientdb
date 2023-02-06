@@ -338,10 +338,9 @@ public class OMultiValue {
     if (iObject == null)
       return null;
 
-    if (!iForceConvertRecord && iObject instanceof ORecordLazyMultiValue
-        && ((ORecordLazyMultiValue) iObject).isAutoConvertToRecord() != iForceConvertRecord)
+    if (!iForceConvertRecord && iObject instanceof ORecordLazyMultiValue lmv  && lmv.isAutoConvertToRecord() != iForceConvertRecord)
       // RETURN THE LOW LEVEL ITERATOR
-      return (Iterator) ((ORecordLazyMultiValue) iObject).rawIterator();
+      return (Iterator) lmv.rawIterator();
 
     if (iObject instanceof Iterator<?>)
       return (Iterator<Object>) iObject;

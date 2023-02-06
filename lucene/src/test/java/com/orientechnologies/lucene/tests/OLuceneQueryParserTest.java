@@ -50,7 +50,7 @@ public class OLuceneQueryParserTest extends OLuceneBaseTest {
 
     docs = db.query("select * from Song where search_class('HUNTER')=true");
 
-    assertThat(docs).hasSize(0);
+    assertThat(docs).isEmpty();
     docs.close();
   }
 

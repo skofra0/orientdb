@@ -87,14 +87,6 @@ public interface OSchema {
   ORID getIdentity();
 
   /**
-   * Do nothing. Starting from 1.0rc2 the schema is auto saved!
-   *
-   * @COMPATIBILITY 1.0rc1
-   */
-  @Deprecated
-  <RET extends ODocumentWrapper> RET save();
-
-  /**
    * Returns all the classes that rely on a cluster
    *
    * @param iClusterName Cluster name

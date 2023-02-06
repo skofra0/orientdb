@@ -252,7 +252,7 @@ public abstract class OLuceneIndexEngineAbstract extends OSharedResourceAdaptive
 
     try {
       final TopDocs topDocs = searcher.search(new TermQuery(new Term("_CLASS", "JSON_METADATA")), 1);
-      if (topDocs.totalHits == 0) {
+      if (topDocs.totalHits.value == 0) {
         String metaAsJson = metadata.toJSON();
         String defAsJson = indexDefinition.toStream().toJSON();
         Document metaDoc = new Document();

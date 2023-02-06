@@ -35,7 +35,6 @@ import com.orientechnologies.orient.core.serialization.serializer.record.ORecord
  * @author Luca Garulli (l.garulli--(at)--orientdb.com)
  * 
  */
-@SuppressWarnings("serial")
 public class OCommandScript extends OCommandRequestTextAbstract {
   private String                                                         language;
   private CompiledScript                                                 compiledScript;

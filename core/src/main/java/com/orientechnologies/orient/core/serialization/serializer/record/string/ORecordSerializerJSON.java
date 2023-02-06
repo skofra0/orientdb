@@ -474,7 +474,6 @@ public class ORecordSerializerJSON extends ORecordSerializerStringAbstract {
     return iSource;
   }
 
-  @SuppressWarnings("unchecked")
   private Object getValue(final ODocument iRecord, String iFieldName, String iFieldValue, String iFieldValueAsString, OType iType,
                           OType iLinkedType, final Map<String, Character> iFieldTypes, final boolean iNoMap, final String iOptions) {
     if (iFieldValue.equals("null"))

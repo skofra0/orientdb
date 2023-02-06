@@ -212,11 +212,6 @@ public class OImmutableSchema implements OSchema {
   }
 
   @Override
-  public <RET extends ODocumentWrapper> RET save() {
-    throw new UnsupportedOperationException();
-  }
-
-  @Override
   public Set<OClass> getClassesRelyOnCluster(String clusterName) {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_READ);
 

@@ -66,12 +66,12 @@ public class OLuceneMassiveInsertDeleteTest extends OLuceneBaseTest {
     db.command("delete vertex City");
 
     docs = db.query(query);
-    Assertions.assertThat(docs).hasSize(0);
+    Assertions.assertThat(docs).isEmpty();
     docs.close();
     db.close();
     db = pool.acquire();
     docs = db.query(query);
-    Assertions.assertThat(docs).hasSize(0);
+    Assertions.assertThat(docs).isEmpty();
     docs.close();
     db.getMetadata().reload();
     OIndex idx = db.getMetadata().getSchema().getClass("City").getClassIndex("City.name");

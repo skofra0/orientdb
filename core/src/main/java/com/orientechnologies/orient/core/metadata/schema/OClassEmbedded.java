@@ -308,8 +308,7 @@ public class OClassEmbedded extends OClassImpl {
     try {
       final OStorage storage = database.getStorage();
       if (isDistributedCommand(database)) {
-        final String cmd = String
-            .format("alter class `%s` superclass +`%s`", name, superClass != null ? superClass.getName() : null);
+        final String cmd = String.format("alter class `%s` superclass +`%s`", name, superClass != null ? superClass.getName() : null);
         final OCommandSQL commandSQL = new OCommandSQL(cmd);
         commandSQL.addExcludedNode(((OAutoshardedStorage) storage).getNodeId());
 
@@ -367,9 +366,7 @@ public class OClassEmbedded extends OClassImpl {
             .format("alter class `%s` superclass -`%s`", name, superClass != null ? superClass.getName() : null);
         final OCommandSQL commandSQL = new OCommandSQL(cmd);
         commandSQL.addExcludedNode(((OAutoshardedStorage) storage).getNodeId());
-
         database.command(commandSQL).execute();
-
         removeSuperClassInternal(superClass);
       } else
         removeSuperClassInternal(superClass);

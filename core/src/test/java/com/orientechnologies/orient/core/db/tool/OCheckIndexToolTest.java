@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import java.util.List;
 import com.orientechnologies.orient.core.command.OCommandOutputListener;
+import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.ODatabaseSession;
 import com.orientechnologies.orient.core.db.ODatabaseType;
 import com.orientechnologies.orient.core.db.OrientDB;
@@ -22,7 +23,7 @@ public class OCheckIndexToolTest {
 
   @Test
   public void test() {
-    ODatabaseDocumentTx db = new ODatabaseDocumentTx("memory:OCheckIndexToolTest");
+    ODatabaseDocumentInternal db = new ODatabaseDocumentTx("memory:OCheckIndexToolTest");
     db.create();
     try {
       db.command(new OCommandSQL("create class Foo")).execute();

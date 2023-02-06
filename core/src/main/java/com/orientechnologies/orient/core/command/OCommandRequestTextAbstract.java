@@ -39,7 +39,6 @@ import com.orientechnologies.orient.core.serialization.serializer.record.string.
  *
  * @author Luca Garulli (l.garulli--(at)--orientdb.com)
  */
-@SuppressWarnings("serial")
 public abstract class OCommandRequestTextAbstract extends OCommandRequestAbstract implements OCommandRequestText {
   protected String text;
 

@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import java.io.File;
 import java.util.List;
+import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.OPartitionedDatabasePool;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
@@ -47,7 +48,7 @@ public class LuceneSpatialDropTest {
 
     OPartitionedDatabasePool dbPool = new OPartitionedDatabasePool(dbName, "admin", "admin");
 
-    ODatabaseDocumentTx db = dbPool.acquire();
+    ODatabaseDocumentInternal db = dbPool.acquire();
     fillDb(db, insertcount);
     db.close();
 
@@ -69,7 +70,7 @@ public class LuceneSpatialDropTest {
 
   }
 
-  private void fillDb(ODatabaseDocumentTx db, int count) {
+  private void fillDb(ODatabaseDocumentInternal db, int count) {
     for (int i = 0; i < count; i++) {
       ODocument doc = new ODocument("test");
       doc.field("name", "TestInsert" + i);

@@ -10,6 +10,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicBoolean;
+import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.OPartitionedDatabasePool;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
@@ -86,7 +87,7 @@ public class OLiveIndexRebuildTest {
         long rebuildCount = 0;
         while (!stop.get()) {
           for (int i = 0; i < 10; i++) {
-            final ODatabaseDocumentTx database = pool.acquire();
+            final ODatabaseDocumentInternal database = pool.acquire();
             try {
               long start = System.nanoTime();
               database.command(new OCommandSQL("rebuild index " + indexName)).execute();
@@ -122,7 +123,7 @@ public class OLiveIndexRebuildTest {
       try {
 
         while (!stop.get()) {
-          ODatabaseDocumentTx database = pool.acquire();
+          ODatabaseDocumentInternal database = pool.acquire();
           try {
             long start = System.nanoTime();
 

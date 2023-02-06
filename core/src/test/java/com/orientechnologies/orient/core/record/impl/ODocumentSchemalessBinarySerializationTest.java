@@ -153,7 +153,7 @@ public class ODocumentSchemalessBinarySerializationTest {
 
   }
 
-  @SuppressWarnings({ "rawtypes", "unchecked" })
+  @SuppressWarnings("rawtypes")
   @Test
   public void testSimpleLiteralArray() {
     ODatabaseRecordThreadLocal.instance().remove();

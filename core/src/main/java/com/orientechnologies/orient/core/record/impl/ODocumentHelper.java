@@ -1039,7 +1039,6 @@ public class ODocumentHelper {
    *
    * @see #equals(Object)
    */
-  @SuppressWarnings("unchecked")
   public static boolean hasSameContentOf(final ODocument iCurrent, final ODatabaseDocumentInternal iMyDb, final ODocument iOther,
       final ODatabaseDocumentInternal iOtherDb, RIDMapper ridMapper) {
     return hasSameContentOf(iCurrent, iMyDb, iOther, iOtherDb, ridMapper, true);

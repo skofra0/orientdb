@@ -67,11 +67,11 @@ public class LucenePhraseQueriesTest extends BaseLuceneTest {
 
     vertexes = db.command(new OCommandSQL("select from Role where name lucene ' \"Owner of Business\" '  ")).execute();
 
-    assertThat(vertexes).hasSize(0);
+    assertThat(vertexes).isEmpty();
 
     vertexes = db.command(new OCommandSQL("select from Role where name lucene ' \"System Owner\" '  ")).execute();
 
-    assertThat(vertexes).hasSize(0);
+    assertThat(vertexes).isEmpty();
 
     vertexes = db.command(new OCommandSQL("select from Role where name lucene ' \"System SME\"~1 '  ")).execute();
 

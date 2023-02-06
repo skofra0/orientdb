@@ -209,7 +209,6 @@ public class OQueryOperatorContainsValue extends OQueryOperatorEqualityNotNulls 
     return false;
   }
 
-  @SuppressWarnings({ "unchecked", "rawtypes" })
   private Object loadIfNeed(Object o) {
     final ORecord record = (ORecord) o;
     if (record.getRecord().getInternalStatus() == ORecordElement.STATUS.NOT_LOADED) {

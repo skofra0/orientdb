@@ -9,12 +9,13 @@ import org.junit.Before;
 import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
+import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.exception.OSchemaException;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 
 public class TestMultiSuperClasses {
-  private ODatabaseDocumentTx db;
+  private ODatabaseDocumentInternal db;
 
   @Before
   public void setUp() {

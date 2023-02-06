@@ -51,7 +51,7 @@ public class OLuceneMixIndexTest extends OLuceneBaseTest {
     assertThat(docs).hasSize(1);
     docs.close();
     docs = db.query("select * from Song where  author = 'Hornsby' and search_index('Song.composite','title:ballad')=true");
-    assertThat(docs).hasSize(0);
+    assertThat(docs).isEmpty();
     docs.close();
   }
 

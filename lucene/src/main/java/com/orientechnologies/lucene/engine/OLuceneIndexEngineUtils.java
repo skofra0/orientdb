@@ -24,9 +24,7 @@ import com.orientechnologies.orient.core.command.OCommandContext;
 import com.orientechnologies.orient.core.index.OIndexDefinition;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 
-/**
- * Created by frank on 04/05/2017.
- */
+/** Created by frank on 04/05/2017. */
 public class OLuceneIndexEngineUtils {
 
   public static void sendTotalHits(String indexName, OCommandContext context, long totalHits) {
@@ -42,24 +40,38 @@ public class OLuceneIndexEngineUtils {
 
   }
 
-  public static void sendLookupTime(String indexName, OCommandContext context, final TopDocs docs, final Integer limit,
-      long startFetching) {
+  public static void sendLookupTime(String indexName, OCommandContext context, final TopDocs docs, final Integer limit, long startFetching) {
     if (context != null) {
 
       final long finalTime = System.currentTimeMillis() - startFetching;
       context.setVariable((indexName + ".lookupTime").replace(".", "_"), new HashMap<String, Object>() {
         {
+          var maxScore = getMaxScore(docs);
           put("limit", limit);
           put("totalTime", finalTime);
           put("totalHits", docs.totalHits);
           put("returnedHits", docs.scoreDocs.length);
-          if (!Float.isNaN(docs.getMaxScore())) {
-            put("maxScore", docs.getMaxScore());
+          if (!Float.isNaN(maxScore)) {
+            put("maxScore", maxScore);
           }
 
         }
       });
     }
+  }
+
+  public static float getMaxScore(TopDocs docs) {
+    float result = Float.NaN;
+    if (docs != null && docs.scoreDocs != null) {
+      for (var v : docs.scoreDocs) {
+        if (Float.isNaN(result) || v.score > result) {
+          result = v.score;
+        }
+      }
+    }
+
+    return result;
+
   }
 
   public static Document retrieveIndexMetadata(IndexWriter writer) {
@@ -76,7 +88,7 @@ public class OLuceneIndexEngineUtils {
       final Document metaDoc = searcher.doc(topDocs.scoreDocs[0].doc);
       return metaDoc;
     } catch (IOException e) {
-//      OLogManager.instance().error(OLuceneIndexEngineAbstract.class, "Error while retrieving index metadata", e);
+      // OLogManager.instance().error(OLuceneIndexEngineAbstract.class, "Error while retrieving index metadata", e);
       throw OException.wrapException(new OLuceneIndexException("unable to retrieve metadata document from index"), e);
     } finally {
       if (reader != null)
@@ -92,36 +104,27 @@ public class OLuceneIndexEngineUtils {
   }
 
   public static List<SortField> buildSortFields(ODocument metadata) {
-    List<Map<String, Object>> sortConf = Optional.ofNullable(metadata.<List<Map<String, Object>>>getProperty("sort"))
-        .orElse(Collections.emptyList());
+    List<Map<String, Object>> sortConf = Optional.ofNullable(metadata.<List<Map<String, Object>>>getProperty("sort")).orElse(Collections.emptyList());
 
-    final List<SortField> fields = sortConf.stream()
-        .map(d -> buildSortField(d))
-        .collect(Collectors.toList());
+    final List<SortField> fields = sortConf.stream().map(d -> buildSortField(d)).collect(Collectors.toList());
 
     return fields;
   }
 
-  /**
-   * Builds {@link SortField} from a configuration {@link ODocument}
+  /** Builds {@link SortField} from a configuration {@link ODocument}
    *
    * @param conf
-   *
-   * @return
-   */
+   * @return */
   public static SortField buildSortField(ODocument conf) {
 
     return buildSortField(conf.toMap());
   }
 
-  /**
-   * Builds a {@link SortField} from a configuration map. The map can contains up to three fields: field (name), reverse
+  /** Builds a {@link SortField} from a configuration map. The map can contains up to three fields: field (name), reverse
    * (true/false) and type {@link SortField.Type}.
    *
    * @param conf
-   *
-   * @return
-   */
+   * @return */
   public static SortField buildSortField(Map<String, Object> conf) {
 
     final String field = Optional.ofNullable((String) conf.get("field")).orElse(null);
@@ -155,11 +158,7 @@ public class OLuceneIndexEngineUtils {
       indexDefinition.fromStream(defAsJson);
       return indexDefinition;
 
-    } catch (ClassNotFoundException |
-        NoSuchMethodException |
-        InvocationTargetException |
-        InstantiationException |
-        IllegalAccessException e) {
+    } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
       throw OException.wrapException(new OLuceneIndexException("Error during deserialization of index definition"), e);
     }
   }

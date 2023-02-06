@@ -71,7 +71,7 @@ public class OLuceneInsertDeleteTest extends OLuceneBaseTest {
     db.delete(doc);
 
     coll = (Collection<?>) idx.get("Rome");
-    assertThat(coll).hasSize(0);
+    assertThat(coll).isEmpty();
     assertThat(idx.getSize()).isEqualTo(1);
 
   }
@@ -95,7 +95,7 @@ public class OLuceneInsertDeleteTest extends OLuceneBaseTest {
     db.command("delete vertex from Song where title lucene 'mountain'");
 
     docs = db.query("select from Song where  title lucene 'mountain'");
-    assertThat(docs).hasSize(0);
+    assertThat(docs).isEmpty();
     docs.close();
   }
 

@@ -76,9 +76,6 @@ public interface OClass extends Comparable<OClass> {
   @Deprecated
   OClass getSuperClass();
 
-  @Deprecated
-  OClass setSuperClass(OClass iSuperClass);
-
   boolean hasSuperClasses();
 
   List<String> getSuperClassesNames();
@@ -177,12 +174,6 @@ public interface OClass extends Comparable<OClass> {
   OClass removeClusterId(int iId);
 
   int[] getPolymorphicClusterIds();
-
-  @Deprecated
-  Collection<OClass> getBaseClasses();
-
-  @Deprecated
-  Collection<OClass> getAllBaseClasses();
 
   /**
    * @return all the subclasses (one level hierarchy only)

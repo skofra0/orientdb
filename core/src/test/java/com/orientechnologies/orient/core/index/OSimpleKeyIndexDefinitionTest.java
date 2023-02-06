@@ -10,7 +10,6 @@ import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 
-@SuppressWarnings("unchecked")
 public class OSimpleKeyIndexDefinitionTest {
 
   private OSimpleKeyIndexDefinition simpleKeyIndexDefinition;

@@ -42,6 +42,7 @@ public class OWhereClause extends SimpleNode {
   /**
    * Accept the visitor. *
    */
+  @Override
   public Object jjtAccept(OrientSqlVisitor visitor, Object data) {
     return visitor.visit(this, data);
   }
@@ -60,6 +61,7 @@ public class OWhereClause extends SimpleNode {
     return baseExpression.evaluate(currentRecord, ctx);
   }
 
+  @Override
   public void toString(Map<Object, Object> params, StringBuilder builder) {
     if (baseExpression == null) {
       return;
@@ -254,7 +256,7 @@ public class OWhereClause extends SimpleNode {
     if (key != null) {
       final Object result = index.get(key);
       if (result == null) {
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
       }
       if (result instanceof Iterable) {
         return (Iterable) result;
@@ -293,7 +295,7 @@ public class OWhereClause extends SimpleNode {
 
   public List<OAndBlock> flatten() {
     if (this.baseExpression == null) {
-      return Collections.EMPTY_LIST;
+      return Collections.emptyList();
     }
     if (flattened == null) {
       flattened = this.baseExpression.flatten();
@@ -318,6 +320,7 @@ public class OWhereClause extends SimpleNode {
     this.baseExpression = baseExpression;
   }
 
+  @Override
   public OWhereClause copy() {
     OWhereClause result = new OWhereClause(-1);
     result.baseExpression = baseExpression.copy();

@@ -26,15 +26,14 @@ import com.orientechnologies.orient.core.storage.impl.local.paginated.atomicoper
 
 public class OCellBTreeSingleValueTestIT {
   private OCellBTreeSingleValue<String> singleValueTree;
-  private OrientDB                      orientDB;
+  private OrientDB orientDB;
 
-  private String                   dbName;
+  private String dbName;
   private OAtomicOperationsManager atomicOperationsManager;
 
   @Before
   public void before() throws Exception {
-    final String buildDirectory =
-        System.getProperty("buildDirectory", ".") + File.separator + OCellBTreeSingleValueTestIT.class.getSimpleName();
+    final String buildDirectory = System.getProperty("buildDirectory", ".") + File.separator + OCellBTreeSingleValueTestIT.class.getSimpleName();
 
     dbName = "localSingleBTreeTest";
     final File dbDirectory = new File(buildDirectory, dbName);
@@ -48,9 +47,7 @@ public class OCellBTreeSingleValueTestIT {
     final OAbstractPaginatedStorage storage = (OAbstractPaginatedStorage) ((ODatabaseInternal) databaseDocumentTx).getStorage();
     singleValueTree = new OCellBTreeSingleValue<>("singleBTree", ".sbt", ".nbt", storage);
     atomicOperationsManager = storage.getAtomicOperationsManager();
-
-    atomicOperationsManager.executeInsideAtomicOperation(
-        (atomicOperation) -> singleValueTree.create(atomicOperation, OUTF8Serializer.INSTANCE, null, 1, null));
+    atomicOperationsManager.executeInsideAtomicOperation((atomicOperation) -> singleValueTree.create(atomicOperation, OUTF8Serializer.INSTANCE, null, 1, null));
   }
 
   @After
@@ -284,8 +281,7 @@ public class OCellBTreeSingleValueTestIT {
         }
 
         if (i % 2 == 0) {
-          singleValueTree
-              .put(atomicOperation, Integer.toString(keysCount + i), new ORecordId((keysCount + i) % 32000, keysCount + i));
+          singleValueTree.put(atomicOperation, Integer.toString(keysCount + i), new ORecordId((keysCount + i) % 32000, keysCount + i));
         }
 
       }
@@ -298,8 +294,7 @@ public class OCellBTreeSingleValueTestIT {
         }
 
         if (i % 2 == 0) {
-          Assert.assertEquals(singleValueTree.get(Integer.toString(keysCount + i)),
-              new ORecordId((keysCount + i) % 32000, keysCount + i));
+          Assert.assertEquals(singleValueTree.get(Integer.toString(keysCount + i)), new ORecordId((keysCount + i) % 32000, keysCount + i));
         }
       }
     });
@@ -426,8 +421,7 @@ public class OCellBTreeSingleValueTestIT {
     });
   }
 
-  private void assertIterateMajorEntries(NavigableMap<String, ORID> keyValues, Random random, boolean keyInclusive,
-      boolean ascSortOrder) {
+  private void assertIterateMajorEntries(NavigableMap<String, ORID> keyValues, Random random, boolean keyInclusive, boolean ascSortOrder) {
     String[] keys = new String[keyValues.size()];
     int index = 0;
 
@@ -444,8 +438,7 @@ public class OCellBTreeSingleValueTestIT {
         fromKey = fromKey.substring(0, fromKey.length() - 2) + (fromKey.charAt(fromKey.length() - 1) - 1);
       }
 
-      final OCellBTreeSingleValue.OSBTreeCursor<String, ORID> cursor = singleValueTree
-          .iterateEntriesMajor(fromKey, keyInclusive, ascSortOrder);
+      final OCellBTreeSingleValue.OSBTreeCursor<String, ORID> cursor = singleValueTree.iterateEntriesMajor(fromKey, keyInclusive, ascSortOrder);
 
       Iterator<Map.Entry<String, ORID>> iterator;
       if (ascSortOrder) {
@@ -462,14 +455,13 @@ public class OCellBTreeSingleValueTestIT {
         Assert.assertEquals(indexEntry.getValue(), entry.getValue());
       }
 
-      //noinspection ConstantConditions
+      // noinspection ConstantConditions
       Assert.assertFalse(iterator.hasNext());
       Assert.assertNull(cursor.next(-1));
     }
   }
 
-  private void assertIterateMinorEntries(NavigableMap<String, ORID> keyValues, Random random, boolean keyInclusive,
-      boolean ascSortOrder) {
+  private void assertIterateMinorEntries(NavigableMap<String, ORID> keyValues, Random random, boolean keyInclusive, boolean ascSortOrder) {
     String[] keys = new String[keyValues.size()];
     int index = 0;
 
@@ -485,8 +477,7 @@ public class OCellBTreeSingleValueTestIT {
         toKey = toKey.substring(0, toKey.length() - 2) + (toKey.charAt(toKey.length() - 1) + 1);
       }
 
-      final OCellBTreeSingleValue.OSBTreeCursor<String, ORID> cursor = singleValueTree
-          .iterateEntriesMinor(toKey, keyInclusive, ascSortOrder);
+      final OCellBTreeSingleValue.OSBTreeCursor<String, ORID> cursor = singleValueTree.iterateEntriesMinor(toKey, keyInclusive, ascSortOrder);
 
       Iterator<Map.Entry<String, ORID>> iterator;
       if (ascSortOrder) {
@@ -503,14 +494,13 @@ public class OCellBTreeSingleValueTestIT {
         Assert.assertEquals(indexEntry.getValue(), entry.getValue());
       }
 
-      //noinspection ConstantConditions
+      // noinspection ConstantConditions
       Assert.assertFalse(iterator.hasNext());
       Assert.assertNull(cursor.next(-1));
     }
   }
 
-  private void assertIterateBetweenEntries(NavigableMap<String, ORID> keyValues, Random random, boolean fromInclusive,
-      boolean toInclusive, boolean ascSortOrder) {
+  private void assertIterateBetweenEntries(NavigableMap<String, ORID> keyValues, Random random, boolean fromInclusive, boolean toInclusive, boolean ascSortOrder) {
     String[] keys = new String[keyValues.size()];
     int index = 0;
 
@@ -542,8 +532,7 @@ public class OCellBTreeSingleValueTestIT {
         fromKey = toKey;
       }
 
-      OCellBTreeSingleValue.OSBTreeCursor<String, ORID> cursor = singleValueTree
-          .iterateEntriesBetween(fromKey, fromInclusive, toKey, toInclusive, ascSortOrder);
+      OCellBTreeSingleValue.OSBTreeCursor<String, ORID> cursor = singleValueTree.iterateEntriesBetween(fromKey, fromInclusive, toKey, toInclusive, ascSortOrder);
 
       Iterator<Map.Entry<String, ORID>> iterator;
       if (ascSortOrder) {
@@ -560,7 +549,7 @@ public class OCellBTreeSingleValueTestIT {
         Assert.assertEquals(indexEntry.getKey(), mapEntry.getKey());
         Assert.assertEquals(indexEntry.getValue(), mapEntry.getValue());
       }
-      //noinspection ConstantConditions
+      // noinspection ConstantConditions
       Assert.assertFalse(iterator.hasNext());
       Assert.assertNull(cursor.next(-1));
     }

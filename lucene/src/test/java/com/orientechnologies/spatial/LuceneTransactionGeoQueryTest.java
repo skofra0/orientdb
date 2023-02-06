@@ -49,7 +49,7 @@ public class LuceneTransactionGeoQueryTest {
       OSchema schema = db.getMetadata().getSchema();
       OClass v = schema.getClass("V");
       OClass oClass = schema.createClass("City");
-      oClass.setSuperClass(v);
+      oClass.addSuperClass(v);
       oClass.createProperty("location", OType.EMBEDDED, schema.getClass("OPoint"));
       oClass.createProperty("name", OType.STRING);
 
@@ -90,7 +90,7 @@ public class LuceneTransactionGeoQueryTest {
       OSchema schema = db.getMetadata().getSchema();
       OClass v = schema.getClass("V");
       OClass oClass = schema.createClass("City");
-      oClass.setSuperClass(v);
+      oClass.addSuperClass(v);
       oClass.createProperty("location", OType.EMBEDDED, schema.getClass("OPoint"));
       oClass.createProperty("name", OType.STRING);
 

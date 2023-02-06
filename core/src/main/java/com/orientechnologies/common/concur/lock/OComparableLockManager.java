@@ -37,7 +37,6 @@ public class OComparableLockManager<T extends  Comparable> {
   private final   boolean                                 enabled;
   private final static Object NULL_KEY = new Object();
 
-  @SuppressWarnings("serial")
   private static class CountableLock {
     private final AtomicInteger countLocks    = new AtomicInteger(1);
     private final ReadWriteLock readWriteLock = new ReentrantReadWriteLock();

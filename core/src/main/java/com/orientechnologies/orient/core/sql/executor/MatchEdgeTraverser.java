@@ -332,7 +332,7 @@ public class MatchEdgeTraverser {
     }
 
     if (qR == null) {
-      return Collections.EMPTY_LIST;
+      return Collections.emptyList();
     }
     if (qR instanceof OIdentifiable) {
       return Collections.singleton(new OResultInternal((OIdentifiable) qR));

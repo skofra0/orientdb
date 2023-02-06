@@ -25,7 +25,6 @@ package com.orientechnologies.orient.core.sql;
  * @author Luca Garulli (l.garulli--(at)--orientdb.com)
  * 
  */
-@SuppressWarnings("serial")
 public class OCommandSQLResultset extends OCommandSQL {
   public OCommandSQLResultset() {
   }

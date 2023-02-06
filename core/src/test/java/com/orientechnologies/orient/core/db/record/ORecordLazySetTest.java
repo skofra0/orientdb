@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import java.util.Iterator;
+import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
@@ -17,7 +18,7 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 
 public class ORecordLazySetTest {
 
-  private ODatabaseDocumentTx db;
+  private ODatabaseDocumentInternal db;
   private ODocument           doc1;
   private ODocument           doc2;
   private ODocument           doc3;

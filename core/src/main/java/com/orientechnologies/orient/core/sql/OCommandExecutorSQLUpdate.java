@@ -326,7 +326,7 @@ public class OCommandExecutorSQLUpdate extends OCommandExecutorSQLRetryAbstract
   /**
    * Update current record.
    */
-  @SuppressWarnings("unchecked") public boolean result(final Object iRecord) {
+  public boolean result(final Object iRecord) {
     final ODocument record = ((OIdentifiable) iRecord).getRecord();
 
     if (isUpdateEdge() && !isRecordInstanceOf(iRecord, "E")) {

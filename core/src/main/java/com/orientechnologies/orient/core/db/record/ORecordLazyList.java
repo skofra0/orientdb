@@ -74,24 +74,19 @@ public class ORecordLazyList extends ORecordTrackedList implements ORecordLazyMu
   @SuppressWarnings("unchecked")
   @Override
   public boolean addAll(Collection<? extends OIdentifiable> c) {
-    final Iterator it = (Iterator) (c instanceof ORecordLazyMultiValue ? ((ORecordLazyMultiValue) c).rawIterator() : c.iterator());
+    final Iterator<OIdentifiable> it = (Iterator<OIdentifiable>) (c instanceof ORecordLazyMultiValue lmv ? lmv.rawIterator() : c.iterator());
 
     while (it.hasNext()) {
       Object o = it.next();
       if (o == null)
         add(null);
-      else if (o instanceof OIdentifiable)
-        add((OIdentifiable) o);
+      else if (o instanceof OIdentifiable oid)
+        add(oid);
       else
         OMultiValue.add(this, o);
     }
 
     return true;
-  }
-
-  @Override
-  public boolean isEmpty() {
-    return super.isEmpty();
   }
 
   /**

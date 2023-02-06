@@ -2,14 +2,14 @@ package com.orientechnologies.orient.client.remote;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.mockito.Matchers;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -73,10 +73,10 @@ public class OSBTreeCollectionManagerRemoteTest {
         .beginRequest(Mockito.any(OChannelBinaryAsynchClient.class), eq(OChannelBinaryProtocol.REQUEST_CREATE_SBTREE_BONSAI),
             Mockito.any(OStorageRemoteSession.class));
     verify(clientMock).writeInt(eq(EXPECTED_CLUSTER_ID));
-    verify(storageMock).endRequest(Matchers.same(clientMock));
-    verify(storageMock).beginResponse(Matchers.same(clientMock), Mockito.any(OStorageRemoteSession.class));
-    verify(networkSerializerMock).readCollectionPointer(Matchers.same(clientMock));
-    verify(storageMock).endResponse(Matchers.same(clientMock));
+    verify(storageMock).endRequest(ArgumentMatchers.same(clientMock));
+    verify(storageMock).beginResponse(ArgumentMatchers.same(clientMock), Mockito.any(OStorageRemoteSession.class));
+    verify(networkSerializerMock).readCollectionPointer(ArgumentMatchers.same(clientMock));
+    verify(storageMock).endResponse(ArgumentMatchers.same(clientMock));
     verifyNoMoreInteractions(storageMock);
   }
 

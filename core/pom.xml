@@ -45,7 +45,7 @@
             com.orientechnologies.common.*,com.orientechnologies.nio.*,
             com.orientechnologies.orient.enterprise.*
         </osgi.export>
-        <jna.version>4.0.0</jna.version>
+        <jna.version>5.8.0</jna.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <argLine>-ea
             -Xmx${heapSize}
@@ -309,15 +309,16 @@
         <dependency>
             <groupId>net.java.dev.jna</groupId>
             <artifactId>jna</artifactId>
-            <version>4.5.0</version>
+            <version>5.8.0</version>
         </dependency>
 
+		<!-- 
         <dependency>
             <groupId>net.java.dev.jna</groupId>
             <artifactId>jna-platform</artifactId>
-            <version>4.5.0</version>
+            <version>5.8.0</version>
         </dependency>
-
+-->
         <dependency>
             <groupId>com.googlecode.concurrentlinkedhashmap</groupId>
             <artifactId>concurrentlinkedhashmap-lru</artifactId>
@@ -333,7 +334,7 @@
         <dependency>
             <groupId>org.lz4</groupId>
             <artifactId>lz4-java</artifactId>
-            <version>1.4.0</version>
+            <version>1.4.1</version>
         </dependency>
 
         <dependency>

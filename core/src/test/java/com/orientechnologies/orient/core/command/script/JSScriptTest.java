@@ -21,9 +21,7 @@ import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.sql.executor.OResult;
 import com.orientechnologies.orient.core.sql.executor.OResultSet;
 
-/**
- * Created by Enrico Risa on 27/01/17.
- */
+/** Created by Enrico Risa on 27/01/17. */
 public class JSScriptTest {
 
   @Rule
@@ -183,8 +181,7 @@ public class JSScriptTest {
     ODatabaseDocument db = orientDB.open(name.getMethodName(), "admin", "admin");
     try {
 
-      OResultSet resultSet = db.execute("javascript",
-          "var elem = db.query(\"select from OUser\").stream().findFirst().get(); elem.getProperty(\"name\")");
+      OResultSet resultSet = db.execute("javascript", "var elem = db.query(\"select from OUser\").stream().findFirst().get(); elem.getProperty(\"name\")");
       Assert.assertEquals(1, resultSet.stream().count());
     } finally {
       orientDB.drop(name.getMethodName());
@@ -222,8 +219,7 @@ public class JSScriptTest {
       }
 
     } finally {
-      Orient.instance().getScriptManager()
-          .removeAllowedPackages(new HashSet<>(Arrays.asList("java.math.BigDecimal", "java.math.*")));
+      Orient.instance().getScriptManager().removeAllowedPackages(new HashSet<>(Arrays.asList("java.math.BigDecimal", "java.math.*")));
       orientDB.drop(name.getMethodName());
       orientDB.close();
     }
@@ -242,15 +238,13 @@ public class JSScriptTest {
         Assert.assertEquals(e.getCause().getClass(), ScriptException.class);
       }
 
-      try (OResultSet resultSet = db
-          .execute("javascript", "com.orientechnologies.orient.core.Orient.instance().getScriptManager().addAllowedPackages([])")) {
+      try (OResultSet resultSet = db.execute("javascript", "com.orientechnologies.orient.core.Orient.instance().getScriptManager().addAllowedPackages([])")) {
         Assert.assertEquals(1, resultSet.stream().count());
       } catch (Exception e) {
         Assert.assertEquals(e.getCause().getClass(), ClassNotFoundException.class);
       }
 
-      try (OResultSet resultSet = db.execute("javascript",
-          "Java.type('com.orientechnologies.orient.core.Orient').instance().getScriptManager().addAllowedPackages([])")) {
+      try (OResultSet resultSet = db.execute("javascript", "Java.type('com.orientechnologies.orient.core.Orient').instance().getScriptManager().addAllowedPackages([])")) {
         Assert.assertEquals(1, resultSet.stream().count());
       } catch (Exception e) {
         Assert.assertEquals(e.getCause().getClass(), ClassNotFoundException.class);

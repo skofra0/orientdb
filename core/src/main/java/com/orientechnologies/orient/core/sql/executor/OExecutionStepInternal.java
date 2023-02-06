@@ -64,11 +64,11 @@ public interface OExecutionStepInternal extends OExecutionStep {
   }
 
   default List<OExecutionStep> getSubSteps() {
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   default List<OExecutionPlan> getSubExecutionPlans() {
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   default void reset() {

@@ -101,7 +101,7 @@ public abstract class OSchemaShared extends ODocumentWrapperNoClass implements O
   static final class ClusterIdsAreEmptyException extends Exception {
   }
 
-  public OSchemaShared() {
+  protected OSchemaShared() {
     super(new ODocument().setTrackingChanges(false));
 
   }
@@ -109,20 +109,6 @@ public abstract class OSchemaShared extends ODocumentWrapperNoClass implements O
   public static Character checkClassNameIfValid(String iName) throws OSchemaException {
     if (iName == null)
       throw new IllegalArgumentException("Name is null");
-
-//    iName = iName.trim();
-//
-//    final int nameSize = iName.length();
-//
-//    if (nameSize == 0)
-//      throw new IllegalArgumentException("Name is empty");
-//
-//    for (int i = 0; i < nameSize; ++i) {
-//      final char c = iName.charAt(i);
-//      if (c == ':' || c == ',' || c == ';' || c == ' ' || c == '@' || c == '=' || c == '.' || c == '#')
-//        // INVALID CHARACTER
-//        return c;
-//    }
 
     return null;
   }

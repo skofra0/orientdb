@@ -111,8 +111,6 @@ public class OResultSerializerNetwork {
     return document;
   }
 
-  @SuppressWarnings("unchecked")
-
   public void serialize(final OResult document, final BytesContainer bytes) {
     Set<String> fieldNames = document.getPropertyNames();
 
@@ -487,9 +485,8 @@ public class OResultSerializerNetwork {
     }
   }
 
-  @SuppressWarnings("unchecked")
   private void writeEmbeddedMap(BytesContainer bytes, Map<Object, Object> map) {
-    Set fieldNames = map.keySet();
+    var fieldNames = map.keySet();
 
     OVarIntSerializer.write(bytes, map.size());
     for (Object f : fieldNames) {

@@ -366,7 +366,7 @@ public class ODistributedConfiguration {
       }
       return filteredServerList;
     }
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   /**
@@ -399,7 +399,7 @@ public class ODistributedConfiguration {
       return masters;
     }
 
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   /**

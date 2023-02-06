@@ -53,13 +53,13 @@ public class OImmutableClass implements OClass {
   /**
    * use OClass.EDGE_CLASS_NAME instead
    */
-  @Deprecated
-  public static final String EDGE_CLASS_NAME   = OClass.EDGE_CLASS_NAME;
+  // @Deprecated
+  // public static final String EDGE_CLASS_NAME   = OClass.EDGE_CLASS_NAME;
   /**
    * use OClass.EDGE_CLASS_NAME instead
    */
-  @Deprecated
-  public static final String VERTEX_CLASS_NAME = OClass.VERTEX_CLASS_NAME;
+  // @Deprecated
+  // public static final String VERTEX_CLASS_NAME = OClass.VERTEX_CLASS_NAME;
 
   private boolean inited = false;
   private final boolean                   isAbstract;
@@ -200,12 +200,6 @@ public class OImmutableClass implements OClass {
     initSuperClasses();
 
     return superClasses.isEmpty() ? null : superClasses.get(0);
-  }
-
-  @Override
-  @Deprecated
-  public OClass setSuperClass(OClass iSuperClass) {
-    throw new UnsupportedOperationException();
   }
 
   @Override
@@ -427,18 +421,6 @@ public class OImmutableClass implements OClass {
       set.addAll(c.getAllSubclasses());
 
     return set;
-  }
-
-  @Override
-  @Deprecated
-  public Collection<OClass> getBaseClasses() {
-    return getSubclasses();
-  }
-
-  @Override
-  @Deprecated
-  public Collection<OClass> getAllBaseClasses() {
-    return getAllSubclasses();
   }
 
   @Override

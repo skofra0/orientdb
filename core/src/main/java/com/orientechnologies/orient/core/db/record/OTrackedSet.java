@@ -87,6 +87,7 @@ public class OTrackedSet<T> extends HashSet<T> implements ORecordElement, OTrack
     };
   }
 
+  @Override
   public boolean add(final T e) {
     if (super.add(e)) {
       addOwnerToEmbeddedDoc(e);

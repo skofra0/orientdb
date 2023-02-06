@@ -64,11 +64,11 @@ public class OLucenePhraseQueriesTest extends OLuceneBaseTest {
 
     vertexes = db.command("select from Role where search_class( ' \"Owner of Business\" ')=true  ");
 
-    assertThat(vertexes).hasSize(0);
+    assertThat(vertexes).isEmpty();
 
     vertexes = db.command("select from Role where search_class(' \"System Owner\" '  )=true  ");
 
-    assertThat(vertexes).hasSize(0);
+    assertThat(vertexes).isEmpty();
 
     vertexes = db.command("select from Role where search_class(' \"System SME\"~1 '  )=true  ");
 

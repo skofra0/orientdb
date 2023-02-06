@@ -19,6 +19,7 @@
 package com.orientechnologies.lucene.tests;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import org.assertj.core.api.Assertions;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -58,12 +59,14 @@ public class OLuceneTransactionEmbeddedQueryTest extends OLuceneBaseTest {
     String query = "select from C1 where search_class( \"abc\")=true ";
 
     OResultSet vertices = db.command(query);
+    
+    // Assertions.assertThat
     assertThat(vertices).hasSize(1);
     db.rollback();
 
     query = "select from C1 where search_class( \"abc\")=true  ";
     vertices = db.command(query);
-    assertThat(vertices).hasSize(0);
+    assertThat(vertices).isEmpty();
   }
 
   @Test
@@ -98,7 +101,7 @@ public class OLuceneTransactionEmbeddedQueryTest extends OLuceneBaseTest {
 
     Collection coll = (Collection) index.get("abc");
 
-    assertThat(vertices).hasSize(0);
+    assertThat(vertices).isEmpty();
     Assert.assertEquals(coll.size(), 0);
 
     Iterator iterator = coll.iterator();

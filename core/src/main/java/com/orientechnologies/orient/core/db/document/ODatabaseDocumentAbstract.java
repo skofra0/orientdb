@@ -1148,14 +1148,12 @@ public abstract class ODatabaseDocumentAbstract extends OListenerManger<ODatabas
     return microTransaction != null && microTransaction.isActive() ? microTransaction : getTransaction();
   }
 
-  @SuppressWarnings("unchecked")
   @Override
   public <RET extends ORecord> RET load(final ORecord iRecord, final String iFetchPlan) {
     checkIfActive();
     return (RET) currentTx.loadRecord(iRecord.getIdentity(), iRecord, iFetchPlan, false, false, OStorage.LOCKING_STRATEGY.DEFAULT);
   }
 
-  @SuppressWarnings("unchecked")
   @Override
   @Deprecated
   public <RET extends ORecord> RET load(ORecord iRecord, String iFetchPlan, boolean iIgnoreCache, boolean loadTombstone,
@@ -1165,7 +1163,6 @@ public abstract class ODatabaseDocumentAbstract extends OListenerManger<ODatabas
             .loadRecord(iRecord.getIdentity(), iRecord, iFetchPlan, iIgnoreCache, !iIgnoreCache, loadTombstone, iLockingStrategy);
   }
 
-  @SuppressWarnings("unchecked")
   @Override
   @Deprecated
   public <RET extends ORecord> RET load(final ORecord iRecord, final String iFetchPlan, final boolean iIgnoreCache,
@@ -1175,34 +1172,29 @@ public abstract class ODatabaseDocumentAbstract extends OListenerManger<ODatabas
             .loadRecord(iRecord.getIdentity(), iRecord, iFetchPlan, iIgnoreCache, iUpdateCache, loadTombstone, iLockingStrategy);
   }
 
-  @SuppressWarnings("unchecked")
   @Override
   public <RET extends ORecord> RET load(final ORecord iRecord) {
     checkIfActive();
     return (RET) currentTx.loadRecord(iRecord.getIdentity(), iRecord, null, false);
   }
 
-  @SuppressWarnings("unchecked")
   @Override
   public <RET extends ORecord> RET load(final ORID recordId) {
     return (RET) currentTx.loadRecord(recordId, null, null, false);
   }
 
-  @SuppressWarnings("unchecked")
   @Override
   public <RET extends ORecord> RET load(final ORID iRecordId, final String iFetchPlan) {
     checkIfActive();
     return (RET) currentTx.loadRecord(iRecordId, null, iFetchPlan, false);
   }
 
-  @SuppressWarnings("unchecked")
   public <RET extends ORecord> RET loadIfVersionIsNotLatest(final ORID rid, final int recordVersion, String fetchPlan,
                                                             boolean ignoreCache) throws ORecordNotFoundException {
     checkIfActive();
     return (RET) currentTx.loadRecordIfVersionIsNotLatest(rid, recordVersion, fetchPlan, ignoreCache);
   }
 
-  @SuppressWarnings("unchecked")
   @Override
   @Deprecated
   public <RET extends ORecord> RET load(final ORID iRecordId, String iFetchPlan, final boolean iIgnoreCache,
@@ -1211,7 +1203,6 @@ public abstract class ODatabaseDocumentAbstract extends OListenerManger<ODatabas
     return (RET) currentTx.loadRecord(iRecordId, null, iFetchPlan, iIgnoreCache, loadTombstone, iLockingStrategy);
   }
 
-  @SuppressWarnings("unchecked")
   @Override
   @Deprecated
   public <RET extends ORecord> RET load(final ORID iRecordId, String iFetchPlan, final boolean iIgnoreCache,
@@ -1220,17 +1211,14 @@ public abstract class ODatabaseDocumentAbstract extends OListenerManger<ODatabas
     return (RET) currentTx.loadRecord(iRecordId, null, iFetchPlan, iIgnoreCache, iUpdateCache, loadTombstone, iLockingStrategy);
   }
 
-  @SuppressWarnings("unchecked")
   public <RET extends ORecord> RET reload(final ORecord iRecord) {
     return reload(iRecord, null, false);
   }
 
-  @SuppressWarnings("unchecked")
   public <RET extends ORecord> RET reload(final ORecord iRecord, final String iFetchPlan) {
     return reload(iRecord, iFetchPlan, false);
   }
 
-  @SuppressWarnings("unchecked")
   @Override
   public <RET extends ORecord> RET reload(final ORecord iRecord, final String iFetchPlan, final boolean iIgnoreCache) {
     return reload(iRecord, iFetchPlan, iIgnoreCache, true);

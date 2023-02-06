@@ -705,7 +705,7 @@ public abstract class OAbstractPaginatedStorage extends OStorageAbstract
     }
 
     OLogManager.instance()
-        .infoNoDb(this, "Storage '%s' is created under OrientDB distribution : %s", getURL(), OConstants.getVersion());
+        .infoNoDb(this, "OrientDB storage is created '%s'", getURL());
 
   }
   

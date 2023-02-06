@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import java.util.List;
 import java.util.Map;
+import com.orientechnologies.orient.core.db.ODatabaseDocumentInternal;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
@@ -13,7 +14,7 @@ import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 
 public class TestLinkedDocumentInMap {
 
-  private ODatabaseDocumentTx db;
+  private ODatabaseDocumentInternal db;
 
   @Before
   public void create() {

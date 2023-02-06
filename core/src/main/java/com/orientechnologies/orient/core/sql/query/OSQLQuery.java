@@ -50,14 +50,13 @@ import com.orientechnologies.orient.core.serialization.serializer.record.ORecord
  *
  * @author Luca Garulli (l.garulli--(at)--orientdb.com)
  */
-@SuppressWarnings("serial")
 public abstract class OSQLQuery<T> extends OQueryAbstract<T> implements OCommandRequestText {
   protected String text;
 
-  public OSQLQuery() {
+  protected OSQLQuery() {
   }
 
-  public OSQLQuery(final String iText) {
+  protected OSQLQuery(final String iText) {
     text = iText.trim();
   }
 

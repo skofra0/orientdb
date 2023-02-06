@@ -35,8 +35,9 @@ public class OrientRowId implements RowId {
 
   @Override
   public boolean equals(final Object obj) {
-    if (obj instanceof OrientRowId)
-      return rid.equals(((OrientRowId) obj).rid);
+    if (obj instanceof OrientRowId orientRowId) {
+      return rid.equals(orientRowId.rid);
+    }
     return false;
   }
 

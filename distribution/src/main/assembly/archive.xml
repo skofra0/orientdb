@@ -198,15 +198,13 @@
                 <include>*:jar:*</include>
             </includes>
             <excludes>
-                <exclude>com.orientechnologies:orientdb-etl:*</exclude>
-                <exclude>com.orientechnologies:deem_orientdb:*</exclude>
+                <exclude>com.orientechnologies:deem-orientdb:*</exclude>
             </excludes>
         </dependencySet>
         <dependencySet>
             <outputDirectory>plugins</outputDirectory>
             <includes>
                 <include>*:zip:*</include>
-                <include>com.orientechnologies:orientdb-etl:*</include>
             </includes>
         </dependencySet>
     </dependencySets>

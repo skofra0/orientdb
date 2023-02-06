@@ -74,11 +74,6 @@ public class OrientDataSource implements DataSource {
 
   }
 
-  @Deprecated
-  public OrientDataSource(OrientDB orientDB) {
-    this.orientDB = orientDB;
-  }
-
   public OrientDataSource(OrientDB orientDB, String dbName) {
     this.orientDB = orientDB;
     this.dbName = dbName;

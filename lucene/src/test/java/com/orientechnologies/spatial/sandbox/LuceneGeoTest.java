@@ -89,7 +89,7 @@ public class LuceneGeoTest {
         .add(new MatchAllDocsQuery(), BooleanClause.Occur.SHOULD).build();
 
     TopDocs search = searcher.search(q, 1000);
-    Assert.assertEquals(search.totalHits, 0);
+    Assert.assertEquals(search.totalHits.value, 0);
 
     reader.close();
     writer.close();

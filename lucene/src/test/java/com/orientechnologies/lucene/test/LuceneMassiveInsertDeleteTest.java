@@ -43,7 +43,7 @@ public class LuceneMassiveInsertDeleteTest extends BaseLuceneTest {
     OSchema schema = db.getMetadata().getSchema();
     OClass v = schema.getClass("V");
     OClass song = schema.createClass("City");
-    song.setSuperClass(v);
+    song.addSuperClass(v);
     song.createProperty("name", OType.STRING);
 
     db.command(new OCommandSQL("create index City.name on City (name) FULLTEXT ENGINE LUCENE")).execute();

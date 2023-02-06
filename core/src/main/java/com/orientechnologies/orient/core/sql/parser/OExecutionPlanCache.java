@@ -187,7 +187,7 @@ public class OExecutionPlanCache implements OMetadataUpdateListener {
     invalidate();
   }
 
-  public static OExecutionPlanCache instance(ODatabaseDocumentTx db) {
+  public static OExecutionPlanCache instance(ODatabaseDocumentInternal db) {
     if (db == null) {
       throw new IllegalArgumentException("DB cannot be null");
     }

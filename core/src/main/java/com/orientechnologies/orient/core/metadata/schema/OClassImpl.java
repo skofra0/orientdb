@@ -258,13 +258,6 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
     }
   }
 
-  @Override
-  @Deprecated
-  public OClass setSuperClass(OClass iSuperClass) {
-    setSuperClasses(iSuperClass != null ? Arrays.asList(iSuperClass) : Collections.EMPTY_LIST);
-    return this;
-  }
-
   public String getName() {
     acquireSchemaReadLock();
     try {
@@ -1003,7 +996,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
       } else if (stringValue.startsWith("-")) {
         removeSuperClass(getDatabase().getMetadata().getSchema().getClass(decodeClassName(stringValue.substring(1))));
       } else {
-        setSuperClass(getDatabase().getMetadata().getSchema().getClass(decodeClassName(stringValue)));
+        addSuperClass(getDatabase().getMetadata().getSchema().getClass(decodeClassName(stringValue)));
       }
       break;
     case SUPERCLASSES:
@@ -1584,9 +1577,7 @@ public abstract class OClassImpl extends ODocumentWrapperNoClass implements OCla
     for (OProperty property : baseClassProperties) {
       OProperty thisProperty = getProperty(property.getName());
       if (thisProperty != null && !thisProperty.getType().equals(property.getType())) {
-        throw new OSchemaException(
-                "Cannot add base class '" + baseClass.getName() + "', because of property conflict: '" + thisProperty + "' vs '"
-                        + property + "'");
+        throw new OSchemaException("Cannot add base class '" + baseClass.getName() + "', because of property conflict: '" + thisProperty + "' vs '" + property + "'");
       }
     }
   }

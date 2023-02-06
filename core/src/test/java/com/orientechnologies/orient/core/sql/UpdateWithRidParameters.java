@@ -20,10 +20,9 @@ public class UpdateWithRidParameters {
     OSchema schm = db.getMetadata().getSchema();
     schm.createClass("testingClass");
     schm.createClass("testingClass2");
-    schm.save();
 
     OCommandSQL cmd = new OCommandSQL("INSERT INTO testingClass SET id = ?");
-    db.command(cmd).execute(123);
+    db.execute("sql", "INSERT INTO testingClass SET id = ?", 123);
 
     OCommandSQL cmd2 = new OCommandSQL("INSERT INTO testingClass2 SET id = ?");
     db.command(cmd2).execute(456);

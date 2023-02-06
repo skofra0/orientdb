@@ -52,7 +52,7 @@ public class LuceneSpatialQueryTest extends BaseLuceneTest {
     OClass v = schema.getClass("V");
 
     OClass oClass = schema.createClass("Place");
-    oClass.setSuperClass(v);
+    oClass.addSuperClass(v);
     oClass.createProperty("latitude", OType.DOUBLE);
     oClass.createProperty("longitude", OType.DOUBLE);
     oClass.createProperty("name", OType.STRING);

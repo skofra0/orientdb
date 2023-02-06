@@ -29,7 +29,6 @@ import com.orientechnologies.orient.core.db.record.OIdentifiable;
  * @author Luca Garulli (l.garulli--(at)--orientdb.com)
  * 
  */
-@SuppressWarnings("unchecked")
 public class OCommandExecutorSQLResultsetDelegate extends OCommandExecutorSQLDelegate implements OIterableRecordSource,
     Iterable<OIdentifiable> {
 

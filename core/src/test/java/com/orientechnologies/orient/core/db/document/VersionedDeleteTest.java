@@ -31,7 +31,7 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
  */
 public class VersionedDeleteTest {
 
-  private ODatabaseDocumentTx db;
+  private ODatabaseDocument db;
 
   @Before
   public void before() {

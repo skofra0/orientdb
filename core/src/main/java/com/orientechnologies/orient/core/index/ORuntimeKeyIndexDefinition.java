@@ -101,7 +101,6 @@ public class ORuntimeKeyIndexDefinition<T> extends OAbstractIndexDefinition {
     document.field("nullValuesIgnored", isNullValuesIgnored());
   }
 
-  @SuppressWarnings("unchecked")
   @Override
   protected void fromStream() {
     serializeFromStream();

@@ -43,12 +43,12 @@ public class LuceneSpatialTxPointTest extends BaseSpatialLuceneTest {
     OSchema schema = db.getMetadata().getSchema();
     OClass v = schema.getClass("V");
     OClass oClass = schema.createClass("City");
-    oClass.setSuperClass(v);
+    oClass.addSuperClass(v);
     oClass.createProperty("location", OType.EMBEDDED, schema.getClass("OPoint"));
     oClass.createProperty("name", OType.STRING);
 
     OClass place = schema.createClass("Place");
-    place.setSuperClass(v);
+    place.addSuperClass(v);
     place.createProperty("latitude", OType.DOUBLE);
     place.createProperty("longitude", OType.DOUBLE);
     place.createProperty("name", OType.STRING);

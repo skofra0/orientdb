@@ -74,7 +74,6 @@ public class OStressTester {
     System.exit(returnValue);
   }
 
-  @SuppressWarnings("unchecked")
   public int execute() throws Exception {
 
     int returnCode = 0;

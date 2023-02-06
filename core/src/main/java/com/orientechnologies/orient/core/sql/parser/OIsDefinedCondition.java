@@ -61,7 +61,7 @@ public class OIsDefinedCondition extends OBooleanExpression implements OSimpleBo
 
   @Override
   protected List<Object> getExternalCalculationConditions() {
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   @Override

@@ -59,7 +59,7 @@ public class FreezeAndRecordInsertAtomicityTest {
   }
 
   private Random              random;
-  private ODatabaseDocumentTx db;
+  private ODatabaseDocumentInternal db;
   private ExecutorService     executorService;
   private CountDownLatch      countDownLatch;
 
@@ -99,19 +99,23 @@ public class FreezeAndRecordInsertAtomicityTest {
 
       futures.add(executorService.submit(() -> {
         try {
-          final ODatabaseDocumentTx db = new ODatabaseDocumentTx(URL);
+          final ODatabaseDocumentInternal db = new ODatabaseDocumentTx(URL);
           db.open("admin", "admin");
           final OIndex<?> index = db.getMetadata().getIndexManager().getIndex("Person.name");
 
           for (int i1 = 0; i1 < ITERATIONS; ++i1)
             switch (random.nextInt(3)) {
             case 0:
-              db.newInstance("Person").field("name", "name-" + thread + "-" + i1).save();
+              var e = db.newElement("Person");
+              e.setProperty("name", "name-" + thread + "-" + i1);
+              e.save();
               break;
 
             case 1:
               db.begin();
-              db.newInstance("Person").field("name", "name-" + thread + "-" + i1).save();
+              e = db.newElement("Person");
+              e.setProperty("name", "name-" + thread + "-" + i1);
+              e.save();
               db.commit();
               break;
 

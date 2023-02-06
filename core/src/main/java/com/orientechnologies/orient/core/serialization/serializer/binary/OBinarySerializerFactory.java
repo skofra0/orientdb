@@ -124,7 +124,7 @@ public class OBinarySerializerFactory {
       serializerTypeMap.put(iType, iInstance);
   }
 
-  @SuppressWarnings({ "unchecked", "rawtypes" })
+  @SuppressWarnings("rawtypes")
   public void registerSerializer(final byte iId, final Class<? extends OBinarySerializer> iClass) {
     if (serializerClassesIdMap.containsKey(iId))
       throw new IllegalStateException("Serializer with id " + iId + " has been already registered.");

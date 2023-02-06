@@ -65,7 +65,7 @@ public class OLuceneTransactionCompositeQueryTest extends OLuceneBaseTest {
 
     query = "select from Foo where name = 'Test' and SEARCH_CLASS(\"abc\") = true ";
     vertices = db.command(query);
-    assertThat(vertices).hasSize(0);
+    assertThat(vertices).isEmpty();
     vertices.close();
 
   }
@@ -93,7 +93,7 @@ public class OLuceneTransactionCompositeQueryTest extends OLuceneBaseTest {
 
     Collection coll = (Collection) index.get("abc");
 
-    assertThat(vertices).hasSize(0);
+    assertThat(vertices).isEmpty();
 
     Assert.assertEquals(coll.size(), 0);
 
@@ -142,7 +142,7 @@ public class OLuceneTransactionCompositeQueryTest extends OLuceneBaseTest {
     OResultSet vertices = db.query(query);
     Collection coll = (Collection) index.get("abc");
 
-    assertThat(vertices).hasSize(0);
+    assertThat(vertices).isEmpty();
     Assert.assertEquals(coll.size(), 0);
 
     Iterator iterator = coll.iterator();
