@@ -46,9 +46,9 @@
     </modules>
 
     <scm>
-        <connection>scm:git:git@github.com:orientechnologies/orientdb.git</connection>
-        <developerConnection>scm:git:git@github.com:orientechnologies/orientdb.git</developerConnection>
-        <url>scm:git:git@github.com:orientechnologies/orientdb.git</url>
+        <connection>scm:git:git@bitbucket.org:skofra/deem-orientdb.git</connection>
+        <developerConnection>scm:git:git@bitbucket.org:skofra/deem-orientdb.git</developerConnection>
+        <url>scm:git:git@bitbucket.org:skofra/deem-orientdb.git</url>
     </scm>
     <issueManagement>
         <system>GitHub Issues</system>
@@ -62,14 +62,14 @@
 	<distributionManagement>
 		<repository>
 			<id>DeemMaven</id>
-			<url>http://51.120.242.160:8081/repository/maven-releases</url>
+			<url>https://maven.deem.no:8443/repository/maven-releases</url>
 		</repository>
 	</distributionManagement>
     
     <repositories>
  		<repository>
 			<id>DeemMaven</id>
-			<url>http://51.120.242.160:8081/repository/maven-public</url>
+			<url>https://maven.deem.no:8443/repository/maven-public</url>
 		</repository>
        <repository>
             <id>sonatype-nexus-snapshots</id>
