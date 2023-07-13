@@ -23,7 +23,7 @@
     <parent>
         <groupId>com.orientechnologies</groupId>
         <artifactId>orientdb-parent</artifactId>
-        <version>3.0.41.1</version>
+        <version>3.0.41.2</version>
         <relativePath>../</relativePath>
     </parent>
 
@@ -33,7 +33,7 @@
 
     <properties>
         <orientdb.version>${project.version}</orientdb.version>
-        <lucene.version>8.3.1</lucene.version>
+        <lucene.version>8.11.2</lucene.version> <!-- 8.3.1 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <argLine>-ea
             -Xmx${heapSize}

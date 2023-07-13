@@ -42,7 +42,7 @@ public class OStorageRemoteAsyncOperationTest {
 
   @Before
   public void before() throws IOException {
-    MockitoAnnotations.initMocks(this);
+    MockitoAnnotations.openMocks(this);
     Mockito.when(session.getServerSession(Mockito.anyString())).thenReturn(nodeSession);
     storage = new OStorageRemote("mock",null, "mock", null, null) {
       @Override

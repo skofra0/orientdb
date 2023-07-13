@@ -88,7 +88,9 @@ public class TestMultiSuperClasses {
     oSchema.reload();
     assertTrue(cClass.isSubClassOf(aClass));
     assertTrue(cClass.isSubClassOf(bClass));
-    db.command(new OCommandSQL("alter class sqlC superclass sqlA")).execute();
+    db.command("alter class sqlC superclass -sqlA");
+    db.command("alter class sqlC superclass -sqlB");
+    db.command("alter class sqlC superclass sqlA");
     oSchema.reload();
     assertTrue(cClass.isSubClassOf(aClass));
     assertFalse(cClass.isSubClassOf(bClass));
@@ -120,7 +122,7 @@ public class TestMultiSuperClasses {
     assertTrue(cClass.isSubClassOf(bClass));
   }
 
-  @Test(expected = OSchemaException.class)//, expectedExceptionsMessageRegExp = "(?s).*recursion.*"
+  @Test(expected = OSchemaException.class) // , expectedExceptionsMessageRegExp = "(?s).*recursion.*"
   // )
   public void testPreventionOfCycles() {
     final OSchema oSchema = db.getMetadata().getSchema();
@@ -142,7 +144,7 @@ public class TestMultiSuperClasses {
     assertTrue(cClass.existsProperty("property"));
   }
 
-  @Test(expected = OSchemaException.class)//}, expectedExceptionsMessageRegExp = "(?s).*conflict.*")
+  @Test(expected = OSchemaException.class) // }, expectedExceptionsMessageRegExp = "(?s).*conflict.*")
   public void testParametersImpactBadScenario() {
     final OSchema oSchema = db.getMetadata().getSchema();
     OClass aClass = oSchema.createAbstractClass("impactBadA");

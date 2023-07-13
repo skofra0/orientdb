@@ -1,6 +1,7 @@
 package com.orientechnologies.distribution.integration.demodb;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import org.assertj.core.api.Assertions;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -20,7 +21,7 @@ public class ODemoDbFromDocumentationShortestPathsIT extends OIntegrationTestTem
         + "    $from = (SELECT FROM Profiles WHERE Name='Santo' and Surname='OrientDB'), \n"
         + "    $to = (SELECT FROM Countries WHERE Name='United States') \n" + "  UNWIND path\n" + ")");
 
-    assertThat(resultSet)
+    Assertions.assertThat(resultSet)
         .hasSize(4);
 
     resultSet.close();

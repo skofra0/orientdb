@@ -325,7 +325,7 @@ public class OIOUtils {
     final int size = iText.length();
     for (int i = 0; i < size && isLong; i++) {
       final char c = iText.charAt(i);
-      isLong = isLong & ((c >= '0' && c <= '9'));
+      isLong = isLong & (c >= '0' && c <= '9');
     }
     return isLong;
   }
