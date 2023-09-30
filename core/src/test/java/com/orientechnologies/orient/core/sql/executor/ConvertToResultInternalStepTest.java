@@ -1,6 +1,6 @@
 package com.orientechnologies.orient.core.sql.executor;
 
-import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import java.util.ArrayList;

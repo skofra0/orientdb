@@ -1,6 +1,6 @@
 package com.orientechnologies.orient.core.sql.executor;
 
-import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import com.orientechnologies.orient.core.db.ODatabaseType;
