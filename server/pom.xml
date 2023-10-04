@@ -18,7 +18,7 @@
     <parent>
         <groupId>com.orientechnologies</groupId>
         <artifactId>orientdb-parent</artifactId>
-        <version>3.0.41.2</version>
+        <version>3.0.41.3</version>
     </parent>
 
     <artifactId>orientdb-server</artifactId>
@@ -56,6 +56,16 @@
             <artifactId>orientdb-client</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
+            <exclusions>
+            	<exclusion>
+            		<groupId>org.mozilla</groupId>
+            		<artifactId>rhino-engine</artifactId>
+            	</exclusion>
+            	<exclusion>
+            		<groupId>org.openjdk.nashorn</groupId>
+            		<artifactId>nashorn-core</artifactId>
+            	</exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.orientechnologies</groupId>
@@ -79,6 +89,16 @@
             <version>${project.version}</version>
             <type>test-jar</type>
             <scope>test</scope>
+            <exclusions>
+            	<exclusion>
+            		<groupId>org.mozilla</groupId>
+            		<artifactId>rhino-engine</artifactId>
+            	</exclusion>
+            	<exclusion>
+            		<groupId>org.openjdk.nashorn</groupId>
+            		<artifactId>nashorn-core</artifactId>
+            	</exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>

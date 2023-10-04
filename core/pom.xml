@@ -19,7 +19,7 @@
     <parent>
         <groupId>com.orientechnologies</groupId>
         <artifactId>orientdb-parent</artifactId>
-        <version>3.0.41.2</version>
+        <version>3.0.41.3</version>
         <relativePath>../</relativePath>
     </parent>
 
@@ -304,6 +304,13 @@
 		    <groupId>org.openjdk.nashorn</groupId>
 		    <artifactId>nashorn-core</artifactId>
 		    <version>15.4</version>
+		    <optional>true</optional>
+		</dependency>
+		<dependency>
+		    <groupId>org.mozilla</groupId>
+		    <artifactId>rhino-engine</artifactId>
+		    <version>1.7.14</version>
+		   <optional>true</optional>
 		</dependency>
 
         <dependency>

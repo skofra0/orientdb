@@ -11,8 +11,7 @@ public class OJavascriptScriptExecutor extends OJsr223ScriptExecutor {
 
   public OJavascriptScriptExecutor(String language, OScriptTransformer scriptTransformer) {
     super(language, scriptTransformer);
-    scriptTransformer
-        .registerResultSetTransformer(ScriptObjectMirror.class, new ONashornObjectMirrorTransformer(scriptTransformer));
+    scriptTransformer.registerResultSetTransformer(ScriptObjectMirror.class, new ONashornObjectMirrorTransformer(scriptTransformer));
 
   }
 }

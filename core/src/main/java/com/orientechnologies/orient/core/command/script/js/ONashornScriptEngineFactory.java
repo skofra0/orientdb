@@ -1,77 +1,34 @@
 package com.orientechnologies.orient.core.command.script.js;
 
+import org.openjdk.nashorn.api.scripting.ClassFilter;
 import org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory;
-import java.util.List;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineFactory;
 import com.orientechnologies.orient.core.command.script.OSecuredScriptFactory;
 
-public class ONashornScriptEngineFactory extends OSecuredScriptFactory {
-
-  private NashornScriptEngineFactory engineFactory;
+public class ONashornScriptEngineFactory extends OSecuredScriptFactory<NashornScriptEngineFactory> {
 
   public ONashornScriptEngineFactory(ScriptEngineFactory engineFactory) {
-    this.engineFactory = (NashornScriptEngineFactory) engineFactory;
-  }
-
-  @Override
-  public String getEngineName() {
-    return engineFactory.getEngineName();
-  }
-
-  @Override
-  public String getEngineVersion() {
-    return engineFactory.getEngineVersion();
-  }
-
-  @Override
-  public List<String> getExtensions() {
-    return engineFactory.getExtensions();
-  }
-
-  @Override
-  public List<String> getMimeTypes() {
-    return engineFactory.getMimeTypes();
-  }
-
-  @Override
-  public List<String> getNames() {
-    return engineFactory.getNames();
-  }
-
-  @Override
-  public String getLanguageName() {
-    return engineFactory.getLanguageName();
-  }
-
-  @Override
-  public String getLanguageVersion() {
-    return engineFactory.getLanguageVersion();
-  }
-
-  @Override
-  public Object getParameter(String key) {
-    return engineFactory.getParameter(key);
-  }
-
-  @Override
-  public String getMethodCallSyntax(String obj, String m, String... args) {
-    return engineFactory.getMethodCallSyntax(obj, m, args);
-  }
-
-  @Override
-  public String getOutputStatement(String toDisplay) {
-    return engineFactory.getOutputStatement(toDisplay);
-  }
-
-  @Override
-  public String getProgram(String... statements) {
-    return engineFactory.getProgram(statements);
+    super((NashornScriptEngineFactory)engineFactory);
   }
 
   @Override
   public ScriptEngine getScriptEngine() {
-    return engineFactory.getScriptEngine(new ONashornClassFilter(this));
+    return engineFactory.getScriptEngine(new OClassFilter(this));
+  }
+
+  public static class OClassFilter implements ClassFilter {
+
+    private ONashornScriptEngineFactory factory;
+
+    public OClassFilter(ONashornScriptEngineFactory factory) {
+      this.factory = factory;
+    }
+
+    @Override
+    public boolean exposeToScripts(String s) {
+      return factory.getPackages().stream().map(e -> s.matches(e)).filter(f -> f).findFirst().isPresent();
+    }
   }
 
 }

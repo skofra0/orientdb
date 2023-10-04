@@ -69,7 +69,7 @@ import com.orientechnologies.orient.core.sql.OSQLScriptEngineFactory;
 public class OScriptManager {
   protected static final Object[]                                          EMPTY_PARAMS       = new Object[] {};
   protected static final int                                               LINES_AROUND_ERROR = 5;
-  protected final        String                                            DEF_LANGUAGE       = "javascript";
+  protected final        String                                            DEF_LANGUAGE       = "rhino"; // javascript
   protected              String                                            defaultLanguage    = DEF_LANGUAGE;
   protected              ScriptEngineManager                               scriptEngineManager;
   protected              Map<String, ScriptEngineFactory>                  engines            = new HashMap<>();
@@ -415,16 +415,16 @@ public class OScriptManager {
   public void addAllowedPackages(Set<String> packages) {
 
     this.engines.entrySet().forEach(e -> {
-      if (e.getValue() instanceof OSecuredScriptFactory) {
-        ((OSecuredScriptFactory) e.getValue()).addAllowedPackages(packages);
+      if (e.getValue() instanceof OSecuredScriptFactory scriptFactory) {
+        scriptFactory.addAllowedPackages(packages);
       }
     });
   }
 
   public void removeAllowedPackages(Set<String> packages) {
     this.engines.entrySet().forEach(e -> {
-      if (e.getValue() instanceof OSecuredScriptFactory) {
-        ((OSecuredScriptFactory) e.getValue()).removeAllowedPackages(packages);
+      if (e.getValue() instanceof OSecuredScriptFactory scriptFactory) {
+        scriptFactory.removeAllowedPackages(packages);
       }
     });
   }

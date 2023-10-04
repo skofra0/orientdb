@@ -708,16 +708,16 @@ public class Orient extends OListenerManger<OOrientListener> {
 
   @Override
   public void registerListener(OOrientListener listener) {
-    if (listener instanceof OOrientStartupListener)
-      registerOrientStartupListener((OOrientStartupListener) listener);
+    if (listener instanceof OOrientStartupListener orientStartupListener)
+      registerOrientStartupListener(orientStartupListener);
 
     super.registerListener(listener);
   }
 
   @Override
   public void unregisterListener(OOrientListener listener) {
-    if (listener instanceof OOrientStartupListener)
-      unregisterOrientStartupListener((OOrientStartupListener) listener);
+    if (listener instanceof OOrientStartupListener orientStartupListener)
+      unregisterOrientStartupListener(orientStartupListener);
 
     super.unregisterListener(listener);
   }
