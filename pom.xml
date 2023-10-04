@@ -89,10 +89,11 @@
         <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <jdk.version>17</jdk.version>
+        <buildNumber>${project.version}</buildNumber>
         <maven.compiler.source>${jdk.version}</maven.compiler.source>
         <maven.compiler.target>${jdk.version}</maven.compiler.target>
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ssZ</maven.build.timestamp.format>
-        <implementation.build>${scmBranch}@r${buildNumber}</implementation.build>
+        <implementation.build>${scmBranch}@r${version}</implementation.build>
         <blueprints.version>2.6.0</blueprints.version>
         <osgi.fragment.host/>
         <osgi.export>${project.groupId}.*;version=${project.version};-noimport:=true</osgi.export>
@@ -398,7 +399,7 @@
                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                         </manifest>
                         <manifestEntries>
-                            <Implementation-Build>${buildNumber}</Implementation-Build>
+                            <Implementation-Build>${version}</Implementation-Build>
                             <Implementation-Url>${project.organization.url}</Implementation-Url>
                             <Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
                             <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
