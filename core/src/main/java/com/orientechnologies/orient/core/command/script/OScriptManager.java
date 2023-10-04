@@ -69,7 +69,7 @@ import com.orientechnologies.orient.core.sql.OSQLScriptEngineFactory;
 public class OScriptManager {
   protected static final Object[]                                          EMPTY_PARAMS       = new Object[] {};
   protected static final int                                               LINES_AROUND_ERROR = 5;
-  protected final        String                                            DEF_LANGUAGE       = "rhino"; // javascript
+  protected static final String                                            DEF_LANGUAGE       = "javascript";
   protected              String                                            defaultLanguage    = DEF_LANGUAGE;
   protected              ScriptEngineManager                               scriptEngineManager;
   protected              Map<String, ScriptEngineFactory>                  engines            = new HashMap<>();

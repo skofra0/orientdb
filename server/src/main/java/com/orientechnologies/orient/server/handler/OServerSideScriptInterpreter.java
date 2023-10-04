@@ -94,9 +94,7 @@ public class OServerSideScriptInterpreter extends OServerPluginAbstract {
     };
 
     OCommandManager.instance().getScriptExecutors().entrySet().forEach(e -> e.getValue().registerInterceptor(interceptor));
-    OLogManager.instance().warn(this,
-        "Authenticated clients can execute any kind of code into the server by using the following allowed languages: "
-            + allowedLanguages);
+    OLogManager.instance().info(this, "Authenticated clients can execute any kind of code into the server by using the following allowed languages: "  + allowedLanguages);
   }
 
   @Override
