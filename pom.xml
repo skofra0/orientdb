@@ -93,7 +93,7 @@
         <maven.compiler.source>${jdk.version}</maven.compiler.source>
         <maven.compiler.target>${jdk.version}</maven.compiler.target>
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ssZ</maven.build.timestamp.format>
-        <implementation.build>${scmBranch}@r${version}</implementation.build>
+        <implementation.build>${scmBranch}@r${project.version}</implementation.build>
         <blueprints.version>2.6.0</blueprints.version>
         <osgi.fragment.host/>
         <osgi.export>${project.groupId}.*;version=${project.version};-noimport:=true</osgi.export>
@@ -107,7 +107,7 @@
         <license.location>license.txt</license.location>
         <heapSize>2048m</heapSize>
         <javaassist.version>3.23.1-GA</javaassist.version>
-		<asm.version>9.5</asm.version>
+		<asm.version>9.6</asm.version>
 		<jackson.version>2.15.2</jackson.version>
 		<jackson.databind.version>2.15.2</jackson.databind.version>
     </properties>
@@ -223,7 +223,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.5.0</version>
+                    <version>3.6.0</version>
                 </plugin>
 
                 <plugin>
@@ -399,7 +399,7 @@
                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                         </manifest>
                         <manifestEntries>
-                            <Implementation-Build>${version}</Implementation-Build>
+                            <Implementation-Build>${project.version}</Implementation-Build>
                             <Implementation-Url>${project.organization.url}</Implementation-Url>
                             <Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
                             <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
@@ -451,7 +451,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>
-				<version>3.3.0</version>
+				<version>3.4.1</version>
 				<executions>
 					<execution>
 						<id>enforce-maven</id>

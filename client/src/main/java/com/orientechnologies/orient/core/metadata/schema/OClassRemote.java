@@ -389,7 +389,7 @@ public class OClassRemote extends OClassImpl {
     acquireSchemaWriteLock();
     try {
       // FORMAT FLOAT LOCALE AGNOSTIC
-      final String cmd = String.format("alter class `%s` oversize %s", name, new Float(overSize).toString());
+      final String cmd = String.format("alter class `%s` oversize %s", name, Float.valueOf(overSize).toString());
       database.command(cmd).close();
     } finally {
       releaseSchemaWriteLock();

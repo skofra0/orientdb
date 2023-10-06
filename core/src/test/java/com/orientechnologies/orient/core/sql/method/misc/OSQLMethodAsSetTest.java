@@ -108,9 +108,9 @@ public class OSQLMethodAsSetTest {
     // The expected behavior is to return a set with only the single
     // element in it.
 
-    Object result = function.execute(null, null, null, new Integer(4), null);
+    Object result = function.execute(null, null, null, Integer.valueOf(4), null);
     HashSet<Object> expected = new HashSet<>();
-    expected.add(new Integer(4));
+    expected.add(Integer.valueOf(4));
     assertEquals(result, expected);
   }
 }

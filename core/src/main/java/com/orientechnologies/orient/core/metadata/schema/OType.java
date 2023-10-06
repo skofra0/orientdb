@@ -521,34 +521,34 @@ public enum OType {
         final int sum = a.intValue() + b.intValue();
         if (sum < 0 && a.intValue() > 0 && b.intValue() > 0)
           // SPECIAL CASE: UPGRADE TO LONG
-          return new Long(a.intValue() + b.intValue());
+          return Long.valueOf(a.intValue() + b.intValue());
         return sum;
       } else if (b instanceof Long)
-        return new Long(a.intValue() + b.longValue());
+        return Long.valueOf(a.intValue() + b.longValue());
       else if (b instanceof Short) {
         final int sum = a.intValue() + b.shortValue();
         if (sum < 0 && a.intValue() > 0 && b.shortValue() > 0)
           // SPECIAL CASE: UPGRADE TO LONG
-          return new Long(a.intValue() + b.shortValue());
+          return Long.valueOf(a.intValue() + b.shortValue());
         return sum;
       } else if (b instanceof Float)
-        return new Float(a.intValue() + b.floatValue());
+        return Float.valueOf(a.intValue() + b.floatValue());
       else if (b instanceof Double)
-        return new Double(a.intValue() + b.doubleValue());
+        return Double.valueOf(a.intValue() + b.doubleValue());
       else if (b instanceof BigDecimal)
         return new BigDecimal(a.intValue()).add((BigDecimal) b);
 
     } else if (a instanceof Long) {
       if (b instanceof Integer)
-        return new Long(a.longValue() + b.intValue());
+        return Long.valueOf(a.longValue() + b.intValue());
       else if (b instanceof Long)
-        return new Long(a.longValue() + b.longValue());
+        return Long.valueOf(a.longValue() + b.longValue());
       else if (b instanceof Short)
-        return new Long(a.longValue() + b.shortValue());
+        return Long.valueOf(a.longValue() + b.shortValue());
       else if (b instanceof Float)
-        return new Float(a.longValue() + b.floatValue());
+        return Float.valueOf(a.longValue() + b.floatValue());
       else if (b instanceof Double)
-        return new Double(a.longValue() + b.doubleValue());
+        return Double.valueOf(a.longValue() + b.doubleValue());
       else if (b instanceof BigDecimal)
         return new BigDecimal(a.longValue()).add((BigDecimal) b);
 
@@ -557,48 +557,48 @@ public enum OType {
         final int sum = a.shortValue() + b.intValue();
         if (sum < 0 && a.shortValue() > 0 && b.intValue() > 0)
           // SPECIAL CASE: UPGRADE TO LONG
-          return new Long(a.shortValue() + b.intValue());
+          return Long.valueOf(a.shortValue() + b.intValue());
         return sum;
       } else if (b instanceof Long)
-        return new Long(a.shortValue() + b.longValue());
+        return Long.valueOf(a.shortValue() + b.longValue());
       else if (b instanceof Short) {
         final int sum = a.shortValue() + b.shortValue();
         if (sum < 0 && a.shortValue() > 0 && b.shortValue() > 0)
           // SPECIAL CASE: UPGRADE TO INTEGER
-          return new Integer(a.intValue() + b.intValue());
+          return Integer.valueOf(a.intValue() + b.intValue());
         return sum;
       } else if (b instanceof Float)
-        return new Float(a.shortValue() + b.floatValue());
+        return Float.valueOf(a.shortValue() + b.floatValue());
       else if (b instanceof Double)
-        return new Double(a.shortValue() + b.doubleValue());
+        return Double.valueOf(a.shortValue() + b.doubleValue());
       else if (b instanceof BigDecimal)
         return new BigDecimal(a.shortValue()).add((BigDecimal) b);
 
     } else if (a instanceof Float) {
       if (b instanceof Integer)
-        return new Float(a.floatValue() + b.intValue());
+        return Float.valueOf(a.floatValue() + b.intValue());
       else if (b instanceof Long)
-        return new Float(a.floatValue() + b.longValue());
+        return Float.valueOf(a.floatValue() + b.longValue());
       else if (b instanceof Short)
-        return new Float(a.floatValue() + b.shortValue());
+        return Float.valueOf(a.floatValue() + b.shortValue());
       else if (b instanceof Float)
-        return new Float(a.floatValue() + b.floatValue());
+        return Float.valueOf(a.floatValue() + b.floatValue());
       else if (b instanceof Double)
-        return new Double(a.floatValue() + b.doubleValue());
+        return Double.valueOf(a.floatValue() + b.doubleValue());
       else if (b instanceof BigDecimal)
         return new BigDecimal(a.floatValue()).add((BigDecimal) b);
 
     } else if (a instanceof Double) {
       if (b instanceof Integer)
-        return new Double(a.doubleValue() + b.intValue());
+        return Double.valueOf(a.doubleValue() + b.intValue());
       else if (b instanceof Long)
-        return new Double(a.doubleValue() + b.longValue());
+        return Double.valueOf(a.doubleValue() + b.longValue());
       else if (b instanceof Short)
-        return new Double(a.doubleValue() + b.shortValue());
+        return Double.valueOf(a.doubleValue() + b.shortValue());
       else if (b instanceof Float)
-        return new Double(a.doubleValue() + b.floatValue());
+        return Double.valueOf(a.doubleValue() + b.floatValue());
       else if (b instanceof Double)
-        return new Double(a.doubleValue() + b.doubleValue());
+        return Double.valueOf(a.doubleValue() + b.doubleValue());
       else if (b instanceof BigDecimal)
         return new BigDecimal(a.doubleValue()).add((BigDecimal) b);
 

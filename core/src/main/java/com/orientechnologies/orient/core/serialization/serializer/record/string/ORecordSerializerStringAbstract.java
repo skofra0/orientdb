@@ -336,9 +336,9 @@ public abstract class ORecordSerializerStringAbstract implements ORecordSerializ
     // CHECK IF THE DECIMAL NUMBER IS A FLOAT OR DOUBLE
     final double dou = Double.parseDouble(iValue);
     if (dou <= Float.MAX_VALUE && dou >= Float.MIN_VALUE && Double.toString(dou).equals(Float.toString((float) dou))
-        && new Double(new Double(dou).floatValue()).doubleValue() == dou) {
+        && Double.valueOf(Double.valueOf(dou).floatValue()).doubleValue() == dou) {
       return OType.FLOAT;
-    } else if (!new Double(dou).toString().equals(iValue)) {
+    } else if (!Double.valueOf(dou).toString().equals(iValue)) {
       return OType.DECIMAL;
     }
 
@@ -468,19 +468,19 @@ public abstract class ORecordSerializerStringAbstract implements ORecordSerializ
             final String v = iValue.substring(0, index);
 
             if (c == 'f')
-              return new Float(v);
+              return Float.valueOf(v);
             else if (c == 'c')
               return new BigDecimal(v);
             else if (c == 'l')
-              return new Long(v);
+              return Long.valueOf(v);
             else if (c == 'd')
-              return new Double(v);
+              return Double.valueOf(v);
             else if (c == 'b')
-              return new Byte(v);
+              return Byte.valueOf(v);
             else if (c == 'a' || c == 't')
               return new Date(Long.parseLong(v));
             else if (c == 's')
-              return new Short(v);
+              return Short.valueOf(v);
           }
           return iValue;
         }
@@ -493,13 +493,13 @@ public abstract class ORecordSerializerStringAbstract implements ORecordSerializ
 
     if (integer) {
       try {
-        return new Integer(iValue);
+        return Integer.valueOf(iValue);
       } catch (NumberFormatException ignore) {
-        return new Long(iValue);
+        return Long.valueOf(iValue);
       }
     } else if ("NaN".equals(iValue) || "Infinity".equals(iValue))
       // NaN and Infinity CANNOT BE MANAGED BY BIG-DECIMAL TYPE
-      return new Double(iValue);
+      return Double.valueOf(iValue);
     else
       return new BigDecimal(iValue);
   }
@@ -516,7 +516,7 @@ public abstract class ORecordSerializerStringAbstract implements ORecordSerializ
     case INTEGER:
       if (iValue instanceof Integer)
         return iValue;
-      return new Integer(iValue.toString());
+      return Integer.valueOf(iValue.toString());
 
     case BOOLEAN:
       if (iValue instanceof Boolean)

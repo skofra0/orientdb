@@ -942,7 +942,7 @@ public class OClassEmbedded extends OClassImpl {
 
       if (isDistributedCommand(database)) {
         // FORMAT FLOAT LOCALE AGNOSTIC
-        final String cmd = String.format("alter class `%s` oversize %s", name, new Float(overSize).toString());
+        final String cmd = String.format("alter class `%s` oversize %s", name, Float.valueOf(overSize).toString());
         final OCommandSQL commandSQL = new OCommandSQL(cmd);
         commandSQL.addExcludedNode(((OAutoshardedStorage) storage).getNodeId());
 

@@ -839,9 +839,9 @@ public class ODocumentHelper {
     else if (function.startsWith("ASSTRING("))
       result = currentValue.toString();
     else if (function.startsWith("ASINTEGER("))
-      result = new Integer(currentValue.toString());
+      result = Integer.valueOf(currentValue.toString());
     else if (function.startsWith("ASFLOAT("))
-      result = new Float(currentValue.toString());
+      result = Float.valueOf(currentValue.toString());
     else if (function.startsWith("ASBOOLEAN(")) {
       if (currentValue instanceof String)
         result = new Boolean((String) currentValue);

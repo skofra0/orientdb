@@ -645,7 +645,7 @@ public class ODocumentFieldConversionTest {
       assertTrue(val instanceof Float);
     }
     for (int i = 1; i < 7; i++) {
-      assertTrue(set.contains(new Float(i)));
+      assertTrue(set.contains(Float.valueOf(i)));
     }
 
     ODatabaseRecordThreadLocal.instance().remove();
@@ -689,7 +689,7 @@ public class ODocumentFieldConversionTest {
       assertTrue(val instanceof Double);
     }
     for (int i = 1; i < 7; i++) {
-      assertTrue(set.contains(new Double(i)));
+      assertTrue(set.contains(Double.valueOf(i)));
     }
 
     ODatabaseRecordThreadLocal.instance().remove();
