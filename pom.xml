@@ -108,8 +108,8 @@
         <heapSize>2048m</heapSize>
         <javaassist.version>3.23.1-GA</javaassist.version>
 		<asm.version>9.6</asm.version>
-		<jackson.version>2.15.3</jackson.version>
-		<jackson.databind.version>2.15.3</jackson.databind.version>
+		<jackson.version>2.16.0</jackson.version>
+		<jackson.databind.version>2.16.0</jackson.databind.version>
 		<log4j.version>2.21.0</log4j.version>
     </properties>
 
