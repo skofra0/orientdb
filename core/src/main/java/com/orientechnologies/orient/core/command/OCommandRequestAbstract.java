@@ -162,9 +162,9 @@ public abstract class OCommandRequestAbstract implements OCommandRequestInternal
   }
 
   @SuppressWarnings("unchecked")
-  public <RET extends OCommandRequest> RET setFetchPlan(String fetchPlan) {
+  public <R extends OCommandRequest> R setFetchPlan(String fetchPlan) {
     this.fetchPlan = fetchPlan;
-    return (RET) this;
+    return (R) this;
   }
 
   public boolean isUseCache() {

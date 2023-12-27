@@ -2,6 +2,7 @@ package com.orientechnologies.orient.core.sql.parser;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import org.junit.Assert;
@@ -60,10 +61,10 @@ public class OSelectStatementTest {
     SimpleNode stm = checkRightSyntax("select from Foo");
     assertTrue(stm instanceof OSelectStatement);
     OSelectStatement select = (OSelectStatement) stm;
-    assertTrue(select.getProjection() == null);
+    assertNull(select.getProjection());
     assertTrue(select.getTarget() != null);
     assertTrue(!Boolean.TRUE.equals(select.getLockRecord()));
-    assertTrue(select.getWhereClause() == null);
+    assertNull(select.getWhereClause());
   }
 
   @Test
@@ -76,7 +77,7 @@ public class OSelectStatementTest {
     assertEquals(select.getProjection().getItems().size(), 1);
     assertTrue(select.getTarget() != null);
     assertTrue(!Boolean.TRUE.equals(select.getLockRecord()));
-    assertTrue(select.getWhereClause() == null);
+    assertNull(select.getWhereClause());
   }
 
   @Test

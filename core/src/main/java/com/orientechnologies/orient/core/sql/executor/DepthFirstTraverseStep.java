@@ -33,7 +33,7 @@ public class DepthFirstTraverseStep extends AbstractTraverseStep {
       ((OResultInternal) item).setMetadata("$depth", 0);
 
       List stack = new ArrayList();
-      item.getIdentity().ifPresent(x -> stack.add(x));
+      item.getIdentity().ifPresent(stack::add);
       ((OResultInternal) item).setMetadata("$stack", stack);
 
       List<OIdentifiable> path = new ArrayList<>();
@@ -47,9 +47,9 @@ public class DepthFirstTraverseStep extends AbstractTraverseStep {
       if (item.isElement() && !traversed.contains(item.getElement().get().getIdentity())) {
         tryAddEntryPointAtTheEnd(item, ctx);
         traversed.add(item.getElement().get().getIdentity());
-      } else if (item.getProperty("@rid") != null && item.getProperty("@rid") instanceof OIdentifiable) {
+      } else if (item.getProperty("@rid") instanceof OIdentifiable rid) {
         tryAddEntryPointAtTheEnd(item, ctx);
-        traversed.add(((OIdentifiable) item.getProperty("@rid")).getIdentity());
+        traversed.add(rid.getIdentity());
       }
     }
   }
@@ -84,9 +84,9 @@ public class DepthFirstTraverseStep extends AbstractTraverseStep {
   }
 
   public Object convert(Object value) {
-    if (value instanceof ORidBag) {
-      List result = new ArrayList();
-      ((ORidBag) value).forEach(x -> result.add(x));
+    if (value instanceof ORidBag ridBag) {
+      List<OIdentifiable> result = new ArrayList<>();
+      ridBag.forEach(result::add);
       return result;
     }
     return value;

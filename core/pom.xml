@@ -19,7 +19,7 @@
     <parent>
         <groupId>com.orientechnologies</groupId>
         <artifactId>orientdb-parent</artifactId>
-        <version>3.0.41.3</version>
+        <version>3.0.41.4</version>
         <relativePath>../</relativePath>
     </parent>
 
@@ -45,7 +45,7 @@
             com.orientechnologies.common.*,com.orientechnologies.nio.*,
             com.orientechnologies.orient.enterprise.*
         </osgi.export>
-        <jna.version>5.13.0</jna.version>
+        <jna.version>5.14.0</jna.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <argLine>-ea
             -Xmx${heapSize}

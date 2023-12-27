@@ -3,7 +3,7 @@
     <parent>
         <artifactId>orientdb-parent</artifactId>
         <groupId>com.orientechnologies</groupId>
-        <version>3.0.41.3</version>
+        <version>3.0.41.4</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -29,7 +29,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>5.4.0</version>
+            <version>5.8.0</version>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>

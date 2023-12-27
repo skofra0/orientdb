@@ -31,7 +31,7 @@ public class BreadthFirstTraverseStep extends AbstractTraverseStep {
         OResult item = toTraverseResult(nextN.next());
         if(item != null){
           List<ORID> stack = new ArrayList<>();
-          item.getIdentity().ifPresent(x -> stack.add(x));
+          item.getIdentity().ifPresent(stack::add);
           ((OResultInternal) item).setMetadata("$stack", stack);
 
 
@@ -80,14 +80,14 @@ public class BreadthFirstTraverseStep extends AbstractTraverseStep {
   }
 
   private void addNextEntryPoints(Object nextStep, int depth, List<OIdentifiable> path, OCommandContext ctx) {
-    if (nextStep instanceof OIdentifiable) {
-      addNextEntryPoints(((OIdentifiable) nextStep), depth, path, ctx);
-    } else if (nextStep instanceof Iterable) {
-      addNextEntryPoints(((Iterable) nextStep).iterator(), depth, path, ctx);
-    } else if (nextStep instanceof Map) {
-      addNextEntryPoints(((Map) nextStep).values().iterator(), depth, path, ctx);
-    } else if (nextStep instanceof OResult) {
-      addNextEntryPoints(((OResult) nextStep), depth, path, ctx);
+    if (nextStep instanceof OIdentifiable oIdentifiable) {
+      addNextEntryPoints(oIdentifiable, depth, path, ctx);
+    } else if (nextStep instanceof Iterable iterable) {
+      addNextEntryPoints(iterable.iterator(), depth, path, ctx);
+    } else if (nextStep instanceof Map map) {
+      addNextEntryPoints(map.values().iterator(), depth, path, ctx);
+    } else if (nextStep instanceof OResult oResult) {
+      addNextEntryPoints(oResult, depth, path, ctx);
     }
   }
 
@@ -108,13 +108,15 @@ public class BreadthFirstTraverseStep extends AbstractTraverseStep {
 
     List<OIdentifiable> newPath = new ArrayList<>();
     newPath.addAll(path);
-    newPath.add(res.getIdentity().get());
+    
+    res.getIdentity().ifPresent(newPath::add);
+    // newPath.add(res.getIdentity().get())
     res.setMetadata("$path", newPath);
 
-    List reverseStack = new ArrayList();
+    List<OIdentifiable> reverseStack = new ArrayList<>();
     reverseStack.addAll(newPath);
     Collections.reverse(reverseStack);
-    List newStack = new ArrayList();
+    List<OIdentifiable> newStack = new ArrayList<>();
     newStack.addAll(reverseStack);
     res.setMetadata("$stack", newStack);
 
