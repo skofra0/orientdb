@@ -28,7 +28,7 @@ import jakarta.xml.bind.annotation.XmlTransient;
 @XmlRootElement(name = "orient-server")
 public class OServerConfiguration {
   public static final String                        FILE_NAME            = "server-config.xml";
-  // private static final String HEADER = "OrientDB Server configuration";
+
   public static final OServerStorageConfiguration[] EMPTY_CONFIG_ARRAY   = new OServerStorageConfiguration[0];
   @XmlTransient
   public String                                     location;

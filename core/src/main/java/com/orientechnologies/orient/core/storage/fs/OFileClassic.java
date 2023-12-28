@@ -47,7 +47,7 @@ import com.sun.jna.Platform;
 import com.sun.jna.Pointer;
 
 public final class OFileClassic implements OClosableItem {
-  public final static  String NAME            = "classic";
+  public static final   String NAME            = "classic";
   private static final int    CURRENT_VERSION = 2;
 
   public static final int HEADER_SIZE    = 1024;

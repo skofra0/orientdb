@@ -24,9 +24,7 @@ public class ONashornObjectMirrorTransformer implements OResultSetTransformer<Sc
       return OScriptResultSets.singleton(value.values(), transformer);
     } else {
       Map<String, Object> object = new LinkedHashMap<>();
-      value.forEach((key, val) -> {
-        object.put(key, val);
-      });
+      value.forEach(object::put);
       OScriptResultSets.singleton(object, transformer);
     }
     return OScriptResultSets.empty();
