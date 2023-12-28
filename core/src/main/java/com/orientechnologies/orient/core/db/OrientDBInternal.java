@@ -73,7 +73,7 @@ public interface OrientDBInternal extends AutoCloseable {
     OrientDBInternal factory;
 
     try {
-      String className = "com.orientechnologies.orient.core.db.OrientDBRemote";
+      String className = "com.orientechnologies.orient.client.remote.OrientDBRemote";
       ClassLoader loader;
       if (configuration != null) {
         loader = configuration.getClassLoader();
